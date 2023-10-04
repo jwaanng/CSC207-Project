@@ -14,7 +14,41 @@ public class ClientUI extends JFrame {
         mainPanel.setLayout(new GridLayout(3, 1, 10, 10));
         add(mainPanel);
 
-        JButton viewListingsButton = new JButton("View Listings");
+        JButton viewMessages = new JButton("Messages");
+        viewMessages.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+                System.out.println("clicked messages button");
+            }
+        });
+        mainPanel.add(viewMessages);
+
+        JButton viewProfile = new JButton("Profile");
+        viewProfile.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+                System.out.println("clicked Profile button");
+            }
+        });
+        mainPanel.add(viewProfile);
+
+        JButton viewSettings = new JButton("Settings");
+        viewSettings.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+                System.out.println("clicked Settings button");
+            }
+        });
+        mainPanel.add(viewSettings);
+
+        JButton viewMain = new JButton("Main");
+        viewMain.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO
+                System.out.println("clicked Main button");
+            }
+        });
+        mainPanel.add(viewMain);
     }
 
     public static void main(String[] args) {

@@ -16,9 +16,10 @@ Users:
 - -password : String
 - -address : String
 - -email : String
-- -isOwner : bool????
-- -isBuyer : boolean
-- -organization : bool????
+- -isOwner : boolean
+- -isOrganization : boolean
+- -isBuyer: boolean
+- -bio: string
 
 Profile: 
 - -petName : String
@@ -28,9 +29,19 @@ Profile:
 - -petNeuter : bool
 - -BackgroundDescription : String
 - -photos : list
-- -pet
+- -petID: string
 
-Buyer/Finder
+Profile:
+- -preferences: list
+- -conversations: list
+- -notifications: list
+- -locationLatitude: float
+- -locationLongtitude: float
+- -likes : list<userLikes>
+- -swipeHistory : list<swipeHistory>
+- -notifications : list
+
+Buyer
 - -preferences: list
 - -conversations: list
 - -notifications: list
@@ -55,7 +66,6 @@ Preferences:
 - -ageRange: Set
 - -sexPreference: Set<String>
 - -speciesPreference: Set<String>
-
 
 
 

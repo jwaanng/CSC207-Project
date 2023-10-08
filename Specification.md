@@ -39,7 +39,7 @@
   - Allow pet finder to exit from application
   
 - 
-**My Profile page**
+### **My Profile page**
   - **View information**
   - **Edit information**
       - **User/Org edit their account name**
@@ -69,7 +69,7 @@
           - Systematic confirmation
 
 
-**Look for pet page**
+### **Look for pet page**
 - **View**
   - User/Org will see a pet profile
   - **with search category completed**: the pet profile with the highest score is the first
@@ -81,7 +81,7 @@
   - User can exit the look for pet page and enter other pages like "my profile", "favorite pet", "search", "my pets"
   - User can add pet profile to favorite pet page
 
-**User/Org Search Page**
+### **User/Org Search Page**
   - System automatically (random) put on a pet's profile 
   - **Categorical search**
     - Gender search
@@ -99,7 +99,7 @@
     - When swiping, pets with the highest score calculated based on a categorical algorithm will appear first
     
 
-**Favorite pet page**
+### **Favorite pet page**
 
 - **View**
   - User will see a list of their favorite pet profiles
@@ -115,7 +115,7 @@
     - User can type words in the chat
 
   
-**My Pets page**
+### **My Pets page**
 
   - **User not registered as a pet owner's view**
     - Display Register as pet owner

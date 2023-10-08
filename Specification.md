@@ -1,10 +1,9 @@
-# **Software Specification:**
-
-
+**Software Specification:**
+-
 **(Op) = (Optional)**
 
-## **Basic:**
-
+**Basic:**
+-
 - **Customer-Sign up Page Interactions:**
   - Customer can choose to create a user account or organization account
   - If choose user's account:
@@ -23,32 +22,25 @@
     - (Op) reCAPTCHA check
     - Organization is automatically registered as a pet owner
   - Once signup is successful, Customer will be redirected to the login page
-  - Profile photo is set to the default Profile photo
-
-
 - **Customer-Login Page interactions**
   - Ask for the customer(User/Org)'s email and password
   -successful log in will redirect to main page   
 
 
-## **Main pages**
-
+**Main pages**
+-
 **A newly registered User or organization is automatically a Pet Finder**
 - **User/Organization Pet Finder-Main page interaction**
-  - Allow customer to click on favorite pets icon and redirect him/her to the "favorite pet" page
-  - Allow customer to click on the "look for pet" icon and redirect him/her to the "look for pet" page
-  - Allow customer  to click on search icon and redirect into a search page
-  - Allow customer to click on my profile icon and redirect into the "my profile" page
-  - Allow customer to click on my pets icon and redirect into the "my pets" page
-  - Allow customer to click on chat icon and redirect into the "chat" page for potential deal
-  - Allow customer to click on "look for pet finder" icon and redirect into the "look for pet finder" page
-  - Allow customer to exit from application
+  - Allow pet finder to click on favorite pets icon and redirect him/her to the favorite pet page
+  - Allow pet finder to click on the "look for pet" icon and redirect him/her to the "look for pet page"
+  - Allow pet finder to click on search icon and redirect into a search page
+  - Allow pet finder to click on my profile icon and redirect into the "my profile" page
+  - Allow pet finder to click on my pets icon and redirect into the "my pets" page
+  - Allow pet finder to exit from application
   
 - 
-### **My Profile page**
+**My Profile page**
   - **View information**
-
-
   - **Edit information**
       - **User/Org edit their account name**
         - Prompt User to enter new name
@@ -66,8 +58,6 @@
         - Prompt User to enter new phone number
         - Send verification message to new phone number
         - Enter verification code
-      - **User/Org edit profile photo**
-        - Ask to upload a new profile photo
       - **User ONLY-My Profile edit interaction**
         - **(Op)User edit their id**
           - Prompt User to enter new id
@@ -79,13 +69,11 @@
           - Systematic confirmation
 
 
-### **Look for pet page**
+**Look for pet page**
 - **View**
   - User/Org will see a pet profile
   - **with search category completed**: the pet profile with the highest score is the first
   - **without search category completed**: a random pet profile will appear first
-
-
 - **Action**
   - User can scroll up down to view the complete pet profile
   - User can swipe right to the next pet profile
@@ -93,9 +81,8 @@
   - User can exit the look for pet page and enter other pages like "my profile", "favorite pet", "search", "my pets"
   - User can add pet profile to favorite pet page
 
-### **User/Org Search Page**
+**User/Org Search Page**
   - System automatically (random) put on a pet's profile 
-
   - **Categorical search**
     - Gender search
       - Can select female or male
@@ -112,36 +99,36 @@
     - When swiping, pets with the highest score calculated based on a categorical algorithm will appear first
     
 
-### **Favorite pet page**
+**Favorite pet page**
 
 - **View**
   - User will see a list of their favorite pet profiles
   - User can see the status of their favorite pet as "taken away", "available", "temporarily unavailable" 
-  
-
 - **Action**
   - User can click on a favorite pet profile to open like a drop-down menu
   - User can swipe up and down to brose the list of favorite pets
   - User be redirected to the pet profile
   - User can unfavorite a pet profile
   - User can exit the favorite pet page and enter other pages
- 
   
-### **My Pets page**
+  - ** Chat box**
+    - User can type words in the chat
+
+  
+**My Pets page**
+
   - **User not registered as a pet owner's view**
     - Display Register as pet owner
     - Allow user to click on the register button and redirect them to pet owner registration page
-
-
   - **User registered as pet owner/Org's view**
     - Display a list of all created pet profiles
     - Display public, private status of the pet profiles(public status is viewed by others, private status is not)
     - **Actions**
-      - User can scroll up and down to brose through the pets
-      - User can click on + icon to create a new pet profile and redirect to the pet profile edit page
+    - User can scroll up and down to brose through the pets
+    - User can click on + icon to create a new pet profile and redirect to the pet profile edit page
     - **Private profiles**
       - User can click on a private pet profile to set it public if and only if all required pet information is completed, this will update the pet status for  all user who has favorited the pet as "available"
-        - User can select to delete the private pet profile, this will update the pet status for all user who has favorited the pet as "taken away"" and closed all existing chats under the pet's name
+        - User can select to delete the private pet profile, this will update the pet status for all user who has favorited the pet as "taken away""
           - User can select to edit the private pet profile
     - **Public profiles**
       - User can click on a public pet profile to set it as private 

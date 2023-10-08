@@ -16,7 +16,8 @@ Users:
 - -password : String
 - -address : String
 - -email : String
-- -owner : bool????
+- -isOwner : bool????
+- -isBuyer : boolean
 - -organization : bool????
 
 Profile: 
@@ -28,8 +29,33 @@ Profile:
 - -BackgroundDescription : String
 - -photos : list
 - -pet
-- 
-- 
+
+Buyer/Finder
+- -preferences: list
+- -conversations: list
+- -notifications: list
+- -locationLatitude: float
+- -locationLongtitude: float
+- -likes : list<userLikes>
+- -swipeHistory : list<swipeHistory>
+- -notifications : list
+
+SwipeHistory
+- -swipeID: string
+- -userID: string
+- -petID: string
+
+Match
+- -matchID: string
+- -buyerID: string
+- -ownerID: string
+
+Preferences:
+- -petType: Set<String>
+- -ageRange: Set
+- -sexPreference: Set<String>
+- -speciesPreference: Set<String>
+
 
 
 

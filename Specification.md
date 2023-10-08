@@ -4,14 +4,14 @@
 
 **Basic:**
 -
-- **User-Sign up Page Interactions:**
-  - User can choose to create a user account or organization account
+- **Customer-Sign up Page Interactions:**
+  - Customer can choose to create a user account or organization account
   - If choose user's account:
     - Prompt and create user account with account name, password, address, email, phone number.
     - Prompt user to reenter password
     - Ask user to Link email
-    - Enter confirmation code that is send to email and verify
-    - (Op) Certify user using reallife ID
+    - Enter confirmation code that is sent to email and verify
+    - (Op) Certify user using real life ID
     - Give user a unique id
     - (Op) reCAPTCHA check 
   - If choose organization's account:
@@ -21,8 +21,10 @@
     - Give organization a unique id
     - (Op) reCAPTCHA check
     - Organization is automatically registered as a pet owner
-     
-  
+  - Once signup is successful, Customer will be redirected to the login page
+- **Customer-Login Page interactions**
+  - Ask for the customer(User/Org)'s email and password
+  -successful log in will redirect to main page   
 
 
 **Main pages**
@@ -84,15 +86,17 @@
   - **Categorical search**
     - Gender search
       - Can select female or male
-    - Neuter search
+    - Neuter(Sterilization) search
       - Can select neuter or not neuter
     - Species search
-      - Can type in the species interested
+      - Can type in the interested pet species 
     - Age search(independent of species search?)
       - Can select desired age range
+    - Vaccination search
+      - Can select vaccinated or not vaccinated
   - User/Org after selecting the categories will be redirected to the "look for pet page" started with one pet's profile.
     - The user can perform regular actions on the "look for pet page".
-    - When swiping, pets with highest score calculated based on a categorical algorithm will appear first
+    - When swiping, pets with the highest score calculated based on a categorical algorithm will appear first
     
 
 **Favorite pet page**
@@ -110,20 +114,8 @@
   
   - ** Chat box**
     - User can type words in the chat
-    - 
   
-        
-
--
-
-- **Pet Owner(include Organization)-Pet Interaction**
-  - Allow pet owner to add a private pet profile
-  - Allow pet owner to edit a private pet profile
-  - Allow pet owner to make a private pet profile public if the pet profile is complete
-  - Allow pet owner to delete a private pet profile
-  - Allow pet owner to edit a public profile
-  - Allow pet owner to make a public pet profile private
-
+  
 
   **My Pets page**
   - **User not registered as a pet owner's view**
@@ -136,13 +128,29 @@
     - User can scroll up and down to brose through the pets
     - User can click on + icon to create a new pet profile and redirect to the pet profile edit page
     - **Private profiles**
-            - User can click on a private pet profile to set it public if and only if all required pet information is completed, this will update the pet status for  all user who has favorited the pet as "available"
-            - User can select to delete the private pet profile, this will update the pet status for all user who has favorited the pet as "taken away""
-            - User can select to edit the private pet profile
+      - User can click on a private pet profile to set it public if and only if all required pet information is completed, this will update the pet status for  all user who has favorited the pet as "available"
+        - User can select to delete the private pet profile, this will update the pet status for all user who has favorited the pet as "taken away""
+          - User can select to edit the private pet profile
     - **Public profiles**
       - User can click on a public pet profile to set it as private 
-        - this will update the pet status for all user who has favorited the pet as "temporarily unavailable"
+        - this will update the pet status for all user who has make the pet favoirte as "temporarily unavailable"
     - **Pet profile edit page**
+      - **Required information** 
+        - Name
+        - Age
+        - Sex
+        - Vaccination status
+        - Sterilization state
+        - Species
+        - General Description
+        - (Op) Profile title
+        - Photo of the pet
+    - **Optional information**
+      - Description 1 Temperament with optional photos
+      - Description 2 Likes/Dislikes with optional photos
+      - Description 3 Other description with optional photos
+      - More photos
+      
                   
 
 

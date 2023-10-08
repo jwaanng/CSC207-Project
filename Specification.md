@@ -201,8 +201,6 @@
   - Pet owner can delete a chat with a pet finder, this will remove the chat and force the pet finder to unfavorite the pet
 
 # User stories
-Story 
-
-Bob is looking to adopt a dog. He makes an account with our app. He signs up by creating a unique username and password and uploads some pictures of himself. He fills out the information about himself as well as the details of the type of pet he’s looking for. A couple kilometers away Ben, a breeder is selling some pets. Ben makes an account and creates profiles for each of his pets. He fills out the details for each one. Ben swipes right on Bob, seeing that he seems like a good guy and is looking for attributes that one of his pets possess. Bob swipes right on one of Ben’s pets. They match. The two undergo a conversation and negotiate on the price. Ben sells a pet to Ben.
-
+- User story by Mingyoung Lai
+  -  The HOM adoption center has one of its employee Mike just created an organization in the [APP_NAME_HERE] app. Mike clicks on the “my pet” icon and is redirected into the my pets page. He clicks on “+” icon to add create a new profile. He is redirected into a page that contains text boxes for him to fill in some required pet informations which all have a red star beside the box. He fills in the following information for a pet named Cookie in the adoption center. He types in the following:  Name: Cookie , Species: dog. He selectes the following: sex: Female, age: 10, sterilization state: Yes, vaccination status: Yes. Afterward, Mike uploads a photo of Cookie into the picture box and scroll done to the bottom where he clicks save. This exists the editing page and redirects mike back to the my pet page, where he can now see the profile of Cookie with its private status below. 
 

@@ -127,7 +127,11 @@
   - User can exit the favorite pet page and enter other pages
  
   
-### **My Pets page**
+
+
+  
+**My Pets page**
+
   - **User not registered as a pet owner's view**
     - Display Register as pet owner
     - Allow user to click on the register button and redirect them to pet owner registration page

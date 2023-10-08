@@ -31,16 +31,6 @@ Profile:
 - -photos : list
 - -petID: string
 
-Profile:
-- -preferences: list
-- -conversations: list
-- -notifications: list
-- -locationLatitude: float
-- -locationLongtitude: float
-- -likes : list<userLikes>
-- -swipeHistory : list<swipeHistory>
-- -notifications : list
-
 Buyer
 - -preferences: list
 - -conversations: list

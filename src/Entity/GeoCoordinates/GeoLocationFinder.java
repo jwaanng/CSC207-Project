@@ -22,7 +22,7 @@ public class GeoLocationFinder {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             String geoCordsGson = gson.toJson(results[0].geometry.location);
-            System.out.println(geoCordsGson);
+            //System.out.println(geoCordsGson);
             GeoCoordinate geoCords= gson.fromJson(geoCordsGson, GeoCoordinate.class);
             context.shutdown();
             return geoCords;

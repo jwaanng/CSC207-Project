@@ -5,7 +5,7 @@ public class GeoCoordinate {
     double lat;
     double lng;
 
-
+    public GeoCoordinate(){}
     public GeoCoordinate(double lat, double lng){
         this.lat = lat;
         this.lng = lng;

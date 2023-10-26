@@ -11,7 +11,7 @@ import com.google.maps.model.GeocodingResult;
 import java.io.IOException;
 
 public class GeoLocationFinder {
-    private final GeoApiContext context = new GeoApiContext.Builder().apiKey("AIzaSyBnRlmF3KqbWJ9BPh3DMbiKxa_ugVx17tA").build();
+    private final GeoApiContext context = new GeoApiContext.Builder().apiKey("...").build();
 
     public void closeConnectionToGoogleMaps() throws IOException {
         context.close();

@@ -1,4 +1,4 @@
-package Entity;
+package Entity.User;
 import com.google.maps.*;
 public abstract class User {
     String username;

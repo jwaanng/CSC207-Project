@@ -13,8 +13,9 @@ public abstract class PetProfile {
     private String petPhotoLink;
     private List<String> morePhotos;
     private final String petOwnerName;
-    private String LikeDescr;
-    private String TemperDescr;
+    private String generalDescr;
+    private String likeDescr;
+    private String temperDescr;
 
     private boolean  isPublic;
     protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
@@ -27,8 +28,9 @@ public abstract class PetProfile {
         this.isPublic = false;
         this.petPhotoLink = builder.petPhotoLink;
         this.morePhotos = builder.morePhotos;
-        this.LikeDescr = builder.LikeDescr;
-        this.TemperDescr = builder.TemperDescr;
+        this.likeDescr = builder.likeDescr;
+        this.temperDescr = builder.temperDescr;
+        this.generalDescr = builder.generalDescr;
 
     }
 
@@ -80,16 +82,16 @@ public abstract class PetProfile {
        ;
     }
     public String getLikeDescr() {
-        return LikeDescr;
+        return likeDescr;
     }
     public void setLikeDescr(String likeDescr) {
-        LikeDescr = likeDescr;
+        likeDescr = likeDescr;
     }
     public String getTemperDescr() {
-        return TemperDescr;
+        return temperDescr;
     }
     public void setTemperDescr(String temperDescr) {
-        TemperDescr = temperDescr;
+        temperDescr = temperDescr;
     }
     public boolean getPublicStatus() {
         return isPublic;
@@ -101,4 +103,11 @@ public abstract class PetProfile {
         isPublic = false;
     }
 
+    public String getGeneralDescr() {
+        return generalDescr;
+    }
+
+    public void setGeneralDescr(String generalDescr) {
+        this.generalDescr = generalDescr;
+    }
 }

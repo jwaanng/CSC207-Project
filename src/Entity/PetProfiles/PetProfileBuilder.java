@@ -11,14 +11,15 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T,P>, P exte
     String petPhotoLink;
     List<String> morePhotos;
     final String petOwnerName;
-    String LikeDescr;
-    String TemperDescr;
+    String likeDescr;
+    String temperDescr;
+    String generalDescr;
     public PetProfileBuilder(String petOwnerName){
         this.petOwnerName = petOwnerName;
     }
 
     public abstract P build();
-    public T self(){
+    private T self(){
         return (T) this;
     }
 
@@ -52,12 +53,15 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T,P>, P exte
         return self();
     }
     public T withTemperDescr(String descr){
-        this.TemperDescr = descr;
+        this.temperDescr = descr;
         return self();
     }
     public T withLikedDescr(String descr){
-        this.LikeDescr = descr;
+        this.likeDescr = descr;
         return self();
     }
-
+    public T withGeneralDescr(String descr){
+        this.generalDescr = descr;
+        return self();
+    }
 }

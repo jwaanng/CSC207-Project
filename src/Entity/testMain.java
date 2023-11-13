@@ -25,7 +25,8 @@ public class testMain {
         PetProfileBuilderFactory factory = new PetProfileBuilderFactory();
         DogProfile katie =  factory.createDogProfile("Michael").withName("Kookie").withBreed("golden retriever").withAge(10).withSex(MALE).build();
         System.out.println(katie);
-
+        DogProfile cookie = factory.createDogProfile("Ming").withBreed("labarodo").build();
+        System.out.println(cookie);
 
 
 

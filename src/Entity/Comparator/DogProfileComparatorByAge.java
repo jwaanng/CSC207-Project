@@ -6,7 +6,8 @@ import java.util.Comparator;
 
 class DogProfileComparatorByAge implements Comparator<DogProfile> {
     @Override
-    public int compare(DogProfile p1, DogProfile p2) {
+    public int compare(DogProfile p1, DogProfile p2)
+    {
         return 0;
     }
 

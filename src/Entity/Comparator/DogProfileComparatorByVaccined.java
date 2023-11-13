@@ -14,6 +14,6 @@ class DogProfileComparatorByVaccined implements Comparator<DogProfile> {
     }
 
     public Comparator<DogProfile> thenComparing(Comparator<? super DogProfile> comparator) {
-        return null;
+        return Comparator.comparing(DogProfile::getBreed).thenComparing(comparator);
     }
 }

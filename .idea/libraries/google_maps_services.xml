@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="google.maps.services" type="repository">
+    <properties maven-id="com.google.maps:google-maps-services:2.1.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/google-maps-services-2.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/okhttp-5.0.0-alpha.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/okio-3.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kotlin-stdlib-common-1.6.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/opencensus-api-0.31.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/grpc-context-1.27.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.36.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

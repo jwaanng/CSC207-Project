@@ -37,7 +37,7 @@ public class RegisterView extends JDialog{
             }
         });
 
-        setVisible(true);
+        setVisible(true); // makes this view visible as a popup
     }
 
     private void registerUser() {
@@ -65,8 +65,7 @@ public class RegisterView extends JDialog{
     }
 
 
-    // Currently when you wna see the view, have to comment out everything from non-view files coz there already exists a main.java
-    public static void main(String[] args) {
-        RegisterView registerView = new RegisterView(null);
-    }
+//    public static void main(String[] args) {
+//        RegisterView registerView = new RegisterView(null);
+//    }
 }

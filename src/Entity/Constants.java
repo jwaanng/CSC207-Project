@@ -24,4 +24,12 @@ public class Constants {
     public static final String noSizeErr = "Forget to give size";
 
     public static final String success = "SUCCESS";
+
+    /*DataAcessObject */
+    public static final String add = "add";
+    public static final String update = "update";
+    public static final String get = "get";
+
+    public static final String delete = "delete";
+
 }

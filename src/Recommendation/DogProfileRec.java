@@ -1,14 +1,21 @@
 //package Recommendation;
-//import java.util.*;
-//
-//import Entity.PetProfiles.DogProfile;
-//
+import java.util.*;
+
+import Entity.PetProfiles.DogProfile;
+
+//package Recommendation;
+import java.util.*;
+
+import Entity.PetProfiles.DogProfile;
+
 //public class DogProfileRec implements Recommendable<DogProfile>{
 //
 //    private final ArrayList<DogProfile> recommendation;
 //    public DogProfileRec(DogProfileRecBuilder builder){
 //        for(:)
 //        recommendation = builder.build();
+//        recommendation = builder.build()
+
 //    }
 //    @Override
 //    public boolean hasNext() {

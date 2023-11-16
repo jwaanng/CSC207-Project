@@ -30,7 +30,7 @@ public class AppUser {
         roles.add(PETFINDER);
     }
 
-    public void CertifyAsPetOwner() {
+    public void certifyAsPetOwner() {
        /*require the user is not a petOwner*/
         roles.add(PETOWNER);
         myPet = new ArrayList<PetProfile>();
@@ -64,7 +64,6 @@ public class AppUser {
         this.username = username;
     }
 
-
     public boolean isPetFinder(){
         return roles.contains(PETFINDER);
     }
@@ -81,6 +80,9 @@ public class AppUser {
     public void deleteFavProfile(PetProfile profile){
         /*profile must be in pet*/
         favPet.remove(profile);
+    }
+    public List<String> getRoles(){
+        return new ArrayList<String>(roles);
     }
 
 }

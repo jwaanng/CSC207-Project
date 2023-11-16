@@ -49,6 +49,8 @@ public class RegisterView extends JDialog{
         String username = usernameTF.getText();
         String password = String.valueOf(passwordTf.getPassword());
         String confirmPassword = String.valueOf(confirmPasswordTf.getPassword());
+        
+        System.out.println(username);
 
         // if one of the fields are empty
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
@@ -65,7 +67,7 @@ public class RegisterView extends JDialog{
     }
 
 
-//    public static void main(String[] args) {
-//        RegisterView registerView = new RegisterView(null);
-//    }
+    public static void main(String[] args) {
+        RegisterView registerView = new RegisterView(null);
+    }
 }

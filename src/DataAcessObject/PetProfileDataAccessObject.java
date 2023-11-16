@@ -2,8 +2,10 @@ package DataAcessObject;
 
 import Entity.PetProfiles.DogProfile;
 import Entity.PetProfiles.PetProfile;
+import Entity.RuntimeTypeAdapterFactory;
 import Entity.User.AppUser;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 import static Entity.Constants.DOG;
 import static Entity.Constants.get;
 
@@ -30,12 +33,19 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     private final String dataSource = "ClusterCSC207Pro";
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
     private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
-    private final ArrayList<PetProfile> profiles = new ArrayList<>();
+    private final HashMap<Integer, PetProfile> profiles = new HashMap<>();
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
+    private final RuntimeTypeAdapterFactory<PetProfile> petProfileTypeAdapterFactory;
     public PetProfileDataAccessObject(){
+        petProfileTypeAdapterFactory =  RuntimeTypeAdapterFactory.of(PetProfile.class, "specie").
+                registerSubtype(DogProfile.class, DOG);
         ArrayList<PetProfile> petProfiles = retrieveAllProfiles();
-        profiles.addAll(petProfiles);
+        for(PetProfile profile : petProfiles){
+            profiles.put(profile.getId(), profile);
+        }
+
+
     }
     //Helper
     private String retrieveAll() {
@@ -59,8 +69,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     }
     private ArrayList<PetProfile> retrieveAllProfiles(){
         String profiles = new JSONObject(retrieveAll()).getJSONArray("documents").toString();
-        Type listProfiles = new TypeToken<ArrayList<? extends PetProfile>>(){}.getType();
-        Gson gson = new Gson();
+        Type listProfiles = new TypeToken<ArrayList<PetProfile>>(){}.getType();
+        Gson gson = new GsonBuilder().registerTypeAdapterFactory(petProfileTypeAdapterFactory).create();
         return gson.fromJson(profiles, listProfiles);
     }
 
@@ -79,16 +89,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
             dataLoadingJson.put("document", profileJson);
         } else if (operation.equals(update)) {
             JSONObject compFilt1 = new JSONObject();
-            compFilt1.put("petOwnerName", profile.getPetOwnerName());
-            JSONObject compFilt2 = new JSONObject();
-            compFilt2.put("name", profile.getName());
-            JSONObject compFilt3 = new JSONObject();
-            compFilt3.put("specie", profile.getSpecie());
-            JSONArray filters = new JSONArray();
-            filters.put(compFilt1);
-            filters.put(compFilt2);
-            filters.put(compFilt3);
-            dataLoadingJson.put("filter", filters);
+            compFilt1.put("petId", profile.getId());
+            dataLoadingJson.put("filter", compFilt1);
             JSONObject compUpda = new JSONObject();
             compUpda.put("$set", profileJson);
             dataLoadingJson.put("update", compUpda);
@@ -99,22 +101,14 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     }
 
-    private String deleteconvertMongoMatchJsonFormat(String name, String petOwnerName, String specie) {
+    private String deleteconvertMongoMatchJsonFormat(int id) {
         JSONObject dataLoadingJson = new JSONObject();
         dataLoadingJson.put("collection", collection);
         dataLoadingJson.put("database", database);
         dataLoadingJson.put("dataSource", dataSource);
         JSONObject compFilt1 = new JSONObject();
-        compFilt1.put("petOwnerName", petOwnerName);
-        JSONObject compFilt2 = new JSONObject();
-        compFilt2.put("name", name);
-        JSONObject compFilt3 = new JSONObject();
-        compFilt3.put("specie", specie);
-        JSONArray filters = new JSONArray();
-        filters.put(compFilt1);
-        filters.put(compFilt2);
-        filters.put(compFilt3);
-        dataLoadingJson.put("filter", filters);
+        compFilt1.put("petId", id);
+        dataLoadingJson.put("filter", compFilt1);
         return dataLoadingJson.toString();
     }
 
@@ -131,7 +125,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     }
     @Override
     public void add(PetProfile profile) {
-        if (profiles.contains(profile)){ //calls on equals method
+        if (profiles.containsKey(profile.getId())){ //calls on equals method
             throw new RuntimeException("Petprofile already exists");
         }
         String json = convertMongodMatchJsonFormat(profile, add);
@@ -146,7 +140,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
             if (!response.isSuccessful()) {
                 throw new IOException("API call fail for reason" + response.body().string());
             }
-            profiles.add(profile);
+            profiles.put(profile.getId(),profile);
         }
         catch(IOException e){
             throw new RuntimeException(e.getMessage());
@@ -155,7 +149,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     @Override
     public void update(PetProfile profile){
-        if(!profiles.contains(profile)){
+        if(!profiles.containsKey(profile.getId())){
             throw new RuntimeException("Profile does not exists");
 
         }
@@ -181,12 +175,11 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     }
 
     @Override
-    public void delete(String name, String petOwnerName , String specie) {
-        PetProfile profile = getProfile(name,petOwnerName,specie);
-        if(profile == null){
-            throw new RuntimeException("PetProfile does not exists");
+    public void delete(int id) {
+        if(!profiles.containsKey(id)){
+            throw new RuntimeException("Profile does not exists");
         }
-        String json = deleteconvertMongoMatchJsonFormat(name,petOwnerName,specie);
+        String json = deleteconvertMongoMatchJsonFormat(id);
         RequestBody body = RequestBody.create(json.getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder()
                 .url(baseURL + "deleteOne")
@@ -198,7 +191,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
             if (!response.isSuccessful()) {
                 throw new IOException("API call fail for reason" + response.body().string());
             }
-           profiles.remove(profile);
+           profiles.remove(id);
         }
         catch(IOException e){
             throw new RuntimeException(e.getMessage());
@@ -207,16 +200,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
 
     @Override
-    public PetProfile getProfile(String name, String petOwnerName , String specie) {
-        for (PetProfile profile : profiles){
-            if (profile.getName().equals(name) && profile.getPetOwnerName().equals(petOwnerName)
-                    && profile.getSpecie().equals(specie)){
-                return profile;
-            }
-
-        }
-        return null;
-
+    public PetProfile getProfile(int id) {
+        return profiles.getOrDefault(id, null);
     }
 
 

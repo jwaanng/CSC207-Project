@@ -110,4 +110,15 @@ public abstract class PetProfile {
     public void setGeneralDescr(String generalDescr) {
         this.generalDescr = generalDescr;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof PetProfile)){
+            return false;
+        }
+        PetProfile profile = (PetProfile) obj;
+        return this.getName().equals(profile.getName()) &&
+                this.getPetOwnerName().equals(profile.getPetOwnerName()) &&
+                this.getSpecie().equals(profile.getSpecie());
+    }
 }

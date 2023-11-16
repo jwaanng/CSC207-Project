@@ -3,8 +3,7 @@ package DataAcessObject;
 import Entity.User.AppUser;
 import Entity.User.AppUserFactory;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
 import com.google.gson.reflect.TypeToken;
 import okhttp3.*;
 import org.json.JSONObject;
@@ -14,10 +13,9 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import static Entity.Constants.success;
 
-public class CommonUserDataAcessObject implements UserDataAcessInterface {
+
+public class CommonUserDataAccessObject implements UserDataAcessInterface {
     private final String add = "add";
     private final String update = "update";
 
@@ -26,7 +24,7 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
     private final String dataSource = "ClusterCSC207Pro";
     private final HashMap<String, AppUser> nameToUser = new HashMap<>();
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
-    private final String apikey = "';
+    private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
 
@@ -43,7 +41,7 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
 //        }
 //    }
 
-    public CommonUserDataAcessObject(){
+    public CommonUserDataAccessObject(){
         ArrayList<AppUser> users = retrieveAllUser();
         for(AppUser user: users){
             nameToUser.put(user.getUsername(), user);
@@ -166,7 +164,6 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
             if (!response.isSuccessful()) {
                 throw new IOException("API call fail for reason" + response.body().string());
             }
-            nameToUser.replace(user.getUsername(), user);
 
         }
         catch(IOException e){
@@ -206,21 +203,5 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
 
 
 
-    public static void main(String[] args){
-        AppUser user = new AppUserFactory().createAppUser("Michael", "102325", "108 King Street");
-        CommonUserDataAcessObject dao = new CommonUserDataAcessObject();
-        user.setBio("I love golden retrievers!");
-        String json = dao.convertMongodMatchJsonFormat(user, "update");
-        System.out.println(json);
-        AppUser user2 = new AppUserFactory().createAppUser("Jordan", "102325424", "108 King Street");
-        ArrayList<AppUser> users = dao.retrieveAllUser();
-        System.out.println(users.isEmpty());
-        for( AppUser us :users){
-            System.out.println(us.getUsername());
-        }
-        //String message = dao.update(user);
-        //need help
-
-    }
 
 }

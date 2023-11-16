@@ -3,8 +3,8 @@ package DataAcessObject;
 import Entity.User.AppUser;
 
 public interface UserDataAcessInterface {
-    String add(AppUser user);
-    String update(AppUser user);
-    String delete(String username);
+    void add(AppUser user);
+    void update(AppUser user);
+    void delete(String username);
     AppUser retrieve(String username);
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import static Entity.Constants.*;
 
 public abstract class PetProfile {
+    private static int nextId = 0;
+    private int petId;
     private String name;
     private int age;
     private char sex; //"M = Male, "F = Female"
@@ -19,6 +21,9 @@ public abstract class PetProfile {
 
     private boolean  isPublic;
     protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
+
+        this.petId = nextId;
+        nextId++;
         this.petOwnerName = builder.petOwnerName;
         this.age = builder.age;
         this.name = builder.name;
@@ -111,14 +116,8 @@ public abstract class PetProfile {
         this.generalDescr = generalDescr;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof PetProfile)){
-            return false;
-        }
-        PetProfile profile = (PetProfile) obj;
-        return this.getName().equals(profile.getName()) &&
-                this.getPetOwnerName().equals(profile.getPetOwnerName()) &&
-                this.getSpecie().equals(profile.getSpecie());
+    public int getId() {
+        return petId;
     }
+
 }

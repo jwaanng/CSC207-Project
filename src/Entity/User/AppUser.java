@@ -13,10 +13,10 @@ public class AppUser {
     private String bio;
     private String password;
     private String address;
-    private List<PetProfile> favPet;
+    private List<Integer> favPet;
     private List<String> roles;
 
-    private List<PetProfile> myPet;
+    private List<Integer> myPet;
 
 
     public AppUser(){}
@@ -25,7 +25,7 @@ public class AppUser {
         this.username = username;
         this.password = password;
         this.address = address;
-        this.favPet = new ArrayList<PetProfile>();
+        this.favPet = new ArrayList<Integer>();
         this.roles = new ArrayList<String>();
         roles.add(PETFINDER);
     }
@@ -33,7 +33,7 @@ public class AppUser {
     public void certifyAsPetOwner() {
        /*require the user is not a petOwner*/
         roles.add(PETOWNER);
-        myPet = new ArrayList<PetProfile>();
+        myPet = new ArrayList<Integer>();
     }
 
     public String getUsername() {
@@ -72,14 +72,14 @@ public class AppUser {
         return roles.contains(PETOWNER);
     }
     public boolean profileIsFav(PetProfile profile){
-        return favPet.contains(profile);
+        return favPet.contains(profile.getId());
     }
     public void addFavProfile(PetProfile profile){
-        favPet.add(profile);
+        favPet.add(profile.getId());
     }
     public void deleteFavProfile(PetProfile profile){
         /*profile must be in pet*/
-        favPet.remove(profile);
+        favPet.remove(profile.getId());
     }
     public List<String> getRoles(){
         return new ArrayList<String>(roles);

@@ -20,12 +20,22 @@ import static Entity.Constants.success;
 public class CommonUserDataAcessObject implements UserDataAcessInterface {
     private final String add = "add";
     private final String update = "update";
+
+    private final String collection = "users";
+    private final String database = "207DataBase";
+    private final String dataSource = "ClusterCSC207Pro";
     private final HashMap<String, AppUser> nameToUser = new HashMap<>();
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
     private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
 
+
+    /*Class make assumption that the database follows the representation invariant:
+    * users all have different usernames
+    * the database store only users
+    *
+    * */
 
     public CommonUserDataAcessObject(){
         ArrayList<AppUser> users = retrieveAllUser();
@@ -35,7 +45,6 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
     }
     //Helper
     private String retrieveAllUserJson() {
-        /*Precondition username does exist*/
         String json = getAllconvertMongoMatchJsonFormat();
         RequestBody body = RequestBody.create(json.getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder().
@@ -67,9 +76,9 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
         String userJsonStr = new Gson().toJson(user);
         JSONObject userJson = new JSONObject(userJsonStr);
         JSONObject dataLoadingJson = new JSONObject();
-        dataLoadingJson.put("collection", "users");
-        dataLoadingJson.put("database", "207DataBase");
-        dataLoadingJson.put("dataSource", "ClusterCSC207Pro");
+        dataLoadingJson.put("collection", collection);
+        dataLoadingJson.put("database", database);
+        dataLoadingJson.put("dataSource", dataSource);
         if (operation.equals(add)) {
             dataLoadingJson.put("document", userJson);
         } else if (operation.equals(update)) {
@@ -88,9 +97,9 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
 
     private String deleteconvertMongoMatchJsonFormat(String username) {
         JSONObject dataLoadingJson = new JSONObject();
-        dataLoadingJson.put("collection", "users");
-        dataLoadingJson.put("database", "207DataBase");
-        dataLoadingJson.put("dataSource", "ClusterCSC207Pro");
+        dataLoadingJson.put("collection", collection);
+        dataLoadingJson.put("database", database);
+        dataLoadingJson.put("dataSource", dataSource);
         JSONObject compFilt = new JSONObject();
         compFilt.put("username", username);
         dataLoadingJson.put("filter", compFilt);
@@ -99,9 +108,9 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
 
     private String getAllconvertMongoMatchJsonFormat() {
         JSONObject dataLoadingJson = new JSONObject();
-        dataLoadingJson.put("collection", "users");
-        dataLoadingJson.put("database", "207DataBase");
-        dataLoadingJson.put("dataSource", "ClusterCSC207Pro");
+        dataLoadingJson.put("collection", collection);
+        dataLoadingJson.put("database", database);
+        dataLoadingJson.put("dataSource", dataSource);
         dataLoadingJson.put("filter", JSONObject.NULL);
         JSONObject compProj = new JSONObject();
         compProj.put("_id", 0);
@@ -189,6 +198,7 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
         System.out.println(json);
         AppUser user2 = new AppUserFactory().createAppUser("Jordan", "102325424", "108 King Street");
         ArrayList<AppUser> users = dao.retrieveAllUser();
+        System.out.println(users.isEmpty());
         for( AppUser us :users){
             System.out.println(us.getUsername());
         }

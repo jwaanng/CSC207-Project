@@ -37,6 +37,12 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
     *
     * */
 
+//    public class UserDAOException extends Exception{
+//        public UserDAOException(String message){
+//            super(message);
+//        }
+//    }
+
     public CommonUserDataAcessObject(){
         ArrayList<AppUser> users = retrieveAllUser();
         for(AppUser user: users){
@@ -118,7 +124,10 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
         return dataLoadingJson.toString();
     }
     @Override
-    public String add(AppUser user) {
+    public void add(AppUser user) {
+        if (nameToUser.containsKey(user.getUsername())){
+            throw new RuntimeException("User already exists");
+        }
         String json = convertMongodMatchJsonFormat(user, add);
         RequestBody body = RequestBody.create(json.getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder()
@@ -129,17 +138,21 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response));
+                throw new IOException("API call fail for reason" + response.body().string());
             }
             nameToUser.put(user.getUsername(),user);
-            return success;
-        } catch (IOException e) {
-            return e.getMessage();
+        }
+        catch(IOException e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 
     @Override
-    public String update(AppUser user) {
+    public void update(AppUser user){
+        if(!nameToUser.containsKey(user.getUsername())){
+            throw new RuntimeException("User does not exists");
+
+        }
         String json = convertMongodMatchJsonFormat(user, update);
         RequestBody body = RequestBody.create(json.getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder()
@@ -151,18 +164,21 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
 
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response.code()));
+                throw new IOException("API call fail for reason" + response.body().string());
             }
             nameToUser.replace(user.getUsername(), user);
-            return success;
-        } catch (IOException e) {
-            return e.getMessage();
+
+        }
+        catch(IOException e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 
     @Override
-    public String delete(String username) {
-        /*Precondition username does exist*/
+    public void delete(String username) {
+        if(!nameToUser.containsKey(username)){
+            throw new RuntimeException("User does not exists");
+        }
         String json = deleteconvertMongoMatchJsonFormat(username);
         RequestBody body = RequestBody.create(json.getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder()
@@ -173,12 +189,12 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response.code()));
+                throw new IOException("API call fail for reason" + response.body().string());
             }
             nameToUser.remove(username);
-            return success;
-        } catch (IOException e) {
-            return e.getMessage();
+        }
+        catch(IOException e){
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -190,7 +206,7 @@ public class CommonUserDataAcessObject implements UserDataAcessInterface {
 
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
         AppUser user = new AppUserFactory().createAppUser("Michael", "102325", "108 King Street");
         CommonUserDataAcessObject dao = new CommonUserDataAcessObject();
         user.setBio("I love golden retrievers!");

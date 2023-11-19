@@ -1,7 +1,7 @@
 package ViewModel;
 
 import java.beans.PropertyChangeListener;
-
+//this is the absolute highest viewmodel hierarchy 
 public abstract class ViewModel {
     String vmName;
     public ViewModel(String name){

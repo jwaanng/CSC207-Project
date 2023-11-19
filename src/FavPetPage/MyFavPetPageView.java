@@ -1,12 +1,15 @@
-package MyFavPetPage;
+package ViewModel.MyFavPetPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class MyFavPetPagePanel extends JPanel implements Ac{
-    public MyFavPetPagePanel(){
+public class MyFavPetPageView extends JPanel implements ActionListener, PropertyChangeListener {
+    //TODO need controller
+    public MyFavPetPageView(FavPetViewModel vm){
         setLayout(new BorderLayout());
         /*======================================================================================*/
         //TopBox
@@ -31,11 +34,14 @@ public class MyFavPetPagePanel extends JPanel implements Ac{
         topPanel.add(rightBox, gbc);
         add(topPanel, BorderLayout.NORTH); //add the topBox to the MyPetPagePanel
         /*======================================================================================*/
-        //MiddleBox where favorite profile are displayed and user can scroll;
+        //MiddleBox where favorite profile are displayed and user can scroll or user see message to scroll some pets;
         JPanel middlePanel = new JPanel();
-        middlePanel.setLayout(new BorderLayout());
-        JScrollPane scrollPane = new JScrollPane(middlePanel); //add ScrollPane to the middle box
-        add(middlePanel, BorderLayout.CENTER); //add the middleSection to the MyGavPetPage
+        middlePanel.setLayout(new CardLayout());
+
+        //Panel in case user does not have any favorite pets
+
+        middlePanel.add(); //add ScrollPane to the middle box
+        add(middlePanel,); //add the middleSection to the MyGavPetPage
         /*======================================================================================*/
         //ButtomBox where currently 4 pages redirect icon are added, with MyPetPage being the current one
         JPanel buttomPanel = new JPanel();
@@ -46,14 +52,14 @@ public class MyFavPetPagePanel extends JPanel implements Ac{
         //Search page Panel of BottomBox;
         JPanel searchPanel = new JPanel();
         ImageIcon searchIcon = new ImageIcon(getClass().getResource(
-                "/MyFavPetPage/BottomPageRedirectingIcons/search.png")); // icon to the button
+                "/BottomPageRedirectingIcons/search.png")); // icon to the button
         JButton search = new JButton(searchIcon);
         searchPanel.add(search);
 
         //Scroll page Panel of ButtomBox
         JPanel scrollPanel = new JPanel();
         ImageIcon scrollIcon = new ImageIcon(getClass().getResource(
-                "/MyFavPetPage/BottomPageRedirectingIcons/scroll.png"));
+                "/BottomPageRedirectingIcons/scroll.png"));
         JButton scroll = new JButton(scrollIcon);
         scrollPanel.add(scroll);
 
@@ -70,7 +76,7 @@ public class MyFavPetPagePanel extends JPanel implements Ac{
         //JPanel myPets Panel of ButtomBox
         JPanel myPetsPanel = new JPanel();
         ImageIcon myPetIcon = new ImageIcon(getClass().getResource(
-                "/MyFavPetPage/ButtomPageRedirectionIcons/myPet.png"));
+                "/ButtomPageRedirectionIcons/myPet.png"));
         JButton myPet = new JButton(myPetIcon);
         myPetsPanel.add(myPet);
 
@@ -112,4 +118,13 @@ public class MyFavPetPagePanel extends JPanel implements Ac{
 
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
 }

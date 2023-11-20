@@ -22,6 +22,7 @@ public class DAOtestmain {
         DogProfile mondrea = new PetProfileBuilderFactory().createDogProfile("Jack").
                 vaccinated(false).neutered(true).withBreed("Golden retriever").withAge(5).withSex(MALE).withName("mondrea").build();
         PetProfileDataAccessObject daoP = new PetProfileDataAccessObject();
+        //
         //daoP.add(mondrea);
 
         mondrea.setGeneralDescr("woof");

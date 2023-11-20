@@ -2,8 +2,7 @@ package DataAcessObject;
 
 import Entity.PetProfiles.DogProfile;
 import Entity.PetProfiles.PetProfile;
-import Entity.RuntimeTypeAdapterFactory;
-import Entity.User.AppUser;
+import Entity.Other.RuntimeTypeAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -11,7 +10,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -22,7 +20,6 @@ import java.util.HashMap;
 
 
 import static Entity.Constants.DOG;
-import static Entity.Constants.get;
 
 public class PetProfileDataAccessObject implements PetProfileDataAccessInterface{
     private final String add = "add";
@@ -125,8 +122,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     }
     @Override
     public void add(PetProfile profile) {
-        if (profiles.containsKey(profile.getId())){ //calls on equals method
-            throw new RuntimeException("Petprofile already exists");
+        if (exists(profile.getId())){ //calls on equals method
+            throw new RuntimeException("The profile already exists");
         }
         String json = convertMongodMatchJsonFormat(profile, add);
         RequestBody body = RequestBody.create(json.getBytes(StandardCharsets.UTF_8));
@@ -149,7 +146,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     @Override
     public void update(PetProfile profile){
-        if(!profiles.containsKey(profile.getId())){
+        if(!exists(profile.getId())){
             throw new RuntimeException("Profile does not exists");
 
         }
@@ -176,7 +173,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     @Override
     public void delete(int id) {
-        if(!profiles.containsKey(id)){
+        if(!exists(id)){
             throw new RuntimeException("Profile does not exists");
         }
         String json = deleteconvertMongoMatchJsonFormat(id);
@@ -196,6 +193,11 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
         catch(IOException e){
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public boolean exists(int id) {
+        return profiles.containsKey(id);
     }
 
 

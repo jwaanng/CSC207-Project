@@ -12,7 +12,7 @@ public abstract class PetProfile {
     private char sex; //"M = Male, "F = Female"
     private final String specie;
     private char size;
-    private String petPhotoLink;
+    private String petPhotoURL;
     private List<String> morePhotos;
     private final String petOwnerName;
     private String generalDescr;
@@ -31,7 +31,7 @@ public abstract class PetProfile {
         this.size = builder.size;
         this.specie = builder.specie;
         this.isPublic = false;
-        this.petPhotoLink = builder.petPhotoLink;
+        this.petPhotoURL = builder.petPhotoLink;
         this.morePhotos = builder.morePhotos;
         this.likeDescr = builder.likeDescr;
         this.temperDescr = builder.temperDescr;
@@ -71,10 +71,10 @@ public abstract class PetProfile {
         this.size = size;
     }
     public String getPetPhotoLink() {
-        return petPhotoLink;
+        return petPhotoURL;
     }
     public void setPetPhotoLink(String petPhotoLink) {
-        this.petPhotoLink = petPhotoLink;
+        this.petPhotoURL = petPhotoLink;
     }
     public List<String> getMorePhotos() {
         return morePhotos;

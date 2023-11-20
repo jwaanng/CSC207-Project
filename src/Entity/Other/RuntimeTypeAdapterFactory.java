@@ -1,6 +1,6 @@
 
 
-package Entity;
+package Entity.Other;
 
 import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import com.google.gson.Gson;

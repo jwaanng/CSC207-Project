@@ -123,7 +123,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
     }
     @Override
     public void add(AppUser user) {
-        if (nameToUser.containsKey(user.getUsername())){
+        if (exist(user.getUsername())){
             throw new RuntimeException("User already exists");
         }
         String json = convertMongodMatchJsonFormat(user, add);
@@ -147,7 +147,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
 
     @Override
     public void update(AppUser user){
-        if(!nameToUser.containsKey(user.getUsername())){
+        if(!exist(user.getUsername())){
             throw new RuntimeException("User does not exists");
 
         }
@@ -173,7 +173,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
 
     @Override
     public void delete(String username) {
-        if(!nameToUser.containsKey(username)){
+        if(!exist(username)){
             throw new RuntimeException("User does not exists");
         }
         String json = deleteconvertMongoMatchJsonFormat(username);
@@ -198,7 +198,15 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
 
     @Override
     public AppUser retrieve(String username) {
-        return nameToUser.getOrDefault(username, null);
+        if (!exist(username)){
+            throw new RuntimeException("User does not exists ");
+        }
+        return nameToUser.get(username);
+    }
+
+    @Override
+    public boolean exist(String username) {
+        return nameToUser.containsKey(username);
     }
 
 

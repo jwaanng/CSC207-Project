@@ -74,15 +74,19 @@ public class AppUser {
     public boolean profileIsFav(PetProfile profile){
         return favPet.contains(profile.getId());
     }
-    public void addFavProfile(PetProfile profile){
-        favPet.add(profile.getId());
+    public void addFavProfile(int petID){
+        favPet.add(petID);
     }
-    public void deleteFavProfile(PetProfile profile){
-        /*profile must be in pet*/
-        favPet.remove(profile.getId());
+    public void deleteFavProfile(int petId){
+        /*petId must be in favPet*/
+        favPet.remove(petId);
     }
     public List<String> getRoles(){
         return new ArrayList<String>(roles);
     }
-
+    public List<Integer> getFavPet(){
+        ArrayList<Integer> favPet = new ArrayList<>();
+        favPet.addAll(this.favPet);
+        return favPet;
+    } //new copy
 }

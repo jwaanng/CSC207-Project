@@ -7,4 +7,5 @@ public interface PetProfileDataAccessInterface {
     void update(PetProfile profile);
     PetProfile getProfile(int id);
     void delete(int id);
+    boolean exists(int id);
 }

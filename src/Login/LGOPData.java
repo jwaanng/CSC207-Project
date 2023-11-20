@@ -8,7 +8,8 @@ public class LGOPData {
     private String username;
     private boolean usecaseFailed;
 
-    private final HashMap<String, String> petName_to_photo = new HashMap<>();
+    private final HashMap<Integer, String> petID_to_Name = new HashMap<>();
+    private final HashMap<Integer, String> petID_to_Photo = new HashMap<>();
     private String error;
     //TODO need to contain all relevant for petProfile display
     public String getUsername() {
@@ -42,10 +43,14 @@ public class LGOPData {
         data.usecaseFailed = true;
         return data;
     }
-    public void addPetPHOTO(String petName, String photoUrl){
-         petName_to_photo.put(petName, photoUrl);
+    public void addPetNameAndPHOTO(int petId, String petName, String photoUrl){
+         petID_to_Name.put(petId, petName);
+         petID_to_Photo.put(petId,photoUrl);
     }
-    public HashMap<String, String> getPetNames_Photos_Map(){
-        return new HashMap<String, String>(petName_to_photo);
+    public HashMap<Integer, String> getPetID_to_Photo(){
+        return new HashMap<Integer, String>(petID_to_Photo);
+    }
+    public HashMap<Integer, String> getPetID_to_Name(){
+        return new HashMap<Integer, String>(petID_to_Name);
     }
 }

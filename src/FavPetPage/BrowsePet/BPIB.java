@@ -1,2 +1,5 @@
-package FavPetPage.BrowsePet;public interface BPIB {
+package FavPetPage.BrowsePet;
+
+public interface BPIB {
+    void execute();
 }

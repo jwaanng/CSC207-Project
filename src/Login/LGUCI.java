@@ -34,7 +34,7 @@ public class LGUCI implements LGIB{
                 LGOPData successData = LGOPData.createSuccessData(name);
                 for (int petId : currUser.getFavPet()){
                     PetProfile profile = daoP.getProfile(petId);
-                     successData.addPetPHOTO(profile.getName(), profile.getPetPhotoLink());
+                     successData.addPetNameAndPHOTO(profile.getId(), profile.getName(), profile.getPetPhotoLink());
                 }
                 presenter.prepareSuccessView(successData);
             }

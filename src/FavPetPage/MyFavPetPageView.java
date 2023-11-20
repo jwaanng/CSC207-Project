@@ -1,4 +1,4 @@
-package ViewModel.MyFavPetPage;
+package FavPetPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,7 +68,7 @@ public class MyFavPetPageView extends JPanel implements ActionListener, Property
         //TODO no button will be associated so button will be temporaily set not visible
         JPanel favPanel = new JPanel();
         ImageIcon fIcon = new ImageIcon(getClass().getResource(
-                "/MyFavPetPage/ButtomPageRedirectionIcons/fav.png"));
+                "/FavPetPage/ButtomPageRedirectionIcons/fav.png"));
         JButton fav = new JButton(fIcon);
         fav.setVisible(false);
 
@@ -83,7 +83,7 @@ public class MyFavPetPageView extends JPanel implements ActionListener, Property
         //Jpanel myProfile Panel of ButtomBox
         JPanel myProfilePanel = new JPanel();
         ImageIcon myProfileIcon = new ImageIcon(getClass().getResource(
-                "/MyFavPetPage/ButtomPageRedirectionIcons/myProfile.png"));
+                "/FavPetPage/ButtomPageRedirectionIcons/myProfile.png"));
         JButton myProfile = new JButton(myProfileIcon);
         myProfilePanel.add(myProfile);
         ActionListener buttomPageListener = new ActionListener() { // shared actionListener in buttom page

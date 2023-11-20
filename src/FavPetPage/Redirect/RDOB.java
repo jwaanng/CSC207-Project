@@ -1,2 +1,5 @@
-package FavPetPage.Redirect;public interface RDOB {
+package FavPetPage.Redirect;
+
+public interface RDOB {
+    void prepareSuccessView(RDOPData outputData);
 }

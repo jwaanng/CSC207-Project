@@ -1,0 +1,12 @@
+ five main page we are developing will share some commmon viewmodels as components:
+1.search page - where users can customize pet profile to be viewed
+2.browse page - where users can read a pet profile
+3.favpet page - where users can see the pet they have liked
+4.mypet page- where users if are petowner certified can edit petprofiles
+5.myprofile page - where users can edit their own information
+
+
+in the bottom of our app, we will always have 5 panels that help users to redirect to other pages.
+Instead of rewriting all the codes in each main page, we will define these viewmodels here so each main page will just
+be a  viewmodel that contains all of the viewmodel that it need.
+

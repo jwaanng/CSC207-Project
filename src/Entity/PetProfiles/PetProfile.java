@@ -5,12 +5,14 @@ import java.util.List;
 import static Entity.Constants.*;
 
 public abstract class PetProfile {
+    private static int nextId = 0;
+    private int petId;
     private String name;
     private int age;
     private char sex; //"M = Male, "F = Female"
     private final String specie;
     private char size;
-    private String petPhotoLink;
+    private String petPhotoURL;
     private List<String> morePhotos;
     private final String petOwnerName;
     private String generalDescr;
@@ -19,6 +21,9 @@ public abstract class PetProfile {
 
     private boolean  isPublic;
     protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
+
+        this.petId = nextId;
+        nextId++;
         this.petOwnerName = builder.petOwnerName;
         this.age = builder.age;
         this.name = builder.name;
@@ -26,7 +31,7 @@ public abstract class PetProfile {
         this.size = builder.size;
         this.specie = builder.specie;
         this.isPublic = false;
-        this.petPhotoLink = builder.petPhotoLink;
+        this.petPhotoURL = builder.petPhotoLink;
         this.morePhotos = builder.morePhotos;
         this.likeDescr = builder.likeDescr;
         this.temperDescr = builder.temperDescr;
@@ -66,10 +71,10 @@ public abstract class PetProfile {
         this.size = size;
     }
     public String getPetPhotoLink() {
-        return petPhotoLink;
+        return petPhotoURL;
     }
     public void setPetPhotoLink(String petPhotoLink) {
-        this.petPhotoLink = petPhotoLink;
+        this.petPhotoURL = petPhotoLink;
     }
     public List<String> getMorePhotos() {
         return morePhotos;
@@ -111,14 +116,8 @@ public abstract class PetProfile {
         this.generalDescr = generalDescr;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (!(obj instanceof PetProfile)){
-            return false;
-        }
-        PetProfile profile = (PetProfile) obj;
-        return this.getName().equals(profile.getName()) &&
-                this.getPetOwnerName().equals(profile.getPetOwnerName()) &&
-                this.getSpecie().equals(profile.getSpecie());
+    public int getId() {
+        return petId;
     }
+
 }

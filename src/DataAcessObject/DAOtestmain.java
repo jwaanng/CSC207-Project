@@ -19,17 +19,14 @@ public class DAOtestmain {
         AppUser user2 = new AppUserFactory().createAppUser("Jordan", "102325424", "108 King Street");
         DogProfile jessica = new PetProfileBuilderFactory().createDogProfile("Jack").
                 vaccinated(true).neutered(true).withBreed("Labarado").withAge(4).withSex(MALE).build();
-        DogProfile mondrea = new PetProfileBuilderFactory().createDogProfile("Jack").
-                vaccinated(false).neutered(true).withBreed("Golden retriever").withAge(5).withSex(MALE).withName("mondrea").build();
         PetProfileDataAccessObject daoP = new PetProfileDataAccessObject();
-        //
-        //daoP.add(mondrea);
-
-        mondrea.setGeneralDescr("woof");
-        mondrea.setProfilePublic();
-
-        daoP.update(mondrea);
-        System.out.println(daoP.getProfile(mondrea.getId()).getPublicStatus());
+        daoP.add(jessica);
+        assert daoP.getProfile(jessica.getName(), jessica.getPetOwnerName(), jessica.getSpecie()) == jessica;
+        jessica.setName("jessica");
+        jessica.setGeneralDescr("woof");
+        jessica.setAge(5);
+        daoP.update(jessica);
+        assert daoP.getProfile(jessica.getName(), jessica.getPetOwnerName(), jessica.getSpecie()).getName().equals("jessica");
 
 
     }

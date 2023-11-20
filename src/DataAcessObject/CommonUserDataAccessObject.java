@@ -24,7 +24,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
     private final String dataSource = "ClusterCSC207Pro";
     private final HashMap<String, AppUser> nameToUser = new HashMap<>();
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
-    private final String apikey = "";
+    private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
 
@@ -123,7 +123,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
     }
     @Override
     public void add(AppUser user) {
-        if (exist(user.getUsername())){
+        if (nameToUser.containsKey(user.getUsername())){
             throw new RuntimeException("User already exists");
         }
         String json = convertMongodMatchJsonFormat(user, add);
@@ -147,7 +147,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
 
     @Override
     public void update(AppUser user){
-        if(!exist(user.getUsername())){
+        if(!nameToUser.containsKey(user.getUsername())){
             throw new RuntimeException("User does not exists");
 
         }
@@ -173,7 +173,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
 
     @Override
     public void delete(String username) {
-        if(!exist(username)){
+        if(!nameToUser.containsKey(username)){
             throw new RuntimeException("User does not exists");
         }
         String json = deleteconvertMongoMatchJsonFormat(username);
@@ -198,15 +198,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
 
     @Override
     public AppUser retrieve(String username) {
-        if (!exist(username)){
-            throw new RuntimeException("User does not exists ");
-        }
-        return nameToUser.get(username);
-    }
-
-    @Override
-    public boolean exist(String username) {
-        return nameToUser.containsKey(username);
+        return nameToUser.getOrDefault(username, null);
     }
 
 

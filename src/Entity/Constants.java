@@ -32,8 +32,4 @@ public class Constants {
 
     public static final String delete = "delete";
 
-    /*ViewModel propertynames
-     */
-    public static final String VIEW = "view";
-
 }

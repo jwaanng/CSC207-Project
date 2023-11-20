@@ -67,15 +67,12 @@ public class ConfigProfileView extends JDialog{
 
         // TODO: saving the info that was entered onto either a csv or db or smth idk ... -jw
         // TODO 2: make this auto relay back to the 'mainView' page if it saves correctly
-        // TODO 3: 'bio' has max character amount of 150
-        // TODO 4: 'name' can't contain any invalid characters (no symbols)
+        // doneTODO 3: 'bio' has max character amount of 150 - jw
+        // doneTODO 4: 'name' can't contain any invalid characters (no symbols)
     }
 
     public static void main(String[] args) {
         ConfigProfileView configProfileView = new ConfigProfileView(null);
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

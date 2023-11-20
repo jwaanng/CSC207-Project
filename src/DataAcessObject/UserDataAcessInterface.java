@@ -7,5 +7,4 @@ public interface UserDataAcessInterface {
     void update(AppUser user);
     void delete(String username);
     AppUser retrieve(String username);
-    boolean exist(String username);
 }

@@ -1,15 +1,14 @@
 package BePetOwner;
 
-import DataAcessObject.UserDataAcessInterface;
 import Entity.User.AppUser;
 import Entity.Constants;
 
 import static Entity.Constants.PETOWNER;
 
 public class BPOUCI implements BPOIB {
-    final UserDataAcessInterface dao;
+    final BPODAI dao;
     final BPOOB presenter;
-    public BPOUCI(UserDataAcessInterface dao, BPOOB presenter){
+    public BPOUCI(BPODAI dao, BPOOB presenter){
         this.dao = dao;
         this.presenter = presenter;
     }
@@ -22,7 +21,7 @@ public class BPOUCI implements BPOIB {
         }
         else{
             user.certifyAsPetOwner();
-            dao.update(user);
+            dao.save(user);
             presenter.prepareSuccessView();
         }
 

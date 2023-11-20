@@ -1,15 +1,14 @@
-package BePetOwner;
+package BrowsePage;
 
 import ViewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
 
-public class BPOViewModel extends ViewModel {
-    public BPOViewModel() {
-        super("BePetOwner");
+public class BrowsePageViewModel extends ViewModel {
+
+    public BrowsePageViewModel() {
+        super("browse page");
     }
-
-
 
     @Override
     public void firePropertyChanged() {

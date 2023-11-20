@@ -1,2 +1,6 @@
-package FavPetPage.BrowsePet;public interface BPOB {
+package FavPetPage.BrowsePet;
+
+public interface BPOB {
+    void prepareSuccessView();
+
 }

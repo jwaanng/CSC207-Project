@@ -1,5 +1,5 @@
 package FavPetPage.innerviewmodels;
-import ViewModel.ViewModel
+import ViewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
 

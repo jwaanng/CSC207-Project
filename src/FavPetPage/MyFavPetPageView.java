@@ -40,8 +40,8 @@ public class MyFavPetPageView extends JPanel implements ActionListener, Property
 
         //Panel in case user does not have any favorite pets
 
-        middlePanel.add(); //add ScrollPane to the middle box
-        add(middlePanel,); //add the middleSection to the MyGavPetPage
+//        middlePanel.add(); //add ScrollPane to the middle box
+//        add(middlePanel,); //add the middleSection to the MyGavPetPage
         /*======================================================================================*/
         //ButtomBox where currently 4 pages redirect icon are added, with MyPetPage being the current one
         JPanel buttomPanel = new JPanel();

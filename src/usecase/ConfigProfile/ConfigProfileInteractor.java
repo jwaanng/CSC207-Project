@@ -1,14 +1,17 @@
 package usecase.ConfigProfile;
 
+import DataAcessObject.UserDataAcessInterface;
+import Entity.User.AppUser;
+
 import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-    ConfigProfileDataAccessInterface configProfileDataAccessInterface;
+   UserDataAcessInterface configProfileDataAccessInterface;
     ConfigProfileOutputBoundary configProfilePresenter; // this sets the output view (fail/success)
 
-    public ConfigProfileInteractor(ConfigProfileDataAccessInterface configProfileDataAccessInterface, ConfigProfileInteractor configProfilePresenter, ConfigProfileOutputBoundary configProfileOutputBoundary) {
+    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface, ConfigProfileInteractor configProfilePresenter, ConfigProfileOutputBoundary configProfileOutputBoundary) {
         this.configProfileDataAccessInterface = configProfileDataAccessInterface;
         this.configProfilePresenter = configProfileOutputBoundary;
     }
@@ -31,13 +34,19 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
             // if the bio is too long
             configProfilePresenter.prepareFailView("Keep bio under 150 characters.");
         } else {
-//            LocalDateTime now = LocalDateTime.now();
-//            User user = userFactory.create(signupInputData.getUsername(), signupInputData.getPassword(), now);
-//            userDataAccessObject.save(user);
-//
-//            SignupOutputData signupOutputData = new SignupOutputData(user.getName(), now.toString(), false);
-//            userPresenter.prepareSuccessView(signupOutputData);
-            // TODO 2: saving the info if all parameters are met.
+            // TODO2 Done -ming: saving the info if all parameters are met.
+
+            AppUser user = configProfileDataAccessInterface.retrieve(configProfileInputData.getName());
+            // setting attributes to user
+            user.setBio(configProfileInputData.getBio());
+            user.setAddress(configProfileInputData.getAddress());
+            user.setPreferredSize(configProfileInputData.getSize());
+            user.setPreferredSex(configProfileInputData.getSex());
+
+            System.out.println(user.getPreferredSex() + user.getPreferredSize());
+
+
+            configProfileDataAccessInterface.update(user);
         }
     }
 }

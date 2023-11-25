@@ -13,6 +13,8 @@ public class AppUser {
     private String bio;
     private String password;
     private String address;
+    private String preferredSex;
+    private String preferredSize;
     private List<Integer> favPet;
     private List<String> roles;
 
@@ -48,6 +50,10 @@ public class AppUser {
         return bio;
     }
 
+    public String getPreferredSex() { return preferredSex; }
+
+    public String getPreferredSize() {return preferredSize; }
+
     public String getAddress() {
         return address;
     }
@@ -60,8 +66,20 @@ public class AppUser {
         this.password = password;
     }
 
+    public void setPreferredSize(String size) {
+        this.preferredSize = preferredSize;
+    }
+
+    public void setPreferredSex(String sex) {
+        this.preferredSex = preferredSex;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public boolean isPetFinder(){

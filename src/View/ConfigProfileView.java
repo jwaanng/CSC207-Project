@@ -62,13 +62,13 @@ public class ConfigProfileView extends JDialog{
         String name = nameTf.getName();
         String preferredSize = sizeGroup.getSelection().toString();
 
-        JOptionPane.showMessageDialog(this, preferredSize, "FAILED", JOptionPane.ERROR_MESSAGE);
-        JOptionPane.showMessageDialog(this, address, "FAILED", JOptionPane.ERROR_MESSAGE);
+//        JOptionPane.showMessageDialog(this, preferredSize, "FAILED", JOptionPane.ERROR_MESSAGE);
+//        JOptionPane.showMessageDialog(this, address, "FAILED", JOptionPane.ERROR_MESSAGE);
 
         // TODO: saving the info that was entered onto either a csv or db or smth idk ... -jw
         // TODO 2: make this auto relay back to the 'mainView' page if it saves correctly
-        // TODO 3: 'bio' has max character amount of 150
-        // TODO 4: 'name' can't contain any invalid characters (no symbols)
+        // TODO3 done by jw: 'bio' has max character amount of 150
+        // TODO4 done by jw: 'name' can't contain any invalid characters (no symbols)
     }
 
     public static void main(String[] args) {

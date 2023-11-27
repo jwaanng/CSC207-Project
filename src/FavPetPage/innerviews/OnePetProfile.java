@@ -7,12 +7,23 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Objects;
 
-public class OnePetProfile extends JPanel{
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+
+public class OnePetProfile extends JPanel {
+    public static boolean isValidURL(String url){
+        try{
+            URL imgUrl = new URL(url);
+            return true;
+        } catch (MalformedURLException e){
+            return false;
+        }
+    }
     private OnePetProfileDisplayViewModel vm = new OnePetProfileDisplayViewModel();
+
     public OnePetProfile(int petId, String petname, String petPhotoURL, ActionListener deleteCommonActionlistener,
                          ActionListener viewProfileActionListner,int imagewidth){
         //TODO finalize error situation to not throw runtime error
@@ -32,8 +43,6 @@ public class OnePetProfile extends JPanel{
             setBorder(new LineBorder(Color.black));
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.fill = GridBagConstraints.NONE;
-
-
             //First row
             //JPanel nameLablePanel = new JPanel();
             //nameLablePanel.setBorder(new LineBorder(Color.black));
@@ -44,8 +53,7 @@ public class OnePetProfile extends JPanel{
             //JPanel photoPanel = new JPanel();
             JButton petPhoto = new JButton();
             //Not visible button to petPhoto,
-            //photoPanel.add(petPhoto);
-
+            //photoPanel.add(petPhoto)
 
 
             //customize

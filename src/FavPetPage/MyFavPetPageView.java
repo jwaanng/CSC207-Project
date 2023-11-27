@@ -19,7 +19,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class MyFavPetPageView extends JPanel implements ActionListener, PropertyChangeListener {
+
     private final MyFavPetPageViewModel vm;
+
 
     private final JPanel petDisplaySection; //only changing views that are directly related to this JPanel
     private final CardLayout yesNOFavPetLayout;

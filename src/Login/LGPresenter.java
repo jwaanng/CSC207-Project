@@ -1,18 +1,18 @@
 package Login;
 
 import FavPetPage.FavPetDisplayState;
-import FavPetPage.FavPetViewModel;
+import FavPetPage.MyFavPetPageViewModel;
 import ViewModel.ViewModelManager;
 
 public class LGPresenter implements LGOB{
     private final LGViewModel lgvm;
-    private final FavPetViewModel pvm;
+    private final MyFavPetPageViewModel pvm;
 
 
     private final ViewModelManager manager;
 
 
-    public LGPresenter(LGViewModel loginViewModel, FavPetViewModel myFavPetPageViewModel, ViewModelManager manager) {
+    public LGPresenter(LGViewModel loginViewModel, MyFavPetPageViewModel myFavPetPageViewModel, ViewModelManager manager) {
         this.lgvm = loginViewModel;
         this.manager = manager;
         this.pvm = myFavPetPageViewModel;
@@ -24,7 +24,7 @@ public class LGPresenter implements LGOB{
         //login will automatically be redirected to the favPetPage
         //precondition outputData is of type success data
         FavPetDisplayState state = new FavPetDisplayState(outputData);
-        pvm.display.setState(state); //viewModel now contain information about the user's name
+        pvm.getFavPetDisplayViewModel().setState(state); //viewModel now contain information about the user's name
         pvm.firePropertyChanged();
         manager.setActiveViewName(pvm.getViewName()); //redirect to myPetPage through manager
         manager.firePropertyChange();

@@ -22,14 +22,15 @@ public class DAOtestmain {
         DogProfile mondrea = new PetProfileBuilderFactory().createDogProfile("Jack").
                 vaccinated(false).neutered(true).withBreed("Golden retriever").withAge(5).withSex(MALE).withName("mondrea").build();
         PetProfileDataAccessObject daoP = new PetProfileDataAccessObject();
-        //
+        AppUser user3 = new AppUserFactory().createAppUser("Sean Beans", "SeanBean1023", "1000 Yonge Street");
+        user3.setBio("I love Mr.Bean");
+        dao.add(user3);
         //daoP.add(mondrea);
 
-        mondrea.setGeneralDescr("woof");
-        mondrea.setProfilePublic();
+        //mondrea.setGeneralDescr("woof");
+        //mondrea.setProfilePublic();
 
-        daoP.update(mondrea);
-        System.out.println(daoP.getProfile(mondrea.getId()).getPublicStatus());
+       // daoP.update(mondrea);
 
 
     }

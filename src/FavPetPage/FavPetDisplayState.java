@@ -2,7 +2,9 @@ package FavPetPage;
 
 import Login.LGOPData;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FavPetDisplayState {
 
@@ -10,8 +12,8 @@ public class FavPetDisplayState {
     //TODO must find a way to store all relevant information about a safe petprofile
     //Must include information includes the pet's photo and its name
 
-    private HashMap<Integer, String> favPetID_Photo;
-    private HashMap<Integer, String> favPetID_Name;
+    private HashMap<Integer, String> favPetID_Photo = new HashMap<>();
+    private HashMap<Integer, String> favPetID_Name = new HashMap<>();
 
 
     //TODO decide if this is final or not, decide if the copy constructor is necessary
@@ -43,6 +45,16 @@ public class FavPetDisplayState {
     public void deleletePetNameAndPhoto(int petId){
         favPetID_Name.remove(petId);
         favPetID_Photo.remove(petId);
+    }
+    public String getName(int petId){
+        return favPetID_Name.get(petId);
+    }
+    public String getPhoto(int petId){
+        return favPetID_Photo.get(petId);
+
+    }
+    public List<Integer> getKeyEntries(){
+        return new ArrayList<Integer>(favPetID_Name.keySet());
     }
 
 }

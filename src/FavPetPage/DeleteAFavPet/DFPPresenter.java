@@ -1,22 +1,23 @@
 package FavPetPage.DeleteAFavPet;
 
 import FavPetPage.FavPetDisplayState;
-import FavPetPage.FavPetViewModel;
+import FavPetPage.MyFavPetPageViewModel;
 
 public class DFPPresenter implements DFPOB{
-    private final FavPetViewModel vm;
+    private final MyFavPetPageViewModel vm;
 
-    public DFPPresenter(FavPetViewModel favPetViewModel) {
-        this.vm = favPetViewModel;
+    public DFPPresenter(MyFavPetPageViewModel myFavPetPageViewModel) {
+        this.vm = myFavPetPageViewModel;
     }
 
 
 
     @Override
     public void prepareSuccessView(DFPOPData outputData) {
-        FavPetDisplayState currState = vm.display.getState();
+        FavPetDisplayState currState = vm.getFavPetDisplayViewModel().getState();
         currState.deleletePetNameAndPhoto(outputData.getDeletedPetId());
-        vm.display.setState(currState);
-        vm.display.firePropertyChanged();
+        vm.getFavPetDisplayViewModel().setState(currState);
+        //TODO notifies redirect so the nextime somebody redirects to this page, the redirect will notify the view to
+        // rebuild its list of petprofiles.
     }
 }

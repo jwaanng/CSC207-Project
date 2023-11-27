@@ -145,7 +145,7 @@ DogProfile  ..> DogProfileBuilder
 
 
 
-package "Recommendation"{
+package "recommendation"{
 interface Recommendable<T> extends java.util.List{
 -hasNext: boolean
 -retrieveNextAndUpdate: T

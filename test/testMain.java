@@ -1,16 +1,14 @@
-package Entity;
+package entity;
 
-import Entity.GeoCoordinates.GeoCoordinate;
-import Entity.GeoCoordinates.GeoCoordinatesCalculator;
-import Entity.GeoCoordinates.GeoLocationFinder;
-import Entity.Constants;
+import entity.GeoCoordinates.GeoCoordinate;
+import entity.GeoCoordinates.GeoCoordinatesCalculator;
+import entity.GeoCoordinates.GeoLocationFinder;
 import com.google.maps.errors.ApiException;
-import Entity.PetProfiles.*;
+import entity.PetProfiles.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-import static Entity.Constants.MALE;
+import static entity.Constants.MALE;
 
 public class testMain {
     public static void main(String[] args) throws IOException, InterruptedException, ApiException {

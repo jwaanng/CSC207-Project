@@ -1,9 +1,8 @@
 package usecase.ConfigProfile;
 
-import DataAcessObject.UserDataAcessInterface;
-import Entity.User.AppUser;
+import dataAcessObject.UserDataAcessInterface;
+import entity.User.AppUser;
 
-import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

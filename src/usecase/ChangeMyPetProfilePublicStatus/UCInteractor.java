@@ -1,8 +1,8 @@
 package usecase.ChangeMyPetProfilePublicStatus;
 
-import Entity.PetProfiles.PetProfile;
+import entity.PetProfiles.PetProfile;
 
-import static Entity.Constants.*;
+import static entity.Constants.*;
 
 public class UCInteractor implements InputBound {
     final OutputBound changeProfileStatusPresenter;

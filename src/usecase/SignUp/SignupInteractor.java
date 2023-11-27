@@ -1,8 +1,8 @@
 package usecase.SignUp;
 
-import DataAcessObject.UserDataAcessInterface;
-import Entity.User.AppUser;
-import Entity.User.AppUserFactory;
+import dataAcessObject.UserDataAcessInterface;
+import entity.User.AppUser;
+import entity.User.AppUserFactory;
 
 public class SignupInteractor implements SignupInputBound{
     final UserDataAcessInterface userDataAccessObject;

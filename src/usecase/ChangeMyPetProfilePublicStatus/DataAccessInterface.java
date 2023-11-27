@@ -1,6 +1,6 @@
 package usecase.ChangeMyPetProfilePublicStatus;
 
-import Entity.PetProfiles.PetProfile;
+import entity.PetProfiles.PetProfile;
 
 public interface DataAccessInterface {
     PetProfile retrieve();

@@ -1,13 +1,13 @@
 package SwipePage;
 import entity.PetProfiles.DogProfile;
 import entity.PetProfiles.DogProfileBuilder;
-import view.ConfigProfileView;
-
 import javax.swing.*;
 import java.awt.*;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.ArrayList;
-
 import java.net.URL;
 import javax.imageio.ImageIO;
 
@@ -26,14 +26,20 @@ public class NewSwipePage extends JFrame {
         setLayout(new BorderLayout());
 
         // Profile panel
-        JPanel profilePanel = new JPanel(new GridLayout(3, 1));
         nameLabel = new JLabel();
         sizeLabel = new JLabel();
         photosLabel = new JLabel();
+
+        JPanel profilePanel = new JPanel(new GridLayout(3, 1));
         profilePanel.add(nameLabel);
         profilePanel.add(sizeLabel);
         profilePanel.add(photosLabel);
-        add(profilePanel, BorderLayout.CENTER);
+
+        likeButton = new JButton("Like");
+        dislikeButton = new JButton("Dislike");
+
+        likeButton.addActionListener(e -> controller.onLike());
+        dislikeButton.addActionListener(e -> controller.onDislike());
 
         // Button panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
@@ -41,22 +47,30 @@ public class NewSwipePage extends JFrame {
         dislikeButton = new JButton("Dislike");
         buttonPanel.add(likeButton);
         buttonPanel.add(dislikeButton);
+        add(profilePanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
-
-        likeButton.addActionListener(e -> controller.onLike());
-        dislikeButton.addActionListener(e -> controller.onDislike());
 
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-
-        controller.loadNextProfile();
     }
 
     public void updateProfile(SwipePageViewModel viewModel) {
         nameLabel.setText(viewModel.getDisplayName());
         sizeLabel.setText(viewModel.getDisplaySize());
-        photosLabel.setText(viewModel.getDisplayPhotos());
+
+        try {
+            URI uri = new URI(viewModel.getDisplayPhotoUrl());
+            System.out.println("dafdsdfasfd");
+            System.out.println(viewModel.getDisplayPhotoUrl());
+            System.out.println("hasdf");
+            URL url = uri.toURL();
+            ImageIcon photo = new ImageIcon(ImageIO.read(url));
+            photosLabel.setIcon(photo);
+        } catch (Exception e) {
+            photosLabel.setIcon(null);
+            photosLabel.setText("Photo not available");
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
@@ -87,11 +101,11 @@ public class NewSwipePage extends JFrame {
         DavidDogRandy.setBreed("Husky");
         GregDogAlex.setBreed("Dachshund");
         MirandaDogNemo.setBreed("Dalmatian");
-        JasonDogRosy.setPetPhotoLink("https://imgur.com/a/wJUKlHV");
-        SallyDogDawson.setPetPhotoLink("https://imgur.com/a/0LAsMJC");
-        DavidDogRandy.setPetPhotoLink("https://imgur.com/a/ead0cdP");
-        GregDogAlex.setPetPhotoLink("https://imgur.com/a/gdqcnmc");
-        MirandaDogNemo.setPetPhotoLink("https://imgur.com/a/piu3f6E");
+        JasonDogRosy.setPetPhotoLink("https://ibb.co/c1nx7Fq");
+        SallyDogDawson.setPetPhotoLink("https://ibb.co/CwgQJ2v");
+        DavidDogRandy.setPetPhotoLink("https://ibb.co/wdpgrZr");
+        GregDogAlex.setPetPhotoLink("https://ibb.co/MSfhj8Q");
+        MirandaDogNemo.setPetPhotoLink("https://ibb.co/fGYmPZ1");
         JasonDogRosy.setAge(2);
         SallyDogDawson.setAge(3);
         DavidDogRandy.setAge(4);
@@ -101,12 +115,16 @@ public class NewSwipePage extends JFrame {
 
         ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
         PetProfilePresenter presenter = new PetProfilePresenter();
-        NewSwipePage view = new NewSwipePage();
+        NewSwipePage view = new NewSwipePage(null);
 
         SwipePageController controller = new SwipePageController(interactor, presenter, view);
-        view.controller(controller);
-        view.setVisible(true);
+        view.setController(controller);
 
+        SwingUtilities.invokeLater(() -> view.setVisible(true));
+        controller.loadNextProfile();
+    }
 
+    public void setController(SwipePageController controller) {
+        this.controller = controller;
     }
 }

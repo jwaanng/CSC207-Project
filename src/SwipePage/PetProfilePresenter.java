@@ -1,0 +1,16 @@
+package SwipePage;
+
+import entity.PetProfiles.PetProfile;
+
+public class PetProfilePresenter {
+    public SwipePageViewModel createViewModel(PetProfile profile) {
+        if (profile == null) {
+            return new SwipePageViewModel("No more profiles", "", "");
+        }
+        return new SwipePageViewModel(
+                profile.getName(),
+                "Size: " + profile.getSize(),
+                profile.getPetPhotoLink()
+        );
+    }
+}

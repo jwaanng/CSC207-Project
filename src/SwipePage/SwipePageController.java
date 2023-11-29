@@ -20,11 +20,13 @@ public class SwipePageController {
 
     public void onLike() {
         // Logic for liking a profile
+        System.out.println("clicked like");
         loadNextProfile();
     }
 
     public void onDislike() {
         // Logic for disliking a profile
+        System.out.println("clicked dislike");
         loadNextProfile();
     }
 }

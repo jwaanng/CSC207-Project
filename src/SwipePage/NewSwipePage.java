@@ -1,8 +1,12 @@
 package SwipePage;
 import entity.PetProfiles.DogProfile;
 import entity.PetProfiles.DogProfileBuilder;
+import entity.PetProfiles.PetProfile;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -38,9 +42,6 @@ public class NewSwipePage extends JFrame {
         likeButton = new JButton("Like");
         dislikeButton = new JButton("Dislike");
 
-        likeButton.addActionListener(e -> controller.onLike());
-        dislikeButton.addActionListener(e -> controller.onDislike());
-
         // Button panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         likeButton = new JButton("Like");
@@ -49,6 +50,9 @@ public class NewSwipePage extends JFrame {
         buttonPanel.add(dislikeButton);
         add(profilePanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
+
+        likeButton.addActionListener(e -> controller.onLike());
+        dislikeButton.addActionListener(e -> controller.onDislike());
 
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,11 +63,7 @@ public class NewSwipePage extends JFrame {
         sizeLabel.setText(viewModel.getDisplaySize());
 
         try {
-            URI uri = new URI(viewModel.getDisplayPhotoUrl());
-            System.out.println("dafdsdfasfd");
-            System.out.println(viewModel.getDisplayPhotoUrl());
-            System.out.println("hasdf");
-            URL url = uri.toURL();
+            URL url = new URL(viewModel.getDisplayPhotoUrl());
             ImageIcon photo = new ImageIcon(ImageIO.read(url));
             photosLabel.setIcon(photo);
         } catch (Exception e) {
@@ -75,7 +75,7 @@ public class NewSwipePage extends JFrame {
 
     public static void main(String[] args) {
         // Sample PetProfiles delete later.
-        List<DogProfile> profiles = new ArrayList<>();
+        List<PetProfile> profiles = new ArrayList<>();
         DogProfileBuilder JasonBuilder = new DogProfileBuilder("Jason");
         DogProfileBuilder SallyBuilder = new DogProfileBuilder("Sally");
         DogProfileBuilder DavidBuilder = new DogProfileBuilder("David");
@@ -101,17 +101,21 @@ public class NewSwipePage extends JFrame {
         DavidDogRandy.setBreed("Husky");
         GregDogAlex.setBreed("Dachshund");
         MirandaDogNemo.setBreed("Dalmatian");
-        JasonDogRosy.setPetPhotoLink("https://ibb.co/c1nx7Fq");
-        SallyDogDawson.setPetPhotoLink("https://ibb.co/CwgQJ2v");
-        DavidDogRandy.setPetPhotoLink("https://ibb.co/wdpgrZr");
-        GregDogAlex.setPetPhotoLink("https://ibb.co/MSfhj8Q");
-        MirandaDogNemo.setPetPhotoLink("https://ibb.co/fGYmPZ1");
+        JasonDogRosy.setPetPhotoLink("https://i.ibb.co/jTXH1Mt/shiba.png");
+        SallyDogDawson.setPetPhotoLink("https://i.ibb.co/Mgr786p/wolf.jpg");
+        DavidDogRandy.setPetPhotoLink("https://i.ibb.co/6yDwJcJ/husky.png");
+        GregDogAlex.setPetPhotoLink("https://i.ibb.co/yPpRMh7/daschund.png");
+        MirandaDogNemo.setPetPhotoLink("https://i.ibb.co/BKV8Svz/dalmatian.png");
         JasonDogRosy.setAge(2);
         SallyDogDawson.setAge(3);
         DavidDogRandy.setAge(4);
         GregDogAlex.setAge(5);
         MirandaDogNemo.setAge(6);
-
+        profiles.add(JasonDogRosy);
+        profiles.add(SallyDogDawson);
+        profiles.add(DavidDogRandy);
+        profiles.add(GregDogAlex);
+        profiles.add(MirandaDogNemo);
 
         ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
         PetProfilePresenter presenter = new PetProfilePresenter();

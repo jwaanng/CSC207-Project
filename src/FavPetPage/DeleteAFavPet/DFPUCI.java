@@ -15,14 +15,11 @@ public class DFPUCI implements DFPIB{
     @Override
     public void execute(DFPIPData inputData) {
         //precondition, inputData must contain a petID that is indeed a petId of the user's saved pet profile
-        String username = inputData.getUsername();
-        int petId = inputData.getId();
+        String username = inputData.username;
+        int petId = inputData.id;
         AppUser user = dao.retrieve(username);
         user.deleteFavProfile(petId);
         dao.update(user);
-        DFPOPData deletedPet = new DFPOPData(petId);
-        presenter.prepareSuccessView(deletedPet);
-
-
+        presenter.prepareSuccessView(petId);
     }
 }

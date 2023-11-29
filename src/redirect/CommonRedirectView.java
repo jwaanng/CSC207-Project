@@ -1,27 +1,24 @@
-package FavPetPage.innerviews;
+package redirect;
 
-import FavPetPage.Redirect.RDController;
-import ViewModel.PageRedirectViewModel;
+import FavPetPage.myFavPetPageRedirect.FavPetRDRController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
 
-public class RedirectView extends JPanel {
+public class CommonRedirectView extends JPanel implements PropertyChangeListener {
     private final PageRedirectViewModel vm;
-    private final RDController controller;
+    private final FavPetRDRController controller;
     private final JButton browse;
     private final JButton myFav;
     private final JButton myPet;
     private final  JButton myProfile;
 
-    public RedirectView(PageRedirectViewModel redirectViewModel, RDController redirectController){
+    public CommonRedirectView(PageRedirectViewModel redirectViewModel, FavPetRDRController redirectController){
         try {
             this.vm = redirectViewModel;
             this.controller = redirectController;
@@ -31,25 +28,26 @@ public class RedirectView extends JPanel {
             myFav = new JButton();
             myPet = new JButton();
             myProfile = new JButton();
-            myFav.setEnabled(false);
 
             // TODO generalize this to the outside as a template for other pages too
 
             //Customize
            BufferedImage browseImg = ImageIO.read(getClass().getResource(vm.SCROLLICONPATH));
-            browse.setIcon(new ImageIcon(browseImg.getScaledInstance(100,100,Image.SCALE_DEFAULT)));
+            browse.setIcon(new ImageIcon(browseImg.getScaledInstance(70,70,Image.SCALE_DEFAULT)));
+
+
 
 
             BufferedImage myFavImg = ImageIO.read(getClass().getResource(vm.FAVPETICONPATH));
 
-            myFav.setIcon(new ImageIcon(myFavImg.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+            myFav.setIcon(new ImageIcon(myFavImg.getScaledInstance(70,70, Image.SCALE_DEFAULT)));
 
 
             BufferedImage myPetImg = ImageIO.read(getClass().getResource(vm.MYPETICONPATH));
-            myPet.setIcon(new ImageIcon(myPetImg.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+            myPet.setIcon(new ImageIcon(myPetImg.getScaledInstance(70,70, Image.SCALE_DEFAULT)));
 
             BufferedImage myProfileImg = ImageIO.read(getClass().getResource(vm.MYPROFILEICONPATH));
-            myProfile.setIcon(new ImageIcon(myProfileImg.getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+            myProfile.setIcon(new ImageIcon(myProfileImg.getScaledInstance(70,70, Image.SCALE_DEFAULT)));
 
             //browse.setActionCommand();
             add(browse);
@@ -65,4 +63,12 @@ public class RedirectView extends JPanel {
     }
 
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+
+    }
+    public void inMyPetPage(){
+        myFav.setEnabled(false);
+    }
+    //TODO put the public methods to disable corresponding page button
 }

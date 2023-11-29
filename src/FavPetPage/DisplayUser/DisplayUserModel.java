@@ -1,4 +1,4 @@
-package FavPetPage.innerviewmodels;
+package FavPetPage.DisplayUser;
 
 import FavPetPage.DisplayUser.DisplayUserState;
 import ViewModel.ViewModel;
@@ -8,9 +8,9 @@ import java.beans.PropertyChangeSupport;
 
 public class DisplayUserModel extends ViewModel {
     public final String APPNAME = "petPal";
-    public String propertyName = "state";
+    public final String propertyName = "state";
     private DisplayUserState state = new DisplayUserState();
-    private PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     public DisplayUserModel() {
         super("user display");
     }

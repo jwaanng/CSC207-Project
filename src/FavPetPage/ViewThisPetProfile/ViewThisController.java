@@ -1,9 +1,9 @@
 package FavPetPage.ViewThisPetProfile;
 
-public class VTPController {
-    private VTPIB uci;
+public class ViewThisController {
+    private ViewThisIB uci;
 
-    public VTPController(VTPIB viewThisPetProfileUseCaseInteractor) {
+    public ViewThisController(ViewThisIB viewThisPetProfileUseCaseInteractor) {
         this.uci = viewThisPetProfileUseCaseInteractor;
     }
 

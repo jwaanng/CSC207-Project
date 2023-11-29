@@ -1,5 +1,5 @@
 package FavPetPage.ViewThisPetProfile;
 
-public interface VTPIB {
+public interface ViewThisIB {
     void execute(int petId);
 }

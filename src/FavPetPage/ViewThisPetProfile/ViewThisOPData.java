@@ -1,6 +1,6 @@
 package FavPetPage.ViewThisPetProfile;
 
-public class VTPOPData {
+public class ViewThisOPData {
     public String getError() {
         return error;
     }

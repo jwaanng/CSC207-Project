@@ -2,14 +2,16 @@ package FavPetPage;
 
 import FavPetPage.BrowsePet.BPController;
 import FavPetPage.DeleteAFavPet.DFPController;
-import FavPetPage.Redirect.RDController;
-import FavPetPage.ViewThisPetProfile.VTPController;
-import FavPetPage.innerviewmodels.FavPetDisplayViewModel;
+import FavPetPage.DeleteAFavPet.DeleteFavPetViewModel;
+import FavPetPage.updateAFavPet.UpdateViewModel;
+import FavPetPage.myFavPetPageRedirect.FavPetRDRController;
+import FavPetPage.ViewThisPetProfile.ViewThisController;
+import FavPetPage.addAFavPet.AddViewModel;
 import FavPetPage.innerviewmodels.NoFavPetDisplayViewModel;
 import FavPetPage.innerviews.DisplayUserView;
 import FavPetPage.innerviews.FavPetDisplayView;
 import FavPetPage.innerviews.NoFavPetsView;
-import FavPetPage.innerviews.RedirectView;
+import redirect.CommonRedirectView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,42 +20,46 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MyFavPetPageView extends JPanel implements ActionListener, PropertyChangeListener {
-    private final MyFavPetPageViewModel vm;
+public class FavPetPageView extends JPanel implements ActionListener, PropertyChangeListener {
+    private final FavPetPageViewModel vm;
 
     private final JPanel petDisplaySection; //only changing views that are directly related to this JPanel
     private final CardLayout yesNOFavPetLayout;
 
-    public MyFavPetPageView(MyFavPetPageViewModel myFavPetPageViewModel,
-                            DFPController deletePetController,
-                            VTPController viewThisPEtController,
-                            RDController redirectController,
-                            BPController browsePetController){
-        vm = myFavPetPageViewModel;
+    public FavPetPageView(FavPetPageViewModel favPetPageViewModel,
+                          DFPController deletePetController,
+                          ViewThisController viewThisPEtController,
+                          FavPetRDRController favPetRDRController,
+                          BPController browsePetController) {
+        vm = favPetPageViewModel;
         setLayout(new BorderLayout());
-        FavPetDisplayViewModel favPetVM = vm.getFavPetDisplayViewModel();
+        AddViewModel addVM = vm.getAddViewModel();
+        UpdateViewModel updateVM = vm.getUpdateViewModel();
+        DeleteFavPetViewModel deleteVM = vm.getDeleteFavPetViewModel();
         NoFavPetDisplayViewModel noFavPetVM = vm.getNoPetDisplayViewModel();
+
+
         //all the subview components
-        FavPetDisplayView petDisplayView = new FavPetDisplayView(favPetVM,
+        FavPetDisplayView petDisplayView = new FavPetDisplayView(
+                addVM,
+                updateVM,
+                deleteVM,
                 deletePetController,
                 viewThisPEtController);
-        RedirectView redirectView = new RedirectView(vm.getPageRedirectViewModel(), redirectController);
+        CommonRedirectView commonRedirectView = new CommonRedirectView(vm.getFavPetRDRViewModel(),favPetRDRController);
+        commonRedirectView.inMyPetPage();
         NoFavPetsView noPetDisplayView = new NoFavPetsView(noFavPetVM, browsePetController);
         DisplayUserView displayUserView = new DisplayUserView(vm.getDisplayUserModel());
 
-        //petDisplayViewModel needs to inform this view when to switch the between petDisplayView and noPetDisplayView
-        vm.getFavPetDisplayViewModel().addPropertyChangeListener(this);
-
         //Top section displays user, app info
         add(displayUserView, BorderLayout.NORTH);
-
         //Middle section displays pet info
         yesNOFavPetLayout = new CardLayout();
         petDisplaySection = new JPanel(yesNOFavPetLayout);
         JScrollPane scrollPane = new JScrollPane(petDisplayView);
         //customize cardboard/scrollPane
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        petDisplaySection.add(scrollPane, favPetVM.getViewName());
+        petDisplaySection.add(scrollPane, addVM.getViewName());
         petDisplaySection.add(noPetDisplayView,noFavPetVM.getViewName());
         yesNOFavPetLayout.show(petDisplaySection,noFavPetVM.getViewName());//default view
         add(petDisplaySection, BorderLayout.CENTER);
@@ -65,7 +71,7 @@ public class MyFavPetPageView extends JPanel implements ActionListener, Property
         add(sidePanel1, BorderLayout.WEST);
         add(sidePanel2, BorderLayout.EAST);
         //Bottom section redirects
-        add(redirectView, BorderLayout.SOUTH);
+        add(commonRedirectView, BorderLayout.SOUTH);
 
     }
 
@@ -76,12 +82,13 @@ public class MyFavPetPageView extends JPanel implements ActionListener, Property
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        FavPetDisplayState currState = (FavPetDisplayState) evt.getNewValue();
-        if (currState.getKeyEntries().isEmpty()){
+        if (evt.getSource() == vm.getNoPetDisplayViewModel()){
             yesNOFavPetLayout.show(petDisplaySection,vm.getNoPetDisplayViewModel().getViewName());
         }
-        else
-            yesNOFavPetLayout.show(petDisplaySection, vm.getFavPetDisplayViewModel().getViewName());
+        else if (evt.getSource() == vm.getAddViewModel()){
+            yesNOFavPetLayout.show(petDisplaySection, vm.getAddViewModel().getViewName());
+        }
+
 
     }
 }

@@ -1,7 +1,6 @@
 package FavPetPage.innerviews;
 
 import FavPetPage.BrowsePet.BPController;
-import FavPetPage.innerviewmodels.FavPetDisplayViewModel;
 import FavPetPage.innerviewmodels.NoFavPetDisplayViewModel;
 
 import javax.swing.*;

@@ -3,17 +3,17 @@ package FavPetPage.ViewThisPetProfile;
 import DataAcessObject.PetProfileDataAccessInterface;
 import Entity.PetProfiles.PetProfile;
 
-public class VTPUCI implements VTPIB {
+public class ViewThisUCI implements ViewThisIB {
     private final PetProfileDataAccessInterface daoP;
-    private final VTPOB presenter;
-    public VTPUCI(PetProfileDataAccessInterface petProfileDataAccessObject, VTPOB viewThisPetProfilePresenter){
+    private final ViewThisOB presenter;
+    public ViewThisUCI(PetProfileDataAccessInterface petProfileDataAccessObject, ViewThisOB viewThisPetProfilePresenter){
         this.daoP = petProfileDataAccessObject;
         this.presenter = viewThisPetProfilePresenter;
     }
     @Override
     public void execute(int petId) {
         if (!daoP.exists(petId)){
-            VTPOPData output = new VTPOPData();
+            ViewThisOPData output = new ViewThisOPData();
             output.setError("Sorry, the pet owner has just dismounted the pet from the app (");
             presenter.prepareFailView(output);
         }

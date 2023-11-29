@@ -1,7 +1,7 @@
 package FavPetPage.innerviews;
 
 import FavPetPage.DisplayUser.DisplayUserState;
-import FavPetPage.innerviewmodels.DisplayUserModel;
+import FavPetPage.DisplayUser.DisplayUserModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -9,15 +9,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 public class DisplayUserView extends JPanel implements PropertyChangeListener {
-    private DisplayUserModel vm;
+    private final DisplayUserModel vm;
 
     private final JLabel username;
     private final JLabel profile;
@@ -41,7 +38,7 @@ public class DisplayUserView extends JPanel implements PropertyChangeListener {
         //profile.setIcon(new ImageIcon(profileImg));
             profile.setIcon(new ImageIcon(ImageIO.read(getClass()
                             .getResource("/BottomPageRedirectingIcons/myProfile.png"))
-                    .getScaledInstance(10,10,Image.SCALE_DEFAULT)));
+                    .getScaledInstance(50,50,Image.SCALE_DEFAULT)));
 
 
         GridBagConstraints gbc = new GridBagConstraints();

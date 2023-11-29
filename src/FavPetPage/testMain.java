@@ -12,15 +12,13 @@ import FavPetPage.DeleteAFavPet.DFPIB;
 import FavPetPage.DeleteAFavPet.DFPPresenter;
 import FavPetPage.DeleteAFavPet.DFPUCI;
 
-import FavPetPage.Redirect.RDController;
-import FavPetPage.Redirect.RDIB;
-import FavPetPage.Redirect.RDPresenter;
-import FavPetPage.Redirect.RDUCI;
-import FavPetPage.ViewThisPetProfile.VTPIB;
-import FavPetPage.ViewThisPetProfile.VTPPresenter;
-import FavPetPage.ViewThisPetProfile.VTPController;
-import FavPetPage.ViewThisPetProfile.VTPUCI;
-import View.ViewManager;
+import FavPetPage.myFavPetPageRedirect.FavPetRDRController;
+import FavPetPage.myFavPetPageRedirect.FavPetRDRPresenter;
+import FavPetPage.myFavPetPageRedirect.FavPetRDRUCI;
+import FavPetPage.ViewThisPetProfile.ViewThisIB;
+import FavPetPage.ViewThisPetProfile.ViewThisPresenter;
+import FavPetPage.ViewThisPetProfile.ViewThisController;
+import FavPetPage.ViewThisPetProfile.ViewThisUCI;
 import ViewModel.ViewModelManager;
 
 import javax.swing.*;
@@ -28,7 +26,7 @@ import javax.swing.*;
 public class testMain {
     public static void main(String[] args) {
         ViewModelManager manager = new ViewModelManager();
-        MyFavPetPageViewModel viewModel = new MyFavPetPageViewModel();
+        FavPetPageViewModel viewModel = new FavPetPageViewModel();
         UserDataAcessInterface dao = new CommonUserDataAccessObject();
         PetProfileDataAccessObject daop = new PetProfileDataAccessObject();
 
@@ -38,21 +36,21 @@ public class testMain {
         DFPController dfpController = new DFPController(dfpUci);
 
         //view this pet cycle
-        VTPPresenter vtpPresenter = new VTPPresenter();
-        VTPIB vtpuci = new VTPUCI(daop, vtpPresenter);
-        VTPController vtpController = new VTPController(vtpuci);
+        ViewThisPresenter viewThisPresenter = new ViewThisPresenter();
+        ViewThisIB vtpuci = new ViewThisUCI(daop, viewThisPresenter);
+        ViewThisController viewThisController = new ViewThisController(vtpuci);
 
         //redirect cycle
-        RDPresenter rdPresenter = new RDPresenter(viewModel.getPageRedirectViewModel(), manager);
-        RDUCI rduci = new RDUCI(rdPresenter);
-        RDController rdController = new RDController(rduci);
+        FavPetRDRPresenter FavPetRDRPresenter = new FavPetRDRPresenter( viewModel, manager);
+        FavPetRDRUCI FavPetRDRUCI = new FavPetRDRUCI(FavPetRDRPresenter);
+        FavPetRDRController favPetRDRController = new FavPetRDRController(FavPetRDRUCI);
 
         //BrowsePet cycle
         BPPresenter bpPresenter = new BPPresenter(new BrowsePageViewModel(), manager);
         BPUCI bpuci = new BPUCI(bpPresenter);
         BPController bpController = new BPController(bpuci);
 
-        MyFavPetPageView view = new MyFavPetPageView(viewModel, dfpController, vtpController, rdController, bpController);
+        FavPetPageView view = new FavPetPageView(viewModel, dfpController, viewThisController, favPetRDRController, bpController);
 
         JFrame app = new JFrame();
         app.add(view);

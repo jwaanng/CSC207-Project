@@ -9,7 +9,7 @@ public class PetProfilePresenter {
         }
         return new SwipePageViewModel(
                 profile.getName(),
-                "Size: " + profile.getSize(),
+                "Bio: " + profile.toString(),
                 profile.getPetPhotoLink()
         );
     }

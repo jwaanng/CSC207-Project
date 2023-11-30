@@ -2,17 +2,17 @@ package SwipePage;
 
 public class SwipePageViewModel {
     private String displayName;
-    private String displaySize;
+    private String displayBio;
     private String displayPhotoUrl;
 
-    public SwipePageViewModel(String displayName, String displaySize, String displayPhotoUrl) {
+    public SwipePageViewModel(String displayName, String displayBio, String displayPhotoUrl) {
         this.displayName = displayName;
-        this.displaySize = displaySize;
+        this.displayBio = displayBio;
         this.displayPhotoUrl = displayPhotoUrl;
     }
 
     // Getters
     public String getDisplayName() { return displayName; }
-    public String getDisplaySize() { return displaySize; }
+    public String getDisplayBio() { return displayBio; }
     public String getDisplayPhotoUrl() { return displayPhotoUrl; }
 }

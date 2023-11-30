@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 
 public class NewSwipePage extends JFrame {
-    private JLabel nameLabel, sizeLabel, photosLabel;
+    private JLabel nameLabel, bioLabel, photosLabel;
     private JButton likeButton, dislikeButton;
     private SwipePageController controller;
 
@@ -26,16 +26,38 @@ public class NewSwipePage extends JFrame {
 
         // Profile panel
         nameLabel = new JLabel();
-        sizeLabel = new JLabel();
+        bioLabel = new JLabel();
         photosLabel = new JLabel();
+        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        bioLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        photosLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        Font labelFont20 = new Font("Helvetica", Font.BOLD, 20);
+        Font labelFont40 = new Font("Helvetica", Font.BOLD, 40);
+        nameLabel.setFont(labelFont40);
+        bioLabel.setFont(labelFont20);
 
-        JPanel profilePanel = new JPanel(new GridLayout(3, 1));
-        profilePanel.add(nameLabel);
-        profilePanel.add(sizeLabel);
-        profilePanel.add(photosLabel);
+        JPanel profilePanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
-        likeButton = new JButton("Like");
-        dislikeButton = new JButton("Dislike");
+        // Name label
+        gbc.gridy = 0;
+        gbc.weighty = 0; // Name label should not stretch vertically
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.insets = new Insets(10, 0, 0, 0); // Minimal top margin, no margin between name and photo
+        profilePanel.add(nameLabel, gbc);
+
+        // Photos label
+        gbc.gridy = 1;
+        gbc.weighty = 1; // Photo label takes up remaining space
+        gbc.fill = GridBagConstraints.BOTH; // Fills the entire cell
+        gbc.anchor = GridBagConstraints.CENTER; // Anchor the photo in the center of its space
+        gbc.insets = new Insets(0, 0, 0, 0); // No insets for the photo label
+        profilePanel.add(photosLabel, gbc);
+
+        // Bio label
+        gbc.gridy = 2;
+        gbc.weighty = 0.1; // minimal vertical space
+        profilePanel.add(bioLabel, gbc);
 
         // Button panel
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
@@ -49,23 +71,72 @@ public class NewSwipePage extends JFrame {
         likeButton.addActionListener(e -> controller.onLike());
         dislikeButton.addActionListener(e -> controller.onDislike());
 
-        setSize(400, 300);
+        setSize(700, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+//    public void updateProfile(SwipePageViewModel viewModel) {
+//        nameLabel.setText(viewModel.getDisplayName());
+//        sizeLabel.setText(viewModel.getDisplayBio());
+//
+//        try {
+//            URL url = new URL(viewModel.getDisplayPhotoUrl());
+//            ImageIcon photo = new ImageIcon(ImageIO.read(url));
+//            photosLabel.setIcon(photo);
+//        } catch (Exception e) {
+//            photosLabel.setIcon(null);
+//            photosLabel.setText("Photo not available");
+//            e.printStackTrace();
+//        }
+//    }
+
     public void updateProfile(SwipePageViewModel viewModel) {
         nameLabel.setText(viewModel.getDisplayName());
-        sizeLabel.setText(viewModel.getDisplaySize());
+        bioLabel.setText(viewModel.getDisplayBio());
 
         try {
             URL url = new URL(viewModel.getDisplayPhotoUrl());
-            ImageIcon photo = new ImageIcon(ImageIO.read(url));
-            photosLabel.setIcon(photo);
+            BufferedImage originalImage = ImageIO.read(url);
+
+            if (originalImage != null) {
+                ImageIcon photo = resizeImageToSquare(originalImage, 550); // 200x200 square
+                photosLabel.setIcon(photo);
+            } else {
+                throw new IOException("Image could not be loaded.");
+            }
         } catch (Exception e) {
             photosLabel.setIcon(null);
-            photosLabel.setText("Photo not available");
+            photosLabel.setText("Error loading image: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private ImageIcon resizeImageToSquare(BufferedImage originalImage, int sideLength) {
+        // Calculate the scale to resize the image
+        double scale = Math.min((double) sideLength / originalImage.getWidth(),
+                (double) sideLength / originalImage.getHeight());
+
+        int newWidth = (int) (originalImage.getWidth() * scale);
+        int newHeight = (int) (originalImage.getHeight() * scale);
+
+        // Create a new scaled image
+        Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+
+        // Create a square image with the scaled image at the center
+        BufferedImage squareImage = new BufferedImage(sideLength, sideLength, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = squareImage.createGraphics();
+
+        // Fill with background color or make transparent
+        g2.setColor(Color.WHITE); // You can change the background color
+        g2.fillRect(0, 0, sideLength, sideLength);
+
+        // Draw the scaled image
+        int x = (sideLength - newWidth) / 2;
+        int y = (sideLength - newHeight) / 2;
+        g2.drawImage(scaledImage, x, y, null);
+        g2.dispose();
+
+        return new ImageIcon(squareImage);
     }
 
     public static void main(String[] args) {

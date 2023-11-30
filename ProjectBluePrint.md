@@ -22,7 +22,7 @@
     - (Op) reCAPTCHA check
     - Organization is automatically registered as a pet owner
   - Once signup is successful, Customer will be redirected to the login page
-- **Customer-Login Page interactions**
+- **Customer-login Page interactions**
   - Ask for the customer(User/Org)'s email and password
   -successful log in will redirect to main page   
 
@@ -40,7 +40,7 @@
   
 - 
 ### **My Profile page**
-  - **View information**
+  - **view information**
   - **Edit information**
       - **User/Org edit their account name**
         - Prompt User to enter new name
@@ -70,7 +70,7 @@
 
 
 ### **Look for pet page**
-- **View**
+- **view**
   - User/Org will see a pet profile
   - **with search category completed**: the pet profile with the highest score is the first
   - **without search category completed**: the pet profile in the closest geolocation will appear first
@@ -101,7 +101,7 @@
 
 ### **Favorite pet page**
 
-- **View**
+- **view**
   - User will see a list of their favorite pet profiles
   - User can see the status of their favorite pet as "taken away", "available", "temporarily unavailable" 
 - **Action**
@@ -151,9 +151,9 @@
           - Description 3 Other description with optional photos
           - More photos
 ### Look for pet finder page
-- **User not registered as pet owner or pet owner that does not have any pet profile that is made public's View**
+- **User not registered as pet owner or pet owner that does not have any pet profile that is made public's view**
   - Display: "You are not a pet owner/You don't have any public pet profile" 
-- **User registered as pet owner and have at least one pet profile's View**
+- **User registered as pet owner and have at least one pet profile's view**
   - A buyer profile who has favorited one of the owner's pet is automatically recommended on the page with random algorithm
   - A search icon is on the top
   - **Action**

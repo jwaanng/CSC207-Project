@@ -1,6 +1,6 @@
 package entity;
 
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 import recommendation.Recommendable;
 
 import java.util.HashMap;

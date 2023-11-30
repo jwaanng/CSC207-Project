@@ -1,9 +1,9 @@
 package dataAcessObject;
 
-import entity.PetProfiles.DogProfile;
-import entity.PetProfiles.PetProfileBuilderFactory;
-import entity.User.AppUser;
-import entity.User.AppUserFactory;
+import entity.petProfile.DogProfile;
+import entity.petProfile.PetProfileBuilderFactory;
+import entity.user.AppUser;
+import entity.user.AppUserFactory;
 
 import static entity.Constants.MALE;
 

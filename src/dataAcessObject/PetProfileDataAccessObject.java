@@ -1,8 +1,8 @@
 package dataAcessObject;
 
-import entity.PetProfiles.DogProfile;
-import entity.PetProfiles.PetProfile;
-import entity.Other.RuntimeTypeAdapterFactory;
+import entity.petProfile.DogProfile;
+import entity.petProfile.PetProfile;
+import entity.other.RuntimeTypeAdapterFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;

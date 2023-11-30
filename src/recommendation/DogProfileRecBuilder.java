@@ -1,6 +1,6 @@
 package recommendation;
 
-import entity.PetProfiles.DogProfile;
+import entity.petProfile.DogProfile;
 
 import java.util.List;
 

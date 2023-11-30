@@ -1,15 +1,10 @@
 package SwipePage;
-import entity.PetProfiles.DogProfile;
-import entity.PetProfiles.DogProfileBuilder;
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.DogProfile;
+import entity.petProfile.DogProfileBuilder;
+import entity.petProfile.PetProfile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.ArrayList;
 import java.net.URL;

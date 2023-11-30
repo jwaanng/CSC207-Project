@@ -1,7 +1,7 @@
 package bePetOwner;
 
 import dataAcessObject.UserDataAcessInterface;
-import entity.User.AppUser;
+import entity.user.AppUser;
 
 import static entity.Constants.PETOWNER;
 

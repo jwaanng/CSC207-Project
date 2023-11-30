@@ -1,5 +1,5 @@
 package SwipePage;
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 
 public class SwipePageController {
     private ProfileSwipingInteractor interactor;

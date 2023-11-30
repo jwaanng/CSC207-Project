@@ -46,6 +46,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         this.signupController = signupController;
         this.signupViewModel = signupViewModel;
 
+
         signupViewModel.addPropertyChangeListener(this);
 
         signUpButton.addActionListener(new ActionListener() {
@@ -86,12 +87,13 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         String address = String.valueOf(addressTf.getText());
 
         SignupState currentState = this.signupViewModel.getState();
+
         currentState.setUsername(username);
         currentState.setPassword(password);
         currentState.setRepeatPassword(confirmPassword);
         currentState.setAddress(address);
 
-        System.out.println("REGUSER: " + currentState.toString());
+        System.out.println("REG USER: " + currentState.toString());
 
         
         System.out.println(username);
@@ -101,7 +103,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
             JOptionPane.showMessageDialog(this, "ENTER ALL INFORMATION", "FAILED", JOptionPane.ERROR_MESSAGE);
             return;
         }
-//
+
 //        // if the passwords don't match
 //        if (!password.equals(confirmPassword)) {
 //            JOptionPane.showMessageDialog(this, "MAKE SURE PASSWORD MATCHES", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -114,11 +116,8 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("VIEW: I'm outside the if");
         if (evt.getSource().equals(signupViewModel)) {
             System.out.println("VIEW: property change received");
-            System.out.println("Property Name: " + evt.getPropertyName());
-            System.out.println("New Value: " + evt.getNewValue());
             SignupState state = (SignupState) evt.getNewValue();
             if (state.getError() != null) {
                 System.out.println(state.getError());
@@ -129,7 +128,12 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
 
 
     public static void main(String[] args) {
-        RegisterView registerView = new RegisterView(null, new SignupController(new SignupInteractor(new CommonUserDataAccessObject(), new SignupPresenter(new SignupViewModel(), new LGViewModel(), new ViewModelManager()), new AppUserFactory())), new SignupViewModel());
+        SignupViewModel signupViewModel = new SignupViewModel();
+        SignupPresenter signupPresenter = new SignupPresenter(signupViewModel, new LGViewModel(), new ViewModelManager());
+        SignupInteractor signupInteractor = new SignupInteractor(new CommonUserDataAccessObject(), signupPresenter, new AppUserFactory());
+        SignupController signupController = new SignupController(signupInteractor);
+
+        RegisterView registerView = new RegisterView(null, signupController, signupViewModel);
     }
 
     // TODO: no popup for when cases fail

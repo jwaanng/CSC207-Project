@@ -2,8 +2,8 @@ package login;
 
 import dataAcessObject.PetProfileDataAccessObject;
 import dataAcessObject.UserDataAcessInterface;
-import entity.PetProfiles.PetProfile;
-import entity.User.AppUser;
+import entity.petProfile.PetProfile;
+import entity.user.AppUser;
 
 public class LGUCI implements LGIB{
     final LGOB presenter;
@@ -31,7 +31,7 @@ public class LGUCI implements LGIB{
                 presenter.prepareFailView(LGOPData.createFailData("Password does not match"));
             }
             else{
-                LGOPData successData = LGOPData.createSuccessData(name);
+                LGOPData successData = LGOPData.createSuccessData(name, dao.retrieve(name).getPhotoUrl());
                 for (int petId : currUser.getFavPet()){
                     PetProfile profile = daoP.getProfile(petId);
                      successData.addPetNameAndPHOTO(profile.getId(), profile.getName(), profile.getPetPhotoLink());

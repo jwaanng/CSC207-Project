@@ -1,6 +1,6 @@
 package dataAcessObject;
 
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 
 public interface PetProfileDataAccessInterface {
     void add(PetProfile profile);

@@ -3,35 +3,26 @@ package login;
 import java.util.HashMap;
 
 public class LGOPData {
-    private String username;
-    private boolean usecaseFailed;
+    String username;
+    String profileURL;
+    boolean usecaseFailed;
 
     private final HashMap<Integer, String> petID_to_Name = new HashMap<>();
     private final HashMap<Integer, String> petID_to_Photo = new HashMap<>();
-    private String error;
-    //TODO need to contain all relevant for petProfile display
-    public String getUsername() {
-        return username;
-    }
-
-    public boolean isUsecaseFailed() {
-        return usecaseFailed;
-    }
-
-    public String getError() {
-        return error;
-    }
+    String error;
 
     public LGOPData(LGOPData copy){
         this.username = copy.username;
+        this.profileURL = copy.profileURL;
         this.error = copy.error;
         this.usecaseFailed = copy.usecaseFailed;
     }
     public LGOPData(){}
 
-    public static LGOPData createSuccessData(String username)
+    public static LGOPData createSuccessData(String username, String profileURL)
     {
         LGOPData data = new LGOPData();
+        data.profileURL = profileURL;
         data.username = username;
         return data;
     }

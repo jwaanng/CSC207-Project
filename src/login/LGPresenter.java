@@ -1,33 +1,42 @@
 package login;
-
-import favPetPage.FavPetDisplayState;
-import favPetPage.MyFavPetPageViewModel;
+import favPetPage.FavPetPageViewModel;
+import favPetPage.addAFavPet.AddState;
+import favPetPage.displayUser.DisplayUserState;
 import viewModel.ViewModelManager;
 
 public class LGPresenter implements LGOB{
-    private final LGViewModel lgvm;
-    private final MyFavPetPageViewModel pvm;
-
+    private final LGViewModel lgVM;
+    private final FavPetPageViewModel fpVM;
 
     private final ViewModelManager manager;
 
 
-    public LGPresenter(LGViewModel loginViewModel, MyFavPetPageViewModel myFavPetPageViewModel, ViewModelManager manager) {
-        this.lgvm = loginViewModel;
+    public LGPresenter(LGViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel, ViewModelManager manager) {
+        this.lgVM = loginViewModel;
         this.manager = manager;
-        this.pvm = myFavPetPageViewModel;
+        this.fpVM = favPetPageViewModel;
     }
 
 
     @Override
     public void prepareSuccessView(LGOPData outputData) {
         //login will automatically be redirected to the favPetPage
-        //precondition outputData is of type success data
-        FavPetDisplayState state = new FavPetDisplayState(outputData);
-        pvm.getFavPetDisplayViewModel().setState(state); //viewModel now contain information about the user's name
-        pvm.firePropertyChanged();
-        manager.setActiveViewName(pvm.getViewName()); //redirect to myPetPage through manager
+        DisplayUserState currState = fpVM.getDisplayUserModel().getState();
+        currState.setUsername(outputData.username);
+        currState.setProfilePhotoUrl(outputData.profileURL);
+        fpVM.getDisplayUserModel().setState(currState);
+        fpVM.getDisplayUserModel().firePropertyChanged();
+        AddState state = new AddState(outputData);
+        if (!state.getKeyEntries().isEmpty()){
+        fpVM.getNoPetDisplayViewModel().firePropertyChanged();
+        }
+        else{
+        fpVM.getAddViewModel().setState(state);
+        fpVM.viewmodelsfirePropertyChanges();
+        }
+        manager.setActiveViewName(fpVM.getViewName()); //redirect to myPetPage through manager
         manager.firePropertyChange();
+
 
 
     }
@@ -35,9 +44,9 @@ public class LGPresenter implements LGOB{
     @Override
     public void prepareFailView(LGOPData outdata) {
             LGState state = new LGState();
-            state.setError(outdata.getError());
-            lgvm.setState(state);
-            lgvm.firePropertyChanged();
+            state.setError(outdata.error);
+            lgVM.setState(state);
+            lgVM.firePropertyChanged();
     }
 }
 

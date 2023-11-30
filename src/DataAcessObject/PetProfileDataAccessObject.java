@@ -29,7 +29,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     private final String database = "207DataBase";
     private final String dataSource = "ClusterCSC207Pro";
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
-    private final String apikey = "";
+    private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
     private final HashMap<Integer, PetProfile> profiles = new HashMap<>();
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";

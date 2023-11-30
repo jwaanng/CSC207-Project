@@ -16,14 +16,17 @@ public class SignupInteractor implements SignupInputBound{
     }
 
     @Override
-    public void signup(SignUpInputData data) {
+    public void execute(SignUpInputData data) {
         if (userDataAccessObject.exist(data.getUsername())){
+            System.out.println("INTERACTOR: username alredat exist execute revieved next: presenter");
             userPresenter.prepareSignUpFailView("Username already exists.");
         } else if (!data.getPassword().equals(data.getRepeatedPassword())) {
+            System.out.println("usecase failed executed password does not match");
             userPresenter.prepareSignUpFailView("Passwords don't match.");
         } else {
             AppUser user = userFactory.createAppUser(data.getUsername(), data.getPassword(), data.getAddress());
             userDataAccessObject.add(user);
+            System.out.println("user created");
 
             SignupOutputData signupOutputData = new SignupOutputData(user.getUsername(), false);
             userPresenter.prepareSignupSuccessView(signupOutputData);

@@ -26,8 +26,11 @@ public class SignupPresenter implements SignupOutputBound {
 
     @Override
     public void prepareSignUpFailView(String error) {
+        System.out.println("PRESENTER: fail view executed  "+ error);
         SignupState signupState = signupViewModel.getState();
-        signupState.setUsernameError(error);
+        signupState.setError(error);
+        System.out.println("PRESENTER state: " + signupState.toString());
+        signupViewModel.setState(signupState);
         signupViewModel.firePropertyChanged();
     }
 }

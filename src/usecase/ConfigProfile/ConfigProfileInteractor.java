@@ -29,7 +29,6 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
         if (containsSpecialChars(configProfileInputData.getName())) {
             // if the name does contain any special characters
             configProfilePresenter.prepareFailView("Make sure name doesn't contain special characters");
-            // TODO: haven't implemented failView yet- jw
         } else if (configProfileInputData.getBio().length() > 150) {
             // if the bio is too long
             configProfilePresenter.prepareFailView("Keep bio under 150 characters.");

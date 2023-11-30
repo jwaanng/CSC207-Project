@@ -20,7 +20,9 @@ public class SignupViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     @Override
     public void firePropertyChanged() {
+        System.out.println("VIEWMODEL: firing property change");
         support.firePropertyChange("state", null, this.state);
+        System.out.println("VIEWMODEL: property change fired");
     }
 
     @Override

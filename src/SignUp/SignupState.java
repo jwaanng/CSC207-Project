@@ -2,23 +2,24 @@ package SignUp;
 
 public class SignupState {
     private String username = "";
-    private String usernameError = null;
+    private String error = null;
     private String password = "";
-    private String passwordError = null;
+//    private String passwordError = null;
     private String repeatPassword = "";
-    private String repeatPasswordError = null;
+//    private String repeatPasswordError = null;
     private String address = "";
-    private String addressError = null;
+//    private String addressError = null;
 
     public SignupState(SignupState copy) {
+        error = copy.error;
         username = copy.username;
-        usernameError = copy.usernameError;
+//        usernameError = copy.usernameError;
         password = copy.password;
-        passwordError = copy.passwordError;
+//        passwordError = copy.passwordError;
         repeatPassword = copy.repeatPassword;
-        repeatPasswordError = copy.repeatPasswordError;
+//        repeatPasswordError = copy.repeatPasswordError;
         address = copy.address;
-        addressError = copy.addressError;
+//        addressError = copy.addressError;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -29,58 +30,66 @@ public class SignupState {
         return username;
     }
 
-    public String getUsernameError() {
-        return usernameError;
+//    public String getUsernameError() {
+//        return usernameError;
+//    }
+
+    public String getError() {
+        return error;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public String getPasswordError() {
-        return passwordError;
-    }
+//    public String getPasswordError() {
+//        return passwordError;
+//    }
 
     public String getRepeatPassword() {
         return repeatPassword;
     }
 
-    public String getRepeatPasswordError() {
-        return repeatPasswordError;
-    }
+//    public String getRepeatPasswordError() {
+//        return repeatPasswordError;
+//    }
     public String getAddress() {return address;}
-    public String getAddressError() { return addressError;}
+//    public String getAddressError() { return addressError;}
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setUsernameError(String usernameError) {
-        this.usernameError = usernameError;
+//    public void setUsernameError(String usernameError) {
+//        this.usernameError = usernameError;
+//    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setPasswordError(String passwordError) {
-        this.passwordError = passwordError;
-    }
+//    public void setPasswordError(String passwordError) {
+//        this.passwordError = passwordError;
+//    }
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
     }
 
-    public void setRepeatPasswordError(String repeatPasswordError) {
-        this.repeatPasswordError = repeatPasswordError;
-    }
+//    public void setRepeatPasswordError(String repeatPasswordError) {
+//        this.repeatPasswordError = repeatPasswordError;
+//    }
 
     public void setAddress(String adrress) {
         this.address = adrress;
     }
-    public void setAddressError(String adrressError) {
-        this.addressError = adrressError;
-    }
+//    public void setAddressError(String adrressError) {
+//        this.addressError = adrressError;
+//    }
     @Override
     public String toString() {
         return "SignupState{" +
@@ -88,6 +97,7 @@ public class SignupState {
                 ", password='" + password + '\'' +
                 ", repeatPassword='" + repeatPassword + '\'' +
                 ", address='" + address + '\'' +
+                ", error='" + error + '\'' +
                 '}';
     }
 }

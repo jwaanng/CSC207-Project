@@ -1,5 +1,5 @@
 package usecase.SignUp;
 
 public interface SignupInputBound {
-    void signup(SignUpInputData data);
+    void execute(SignUpInputData data);
 }

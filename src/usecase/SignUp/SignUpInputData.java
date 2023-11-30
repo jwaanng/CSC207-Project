@@ -10,7 +10,7 @@ public class SignUpInputData {
         this.username = username;
         this.password = password;
         this.repeatedPassword = repeatedPassword;
-        this.address = address;
+//        this.address = address;
     }
 
     String getUsername() {

@@ -1,5 +1,5 @@
 package SwipePage;
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 
 import java.util.List;
 import java.util.Queue;

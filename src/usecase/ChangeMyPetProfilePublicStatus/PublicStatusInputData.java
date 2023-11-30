@@ -1,6 +1,6 @@
 package usecase.ChangeMyPetProfilePublicStatus;
 
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 
 public class PublicStatusInputData {
     private boolean status; /*true == make public, false == make private */

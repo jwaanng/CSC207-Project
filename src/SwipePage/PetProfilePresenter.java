@@ -1,6 +1,6 @@
 package SwipePage;
 
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 
 public class PetProfilePresenter {
     public SwipePageViewModel createViewModel(PetProfile profile) {

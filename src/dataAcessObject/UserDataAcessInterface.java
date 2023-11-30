@@ -1,6 +1,6 @@
 package dataAcessObject;
 
-import entity.User.AppUser;
+import entity.user.AppUser;
 
 public interface UserDataAcessInterface {
     void add(AppUser user);

@@ -1,6 +1,6 @@
 package dataAcessObject;
 
-import entity.User.AppUser;
+import entity.user.AppUser;
 import com.google.gson.Gson;
 
 import com.google.gson.reflect.TypeToken;

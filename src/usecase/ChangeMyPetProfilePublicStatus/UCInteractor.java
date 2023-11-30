@@ -1,6 +1,6 @@
 package usecase.ChangeMyPetProfilePublicStatus;
 
-import entity.PetProfiles.PetProfile;
+import entity.petProfile.PetProfile;
 
 import static entity.Constants.*;
 

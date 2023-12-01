@@ -1,8 +1,14 @@
 package favPetPage.addAFavPet;
+
+import java.awt.*;
+
+/**
+ * This class stores output data needed by an addAFavPet presenter to function properly
+ */
 public class AddOPData {
     int petID;
     String petName;
-    String petPhotoUrl;
+    Image photo;
     String error = "";
 
 }

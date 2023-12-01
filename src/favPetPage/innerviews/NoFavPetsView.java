@@ -11,13 +11,23 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class NoFavPetsView extends JPanel{
+/**
+ * What user see when they don't have any favorite pets
+ */
+public class NoFavPetsView extends JPanel {
     private final NoFavPetDisplayViewModel vm;
     private final JButton browsePet;
     private final BrowseController controller;
     private final Image background;
 
-    public NoFavPetsView(NoFavPetDisplayViewModel noFavPetDisplayViewModel, BrowseController browsePetController){
+    /**
+     * Construct a new NoFavPetsView
+     *
+     * @param noFavPetDisplayViewModel the NoFavPetDisplayViewModel that stores all the information this view needs
+     *                                 to display
+     * @param browsePetController      the BrowsePetController that initiates the browsePet usecase
+     */
+    public NoFavPetsView(NoFavPetDisplayViewModel noFavPetDisplayViewModel, BrowseController browsePetController) {
 
         vm = noFavPetDisplayViewModel;
         controller = browsePetController;
@@ -25,7 +35,7 @@ public class NoFavPetsView extends JPanel{
         setBackground(Color.darkGray);
         browsePet = new JButton(vm.BROWSE_PET);
         browsePet.setBackground(Color.darkGray);
-        browsePet.setBorder(new EmptyBorder(10,10,10,10));
+        browsePet.setBorder(new EmptyBorder(10, 10, 10, 10));
         browsePet.setOpaque(true);
         browsePet.setMargin(new Insets(0, 0, 0, 0));
 
@@ -33,7 +43,7 @@ public class NoFavPetsView extends JPanel{
         browsePet.setLayout(new BorderLayout());
         browsePet.setForeground(Color.white);
         background = new ImageIcon(getClass().getResource("/favPetPage/NoFavPet.png")).getImage();
-    add(browsePet);
+        add(browsePet);
         browsePet.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

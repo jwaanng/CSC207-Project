@@ -1,28 +1,29 @@
 package login;
 
+import java.awt.*;
 import java.util.HashMap;
 
 public class LGOPData {
     String username;
-    String profileURL;
+    Image profile;
     boolean usecaseFailed;
 
     private final HashMap<Integer, String> petID_to_Name = new HashMap<>();
-    private final HashMap<Integer, String> petID_to_Photo = new HashMap<>();
+    private final HashMap<Integer, Image> petID_to_Photo = new HashMap<>();
     String error;
 
     public LGOPData(LGOPData copy){
         this.username = copy.username;
-        this.profileURL = copy.profileURL;
+        this.profile = copy.profile;
         this.error = copy.error;
         this.usecaseFailed = copy.usecaseFailed;
     }
     public LGOPData(){}
 
-    public static LGOPData createSuccessData(String username, String profileURL)
+    public static LGOPData createSuccessData(String username, Image profile)
     {
         LGOPData data = new LGOPData();
-        data.profileURL = profileURL;
+        data.profile = profile;
         data.username = username;
         return data;
     }
@@ -32,12 +33,12 @@ public class LGOPData {
         data.usecaseFailed = true;
         return data;
     }
-    public void addPetNameAndPHOTO(int petId, String petName, String photoUrl){
+    public void addPetNameAndPHOTO(int petId, String petName, Image photo){
          petID_to_Name.put(petId, petName);
-         petID_to_Photo.put(petId,photoUrl);
+         petID_to_Photo.put(petId,photo);
     }
-    public HashMap<Integer, String> getPetID_to_Photo(){
-        return new HashMap<Integer, String>(petID_to_Photo);
+    public HashMap<Integer, Image> getPetID_to_Photo(){
+        return new HashMap<Integer, Image>(petID_to_Photo);
     }
     public HashMap<Integer, String> getPetID_to_Name(){
         return new HashMap<Integer, String>(petID_to_Name);

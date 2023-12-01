@@ -1,19 +1,32 @@
 package login;
 
+import dataAcessObject.PetProfileDataAccessInterface;
 import dataAcessObject.PetProfileDataAccessObject;
+import dataAcessObject.ProfilePictureDataAccessInterface;
 import dataAcessObject.UserDataAcessInterface;
 import entity.petProfile.PetProfile;
 import entity.user.AppUser;
 
-public class LGUCI implements LGIB{
-    final LGOB presenter;
-    final UserDataAcessInterface dao;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
-    final PetProfileDataAccessObject daoP;
-    public LGUCI(LGOB presenter, UserDataAcessInterface dao, PetProfileDataAccessObject daoP) {
+public class LGUCI implements LGIB{
+    private final LGOB presenter;
+    private final UserDataAcessInterface dao;
+
+    private final PetProfileDataAccessInterface daoP;
+
+    private final ProfilePictureDataAccessInterface daoPic;
+    public LGUCI(LGOB presenter, UserDataAcessInterface userDataAcessInterface,
+                 PetProfileDataAccessInterface petProfileDataAccessInterface,
+                 ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         this.presenter = presenter;
-        this.dao = dao;
-        this.daoP = daoP;
+        this.dao = userDataAcessInterface;
+        this.daoP = petProfileDataAccessInterface;
+        this.daoPic = profilePictureDataAccessInterface;
     }
 
     @Override
@@ -21,27 +34,33 @@ public class LGUCI implements LGIB{
         String name = loginData.getUsername();
         String pw = loginData.getPassword();
 
-        if (!dao.exist(name)){
-
+        if (!dao.exist(name)) {
             presenter.prepareFailView(LGOPData.createFailData("Username does not exist"));
-        }
-        else {
+        } else {
             AppUser currUser = dao.retrieve(name);
-            if(currUser.getPassword().equals(pw)){
+            if (!currUser.getPassword().equals(pw)) {
                 presenter.prepareFailView(LGOPData.createFailData("Password does not match"));
-            }
-            else{
-                LGOPData successData = LGOPData.createSuccessData(name, dao.retrieve(name).getPhotoUrl());
-                for (int petId : currUser.getFavPet()){
-                    PetProfile profile = daoP.getProfile(petId);
-                     successData.addPetNameAndPHOTO(profile.getId(), profile.getName(), profile.getPetPhotoLink());
+            } else {
+                try {
+                    //TODO. cjage
+                    Image profile = daoPic.retrieveUserProfile(name);
+                    if (profile == null) {
+                        profile = ImageIO.read(getClass().getResource("/defaultprofile.png"));
+                    }
+                    LGOPData successData = LGOPData.createSuccessData(name, profile);
+                    for (int petId : currUser.getFavPet()) {
+                        PetProfile petProfile = daoP.getProfile(petId);
+                        successData.addPetNameAndPHOTO(
+                                petProfile.getId(),
+                                petProfile.getName(), daoPic.retrievePetProfile(petId));
+                    }
+                    presenter.prepareSuccessView(successData);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-                presenter.prepareSuccessView(successData);
             }
+
+
         }
-
-
-
-
     }
 }

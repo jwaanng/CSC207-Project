@@ -1,15 +1,18 @@
 package favPetPage;
+
 import favPetPage.deleteAFavPet.DeleteViewModel;
-import favPetPage.displayUser.DisplayUserModel;
+import favPetPage.displayUser.DisplayUserViewModel;
 import favPetPage.addAFavPet.AddViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
-import favPetPage.myFavPetPageRedirect.FavPetRDRViewModel;
+import favPetPage.innerviewmodels.FavPetRDRViewModel;
 import favPetPage.updateAFavPet.UpdateViewModel;
-import redirect.PageRedirectViewModel;
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
 
+/**
+ * This class stores all information retrievable by the screen to display a fav pet page
+ */
 public class FavPetPageViewModel extends ViewModel {
 
 
@@ -19,43 +22,78 @@ public class FavPetPageViewModel extends ViewModel {
     private final DeleteViewModel delete = new DeleteViewModel();
     // to the inner scroll pane display of pet profiles
     private final FavPetRDRViewModel redirect = new FavPetRDRViewModel();
-    private final DisplayUserModel userinfo = new DisplayUserModel();
+    private final DisplayUserViewModel userinfo = new DisplayUserViewModel();
 
     private final NoFavPetDisplayViewModel noPetDisplay = new NoFavPetDisplayViewModel();
+
+    /**
+     * Construct a new FavPetPageViewModel with preassigned view name
+     */
     public FavPetPageViewModel() {
         super("fav pet");
 
     }
 
-
-    public AddViewModel getAddViewModel(){
+    /**
+     * get the AddViewModel
+     */
+    public AddViewModel getAddViewModel() {
         return add;
     }
-    public UpdateViewModel getUpdateViewModel() {return update;}
-    public DeleteViewModel getDeleteFavPetViewModel() {return delete;};
-    public  FavPetRDRViewModel getFavPetRDRViewModel(){
+
+    /**
+     * get the UpdateViewModel
+     */
+    public UpdateViewModel getUpdateViewModel() {
+        return update;
+    }
+
+    /**
+     * get the DeleteViewModel
+     */
+    public DeleteViewModel getDeleteFavPetViewModel() {
+        return delete;
+    }
+
+    ;
+
+    /**
+     * get the FavPetRDRViewModel
+     */
+    public FavPetRDRViewModel getFavPetRDRViewModel() {
         return redirect;
     }
-    public DisplayUserModel getDisplayUserModel(){
+
+    /**
+     * get the DisplayUserViewModel
+     */
+    public DisplayUserViewModel getDisplayUserModel() {
         return userinfo;
     }
-    public NoFavPetDisplayViewModel getNoPetDisplayViewModel(){
+
+    /**
+     * get the NoFavPetDisplayViewModel
+     */
+    public NoFavPetDisplayViewModel getNoPetDisplayViewModel() {
         return noPetDisplay;
     }
 
-
-    public void viewmodelsfirePropertyChanges(){
-        if (!add.getState().getKeyEntries().isEmpty()){
+    /**
+     * update the display of pet profiles when a user redirects to the favorite pet page
+     */
+    public void viewmodelsfirePropertyChanges() {
+        if (!add.getState().getKeyEntries().isEmpty()) {
             add.firePropertyChanged();
         } //minimize call to repaintGraphicsAddOrDelete();
         update.firePropertyChanged();
-        if (!delete.getState().getIds().isEmpty()){
+        if (!delete.getState().getIds().isEmpty()) {
             delete.firePropertyChanged();
         }
     }
 
     public void firePropertyChanged() {
     }
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
     }
 }

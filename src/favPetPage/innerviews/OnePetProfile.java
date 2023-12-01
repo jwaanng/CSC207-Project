@@ -8,54 +8,65 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.util.Objects;
 
-public class OnePetProfile extends JPanel{
+/**
+ * What user see for one pet profile
+ */
+public class OnePetProfile extends JPanel {
     private OnePetProfileDisplayViewModel vm = new OnePetProfileDisplayViewModel();
 
     private final int width;
     private final int height;
     private final int petId;
-    private final JLabel name;
+    private final JLabel petName;
     private final JButton unlike;
     private final JButton petPhoto;
     private final ActionListener view;
     private final ActionListener delete;
-    public OnePetProfile(int petId, String petName, String petPhotoURL, ActionListener deleteCommonActionlistener,
-                         ActionListener viewProfileActionListner,int imagewidth){
+
+    /**
+     * Construct a new OnePetProfile
+     *
+     * @param petId                      the id of pet profile
+     * @param name                       the name of the pet
+     * @param photo                      the image of the pet
+     * @param deleteCommonActionListener activate the DeleteController associate to this action listener when user
+     *                                   unlike this pet profile
+     * @param viewProfileActionListener  activate the ViewThisController associate to this action listener when user
+     *                                   clicks on the pet profile picture to view the profile
+     * @param imagewidth                 the width of the image of the pet
+     */
+    public OnePetProfile(int petId, String name, Image photo, ActionListener deleteCommonActionListener,
+                         ActionListener viewProfileActionListener, int imagewidth) {
         //TODO finalize error situation to not throw runtime error
         //TODO customize heart image size, border,....etc
 
-        delete = deleteCommonActionlistener;
-        view = viewProfileActionListner;
+        delete = deleteCommonActionListener;
+        view = viewProfileActionListener;
         this.petId = petId;
         width = imagewidth;
         height = (int) Math.round(width * 1.25);
         //actual panel's height
         //want to leave 25% to put the name and like button
         //image height will also be the image's width, so it is squared
-
         setSize(new Dimension(width, height));
-        System.out.println(getWidth());
-        System.out.println(getHeight());
         setLayout(new GridBagLayout());
         setBackground(Color.GRAY);
         setBorder(new LineBorder(Color.black));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.NONE;
-
         //First row
-        name = new JLabel();
+        petName = new JLabel();
         unlike = new JButton();
         //Second row
-        petPhoto = new JButton();
-        //Not visible button to petPhoto,
+        this.petPhoto = new JButton();
+        //Not visible button to photo,
 
         //customize
-        updateName(petName);
-        updatePhoto(petPhotoURL);
+        updateName(name);
+        updatePhoto(photo);
 
         //Size of the unlikeButton
         Dimension buttonDim = new Dimension((int) Math.floor(width * 0.25), height - width);
@@ -65,8 +76,12 @@ public class OnePetProfile extends JPanel{
         Image img = heart.getImage().getScaledInstance(unlike.getWidth(), unlike.getHeight(), Image.SCALE_DEFAULT);
         ImageIcon resizedheart = new ImageIcon(img);
         unlike.setIcon(resizedheart);
-        unlike.addActionListener(deleteCommonActionlistener);
+        unlike.addActionListener(delete);
         unlike.setActionCommand(String.valueOf(petId));// This is how the outside view will identify which profile
+
+        unlike.setBorder(new LineBorder(Color.GRAY, 1));
+        petPhoto.setBorder(new LineBorder(Color.GRAY, 1));
+        petName.setBorder(new LineBorder(Color.GRAY, 1));
         //Customize grid
 
         // Does not take up much vertical space
@@ -77,7 +92,7 @@ public class OnePetProfile extends JPanel{
         gbc.weighty = 0;
         gbc.anchor = GridBagConstraints.NORTHWEST; //Position to the top left
         gbc.fill = GridBagConstraints.BOTH;
-        add(name, gbc); // add the name
+        add(petName, gbc); // add the name
 
         //customize heart button;
         gbc.weightx = 0;
@@ -101,57 +116,65 @@ public class OnePetProfile extends JPanel{
         //gbc.insets = new Insets(10, 10, 10, 10); // Padding
         add(petPhoto, gbc);
     }
-    public void updateName(String petName){
-        name.setText(petName);
+
+    /**
+     * Update the name of this pet
+     *
+     * @param petName the name of this pet
+     */
+    public void updateName(String petName) {
+        this.petName.setText(petName);
         //Size of the petNameLabel
-        Dimension petNameLabelDim = new Dimension((int)Math.floor(this.width *0.75), height- this.width);
-        name.setSize(petNameLabelDim);
+        Dimension petNameLabelDim = new Dimension((int) Math.floor(this.width * 0.75), height - this.width);
+        this.petName.setSize(petNameLabelDim);
         //adjustsize font
         Font nameFont = new Font("Garamond", Font.BOLD, 12); //we will adjust the
         // font size to take up maximize space
-        FontMetrics fontMetrics = name.getFontMetrics(nameFont);
-        int textWidth = fontMetrics.stringWidth(name.getText());
+        FontMetrics fontMetrics = this.petName.getFontMetrics(nameFont);
+        int textWidth = fontMetrics.stringWidth(this.petName.getText());
         int textHeight = fontMetrics.getHeight();
-        double widthRatio = (double)  name.getWidth()/textWidth;
-        double heightRatio = (double) name.getHeight()/ textHeight ;
-        double adjustingRatio = Math.min(widthRatio,heightRatio); //taking the min ensures that the ratio the
+        double widthRatio = (double) this.petName.getWidth() / textWidth;
+        double heightRatio = (double) this.petName.getHeight() / textHeight;
+        double adjustingRatio = Math.min(widthRatio, heightRatio); //taking the min ensures that the ratio the
         //adjusted font size will never let the text leaves the box
         Font adjustFont = nameFont.deriveFont((float) adjustingRatio * nameFont.getSize());
-        name.setFont(adjustFont);
-        name.setOpaque(true);
-        name.setBackground(Color.WHITE);
+        this.petName.setFont(adjustFont);
+        this.petName.setOpaque(true);
+        this.petName.setBackground(Color.WHITE);
     }
 
-
-    public void updatePhoto(String photoUrl) {
+    /**
+     * Update the photo of this pet
+     *
+     * @param photo the image of this pet
+     */
+    public void updatePhoto(Image photo) {
         //Size of the petPhoto
-        try {
-            Dimension petPhotoDim = new Dimension(width, width);
-            petPhoto.setSize(petPhotoDim);
-            Image petImage = ImageIO.read(URI.create(photoUrl).toURL());
-            Image resizedPetImage = petImage.getScaledInstance(petPhoto.getWidth(), petPhoto.getHeight(), Image.SCALE_AREA_AVERAGING);
-            ImageIcon petIcon = new ImageIcon(resizedPetImage);
-            petPhoto.setIcon(petIcon);
-            petPhoto.addActionListener(view);
-            petPhoto.setActionCommand(String.valueOf(petId));
+        Dimension petPhotoDim = new Dimension(width, width);
+        petPhoto.setSize(petPhotoDim);
+        Image resizedPetImage = photo.getScaledInstance(
+                petPhoto.getWidth(),
+                petPhoto.getHeight(),
+                Image.SCALE_AREA_AVERAGING);
+        ImageIcon petIcon = new ImageIcon(resizedPetImage);
+        petPhoto.setIcon(petIcon);
+        petPhoto.addActionListener(view);
+        petPhoto.setActionCommand(String.valueOf(petId));
 
-            //unlike.setBorderPainted(false);
-
-            //to delete since each petId is unique
-
-//            unlike.setBorder(new LineBorder(Color.black, 1));
-//            petPhoto.setBorder(new LineBorder(Color.black, 1));
-//            name.setBorder(new LineBorder(Color.black, 1));
-        }
-        catch (IOException e){
-            JOptionPane.showMessageDialog(this, "System error: photoUrl inaccessible");
-        }
 
     }
-    public void unlike(){
+
+    /**
+     * unlike this pet profile
+     */
+    public void unlike() {
         unlike.setEnabled(false);
     }
-    public void refresh(){
+
+    /**
+     * refresh the display of an updated pet profile
+     */
+    public void refresh() {
         revalidate();
         repaint();
 

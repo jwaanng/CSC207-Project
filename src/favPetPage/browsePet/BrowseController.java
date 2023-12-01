@@ -1,13 +1,25 @@
 package favPetPage.browsePet;
 
+/**
+ * The BrowseController class send input data to the backend after a user with no liked pets  performs
+ * clicks to desire to browse some pets
+ */
 public class BrowseController {
-    BrowseIB uci;
+    private final BrowseIB uci;
 
-    public BrowseController(BrowseIB browsePetUsecaseInteracter){
-        uci = browsePetUsecaseInteracter;
+    /**
+     * Construct a BrowseController
+     *
+     * @param browsePetInputBoundary an usecase interactor for the browsePet usecase
+     */
+    public BrowseController(BrowseIB browsePetInputBoundary) {
+        uci = browsePetInputBoundary;
     }
 
-    public void execute(){
+    /**
+     * Call usecase interactor to perform usecase
+     */
+    public void execute() {
         uci.execute();
     }
 }

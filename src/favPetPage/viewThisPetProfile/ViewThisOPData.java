@@ -1,13 +1,7 @@
 package favPetPage.viewThisPetProfile;
-
+/**
+ * This class stores potential errors needed by an viewThisPetProfile presenter to function properly
+ */
 public class ViewThisOPData {
-    public String getError() {
-        return error;
-    }
-
-    public void setError(String error) {
-        this.error = error;
-    }
-
-    private String error = "";
+    String error = "";
 }

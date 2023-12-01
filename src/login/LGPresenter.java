@@ -23,7 +23,7 @@ public class LGPresenter implements LGOB{
         //login will automatically be redirected to the favPetPage
         DisplayUserState currState = fpVM.getDisplayUserModel().getState();
         currState.setUsername(outputData.username);
-        currState.setProfilePhotoUrl(outputData.profileURL);
+        currState.setPhoto(outputData.profile);
         fpVM.getDisplayUserModel().setState(currState);
         fpVM.getDisplayUserModel().firePropertyChanged();
         AddState state = new AddState(outputData);

@@ -1,56 +1,60 @@
 package favPetPage;
 
-import browsePage.BrowsePageViewModel;
-import dataAcessObject.CommonUserDataAccessObject;
-import dataAcessObject.PetProfileDataAccessObject;
-import dataAcessObject.UserDataAcessInterface;
-import favPetPage.browsePet.BrowseController;
-import favPetPage.browsePet.BrowsePresenter;
-import favPetPage.browsePet.BrowseUCI;
-import favPetPage.deleteAFavPet.DeleteController;
-import favPetPage.deleteAFavPet.DeleteIB;
-import favPetPage.deleteAFavPet.DeletePresenter;
-import favPetPage.deleteAFavPet.DeleteUCI;
+import app.FavPetPageFactory;
+import dataAcessObject.*;
+import entity.petProfile.PetProfile;
+import entity.user.AppUser;
 
-import favPetPage.myFavPetPageRedirect.FavPetRDRController;
-import favPetPage.myFavPetPageRedirect.FavPetRDRPresenter;
-import favPetPage.myFavPetPageRedirect.FavPetRDRUCI;
-import favPetPage.viewThisPetProfile.ViewThisIB;
-import favPetPage.viewThisPetProfile.ViewThisPresenter;
+import favPetPage.displayUser.DisplayUserController;
+import favPetPage.displayUser.DisplayUserPresenter;
+import favPetPage.displayUser.DisplayUserUCI;
 import favPetPage.viewThisPetProfile.ViewThisController;
+import favPetPage.viewThisPetProfile.ViewThisPresenter;
 import favPetPage.viewThisPetProfile.ViewThisUCI;
 import viewModel.ViewModelManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class testMain {
-    public static void main(String[] args) {
-        ViewModelManager manager = new ViewModelManager();
-        FavPetPageViewModel viewModel = new FavPetPageViewModel();
+    public static void main(String[] args) throws IOException {
+
+
         UserDataAcessInterface dao = new CommonUserDataAccessObject();
-        PetProfileDataAccessObject daop = new PetProfileDataAccessObject();
+        PetProfileDataAccessInterface daop = new PetProfileDataAccessObject();
+        ProfilePictureDataAccessInterface daopic = new CommonProfileDataAccessObject();
 
-        //delete fav pet cycle
-        DeletePresenter deletePresenter = new DeletePresenter(viewModel);
-        DeleteIB dfpUci = new DeleteUCI(dao, deletePresenter);
-        DeleteController deleteController = new DeleteController(dfpUci);
+        AppUser michael = dao.retrieve("Michael");
+        PetProfile dog1 = daop.getProfile(0);
+        PetProfile dog2 = daop.getProfile(1);
+//        michael.addFavProfile(dog1.getId());
+//        michael.addFavProfile(dog2.getId());
+//        dao.update(michael);
+//        daopic.uploadPetProfile(dog1.getId(), new File("resources/testingPetProfiles/gr1.png"));
+//        daopic.uploadPetProfile(dog2.getId(), new File("resources/testingPetProfiles/gr2.png"));
 
-        //view this pet cycle
-        ViewThisPresenter viewThisPresenter = new ViewThisPresenter();
-        ViewThisIB vtpuci = new ViewThisUCI(daop, viewThisPresenter);
-        ViewThisController viewThisController = new ViewThisController(vtpuci);
+        ViewModelManager manager = new ViewModelManager();
+        FavPetPageViewModel vm = new FavPetPageViewModel();
+        FavPetPageView view = FavPetPageFactory.createFavPetPage(manager, vm, dao, daop);
+        //viewthis cycle
+        DisplayUserPresenter DUpresenter = new DisplayUserPresenter(vm.getDisplayUserModel());
+        DisplayUserUCI DUuci = new DisplayUserUCI(DUpresenter,daopic);
+        DisplayUserController DUcontroller = new DisplayUserController(DUuci);
+        DUcontroller.execute(michael.getUsername());
 
-        //redirect cycle
-        FavPetRDRPresenter FavPetRDRPresenter = new FavPetRDRPresenter( viewModel, manager);
-        FavPetRDRUCI FavPetRDRUCI = new FavPetRDRUCI(FavPetRDRPresenter);
-        FavPetRDRController favPetRDRController = new FavPetRDRController(FavPetRDRUCI);
+        vm.getAddViewModel().getState().addPetNameAndPhoto(
+                dog1.getId(),
+                dog1.getName(),
+                daopic.retrievePetProfile(dog1.getId()));
+        vm.getAddViewModel().getState().addPetNameAndPhoto(
+                dog2.getId(),
+                dog2.getName(),
+                daopic.retrievePetProfile(dog2.getId()));
 
-        //BrowsePet cycle
-        BrowsePresenter browsePresenter = new BrowsePresenter(new BrowsePageViewModel(), manager);
-        BrowseUCI browseUCI = new BrowseUCI(browsePresenter);
-        BrowseController browseController = new BrowseController(browseUCI);
-        FavPetPageView view = new FavPetPageView(viewModel, deleteController, viewThisController, favPetRDRController, browseController);
-
+        vm.viewmodelsfirePropertyChanges();
         JFrame app = new JFrame();
         app.add(view);
         app.setVisible(true);

@@ -23,7 +23,7 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
     private final String dataSource = "ClusterCSC207Pro";
     private final HashMap<String, AppUser> nameToUser = new HashMap<>();
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
-    private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
+    private final String apikey = "";
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
 

@@ -1,4 +1,4 @@
-package InterfaceAdapter;
+package configProfile;
 
 import usecase.SignUp.SignupInputBound;
 import usecase.SignUp.SignUpInputData;

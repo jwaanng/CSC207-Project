@@ -1,5 +1,6 @@
 package view;
 
+import configProfile.ConfigProfileViewModel;
 import dataAcessObject.CommonUserDataAccessObject;
 import dataAcessObject.PetProfileDataAccessObject;
 import viewModel.ViewModelManager;
@@ -63,6 +64,7 @@ public class LoginView extends JDialog{
 
 
     public static void main(String[] args) {
-        LoginView loginView = new LoginView(null, new LGController(new LGUCI(new LGPresenter(new LGViewModel(), new FavPetPageViewModel(), new ViewModelManager()), new CommonUserDataAccessObject(), new PetProfileDataAccessObject())));
+        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
+        LoginView loginView = new LoginView(null, new LGController(new LGUCI(new LGPresenter(new LGViewModel(), new FavPetPageViewModel(), new ViewModelManager(), configProfileViewModel), new CommonUserDataAccessObject(), new PetProfileDataAccessObject())));
     }
 }

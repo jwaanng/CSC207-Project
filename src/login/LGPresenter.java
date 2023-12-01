@@ -1,4 +1,6 @@
 package login;
+import configProfile.ConfigProfileState;
+import configProfile.ConfigProfileViewModel;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.addAFavPet.AddState;
 import favPetPage.displayUser.DisplayUserState;
@@ -10,11 +12,14 @@ public class LGPresenter implements LGOB{
 
     private final ViewModelManager manager;
 
+    private final ConfigProfileViewModel configProfileViewModel;
 
-    public LGPresenter(LGViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel, ViewModelManager manager) {
+
+    public LGPresenter(LGViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel, ViewModelManager manager, ConfigProfileViewModel configProfileViewModel) {
         this.lgVM = loginViewModel;
         this.manager = manager;
         this.fpVM = favPetPageViewModel;
+        this.configProfileViewModel = configProfileViewModel;
     }
 
 
@@ -36,6 +41,10 @@ public class LGPresenter implements LGOB{
         }
         manager.setActiveViewName(fpVM.getViewName()); //redirect to myPetPage through manager
         manager.firePropertyChange();
+
+        ConfigProfileState configProfileState = configProfileViewModel.getState();
+        configProfileState.setUsername(outputData.username);
+
 
 
 

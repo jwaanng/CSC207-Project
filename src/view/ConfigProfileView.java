@@ -1,17 +1,26 @@
 package view;
 
+import configProfile.*;
+import dataAcessObject.CommonUserDataAccessObject;
+import org.jetbrains.annotations.NotNull;
+import usecase.ConfigProfile.ConfigProfileInteractor;
+import viewModel.ViewModelManager;
+
 import javax.swing.*;
 import javax.swing.ButtonGroup;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Enumeration;
 
-public class ConfigProfileView extends JDialog{
-    private JTextField nameTf;
+public class ConfigProfileView extends JDialog implements PropertyChangeListener {
+//    private JTextField nameTf;
     private JTextField addressTf;
     private JTextField bioTf;
     private JLabel titleTf;
-    private JLabel name;
+//    private JLabel name;
     private JButton confirmButton;
     private JPanel configPanel;
     private JRadioButton smallRadioButton;
@@ -23,7 +32,10 @@ public class ConfigProfileView extends JDialog{
     private ButtonGroup sizeGroup;
     private ButtonGroup sexGroup;
 
-    public ConfigProfileView(JFrame parent){
+    private final ConfigProfileController configProfileController;
+    private final ConfigProfileViewModel configProfileViewModel;
+
+    public ConfigProfileView(JFrame parent, ConfigProfileController configProfileController, @NotNull ConfigProfileViewModel configProfileViewModel){
         // constructor
         super(parent);
 
@@ -45,37 +57,81 @@ public class ConfigProfileView extends JDialog{
         setMinimumSize(new Dimension(1000, 700));
         setModal(true);
         setLocationRelativeTo(parent);
-        setVisible(true); // makes this view visible when running
+
+        this.configProfileController = configProfileController;
+        this.configProfileViewModel = configProfileViewModel;
+
+        configProfileViewModel.addPropertyChangeListener(this);
 
 
-        confirmButton.addActionListener(new ActionListener() { // Action listener for clicking 'confirm'
+        confirmButton.addActionListener(new ActionListener() {
+            // Action listener for clicking 'confirm'
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                System.out.println("HIIIIIIII");
                 saveInfo();
             }
         });
+
+        setVisible(true); // makes this view visible when running
     }
 
     private void saveInfo() {
         String bio = bioTf.getText();
         String address = addressTf.getText();
-        String name = nameTf.getName();
-        String preferredSize = sizeGroup.getSelection().toString();
+//        String name = nameTf.getText();
+        String preferredSize = getSelectedButtonText(sizeGroup);
+        String preferredSex = getSelectedButtonText(sexGroup);
 
-//        JOptionPane.showMessageDialog(this, preferredSize, "FAILED", JOptionPane.ERROR_MESSAGE);
-//        JOptionPane.showMessageDialog(this, address, "FAILED", JOptionPane.ERROR_MESSAGE);
+        ConfigProfileState currentState = this.configProfileViewModel.getState();
+        String username = currentState.getUsername();
+
+        currentState.setUsername(username);
+        currentState.setAddress(address);
+        currentState.setBio(bio);
+        currentState.setSize(preferredSize);
+        currentState.setSex(preferredSex);
+
+        System.out.println("CONFIG DSLJFKLSDJF: " + currentState.toString());
 
         // TODO: saving the info that was entered onto either a csv or db or smth idk ... -jw
         // TODO 2: make this auto relay back to the 'mainView' page if it saves correctly
         // TODO3 done by jw: 'bio' has max character amount of 150
         // TODO4 done by jw: 'name' can't contain any invalid characters (no symbols)
+        configProfileController.execute(username, address, bio, preferredSize, preferredSex);
+    }
+
+    public String getSelectedButtonText(ButtonGroup buttonGroup) {
+        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements(); ) {
+            AbstractButton button = buttons.nextElement();
+
+            if (button.isSelected()) {
+                return button.getText();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getSource().equals(configProfileViewModel)) {
+            System.out.println("VIEW: property change received");
+            ConfigProfileState state = (ConfigProfileState) evt.getNewValue();
+            if (state.getError() != null) {
+                System.out.println(state.getError());
+                JOptionPane.showMessageDialog(this, state.getError());
+            }
+        }
     }
 
     public static void main(String[] args) {
-        ConfigProfileView configProfileView = new ConfigProfileView(null);
+        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
+        ConfigProfilePresenter configProfilePresenter = new ConfigProfilePresenter(configProfileViewModel, new ViewModelManager());
+        ConfigProfileInteractor configProfileInteractor = new ConfigProfileInteractor(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
+        ConfigProfileController configProfileController = new ConfigProfileController(configProfileInteractor);
+
+        ConfigProfileView configProfileView = new ConfigProfileView(null, configProfileController, configProfileViewModel);
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

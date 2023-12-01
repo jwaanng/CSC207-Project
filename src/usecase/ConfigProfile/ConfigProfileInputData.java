@@ -2,7 +2,7 @@ package usecase.ConfigProfile;
 
 // Get the input data from ConfigProfileView: name (user's name), address, bio (optional), size, sex
 public class ConfigProfileInputData {
-    final private String name;
+    final private String username;
     final private String address;
     final private String bio;
 
@@ -10,16 +10,16 @@ public class ConfigProfileInputData {
 
     final private String sex;
 
-    public ConfigProfileInputData(String name, String address, String bio, String size, String sex) {
-        this.name = name;
+    public ConfigProfileInputData(String username, String address, String bio, String size, String sex) {
+        this.username = username;
         this.address = address;
         this.bio = bio;
         this.size = size;
         this.sex = sex;
     }
 
-    String getName() {
-        return name;
+    String getUsername() {
+        return username;
     }
 
     String getAddress() {

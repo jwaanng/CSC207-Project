@@ -2,7 +2,7 @@ package view;
 
 import dataAcessObject.CommonUserDataAccessObject;
 import entity.user.AppUserFactory;
-import InterfaceAdapter.SignupController;
+import configProfile.SignupController;
 import login.LGViewModel;
 import signUp.SignupPresenter;
 import signUp.SignupState;
@@ -96,7 +96,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         System.out.println("REG USER: " + currentState.toString());
 
         
-        System.out.println(username);
+//        System.out.println(username);
 
         // if one of the fields are empty
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {

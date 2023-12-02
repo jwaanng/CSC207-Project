@@ -5,11 +5,9 @@ import java.util.List;
 public abstract class PetProfileBuilder<T extends PetProfileBuilder<T,P>, P extends PetProfile>{
     String name;
     int age;
-    char sex;
+    String sex;
     String specie;
-    char size;
-    String petPhotoLink;
-    List<String> morePhotos;
+    String size;
     final String petOwnerName;
     String likeDescr;
     String temperDescr;
@@ -29,29 +27,34 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T,P>, P exte
         this.name = name;
         return self();
     }
-    public T withSize(char size){
+    public T isLargePet(){
         /*valid size char letter */
-        this.size = size;
+        this.size = PetProfile.LARGEPET;
+        return self();
+    }
+    public T isMediumPet(){
+        this.size = PetProfile.MEDIUMPET;
+        return self();
+    }
+    public T isSmallPet(){
+        /*valid size char letter */
+        this.size = PetProfile.SMALLPET;
         return self();
     }
     public T withAge(int age){
         this.age = age;
         return self();
     }
-    public T withSex(char sex){
+    public T isMale(){
         /*valid sex char only*/
-        this.sex = sex;
+        this.sex = PetProfile.MALE;
         return self();
     }
-    public T withPetPhoto(String path){
-        this.petPhotoLink = path;
+    public T isFemale(){
+        this.sex = PetProfile.FEMALE;
         return self();
     }
 
-    public T withMorePhotos(List<String> morePhotoPaths){
-        this.morePhotos = morePhotoPaths;
-        return self();
-    }
     public T withTemperDescr(String descr){
         this.temperDescr = descr;
         return self();

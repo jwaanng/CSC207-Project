@@ -1,4 +1,4 @@
-package entity.other;
+package entity.petProfile;
 
 import entity.user.AppUser;
 import okhttp3.OkHttpClient;
@@ -57,7 +57,7 @@ public class IDTracker {
 
     }
 
-    public int getNextAvailableID(){
+    int getNextAvailableID(){
         JSONObject dataLoadingJson = new JSONObject();
         JSONObject compFilt = new JSONObject();
         compFilt.put("value", "nextPetId");

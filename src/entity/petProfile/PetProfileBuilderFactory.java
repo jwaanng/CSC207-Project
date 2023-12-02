@@ -1,7 +1,5 @@
 package entity.petProfile;
 
-import entity.other.IDTracker;
-
 public class PetProfileBuilderFactory{
     /*Must be valid system registered*/
 

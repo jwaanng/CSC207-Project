@@ -1,22 +1,37 @@
 package entity.petProfile;
 
+import com.google.common.hash.HashingInputStream;
+
+import javax.swing.JPanel;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class PetProfile {
+    public static final String NAMEIDENTIFIER = "PetName";
+    public static final String AGEIDENTIFIER = "Age";
+    public static  final String SEXIDENTIFIER = "Sex";
+    public static final String SPECIEIDENTIFIER = "Specie";
+    public static final String PETOWNERNAMEIDENTIFIER = "Owner";
+    public static final String GENERALDESCRIDENTIFIER = "General";
+    public static final String LIKEDESCRIDTENFITIER = "Like";
+    public static final String TEMPERDESCREIDENTIFIER = "Temper";
+    public static final String MALE = "Male";
+    public static final String FEMALE = "Female";
+    public static final String LARGEPET = "Large";
+    public static final String MEDIUMPET = "Medium";
+    public static final String SMALLPET = "Small";
+
     private static int nextId = 0;
     private int petId;
     private String name;
     private int age;
-    private char sex; //"M = Male, "F = Female"
+    private String sex;
     private final String specie;
-    private char size;
-    private String petPhotoURL;
-    private List<String> morePhotos;
+    private String size;
     private final String petOwnerName;
     private String generalDescr;
     private String likeDescr;
     private String temperDescr;
-
     private boolean  isPublic;
     protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
 
@@ -29,8 +44,6 @@ public abstract class PetProfile {
         this.size = builder.size;
         this.specie = builder.specie;
         this.isPublic = false;
-        this.petPhotoURL = builder.petPhotoLink;
-        this.morePhotos = builder.morePhotos;
         this.likeDescr = builder.likeDescr;
         this.temperDescr = builder.temperDescr;
         this.generalDescr = builder.generalDescr;
@@ -54,33 +67,29 @@ public abstract class PetProfile {
     public void setAge(int age) {
         this.age = age;
     }
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
     /*valid sex character only*/
-    public void setSex(char sex) {
-        this.sex = sex;
+    public void setFemale(){
+        this.sex = FEMALE;
     }
-    public char getSize() {
+    public void setMale(){
+        this.sex = MALE;
+    }
+    public String getSize() {
         return size;
     }
-    public void setSize(char size) {
-        this.size = size;
+    public void setMediumSize() {
+        this.size = MEDIUMPET;
     }
-    public String getPetPhotoLink() {
-        return petPhotoURL;
+    public void setLargeSize(){
+        this.size = LARGEPET;
     }
-    public void setPetPhotoLink(String petPhotoLink) {
-        this.petPhotoURL = petPhotoLink;
+    public void setSmallSize(){
+        this.size = SMALLPET;
     }
-    public List<String> getMorePhotos() {
-        return morePhotos;
-    }
-    public void addMorePhotos(String photo) {
-        morePhotos.add(photo);
-    }
-    //TODO
     public void deletedPhoto(String photo){
        ;
     }
@@ -118,4 +127,18 @@ public abstract class PetProfile {
         return petId;
     }
 
+//    HashMap<String,String> defaultDisplayProfile(){
+//        HashMap<String, String> info = new HashMap<>();
+//        info.put(NAMEIDENTIFIER, name);
+//        info.put(AGEIDENTIFIER, String.valueOf(age));
+//        info.put(SEXIDENTIFIER, String.valueOf(sex));
+//        info.put(SPECIEIDENTIFIER, specie);
+//        info.put(PETOWNERNAMEIDENTIFIER, petOwnerName);
+//        info.put(GENERALDESCRIDENTIFIER, generalDescr);
+//        info.put(LIKEDESCRIDTENFITIER, likeDescr);
+//        info.put(TEMPERDESCREIDENTIFIER, temperDescr);
+//        return  info;
+//    }
+
+    public abstract HashMap<String, String> getDisplayAdditionalInformation();
 }

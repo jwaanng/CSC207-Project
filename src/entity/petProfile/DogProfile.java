@@ -1,6 +1,11 @@
 package entity.petProfile;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class DogProfile extends PetProfile {
+    public static final String specieName = "dog";
    private boolean neuter;
    private boolean vaccinated;
    private String breed;
@@ -35,9 +40,11 @@ public class DogProfile extends PetProfile {
     }
 
     @Override
-    public String toString() {
-        return "bark!, my name is " + getName() + ". I am a " + getSex() + " " + getBreed() + " hiahiahia! I am " + getAge() + " old!";
+    public HashMap<String, String>  getDisplayAdditionalInformation(){
+        HashMap<String, String> uniqueInfo = new HashMap<>();
+            uniqueInfo.put("Breed", breed);
+            uniqueInfo.put("Sterilized", String.valueOf(neuter));
+            uniqueInfo.put("Vaccinated", String.valueOf(vaccinated));
+        return uniqueInfo;
     }
-//    @Override
-//    public
 }

@@ -9,9 +9,6 @@ import static entity.Constants.*;
 
 public class AppUser {
     private String username;
-
-    private String photoUrl;
-
     private String bio;
     private String password;
     private String address;
@@ -19,16 +16,17 @@ public class AppUser {
     private String preferredSize;
     private List<Integer> favPet;
     private List<String> roles;
-
+    private String instagramUsername;
     private List<Integer> myPet;
 
 
     public AppUser(){}
-    public AppUser(String username, String password, String address) {
+    public AppUser(String username, String password, String address, String instagramUsername) {
         /*Require password is valid */
         this.username = username;
         this.password = password;
         this.address = address;
+        this.instagramUsername = instagramUsername;
         this.favPet = new ArrayList<Integer>();
         this.roles = new ArrayList<String>();
         roles.add(PETFINDER);
@@ -46,14 +44,6 @@ public class AppUser {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
     }
 
     public String getBio() {
@@ -102,6 +92,15 @@ public class AppUser {
     public boolean profileIsFav(PetProfile profile){
         return favPet.contains(profile.getId());
     }
+
+    public String getInstagramUsername() {
+        return instagramUsername;
+    }
+
+    public void setInstagramUsername(String instagramUsername) {
+        this.instagramUsername = instagramUsername;
+    }
+
     public void addFavProfile(int petID){
         favPet.add(petID);
     }

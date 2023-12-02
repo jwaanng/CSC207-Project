@@ -84,13 +84,13 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
         String preferredSex = getSelectedButtonText(sexGroup);
 
         ConfigProfileState currentState = this.configProfileViewModel.getState();
-        String username = currentState.getUsername();
+//        String username = currentState.getUsername();
 
-        currentState.setUsername(username);
+//        currentState.setUsername(username);
         currentState.setAddress(address);
         currentState.setBio(bio);
-        currentState.setSize(preferredSize);
-        currentState.setSex(preferredSex);
+//        currentState.setSize(preferredSize);
+//        currentState.setSex(preferredSex);
 
         System.out.println("CONFIG DSLJFKLSDJF: " + currentState.toString());
 
@@ -98,7 +98,7 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
         // TODO 2: make this auto relay back to the 'mainView' page if it saves correctly
         // TODO3 done by jw: 'bio' has max character amount of 150
         // TODO4 done by jw: 'name' can't contain any invalid characters (no symbols)
-        configProfileController.execute(username, address, bio, preferredSize, preferredSex);
+//        configProfileController.execute(username, address, bio, preferredSize, preferredSex);
     }
 
     public String getSelectedButtonText(ButtonGroup buttonGroup) {
@@ -125,12 +125,12 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
     }
 
     public static void main(String[] args) {
-        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
-        ConfigProfilePresenter configProfilePresenter = new ConfigProfilePresenter(configProfileViewModel, new ViewModelManager());
-        ConfigProfileInteractor configProfileInteractor = new ConfigProfileInteractor(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
-        ConfigProfileController configProfileController = new ConfigProfileController(configProfileInteractor);
-
-        ConfigProfileView configProfileView = new ConfigProfileView(null, configProfileController, configProfileViewModel);
+//        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
+//        ConfigProfilePresenter configProfilePresenter = new ConfigProfilePresenter(configProfileViewModel, new ViewModelManager());
+//        ConfigProfileInteractor configProfileInteractor = new ConfigProfileInteractor(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
+//        ConfigProfileController configProfileController = new ConfigProfileController(configProfileInteractor);
+//
+//        ConfigProfileView configProfileView = new ConfigProfileView(null, configProfileController, configProfileViewModel);
     }
 
 }

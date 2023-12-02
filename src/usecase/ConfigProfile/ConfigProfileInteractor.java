@@ -8,12 +8,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-   UserDataAcessInterface configProfileDataAccessInterface;
-    ConfigProfileOutputBoundary configProfilePresenter; // this sets the output view (fail/success)
+    UserDataAcessInterface configProfileDataAccessInterface;
+    ConfigProfileOutputBoundary configProfileOutputBoundary; // this sets the output view (fail/success)
 
-    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface, ConfigProfilePresenter configProfilePresenter, ConfigProfileOutputBoundary configProfileOutputBoundary) {
+    ConfigProfilePresenter configProfilePresenter;
+
+    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface,  ConfigProfileOutputBoundary configProfilePresenter) {
         this.configProfileDataAccessInterface = configProfileDataAccessInterface;
-        this.configProfilePresenter = configProfileOutputBoundary;
+        this.configProfileOutputBoundary = configProfilePresenter;
+
     }
 
     // Helper method to help you see if a string contains any of these characters - jw

@@ -17,10 +17,10 @@ public class UCInteractor implements InputBound {
             return noNameErr;
         } else if (profile.getAge() <= 0) {
             return noAGErr;
-        } else if (profile.getSex() == '\u0000') {
+        } else if (profile.getSex().isEmpty()) {
             return noSexErr;
 
-        } else if (profile.getSize() == '\u0000') {
+        } else if (profile.getSize().isEmpty()) {
             return noSizeErr;
         } else {
             profile.setProfilePublic();

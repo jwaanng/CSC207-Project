@@ -63,8 +63,8 @@ public class LoginView extends JDialog{
     }
 
 
-    public static void main(String[] args) {
-        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
-        LoginView loginView = new LoginView(null, new LGController(new LGUCI(new LGPresenter(new LGViewModel(), new FavPetPageViewModel(), new ViewModelManager(), configProfileViewModel), new CommonUserDataAccessObject(), new PetProfileDataAccessObject())));
-    }
+//    public static void main(String[] args) {
+//        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
+//        LoginView loginView = new LoginView(null, new LGController(new LGUCI(new LGPresenter(new LGViewModel(), new FavPetPageViewModel(), new ViewModelManager(), configProfileViewModel), new CommonUserDataAccessObject(), new PetProfileDataAccessObject())));
+//    }
 }

@@ -10,10 +10,10 @@ public class SignupController {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
     }
 
-    public void execute(String username, String password, String repeatedPassword, String address) {
+    public void execute(String username, String password, String repeatedPassword, String address, String instagram) {
         System.out.println("CONTROLLER executed");
         SignUpInputData signupInputData = new SignUpInputData(
-                username, password, repeatedPassword, address);
+                username, password, repeatedPassword, address, instagram);
 
         userSignupUseCaseInteractor.execute(signupInputData);
     }

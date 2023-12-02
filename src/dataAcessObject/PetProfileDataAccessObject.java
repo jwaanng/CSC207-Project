@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import static entity.Constants.DOG;
+import static entity.petProfile.DogProfile.specieName;
 
 public class PetProfileDataAccessObject implements PetProfileDataAccessInterface{
     private final String add = "add";
@@ -31,6 +31,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
     private final String apikey = "";
     private final HashMap<Integer, PetProfile> profiles = new HashMap<>();
+
+    private String DOG = specieName;
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
     private final RuntimeTypeAdapterFactory<PetProfile> petProfileTypeAdapterFactory;

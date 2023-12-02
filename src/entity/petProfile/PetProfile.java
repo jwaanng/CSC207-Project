@@ -1,7 +1,5 @@
 package entity.petProfile;
 
-import com.google.common.hash.HashingInputStream;
-
 import javax.swing.JPanel;
 import java.util.HashMap;
 import java.util.List;

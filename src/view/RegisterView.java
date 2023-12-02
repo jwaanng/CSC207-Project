@@ -30,6 +30,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
     private JButton cancelButton;
     private JTextField addressTf;
     private JLabel addressLabel;
+    private JTextField instagramTf;
 
     private final SignupController signupController;
     private final SignupViewModel signupViewModel;
@@ -85,6 +86,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         String password = String.valueOf(passwordTf.getPassword());
         String confirmPassword = String.valueOf(confirmPasswordTf.getPassword());
         String address = String.valueOf(addressTf.getText());
+        String instagram = String.valueOf(instagramTf.getText());
 
         SignupState currentState = this.signupViewModel.getState();
 
@@ -92,6 +94,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         currentState.setPassword(password);
         currentState.setRepeatPassword(confirmPassword);
         currentState.setAddress(address);
+        currentState.setInstagram(instagram);
 
         System.out.println("REG USER: " + currentState.toString());
 
@@ -104,14 +107,9 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
             return;
         }
 
-//        // if the passwords don't match
-//        if (!password.equals(confirmPassword)) {
-//            JOptionPane.showMessageDialog(this, "MAKE SURE PASSWORD MATCHES", "FAILED", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
 
         // signup use case controller checks for things and pushes to db
-        signupController.execute(username, password, confirmPassword, address);
+        signupController.execute(username, password, confirmPassword, address, instagram);
     }
 
     @Override
@@ -136,5 +134,5 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         RegisterView registerView = new RegisterView(null, signupController, signupViewModel);
     }
 
-    // TODO: no popup for when cases fail
+    // TODOdone: no popup for when cases fail
 }

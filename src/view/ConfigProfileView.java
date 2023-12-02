@@ -2,7 +2,6 @@ package view;
 
 import configProfile.*;
 import dataAcessObject.CommonUserDataAccessObject;
-import org.jetbrains.annotations.NotNull;
 import usecase.ConfigProfile.ConfigProfileInteractor;
 import viewModel.ViewModelManager;
 
@@ -35,7 +34,7 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
     private final ConfigProfileController configProfileController;
     private final ConfigProfileViewModel configProfileViewModel;
 
-    public ConfigProfileView(JFrame parent, ConfigProfileController configProfileController, @NotNull ConfigProfileViewModel configProfileViewModel){
+    public ConfigProfileView(JFrame parent, ConfigProfileController configProfileController, ConfigProfileViewModel configProfileViewModel){
         // constructor
         super(parent);
 

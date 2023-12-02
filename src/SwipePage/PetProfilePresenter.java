@@ -10,7 +10,7 @@ public class PetProfilePresenter {
         return new SwipePageViewModel(
                 profile.getName(),
                 "Bio: " + profile.toString(),
-                profile.getPetPhotoLink()
+                profile.getName() // TEMPORARILY SET FROM GET PHOTO LINK COZ THERE WAS AN ERROR - JW
         );
     }
 }

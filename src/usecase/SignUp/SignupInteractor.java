@@ -24,7 +24,7 @@ public class SignupInteractor implements SignupInputBound{
             System.out.println("usecase failed executed password does not match");
             userPresenter.prepareSignUpFailView("Passwords don't match.");
         } else {
-            AppUser user = userFactory.createAppUser(data.getUsername(), data.getPassword(), data.getAddress());
+            AppUser user = userFactory.createAppUser(data.getUsername(), data.getPassword(), data.getAddress(), data.getInstagram());
             userDataAccessObject.add(user);
             System.out.println("user created");
 

@@ -6,10 +6,13 @@ public class SignUpInputData {
     String repeatedPassword;
     String address;
 
-    public SignUpInputData(String username, String password, String repeatedPassword, String address) {
+    String instagram;
+
+    public SignUpInputData(String username, String password, String repeatedPassword, String address, String instagram) {
         this.username = username;
         this.password = password;
         this.repeatedPassword = repeatedPassword;
+        this.instagram = instagram;
 //        this.address = address;
     }
 
@@ -24,6 +27,8 @@ public class SignUpInputData {
     String getAddress() {
         return address;
     }
+
+    String getInstagram() {return instagram;}
     public String getRepeatedPassword() {
         return repeatedPassword;
     }

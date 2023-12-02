@@ -6,9 +6,8 @@ public class SignupState {
     private String password = "";
 //    private String passwordError = null;
     private String repeatPassword = "";
-//    private String repeatPasswordError = null;
     private String address = "";
-//    private String addressError = null;
+    private String instagram = "";
 
     public SignupState(SignupState copy) {
         error = copy.error;
@@ -19,6 +18,7 @@ public class SignupState {
         repeatPassword = copy.repeatPassword;
 //        repeatPasswordError = copy.repeatPasswordError;
         address = copy.address;
+        instagram = copy.instagram;
 //        addressError = copy.addressError;
     }
 
@@ -30,9 +30,6 @@ public class SignupState {
         return username;
     }
 
-//    public String getUsernameError() {
-//        return usernameError;
-//    }
 
     public String getError() {
         return error;
@@ -42,27 +39,17 @@ public class SignupState {
         return password;
     }
 
-//    public String getPasswordError() {
-//        return passwordError;
-//    }
 
     public String getRepeatPassword() {
         return repeatPassword;
     }
 
-//    public String getRepeatPasswordError() {
-//        return repeatPasswordError;
-//    }
     public String getAddress() {return address;}
-//    public String getAddressError() { return addressError;}
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-//    public void setUsernameError(String usernameError) {
-//        this.usernameError = usernameError;
-//    }
 
     public void setError(String error) {
         this.error = error;
@@ -72,24 +59,17 @@ public class SignupState {
         this.password = password;
     }
 
-//    public void setPasswordError(String passwordError) {
-//        this.passwordError = passwordError;
-//    }
 
     public void setRepeatPassword(String repeatPassword) {
         this.repeatPassword = repeatPassword;
     }
 
-//    public void setRepeatPasswordError(String repeatPasswordError) {
-//        this.repeatPasswordError = repeatPasswordError;
-//    }
 
     public void setAddress(String adrress) {
         this.address = adrress;
     }
-//    public void setAddressError(String adrressError) {
-//        this.addressError = adrressError;
-//    }
+
+    public void setInstagram(String instagram) { this.instagram = instagram;}
     @Override
     public String toString() {
         return "SignupState{" +
@@ -98,8 +78,10 @@ public class SignupState {
                 ", repeatPassword='" + repeatPassword + '\'' +
                 ", address='" + address + '\'' +
                 ", error='" + error + '\'' +
+                ", instagram='" + instagram +'\'' +
                 '}';
     }
+
 }
 
 

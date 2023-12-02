@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 
 
+
 public class PetProfileDataAccessObject implements PetProfileDataAccessInterface{
     private final String add = "add";
     private final String update = "update";
@@ -30,6 +31,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
     private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
     private final HashMap<Integer, PetProfile> profiles = new HashMap<>();
+
+    private String DOG = specieName;
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
     private final RuntimeTypeAdapterFactory<PetProfile> petProfileTypeAdapterFactory;

@@ -1,5 +1,6 @@
 package usecase.ConfigProfile;
 
+import configProfile.ConfigProfilePresenter;
 import dataAcessObject.UserDataAcessInterface;
 import entity.user.AppUser;
 
@@ -7,44 +8,53 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-   UserDataAcessInterface configProfileDataAccessInterface;
-    ConfigProfileOutputBoundary configProfilePresenter; // this sets the output view (fail/success)
+    UserDataAcessInterface configProfileDataAccessInterface;
+    ConfigProfileOutputBoundary configProfileOutputBoundary; // this sets the output view (fail/success)
 
-    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface, ConfigProfileInteractor configProfilePresenter, ConfigProfileOutputBoundary configProfileOutputBoundary) {
+    ConfigProfilePresenter configProfilePresenter;
+
+    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface,  ConfigProfileOutputBoundary configProfilePresenter) {
         this.configProfileDataAccessInterface = configProfileDataAccessInterface;
-        this.configProfilePresenter = configProfileOutputBoundary;
+        this.configProfileOutputBoundary = configProfilePresenter;
+
     }
 
     // Helper method to help you see if a string contains any of these characters - jw
-    public static boolean containsSpecialChars(String str) {
-        Pattern specialChars = Pattern.compile("[`!@#$%^&*()_+\\-\\[\\]{};':\"\\\\|,.<>\\/?~]");
-        Matcher matcher = specialChars.matcher(str);
-        return matcher.find();
+    public boolean containsSpecialChars(String s) {
+        if (s == null || s.trim().isEmpty()) {
+            System.out.println("Incorrect format of string");
+            return true;
+        }
+        Pattern p = Pattern.compile("[^A-Za-z0-9, ]");
+        Matcher m = p.matcher(s);
+        return m.find();
     }
 
     @Override
-    public void execute(ConfigProfileInputData configProfileInputData) {
+    public void execute(ConfigProfileInputData data) {
 
-        if (containsSpecialChars(configProfileInputData.getName())) {
+        if (containsSpecialChars(data.getAddress())) {
             // if the name does contain any special characters
-            configProfilePresenter.prepareFailView("Make sure name doesn't contain special characters");
-        } else if (configProfileInputData.getBio().length() > 150) {
+            System.out.println("INTERACTOR: FIRST IF");
+            configProfilePresenter.prepareFailView("Make sure address doesn't contain special characters");
+        } else if (data.getBio().length() > 150) {
             // if the bio is too long
             configProfilePresenter.prepareFailView("Keep bio under 150 characters.");
         } else {
             // TODO2 Done -ming: saving the info if all parameters are met.
 
-            AppUser user = configProfileDataAccessInterface.retrieve(configProfileInputData.getName());
+            AppUser user = configProfileDataAccessInterface.retrieve(data.getUsername()); //TODO: get username
             // setting attributes to user
-            user.setBio(configProfileInputData.getBio());
-            user.setAddress(configProfileInputData.getAddress());
-            user.setPreferredSize(configProfileInputData.getSize());
-            user.setPreferredSex(configProfileInputData.getSex());
+            user.setBio(data.getBio());
+            user.setAddress(data.getAddress());
+            user.setPreferredSize(data.getSize());
+            user.setPreferredSex(data.getSex());
 
-            System.out.println(user.getPreferredSex() + user.getPreferredSize());
+            System.out.println("INTERACTOR: " + user.getPreferredSex() + user.getPreferredSize());
 
 
             configProfileDataAccessInterface.update(user);
+            System.out.println("INTERACTOR after: " + user.getPreferredSex() + user.getPreferredSize());
         }
     }
 }

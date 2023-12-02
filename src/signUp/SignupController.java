@@ -9,9 +9,9 @@ public class SignupController {
         this.signupInteractor = interactor;
     }
 
-    public void execute(String username, String password1, String password2, String address) {
+    public void execute(String username, String password1, String password2, String address, String instagram) {
         SignUpInputData inputData = new SignUpInputData(username, password1,
-                password2, address);
+                password2, address, instagram);
         signupInteractor.execute(inputData);
     }
 }

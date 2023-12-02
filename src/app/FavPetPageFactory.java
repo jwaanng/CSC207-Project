@@ -23,6 +23,21 @@ import favPetPage.viewThisPetProfile.ViewThisUCI;
 import viewModel.ViewModelManager;
 
 public class FavPetPageFactory {
+    /**
+     * Factory method to create an instance of {@link FavPetPageView}.
+     *
+     * This method initializes and configures the necessary components for the Favorite Pet Page,
+     * such as controllers and presenters for handling actions like deleting a favorite pet,
+     * viewing a pet's profile, and redirecting to the My Favorite Pet Page. It also sets up the
+     * BrowsePet cycle for browsing pets.
+     *
+     * @param manager                    The {@link ViewModelManager} responsible for managing view models.
+     * @param favPetPageViewModel        The {@link FavPetPageViewModel} associated with the Favorite Pet Page.
+     * @param userDataAcessInterface     The {@link UserDataAcessInterface} for accessing user data.
+     * @param petProfileDataAccessInterface The {@link PetProfileDataAccessInterface} for accessing pet profile data.
+     * @return                           An instance of {@link FavPetPageView} configured with the necessary components.
+
+     */
     static public FavPetPageView createFavPetPage(
             ViewModelManager manager, FavPetPageViewModel favPetPageViewModel,
             UserDataAcessInterface userDataAcessInterface,

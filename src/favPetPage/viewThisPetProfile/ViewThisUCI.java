@@ -1,6 +1,8 @@
 package favPetPage.viewThisPetProfile;
 
 import dataAcessObject.PetProfileDataAccessInterface;
+import dataAcessObject.ProfilePictureDataAccessInterface;
+import dataAcessObject.UserDataAcessInterface;
 import entity.petProfile.PetProfile;
 
 /**
@@ -9,7 +11,9 @@ import entity.petProfile.PetProfile;
  */
 
 public class ViewThisUCI implements ViewThisIB {
-    private final PetProfileDataAccessInterface daop;
+    private final PetProfileDataAccessInterface daoP;
+    private final ProfilePictureDataAccessInterface daoPic;
+    private  final UserDataAcessInterface dao;
     private final ViewThisOB presenter;
 
     /**
@@ -20,9 +24,13 @@ public class ViewThisUCI implements ViewThisIB {
      * @param petProfileDataAccessInterface a data access object that can interact with the database that stores all
      *                                      pet profiles
      */
-    public ViewThisUCI(ViewThisOB viewThisPresenter, PetProfileDataAccessInterface petProfileDataAccessInterface) {
-        this.daop = petProfileDataAccessInterface;
-        this.presenter = viewThisPresenter;
+    public ViewThisUCI(ViewThisOB viewThisPresenter, UserDataAcessInterface userDataAcessInterface,
+                       PetProfileDataAccessInterface petProfileDataAccessInterface,
+                       ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
+        daoP = petProfileDataAccessInterface;
+        dao = userDataAcessInterface;
+        daoPic = profilePictureDataAccessInterface;
+        presenter = viewThisPresenter;
     }
 
     /**
@@ -32,13 +40,28 @@ public class ViewThisUCI implements ViewThisIB {
      */
     @Override
     public void execute(int petId) {
-        if (!daop.exists(petId)) {
+        if (!daoP.exists(petId)) {
             ViewThisOPData output = new ViewThisOPData();
-            output.error = "Sorry, the pet owner has just dismounted the pet from the app :(";
+            output.error = "Sorry, the pet owner has just dismounted the pet from the app :(, " +
+                    "please refresh your page by checking out other pages first ;)";
             presenter.prepareFailView(output);
         } else {
-            PetProfile petProfile = daop.getProfile(petId);
-            //TODO Prepare the right amount of information to be displayed
+            PetProfile petProfile = daoP.getProfile(petId);
+            ViewThisOPData output = new ViewThisOPData();
+            output.ownerName = petProfile.getPetOwnerName();
+            output.photo = daoPic.retrievePetProfile(petProfile.getId());
+            output.name = petProfile.getName();
+            output.specie = petProfile.getSpecie();
+            output.sex = petProfile.getSex();
+            output.age = petProfile.getAge();
+            output.size = petProfile.getSize();
+            output.generalDescr = petProfile.getGeneralDescr();
+            output.tempDescr = petProfile.getTemperDescr();
+            output.likeDescr = petProfile.getLikeDescr();
+
+            output.specieSpecificInformation =petProfile.getDisplayAdditionalInformation();
+            output.ownerInstagram = dao.retrieve(petProfile.getPetOwnerName()).getInstagramUsername();
+            presenter.prepareSuccessView(output);
 
         }
 

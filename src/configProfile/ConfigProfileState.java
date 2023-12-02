@@ -2,6 +2,7 @@ package configProfile;
 
 import java.util.HashMap;
 import java.util.Map;
+// TODO: write docs
 
 public class ConfigProfileState {
     private String username = "";

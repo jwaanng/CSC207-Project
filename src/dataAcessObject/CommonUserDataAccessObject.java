@@ -13,7 +13,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+/**
+ * Data Access Object (DAO) for handling user data.
+ * This class interacts with a MongoDB API to perform operations such as adding, updating,
+ * deleting, retrieving, and checking the existence of user data.
+ */
 public class CommonUserDataAccessObject implements UserDataAcessInterface {
     private final String add = "add";
     private final String update = "update";
@@ -120,6 +124,13 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
         dataLoadingJson.put("projection", compProj);
         return dataLoadingJson.toString();
     }
+
+    /**
+     * Adds a new user to the MongoDB database.
+     *
+     * @param user The AppUser object representing the user to be added.
+     * @throws RuntimeException if the user already exists or there is an issue with the API call.
+     */
     @Override
     public void add(AppUser user) {
         if (exist(user.getUsername())){
@@ -144,6 +155,12 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
         }
     }
 
+    /**
+     * Updates an existing user in the MongoDB database.
+     *
+     * @param user The AppUser object representing the user to be updated.
+     * @throws RuntimeException if the user does not exist or there is an issue with the API call.
+     */
     @Override
     public void update(AppUser user){
         if(!exist(user.getUsername())){
@@ -170,6 +187,13 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
         }
     }
 
+
+    /**
+     * Deletes an existing user from the MongoDB database.
+     *
+     * @param username The username of the user to be deleted.
+     * @throws RuntimeException if the user does not exist or there is an issue with the API call.
+     */
     @Override
     public void delete(String username) {
         if(!exist(username)){
@@ -194,7 +218,13 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
         }
     }
 
-
+    /**
+     * Retrieves user data from the MongoDB database based on the username.
+     *
+     * @param username The username of the user to be retrieved.
+     * @return The AppUser object representing the retrieved user.
+     * @throws RuntimeException if the user does not exist.
+     */
     @Override
     public AppUser retrieve(String username) {
         if (!exist(username)){
@@ -203,6 +233,13 @@ public class CommonUserDataAccessObject implements UserDataAcessInterface {
         return nameToUser.get(username);
     }
 
+
+    /**
+     * Checks the existence of a user in the MongoDB database based on the username.
+     *
+     * @param username The username to be checked for existence.
+     * @return true if the user exists, false otherwise.
+     */
     @Override
     public boolean exist(String username) {
         return nameToUser.containsKey(username);

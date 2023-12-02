@@ -13,22 +13,42 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class LGUCI implements LGIB{
+/**
+ * The {@code LGUCI} class represents the use case interactor for the login feature, responsible for
+ * executing login-related operations and interacting with data access interfaces.
+ */
+public class LGUCI implements LGIB {
+
     private final LGOB presenter;
+
     private final UserDataAcessInterface dao;
 
     private final PetProfileDataAccessInterface daoP;
 
     private final ProfilePictureDataAccessInterface daoPic;
-    public LGUCI(LGOB presenter, UserDataAcessInterface userDataAcessInterface,
+
+    /**
+     * Constructs an {@code LGUCI} instance with the specified presenter and data access interfaces.
+     *
+     * @param presenter                    The presenter associated with the login use case.
+     * @param userDataAccessInterface      The data access interface for user-related data.
+     * @param petProfileDataAccessInterface The data access interface for pet profile-related data.
+     * @param profilePictureDataAccessInterface The data access interface for profile picture-related data.
+     */
+    public LGUCI(LGOB presenter, UserDataAcessInterface userDataAccessInterface,
                  PetProfileDataAccessInterface petProfileDataAccessInterface,
                  ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         this.presenter = presenter;
-        this.dao = userDataAcessInterface;
+        this.dao = userDataAccessInterface;
         this.daoP = petProfileDataAccessInterface;
         this.daoPic = profilePictureDataAccessInterface;
     }
 
+    /**
+     * Executes the login use case with the provided login data.
+     *
+     * @param loginData The input data for the login use case.
+     */
     @Override
     public void execute(LGIPData loginData) {
         String name = loginData.getUsername();
@@ -42,7 +62,6 @@ public class LGUCI implements LGIB{
                 presenter.prepareFailView(LGOPData.createFailData("Password does not match"));
             } else {
                 try {
-                    //TODO. cjage
                     Image profile = daoPic.retrieveUserProfile(name);
                     if (profile == null) {
                         profile = ImageIO.read(getClass().getResource("/defaultprofile.png"));
@@ -59,8 +78,6 @@ public class LGUCI implements LGIB{
                     throw new RuntimeException(e);
                 }
             }
-
-
         }
     }
 }

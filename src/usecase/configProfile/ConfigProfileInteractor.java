@@ -1,4 +1,4 @@
-package usecase.ConfigProfile;
+package usecase.configProfile;
 
 import configProfile.ConfigProfilePresenter;
 import dataAcessObject.UserDataAcessInterface;
@@ -7,22 +7,37 @@ import entity.user.AppUser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The {@code ConfigProfileInteractor} class represents the use case interactor responsible for handling
+ * the logic related to configuring user profiles. Implements the {@code ConfigProfileInputBoundary} interface.
+ * This class validates input data, performs necessary checks, and updates user profiles accordingly.
+ */
 public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-    UserDataAcessInterface configProfileDataAccessInterface;
-    ConfigProfileOutputBoundary configProfileOutputBoundary; // this sets the output view (fail/success)
 
-    ConfigProfilePresenter configProfilePresenter;
+    private UserDataAcessInterface configProfileDataAccessInterface;
+    private ConfigProfileOutputBoundary configProfileOutputBoundary; // this sets the output view (fail/success)
+    private ConfigProfilePresenter configProfilePresenter;
 
-    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface,  ConfigProfileOutputBoundary configProfilePresenter) {
+    /**
+     * Constructs a {@code ConfigProfileInteractor} with the specified data access interface and output boundary.
+     *
+     * @param configProfileDataAccessInterface The data access interface for interacting with user profiles.
+     * @param configProfilePresenter          The output boundary for presenting success or failure views.
+     */
+    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface, ConfigProfileOutputBoundary configProfilePresenter) {
         this.configProfileDataAccessInterface = configProfileDataAccessInterface;
         this.configProfileOutputBoundary = configProfilePresenter;
-
     }
 
-    // Helper method to help you see if a string contains any of these characters - jw
+    /**
+     * Checks if a given string contains any special characters.
+     *
+     * @param s The string to be checked for special characters.
+     * @return {@code true} if the string contains special characters; {@code false} otherwise.
+     */
     public boolean containsSpecialChars(String s) {
         if (s == null || s.trim().isEmpty()) {
-            System.out.println("Incorrect format of string");
+            System.out.println("Stringempth");
             return true;
         }
         Pattern p = Pattern.compile("[^A-Za-z0-9, ]");
@@ -30,11 +45,17 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
         return m.find();
     }
 
+    /**
+     * Executes the use case based on the provided configuration profile input data.
+     * Validates input data, performs necessary checks, and updates user profiles accordingly.
+     *
+     * @param data The input data containing information for configuring the user profile.
+     */
     @Override
     public void execute(ConfigProfileInputData data) {
 
         if (containsSpecialChars(data.getAddress())) {
-            // if the name does contain any special characters
+            // if the address contains special characters
             System.out.println("INTERACTOR: FIRST IF");
             configProfilePresenter.prepareFailView("Make sure address doesn't contain special characters");
         } else if (data.getBio().length() > 150) {
@@ -51,7 +72,6 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
             user.setPreferredSex(data.getSex());
 
             System.out.println("INTERACTOR: " + user.getPreferredSex() + user.getPreferredSize());
-
 
             configProfileDataAccessInterface.update(user);
             System.out.println("INTERACTOR after: " + user.getPreferredSex() + user.getPreferredSize());

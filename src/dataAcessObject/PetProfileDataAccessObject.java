@@ -21,6 +21,9 @@ import java.util.HashMap;
 
 import static entity.petProfile.DogProfile.specieName;
 
+/**
+ * Implementation of the PetProfileDataAccessInterface for accessing and manipulating pet profile data.
+ */
 public class PetProfileDataAccessObject implements PetProfileDataAccessInterface{
     private final String add = "add";
     private final String update = "update";
@@ -36,6 +39,10 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
     private final RuntimeTypeAdapterFactory<PetProfile> petProfileTypeAdapterFactory;
+
+    /**
+     * Constructor initializing the PetProfileDataAccessObject and loading existing profiles.
+     */
     public PetProfileDataAccessObject(){
         petProfileTypeAdapterFactory =  RuntimeTypeAdapterFactory.of(PetProfile.class, "specie").
                 registerSubtype(DogProfile.class, DOG);
@@ -122,6 +129,12 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
         dataLoadingJson.put("projection", compProj);
         return dataLoadingJson.toString();
     }
+
+    /**
+     * Adds a new pet profile to the data source.
+     *
+     * @param profile The PetProfile object representing the pet profile to be added.
+     */
     @Override
     public void add(PetProfile profile) {
         if (exists(profile.getId())){ //calls on equals method
@@ -146,6 +159,11 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
         }
     }
 
+    /**
+     * Updates an existing pet profile in the data source.
+     *
+     * @param profile The PetProfile object representing the pet profile to be updated.
+     */
     @Override
     public void update(PetProfile profile){
         if(!exists(profile.getId())){
@@ -173,6 +191,11 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
         }
     }
 
+    /**
+     * Deletes an existing pet profile from the data source based on its unique identifier.
+     *
+     * @param id The unique identifier of the pet profile to be deleted.
+     */
     @Override
     public void delete(int id) {
         if(!exists(id)){
@@ -197,12 +220,24 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
         }
     }
 
+    /**
+     * Checks the existence of a pet profile in the data source based on its unique identifier.
+     *
+     * @param id The unique identifier of the pet profile to be checked for existence.
+     * @return true if the pet profile exists, false otherwise.
+     */
     @Override
     public boolean exists(int id) {
         return profiles.containsKey(id);
     }
 
 
+    /**
+     * Gets the petprofile
+     *
+     * @param id The unique identifier of the pet profile to be checked for existence.
+     * @return the profile, or null if none
+     */
     @Override
     public PetProfile getProfile(int id) {
         return profiles.getOrDefault(id, null);

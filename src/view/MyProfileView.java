@@ -6,7 +6,7 @@ import configProfile.ConfigProfilePresenter;
 import configProfile.ConfigProfileState;
 import configProfile.ConfigProfileViewModel;
 import dataAcessObject.CommonUserDataAccessObject;
-import usecase.ConfigProfile.ConfigProfileInteractor;
+import usecase.configProfile.ConfigProfileInteractor;
 import viewModel.ViewModelManager;
 
 import javax.swing.*;
@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class MyProfileView extends JPanel implements ActionListener, PropertyChangeListener {
     public static final String viewName = "my profile";
-        private final JTextField usernameInputfield = new JTextField(15);
+    private final JTextField usernameInputfield = new JTextField(15);
     private final JTextField bioInputfield= new JTextField(15);
     private final JTextField addressinputfield = new JTextField(15);
     private JRadioButton smallRadioButton;
@@ -81,7 +81,6 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         });
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        this.add(username);
         this.add(bio);
         this.add(address);
         this.add(size);

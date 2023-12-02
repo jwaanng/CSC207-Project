@@ -2,13 +2,13 @@ package view;
 
 import dataAcessObject.CommonUserDataAccessObject;
 import entity.user.AppUserFactory;
-import configProfile.SignupController;
+import signUp.SignupController;
 import login.LGViewModel;
 import signUp.SignupPresenter;
 import signUp.SignupState;
 import signUp.SignupViewModel;
 import viewModel.ViewModelManager;
-import usecase.SignUp.SignupInteractor;
+import usecase.signUp.SignupInteractor;
 
 import javax.swing.*;
 import java.awt.*;

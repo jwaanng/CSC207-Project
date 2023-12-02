@@ -1,4 +1,4 @@
-package SwipePage;
+package swipePage;
 import entity.petProfile.DogProfile;
 import entity.petProfile.DogProfileBuilder;
 import entity.petProfile.PetProfile;

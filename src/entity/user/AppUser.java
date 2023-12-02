@@ -101,8 +101,15 @@ public class AppUser {
         this.instagramUsername = instagramUsername;
     }
 
-    public void addFavProfile(int petID){
-        favPet.add(petID);
+    public void createMyPetProfile(int petId){
+        myPet.add(petId);
+    }
+    public void deleteMyPetProfile(int petId){
+        myPet.remove(petId);
+    }
+
+    public void addFavProfile(int petId){
+        favPet.add(petId);
     }
     public void deleteFavProfile(int petId){
         /*petId must be in favPet*/
@@ -112,8 +119,10 @@ public class AppUser {
         return new ArrayList<String>(roles);
     }
     public List<Integer> getFavPet(){
-        ArrayList<Integer> favPet = new ArrayList<>();
-        favPet.addAll(this.favPet);
-        return favPet;
+        return new ArrayList<>(this.favPet);
     } //new copy
+
+    public List<Integer> getMyPet(){
+        return  new ArrayList<>(this.myPet);
+    }
 }

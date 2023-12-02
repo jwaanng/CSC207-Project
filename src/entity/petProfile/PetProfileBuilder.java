@@ -4,6 +4,7 @@ import java.util.List;
 
 public abstract class PetProfileBuilder<T extends PetProfileBuilder<T,P>, P extends PetProfile>{
     String name;
+    final int petid;
     int age;
     String sex;
     String specie;
@@ -12,8 +13,9 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T,P>, P exte
     String likeDescr;
     String temperDescr;
     String generalDescr;
-    public PetProfileBuilder(String petOwnerName){
+    PetProfileBuilder(String petOwnerName, int nextAvailableId){
         this.petOwnerName = petOwnerName;
+        this.petid = nextAvailableId;
     }
 
     public abstract P build();

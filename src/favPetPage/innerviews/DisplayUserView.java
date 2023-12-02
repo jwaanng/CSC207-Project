@@ -80,6 +80,8 @@ public class DisplayUserView extends JPanel implements PropertyChangeListener {
                         Image.SCALE_DEFAULT)));
             }
         }
+        revalidate();
+        repaint();
     }
 
 

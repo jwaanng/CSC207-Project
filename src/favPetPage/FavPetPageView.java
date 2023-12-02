@@ -4,15 +4,14 @@ package favPetPage;
 import favPetPage.browsePet.BrowseController;
 import favPetPage.deleteAFavPet.DeleteController;
 import favPetPage.deleteAFavPet.DeleteViewModel;
-import favPetPage.innerviews.FavPetRDRView;
+import favPetPage.innerviews.*;
 import favPetPage.updateAFavPet.UpdateViewModel;
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import favPetPage.viewThisPetProfile.ViewThisController;
 import favPetPage.addAFavPet.AddViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
-import favPetPage.innerviews.DisplayUserView;
-import favPetPage.innerviews.FavPetDisplayView;
-import favPetPage.innerviews.NoFavPetsView;
+import favPetPage.viewThisPetProfile.ViewThisState;
+import favPetPage.viewThisPetProfile.ViewThisViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,8 +50,10 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
         UpdateViewModel updateVM = vm.getUpdateViewModel();
         DeleteViewModel deleteVM = vm.getDeleteFavPetViewModel();
         NoFavPetDisplayViewModel noFavPetVM = vm.getNoPetDisplayViewModel();
+        ViewThisViewModel viewThisVM = vm.getViewThisViewModel();
         addVM.addPropertyChangeListener(this);
         noFavPetVM.addPropertyChangeListener(this);
+        viewThisVM.addPropertyChangeListener(this);
 
         //all the subview components
         FavPetDisplayView petDisplayView = new FavPetDisplayView(
@@ -117,6 +118,33 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
             yesNOFavPetLayout.show(petDisplaySection, vm.getAddViewModel().getViewName());
             petDisplaySection.revalidate();
             petDisplaySection.repaint();
+        }
+        if (evt.getSource() == vm.getViewThisViewModel()){
+            ViewThisState state = vm.getViewThisViewModel().getState();
+            DetailFavPetProfile detailProfile = new DetailFavPetProfile();
+            detailProfile.setAge(state.getAge());
+            detailProfile.setPhoto(state.getPhoto());
+            detailProfile.setPetName(state.getName());
+            detailProfile.setSpecie(state.getSpecie());
+            detailProfile.setOwnerName(state.getOwnerName());
+            detailProfile.setSex(state.getSex());
+            detailProfile.setSize(state.getSize());
+            detailProfile.setGeneralDescr(state.getGeneralDescr());
+            detailProfile.setLikeDescr(state.getLikeDescr());
+            detailProfile.setTempDescr(state.getTempDescr());
+            detailProfile.setAdditionalAttributes(state.getSpecie(), state.getSpecieSpecificInformation());
+            detailProfile.setOwnerInstagram(state.getOwnerInstagram());
+
+            JDialog popup = new JDialog((JFrame) null);
+            JScrollPane scrollPane = new JScrollPane(detailProfile);
+            scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+            popup.setContentPane(scrollPane);
+            popup.setSize(500,500);
+            popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+            popup.setVisible(true);
+
+
         }
 
 

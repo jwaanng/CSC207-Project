@@ -1,5 +1,5 @@
 package entity.petProfile;
-
+import static entity.petProfile.DogProfile.SPECIE_NAME;
 public class DogProfileBuilder extends PetProfileBuilder<DogProfileBuilder,DogProfile>{
     boolean neuter;
     boolean vaccinated;
@@ -8,9 +8,9 @@ public class DogProfileBuilder extends PetProfileBuilder<DogProfileBuilder,DogPr
     public DogProfile build() {
         return new DogProfile(this);
     }
-    public DogProfileBuilder(String petOwnerName){
-        super(petOwnerName);
-        this.specie = DogProfile.specieName;
+    public DogProfileBuilder(String petOwnerName, int nextAvailableId){
+        super(petOwnerName, nextAvailableId);
+        this.specie = SPECIE_NAME;
     }
 
 

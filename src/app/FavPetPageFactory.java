@@ -1,9 +1,8 @@
 package app;
 
 import browsePage.BrowsePageViewModel;
-import dataAcessObject.CommonUserDataAccessObject;
 import dataAcessObject.PetProfileDataAccessInterface;
-import dataAcessObject.PetProfileDataAccessObject;
+import dataAcessObject.ProfilePictureDataAccessInterface;
 import dataAcessObject.UserDataAcessInterface;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
@@ -27,7 +26,8 @@ public class FavPetPageFactory {
     static public FavPetPageView createFavPetPage(
             ViewModelManager manager, FavPetPageViewModel favPetPageViewModel,
             UserDataAcessInterface userDataAcessInterface,
-            PetProfileDataAccessInterface petProfileDataAccessInterface){
+            PetProfileDataAccessInterface petProfileDataAccessInterface,
+            ProfilePictureDataAccessInterface profilePictureDataAccessInterface){
 
         //delete fav pet cycle
         DeletePresenter deletePresenter = new DeletePresenter(favPetPageViewModel.getDeleteFavPetViewModel());
@@ -35,8 +35,9 @@ public class FavPetPageFactory {
         DeleteController deleteController = new DeleteController(dfpUci);
 
         //view this pet cycle
-        ViewThisPresenter viewThisPresenter = new ViewThisPresenter();
-        ViewThisIB vtUci = new ViewThisUCI(viewThisPresenter,petProfileDataAccessInterface);
+        ViewThisPresenter viewThisPresenter = new ViewThisPresenter(favPetPageViewModel.getViewThisViewModel());
+        ViewThisIB vtUci = new ViewThisUCI(viewThisPresenter, userDataAcessInterface, petProfileDataAccessInterface,
+                profilePictureDataAccessInterface);
         ViewThisController viewThisController = new ViewThisController(vtUci);
 
         //TODO copy this code when needed redirect int my fav pet page cycle

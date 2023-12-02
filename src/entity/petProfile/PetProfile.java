@@ -5,22 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class PetProfile {
-    public static final String NAMEIDENTIFIER = "PetName";
-    public static final String AGEIDENTIFIER = "Age";
-    public static  final String SEXIDENTIFIER = "Sex";
-    public static final String SPECIEIDENTIFIER = "Specie";
-    public static final String PETOWNERNAMEIDENTIFIER = "Owner";
-    public static final String GENERALDESCRIDENTIFIER = "General";
-    public static final String LIKEDESCRIDTENFITIER = "Like";
-    public static final String TEMPERDESCREIDENTIFIER = "Temper";
     public static final String MALE = "Male";
     public static final String FEMALE = "Female";
     public static final String LARGEPET = "Large";
     public static final String MEDIUMPET = "Medium";
     public static final String SMALLPET = "Small";
 
-    private static int nextId = 0;
-    private int petId;
+    private final int petId;
     private String name;
     private int age;
     private String sex;
@@ -33,8 +24,7 @@ public abstract class PetProfile {
     private boolean  isPublic;
     protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
 
-        this.petId = nextId;
-        nextId++;
+        this.petId = builder.petid;
         this.petOwnerName = builder.petOwnerName;
         this.age = builder.age;
         this.name = builder.name;
@@ -95,13 +85,13 @@ public abstract class PetProfile {
         return likeDescr;
     }
     public void setLikeDescr(String likeDescr) {
-        likeDescr = likeDescr;
+        this.likeDescr = likeDescr;
     }
     public String getTemperDescr() {
         return temperDescr;
     }
     public void setTemperDescr(String temperDescr) {
-        temperDescr = temperDescr;
+        this.temperDescr = temperDescr;
     }
     public boolean getPublicStatus() {
         return isPublic;
@@ -125,18 +115,7 @@ public abstract class PetProfile {
         return petId;
     }
 
-//    HashMap<String,String> defaultDisplayProfile(){
-//        HashMap<String, String> info = new HashMap<>();
-//        info.put(NAMEIDENTIFIER, name);
-//        info.put(AGEIDENTIFIER, String.valueOf(age));
-//        info.put(SEXIDENTIFIER, String.valueOf(sex));
-//        info.put(SPECIEIDENTIFIER, specie);
-//        info.put(PETOWNERNAMEIDENTIFIER, petOwnerName);
-//        info.put(GENERALDESCRIDENTIFIER, generalDescr);
-//        info.put(LIKEDESCRIDTENFITIER, likeDescr);
-//        info.put(TEMPERDESCREIDENTIFIER, temperDescr);
-//        return  info;
-//    }
+
 
     public abstract HashMap<String, String> getDisplayAdditionalInformation();
 }

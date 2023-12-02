@@ -6,6 +6,7 @@ import favPetPage.addAFavPet.AddViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
 import favPetPage.innerviewmodels.FavPetRDRViewModel;
 import favPetPage.updateAFavPet.UpdateViewModel;
+import favPetPage.viewThisPetProfile.ViewThisViewModel;
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -23,7 +24,7 @@ public class FavPetPageViewModel extends ViewModel {
     // to the inner scroll pane display of pet profiles
     private final FavPetRDRViewModel redirect = new FavPetRDRViewModel();
     private final DisplayUserViewModel userinfo = new DisplayUserViewModel();
-
+    private final ViewThisViewModel viewPet = new ViewThisViewModel();
     private final NoFavPetDisplayViewModel noPetDisplay = new NoFavPetDisplayViewModel();
 
     /**
@@ -77,6 +78,8 @@ public class FavPetPageViewModel extends ViewModel {
     public NoFavPetDisplayViewModel getNoPetDisplayViewModel() {
         return noPetDisplay;
     }
+
+    public ViewThisViewModel getViewThisViewModel(){ return viewPet;}
 
     /**
      * update the display of pet profiles when a user redirects to the favorite pet page

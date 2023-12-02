@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import static entity.petProfile.DogProfile.specieName;
+
 
 public class PetProfileDataAccessObject implements PetProfileDataAccessInterface{
     private final String add = "add";
@@ -29,7 +29,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     private final String database = "207DataBase";
     private final String dataSource = "ClusterCSC207Pro";
     private final OkHttpClient client = new OkHttpClient().newBuilder().build();
-    private final String apikey = "";
+    private final String apikey = "HIsUO9Tj20CJ8tURPbLMxlEBiFvqXwl0LFCenXsq2HWR0LAhhmdotFfqM2aLDSNp";
     private final HashMap<Integer, PetProfile> profiles = new HashMap<>();
 
     private String DOG = specieName;
@@ -37,8 +37,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
     private final String baseURL = "https://us-east-2.aws.data.mongodb-api.com/app/data-xfyvk/endpoint/data/v1/action/";
     private final RuntimeTypeAdapterFactory<PetProfile> petProfileTypeAdapterFactory;
     public PetProfileDataAccessObject(){
-        petProfileTypeAdapterFactory =  RuntimeTypeAdapterFactory.of(PetProfile.class, "specie").
-                registerSubtype(DogProfile.class, DOG);
+        petProfileTypeAdapterFactory =  RuntimeTypeAdapterFactory.of(PetProfile.class, "specie", true).
+                registerSubtype(DogProfile.class, DogProfile.SPECIE_NAME);
         ArrayList<PetProfile> petProfiles = retrieveAllProfiles();
         for(PetProfile profile : petProfiles){
             profiles.put(profile.getId(), profile);
@@ -58,7 +58,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw new IOException(String.valueOf(response));
+                throw new IOException(String.valueOf(response.body().string()));
             }
             return response.body().string();
         } catch (IOException e) {
@@ -75,9 +75,8 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     private String convertMongodMatchJsonFormat(PetProfile profile, String operation) {
         String profileStr = "";
-        if (profile.getSpecie().equals(DOG)){
-            profileStr = new Gson().toJson((DogProfile)profile);
-        }
+        profileStr = new Gson().toJson(profile);
+
 
         JSONObject profileJson = new JSONObject(profileStr);
         JSONObject dataLoadingJson = new JSONObject();

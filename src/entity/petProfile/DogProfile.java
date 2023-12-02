@@ -1,11 +1,9 @@
 package entity.petProfile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class DogProfile extends PetProfile {
-    public static final String specieName = "dog";
+    public static final String SPECIE_NAME = "dog";
    private boolean neuter;
    private boolean vaccinated;
    private String breed;

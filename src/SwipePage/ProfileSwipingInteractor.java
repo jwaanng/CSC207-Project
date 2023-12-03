@@ -15,5 +15,4 @@ public class ProfileSwipingInteractor {
     public PetProfile getNextProfile() {
         return profiles.poll();
     }
-
 }

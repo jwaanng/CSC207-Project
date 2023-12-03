@@ -39,16 +39,16 @@ public class FavPetDisplayView extends JPanel implements PropertyChangeListener 
             //TODO debugging
             System.out.println("unlike petProfile with id" + e.getActionCommand());
             id_to_PetProfile.get(Integer.parseInt(e.getActionCommand())).unlike();
-            //deleteController.execute(vm.getState().getUsername(), Integer.getInteger(e.getActionCommand()));
+            //deleteController.execute(vm.getState().getUsername(), Integer.parseInt(e.getActionCommand()));
         }
     };
     ;
     private final ActionListener viewProfileListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO debugging
+
             System.out.println("view petProfile with id" + e.getActionCommand());
-            //viewController.execute(Integer.getInteger(e.getActionCommand()));
+            viewController.execute(Integer.parseInt(e.getActionCommand()));
 
         }
     };

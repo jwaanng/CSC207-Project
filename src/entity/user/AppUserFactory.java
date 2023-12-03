@@ -5,6 +5,7 @@ package entity.user;
  */
 public class AppUserFactory {
 
+<<<<<<< HEAD
     /**
      * Creates a new instance of AppUser with the provided information.
      *
@@ -16,6 +17,11 @@ public class AppUserFactory {
      */
     public AppUser createAppUser(String username, String password, String address, String instagramUsername) {
         return new AppUser(username, password, address, instagramUsername);
+=======
+    public AppUser createAppUser(String username, String password, String address,String instagram ){
+        return new AppUser(username, password, address, instagram);
+
+>>>>>>> 0e5a9c58a3fe9df328499a5cc6f7b8bb67495f99
     }
 }
 

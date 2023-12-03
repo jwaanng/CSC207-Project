@@ -26,10 +26,12 @@ public class DisplayUserPresenter implements DisplayUserOB {
     public void prepareSuccessView(DisplayUserOPData outputData) {
         DisplayUserState currState = displayVM.getState();
         if (!outputData.username.isEmpty()) {
-            currState.setUsername(currState.getUsername());
+            currState.setUsername(outputData.username);
+            displayVM.setState(currState);
         }
         if (!(outputData.photo == null)) {
             currState.setPhoto(outputData.photo);
+            displayVM.setState(currState);
         }
         displayVM.setState(currState);
         displayVM.firePropertyChanged();

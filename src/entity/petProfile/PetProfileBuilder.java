@@ -20,6 +20,11 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T, P>, P ext
     int age;
 
     /**
+     * The id of the pet.
+     */
+    final int petid;
+
+    /**
      * The sex of the pet.
      */
     String sex;
@@ -58,9 +63,11 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T, P>, P ext
      * Constructs a PetProfileBuilder with the specified pet owner's name.
      *
      * @param petOwnerName The name of the pet owner.
+     * @param nextAvailableId the next available id
      */
-    public PetProfileBuilder(String petOwnerName) {
+    PetProfileBuilder(String petOwnerName, int nextAvailableId){
         this.petOwnerName = petOwnerName;
+        this.petid = nextAvailableId;
     }
 
     /**

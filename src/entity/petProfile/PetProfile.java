@@ -8,50 +8,6 @@ import java.util.List;
  * The PetProfile class represents a profile for a pet, providing basic information and behavior.
  */
 public abstract class PetProfile {
-
-    /**
-     * Identifier for the pet's name.
-     */
-    public static final String NAMEIDENTIFIER = "PetName";
-
-    /**
-     * Identifier for the pet's age.
-     */
-    public static final String AGEIDENTIFIER = "Age";
-
-    /**
-     * Identifier for the pet's sex.
-     */
-    public static final String SEXIDENTIFIER = "Sex";
-
-    /**
-     * Identifier for the pet's species.
-     */
-    public static final String SPECIEIDENTIFIER = "Specie";
-
-    /**
-     * Identifier for the pet owner's name.
-     */
-    public static final String PETOWNERNAMEIDENTIFIER = "Owner";
-
-    /**
-     * Identifier for the general description of the pet.
-     */
-    public static final String GENERALDESCRIDENTIFIER = "General";
-
-    /**
-     * Identifier for the pet's likes description.
-     */
-    public static final String LIKEDESCRIDTENFITIER = "Like";
-
-    /**
-     * Identifier for the pet's temperament description.
-     */
-    public static final String TEMPERDESCREIDENTIFIER = "Temper";
-
-    /**
-     * Identifier for male pets.
-     */
     public static final String MALE = "Male";
 
     /**
@@ -74,10 +30,6 @@ public abstract class PetProfile {
      */
     public static final String SMALLPET = "Small";
 
-    /**
-     * The next available ID for assigning to pets.
-     */
-    private static int nextId = 0;
 
     /**
      * The unique identifier for the pet.
@@ -140,8 +92,8 @@ public abstract class PetProfile {
      * @param builder The builder used to construct the PetProfile.
      */
     protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
-        this.petId = nextId;
-        nextId++;
+
+        this.petId = builder.petid;
         this.petOwnerName = builder.petOwnerName;
         this.age = builder.age;
         this.name = builder.name;
@@ -285,7 +237,7 @@ public abstract class PetProfile {
      * @param likeDescr The new likes description of the pet.
      */
     public void setLikeDescr(String likeDescr) {
-        likeDescr = likeDescr;
+        this.likeDescr = likeDescr;
     }
 
     /**
@@ -303,7 +255,7 @@ public abstract class PetProfile {
      * @param temperDescr The new temperament description of the pet.
      */
     public void setTemperDescr(String temperDescr) {
-        temperDescr = temperDescr;
+        this.temperDescr = temperDescr;
     }
     /**
      * Gets the public status of the pet's profile.
@@ -355,18 +307,6 @@ public abstract class PetProfile {
         return petId;
     }
 
-    //    HashMap<String,String> defaultDisplayProfile(){
-    //        HashMap<String, String> info = new HashMap<>();
-    //        info.put(NAMEIDENTIFIER, name);
-    //        info.put(AGEIDENTIFIER, String.valueOf(age));
-    //        info.put(SEXIDENTIFIER, String.valueOf(sex));
-    //        info.put(SPECIEIDENTIFIER, specie);
-    //        info.put(PETOWNERNAMEIDENTIFIER, petOwnerName);
-    //        info.put(GENERALDESCRIDENTIFIER, generalDescr);
-    //        info.put(LIKEDESCRIDTENFITIER, likeDescr);
-    //        info.put(TEMPERDESCREIDENTIFIER, temperDescr);
-    //        return  info;
-    //    }
 
     /**
      * Gets additional information specific to the pet for display purposes.

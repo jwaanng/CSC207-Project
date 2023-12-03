@@ -1,22 +1,14 @@
 package entity.petProfile;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * The DogProfile class represents a profile for a dog, extending the PetProfile class.
  */
 public class DogProfile extends PetProfile {
-
-    /**
-     * The species name for dogs.
-     */
-    public static final String specieName = "dog";
+    public static final String SPECIE_NAME = "dog";
     private boolean neuter;
-
     private boolean vaccinated;
-
     private String breed;
 
     /**
@@ -24,18 +16,12 @@ public class DogProfile extends PetProfile {
      *
      * @param builder The builder used to construct the DogProfile.
      */
-    public DogProfile(DogProfileBuilder builder) {
-        super(builder);
-        this.neuter = builder.neuter;
-        this.vaccinated = builder.vaccinated;
-        this.breed = builder.breed;
-    }
-
-    /**
-     * Checks if the dog is neutered.
-     *
-     * @return True if the dog is neutered, false otherwise.
-     */
+  public DogProfile(DogProfileBuilder builder){
+      super(builder);
+      this.neuter = builder.neuter;
+      this.vaccinated = builder.vaccinated;
+      this.breed = builder.breed;
+  }
     public boolean isNeuter() {
         return neuter;
     }

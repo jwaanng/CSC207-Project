@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * What user sees as the login page
+ */
 public class LoginView extends JPanel implements PropertyChangeListener {
     private JPanel loginPanel;
     private JLabel loginLabel;
@@ -16,10 +19,14 @@ public class LoginView extends JPanel implements PropertyChangeListener {
     private JLabel passwordLabel;
     private JButton enterButton;
     private LoginViewModel loginViewModel;
-
-
     private final LoginController loginController;
 
+    /**
+     * Construct a new {@code LoginView} object
+     *
+     * @param loginViewModel  the {@link LoginViewModel} that stores all information
+     * @param loginController the {@link  LoginController} that initiates the login usecase
+     */
     public LoginView(LoginViewModel loginViewModel, LoginController loginController) {
         // constructor
         setMinimumSize(new Dimension(500, 450));

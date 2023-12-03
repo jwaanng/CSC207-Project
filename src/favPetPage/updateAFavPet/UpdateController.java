@@ -8,7 +8,7 @@ public class UpdateController {
     private final UpdateIB uci;
 
     /**
-     * Construct an UpdateController
+     * Construct an UpdateController object
      *
      * @param updateInputBoundary an usecase interactor for the updateAFavPet useCase
      */

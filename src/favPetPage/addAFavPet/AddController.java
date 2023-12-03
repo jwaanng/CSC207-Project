@@ -7,7 +7,7 @@ public class AddController {
     private final AddIB uci;
 
     /**
-     * Construct an AddController
+     * Construct an AddController object
      *
      * @param addAFavPetInputBoundary an usecase interactor for the addAFavPet useCase
      */

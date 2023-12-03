@@ -7,7 +7,7 @@ public class DeleteController {
     private final DeleteIB uci;
 
     /**
-     * Construct an DeleteController
+     * Construct an DeleteController object
      *
      * @param deleteAFavoritePetInputBoundary an usecase interactor for the deleteAFavPet usecase
      */

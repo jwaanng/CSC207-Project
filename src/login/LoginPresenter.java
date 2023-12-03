@@ -10,6 +10,8 @@ import viewModel.ViewModelManager;
 /**
  * The {@code LoginPresenter} class handles the presentation logic for the login feature, coordinating with
  * various view models and managing the transition between different states in the application.
+ * <p>
+ * An implementation of {@link  LoginOB}
  */
 
 public class LoginPresenter implements LoginOB {
@@ -24,10 +26,12 @@ public class LoginPresenter implements LoginOB {
     /**
      * Constructs an {@code LGPresenter} instance with the specified view models and manager.
      *
-     * @param loginViewModel         The view model for the login feature.
-     * @param favPetPageViewModel    The view model for the favorite pet page feature.
-     * @param manager                The manager for handling different view models in the application.
-     * @param configProfileViewModel The view model for the configuration profile feature.
+     * @param loginViewModel         The {@link LoginViewModel} that stores all related
+     *                               information for the login feature.
+     * @param favPetPageViewModel    The  {@link FavPetPageViewModel} that stores all related
+     *                               information for the favorite pet page feature
+     * @param manager                The {@link ViewModelManager} for handling different view models in the application.
+     * @param configProfileViewModel The viewmodel for the configuration profile feature.
      */
     public LoginPresenter(LoginViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel,
                           ViewModelManager manager,

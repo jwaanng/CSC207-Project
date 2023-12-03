@@ -6,10 +6,8 @@ import configProfile.ConfigProfilePresenter;
 import configProfile.ConfigProfileState;
 import configProfile.ConfigProfileViewModel;
 import dataAcessObject.CommonUserDataAccessObject;
-import dataAcessObject.UserDataAcessInterface;
 import entity.user.AppUser;
-import login.LGIPData;
-import login.LGState;
+
 import usecase.configProfile.ConfigProfileInteractor;
 import viewModel.ViewModelManager;
 

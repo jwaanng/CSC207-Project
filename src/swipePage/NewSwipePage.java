@@ -1,12 +1,8 @@
 package swipePage;
 import dataAcessObject.CommonUserDataAccessObject;
 import dataAcessObject.PetProfileDataAccessObject;
-import dataAcessObject.UserDataAcessInterface;
-import entity.petProfile.DogProfile;
-import entity.petProfile.DogProfileBuilder;
+import dataAcessObject.UserDataAccessInterface;
 import entity.petProfile.PetProfile;
-import entity.petProfile.PetProfileBuilderFactory;
-import entity.user.AppUser;
 import entity.user.AppUserFactory;
 
 import javax.swing.*;
@@ -149,7 +145,7 @@ public class NewSwipePage extends JFrame {
 
     public static void main(String[] args) {
         // Sample PetProfiles delete later.
-        UserDataAcessInterface dao = new CommonUserDataAccessObject();
+        UserDataAccessInterface dao = new CommonUserDataAccessObject();
         PetProfileDataAccessObject daop = new PetProfileDataAccessObject();
         AppUserFactory userFactory = new AppUserFactory();
 
@@ -166,7 +162,7 @@ public class NewSwipePage extends JFrame {
         profiles.add(GregDogAlex);
         profiles.add(MirandaDogNemo);
 
-        SwipePage.ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
+        swipePage.ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
         PetProfilePresenter presenter = new PetProfilePresenter();
         NewSwipePage view = new NewSwipePage(null);
 

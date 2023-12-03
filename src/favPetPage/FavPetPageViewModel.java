@@ -76,10 +76,13 @@ public class FavPetPageViewModel extends ViewModel {
     public NoFavPetDisplayViewModel getNoPetDisplayViewModel() {
         return noPetDisplay;
     }
+
     /**
      * get the ViewThisViewModel
      */
-    public ViewThisViewModel getViewThisViewModel(){ return viewPet;}
+    public ViewThisViewModel getViewThisViewModel() {
+        return viewPet;
+    }
 
     /**
      * update the display of pet profiles when a user redirects to the favorite pet page

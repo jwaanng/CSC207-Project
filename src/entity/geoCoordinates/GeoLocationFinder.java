@@ -33,9 +33,9 @@ public class GeoLocationFinder {
      *
      * @param address The address for which to retrieve the geographical coordinates.
      * @return A GeoCoordinate object representing the latitude and longitude of the given address.
-     * @throws IOException If an I/O error occurs.
+     * @throws IOException          If an I/O error occurs.
      * @throws InterruptedException If the operation is interrupted.
-     * @throws ApiException If an error occurs while retrieving the coordinates from the Google Maps API.
+     * @throws ApiException         If an error occurs while retrieving the coordinates from the Google Maps API.
      */
     public GeoCoordinate getAddressGeoCoordinate(String address) throws IOException, InterruptedException, ApiException {
         GeocodingResult[] results = GeocodingApi.geocode(context, address).await();

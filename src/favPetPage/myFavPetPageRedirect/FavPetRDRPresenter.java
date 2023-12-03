@@ -2,9 +2,10 @@ package favPetPage.myFavPetPageRedirect;
 
 import favPetPage.FavPetPageViewModel;
 import viewModel.ViewModelManager;
-import redirect.PageRedirectViewModel;
 
 /**
+ * A concrete implementation of {@link FavPetRDROB}
+ * <p>
  * An implementation of the myFavPetPageRedirect usecase presenter
  * Tasks with setting up redirecting the user to the favorite pet page
  */
@@ -13,11 +14,12 @@ public class FavPetRDRPresenter implements FavPetRDROB {
     private final FavPetPageViewModel myFPPvm;
 
     /**
-     * Construct an FavPetRDRPresenter
+     * Construct an FavPetRDRPresenter object
      *
-     * @param favPetPageViewModel a viewmodel for the myFavPetPageRedirect usecase. This is called by the
-     *                            FavPetRDRPresenter to redirect user
-     * @param manager             manager for all the main page, tasks with switching the main pages that the user sees
+     * @param favPetPageViewModel a viewmodel for the myFavPetPageRedirect usecase.
+     *                            <p>
+     *                            This is called by the FavPetRDRPresenter to redirect user
+     * @param manager             {@link ViewModelManager} for all the main page, tasks with switching the main pages that the user sees
      *                            ;
      */
     public FavPetRDRPresenter(FavPetPageViewModel favPetPageViewModel, ViewModelManager manager) {

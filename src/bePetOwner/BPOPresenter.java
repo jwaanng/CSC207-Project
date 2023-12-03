@@ -2,7 +2,7 @@ package bePetOwner;
 
 /**
  * Presenter class for the Be Pet Owner (BPO) feature.
- *
+ * <p>
  * This class serves as a presenter in the Model-View-Presenter (MVP) part of clean CA architecture for the
  * Be Pet Owner feature. It is responsible for preparing the view based on the outcomes of the
  * Be Pet Owner feature, such as success or failure.
@@ -22,7 +22,7 @@ public class BPOPresenter implements BPOOB {
 
     /**
      * Prepares the view for a successful execution of the Be Pet Owner feature.
-     *
+     * <p>
      * Implementing classes should define the specific actions to be taken when the Be Pet Owner
      * feature is executed successfully.
      */
@@ -33,7 +33,7 @@ public class BPOPresenter implements BPOOB {
 
     /**
      * Prepares the view for a failed execution of the Be Pet Owner feature.
-     *
+     * <p>
      * Implementing classes should define the specific actions to be taken when the Be Pet Owner
      * feature encounters an error or fails to execute.
      *

@@ -26,15 +26,16 @@ public class AppUser {
     /**
      * Default constructor for AppUser.
      */
-    public AppUser() {}
+    public AppUser() {
+    }
 
     /**
      * Parameterized constructor for creating an AppUser with essential information.
      *
-     * @param username           The username of the user.
-     * @param password           The password of the user.
-     * @param address            The address of the user.
-     * @param instagramUsername  The Instagram username of the user.
+     * @param username          The username of the user.
+     * @param password          The password of the user.
+     * @param address           The address of the user.
+     * @param instagramUsername The Instagram username of the user.
      */
     public AppUser(String username, String password, String address, String instagramUsername) {
         this.username = username;
@@ -66,9 +67,13 @@ public class AppUser {
         return bio;
     }
 
-    public String getPreferredSex() { return preferredSex; }
+    public String getPreferredSex() {
+        return preferredSex;
+    }
 
-    public String getPreferredSize() {return preferredSize; }
+    public String getPreferredSize() {
+        return preferredSize;
+    }
 
     public String getAddress() {
         return address;
@@ -98,14 +103,15 @@ public class AppUser {
         this.address = address;
     }
 
-    public boolean isPetFinder(){
+    public boolean isPetFinder() {
         return roles.contains(PETFINDER);
     }
 
-    public boolean isPetOwner(){
+    public boolean isPetOwner() {
         return roles.contains(PETOWNER);
     }
-    public boolean profileIsFav(PetProfile profile){
+
+    public boolean profileIsFav(PetProfile profile) {
         return favPet.contains(profile.getId());
     }
 
@@ -117,14 +123,15 @@ public class AppUser {
         this.instagramUsername = instagramUsername;
     }
 
-    public void createMyPetProfile(int petId){
+    public void createMyPetProfile(int petId) {
         myPet.add(petId);
     }
-    public void deleteMyPetProfile(int petId){
+
+    public void deleteMyPetProfile(int petId) {
         myPet.remove(petId);
     }
 
-    public void addFavProfile(int petId){
+    public void addFavProfile(int petId) {
         favPet.add(petId);
     }
 
@@ -133,28 +140,30 @@ public class AppUser {
      *
      * @param petId id of the pet needed to be deleted
      */
-    public void deleteFavProfile(int petId){
+    public void deleteFavProfile(int petId) {
         /*petId must be in favPet*/
         favPet.remove(petId);
     }
+
     /**
      * Gets roles
      *
      * @return a list of roles
      */
-    public List<String> getRoles(){
+    public List<String> getRoles() {
         return new ArrayList<String>(roles);
     }
+
     /**
      * Gets list of fav pets
      *
      * @return a list of fav pets
      */
-    public List<Integer> getFavPet(){
+    public List<Integer> getFavPet() {
         return new ArrayList<>(this.favPet);
     } //new copy
 
-    public List<Integer> getMyPet(){
-        return  new ArrayList<>(this.myPet);
+    public List<Integer> getMyPet() {
+        return new ArrayList<>(this.myPet);
     }
 }

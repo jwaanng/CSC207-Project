@@ -8,7 +8,7 @@ import java.beans.PropertyChangeSupport;
 
 /**
  * View Model class for the user signup feature.
- *
+ * <p>
  * This class extends the {@link ViewModel} class and is responsible for representing the state and behavior
  * associated with the user signup feature in the user interface. It provides constants for labels,
  * manages the state of the view, and notifies changes to registered observers (listeners).

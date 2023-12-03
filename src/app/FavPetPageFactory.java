@@ -3,7 +3,7 @@ package app;
 import browsePage.BrowsePageViewModel;
 import dataAcessObject.PetProfileDataAccessInterface;
 import dataAcessObject.ProfilePictureDataAccessInterface;
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.browsePet.BrowseController;
@@ -22,36 +22,42 @@ import favPetPage.viewThisPetProfile.ViewThisPresenter;
 import favPetPage.viewThisPetProfile.ViewThisUCI;
 import viewModel.ViewModelManager;
 
+/**
+ * This is a utility class for generating the signup page
+ */
 public class FavPetPageFactory {
     /**
      * Factory method to create an instance of {@link FavPetPageView}.
-     *
+     * <p>
      * This method initializes and configures the necessary components for the Favorite Pet Page,
      * such as controllers and presenters for handling actions like deleting a favorite pet,
      * viewing a pet's profile, and redirecting to the My Favorite Pet Page. It also sets up the
      * BrowsePet cycle for browsing pets.
      *
-     * @param manager                    The {@link ViewModelManager} responsible for managing view models.
-     * @param favPetPageViewModel        The {@link FavPetPageViewModel} associated with the Favorite Pet Page.
-     * @param userDataAcessInterface     The {@link UserDataAcessInterface} for accessing user data.
-     * @param petProfileDataAccessInterface The {@link PetProfileDataAccessInterface} for accessing pet profile data.
-     * @return                           An instance of {@link FavPetPageView} configured with the necessary components.
-
+     * @param manager                           The {@link ViewModelManager} responsible for managing view models.
+     * @param favPetPageViewModel               The {@link FavPetPageViewModel} associated with the Favorite Pet Page.
+     * @param userDataAccessInterface           A data access object implementing  {@link UserDataAccessInterface}
+     *                                          for accessing user data.
+     * @param petProfileDataAccessInterface     A data access object implementing  {@link PetProfileDataAccessInterface}
+     *                                          for accessing pet profile data.
+     * @param profilePictureDataAccessInterface A data access object implementing  {@link ProfilePictureDataAccessInterface}
+     *                                          for accessing profile picture data for both user and pet profiles
+     * @return An instance of {@link FavPetPageView} configured with the necessary components.
      */
     static public FavPetPageView createFavPetPage(
             ViewModelManager manager, FavPetPageViewModel favPetPageViewModel,
-            UserDataAcessInterface userDataAcessInterface,
+            UserDataAccessInterface userDataAccessInterface,
             PetProfileDataAccessInterface petProfileDataAccessInterface,
-            ProfilePictureDataAccessInterface profilePictureDataAccessInterface){
+            ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
 
         //delete fav pet cycle
         DeletePresenter deletePresenter = new DeletePresenter(favPetPageViewModel.getDeleteFavPetViewModel());
-        DeleteIB dfpUci = new DeleteUCI(deletePresenter,userDataAcessInterface);
+        DeleteIB dfpUci = new DeleteUCI(deletePresenter, userDataAccessInterface);
         DeleteController deleteController = new DeleteController(dfpUci);
 
         //view this pet cycle
         ViewThisPresenter viewThisPresenter = new ViewThisPresenter(favPetPageViewModel.getViewThisViewModel());
-        ViewThisIB vtUci = new ViewThisUCI(viewThisPresenter, userDataAcessInterface, petProfileDataAccessInterface,
+        ViewThisIB vtUci = new ViewThisUCI(viewThisPresenter, userDataAccessInterface, petProfileDataAccessInterface,
                 profilePictureDataAccessInterface);
         ViewThisController viewThisController = new ViewThisController(vtUci);
 

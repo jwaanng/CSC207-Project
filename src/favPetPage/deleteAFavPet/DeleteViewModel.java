@@ -15,7 +15,7 @@ public class DeleteViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     /**
-     * Construct a new AddViewModel with preassigned view name
+     * Construct a new AddViewModel object with preassigned view name
      */
     public DeleteViewModel() {
         super("fav pet delete");

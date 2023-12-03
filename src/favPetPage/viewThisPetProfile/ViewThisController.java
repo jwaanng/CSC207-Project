@@ -8,7 +8,7 @@ public class ViewThisController {
     private ViewThisIB uci;
 
     /**
-     * Construct an AddController
+     * Construct an ViewThisController object
      *
      * @param viewThisInputBoundary an usecase interactor for viewThisPetProfile useCase
      */

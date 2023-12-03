@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 /**
- * The {@code LGViewModel} class represents the view model for the login feature,
+ * The {@code LoginViewModel} class represents the view model for the login feature,
  * providing labels for UI elements, managing the state, and notifying listeners
  * of state changes.
  */
@@ -23,7 +23,7 @@ public class LoginViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     /**
-     * Constructs an {@code LGViewModel} instance with the specified name.
+     * Constructs an {@code LoginViewModel} instance with the specified name.
      */
     public LoginViewModel() {
         super("log in");

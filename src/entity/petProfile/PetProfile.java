@@ -1,8 +1,6 @@
 package entity.petProfile;
 
-import javax.swing.JPanel;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * The PetProfile class represents a profile for a pet, providing basic information and behavior.
@@ -91,7 +89,7 @@ public abstract class PetProfile {
      *
      * @param builder The builder used to construct the PetProfile.
      */
-    protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?,?>, ? extends PetProfile> builder){
+    protected PetProfile(PetProfileBuilder<? extends PetProfileBuilder<?, ?>, ? extends PetProfile> builder) {
 
         this.petId = builder.petid;
         this.petOwnerName = builder.petOwnerName;
@@ -113,7 +111,9 @@ public abstract class PetProfile {
      *
      * @return The species of the pet.
      */
-    public String getSpecie(){return specie;}
+    public String getSpecie() {
+        return specie;
+    }
 
     /**
      * Gets the name of the pet owner.
@@ -172,14 +172,14 @@ public abstract class PetProfile {
     /**
      * Sets the sex of the pet to female.
      */
-    public void setFemale(){
+    public void setFemale() {
         this.sex = FEMALE;
     }
 
     /**
      * Sets the sex of the pet to male.
      */
-    public void setMale(){
+    public void setMale() {
         this.sex = MALE;
     }
 
@@ -202,14 +202,14 @@ public abstract class PetProfile {
     /**
      * Sets the size category of the pet to large.
      */
-    public void setLargeSize(){
+    public void setLargeSize() {
         this.size = LARGEPET;
     }
 
     /**
      * Sets the size category of the pet to small.
      */
-    public void setSmallSize(){
+    public void setSmallSize() {
         this.size = SMALLPET;
     }
 
@@ -218,7 +218,7 @@ public abstract class PetProfile {
      *
      * @param photo The photo to be deleted.
      */
-    public void deletedPhoto(String photo){
+    public void deletedPhoto(String photo) {
         // Implementation details would go here.
     }
 
@@ -257,6 +257,7 @@ public abstract class PetProfile {
     public void setTemperDescr(String temperDescr) {
         this.temperDescr = temperDescr;
     }
+
     /**
      * Gets the public status of the pet's profile.
      *
@@ -269,14 +270,14 @@ public abstract class PetProfile {
     /**
      * Sets the profile as public.
      */
-    public void setProfilePublic(){
+    public void setProfilePublic() {
         isPublic = true;
     }
 
     /**
      * Sets the profile as private.
      */
-    public void setProfilePrivate(){
+    public void setProfilePrivate() {
         isPublic = false;
     }
 

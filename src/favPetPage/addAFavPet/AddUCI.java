@@ -5,31 +5,36 @@ import entity.petProfile.PetProfile;
 import entity.user.AppUser;
 
 /**
- * An implementation of a addAFavPet usecase interactor that adds a pet profile into a user's liked list
+ * A concrete implementation of {@link AddIB}
+ * <p>
+ * A addAFavPet usecase interactor that adds a pet profile into a user's liked list
  */
 public class AddUCI implements AddIB {
     private final AddOB presenter;
-    private final UserDataAcessInterface dao;
+    private final UserDataAccessInterface dao;
     private final PetProfileDataAccessInterface daop;
     private final ProfilePictureDataAccessInterface daoPic;
 
     /**
      * Construct a new usecase interactor
      *
-     * @param addAFavPetOutPutBoundary          a presenter for the addAFavPet usecase that is called by the
-     *                                         interactor to finish usecase
-     * @param userDataAcessInterface            a data access object that can interact with the database that stores all users
-     * @param petProfileDataAccessInterface     a data access object that can interact with the database that stores all
+     * @param addAFavPetOutPutBoundary          a presenter implementing {@link AddOB}that is called by the
+     *                                          interactor to finish usecase
+     * @param userDataAccessInterface           a data access object implementing {@link UserDataAccessInterface}
+     *                                          that can interact with the database that stores all users
+     * @param petProfileDataAccessInterface     a data access object implementing {@link PetProfileDataAccessInterface}
+     *                                          that can interact with the database that stores all
      *                                          pet profiles
-     * @param profilePictureDataAccessInterface a data access object that can interact with the database that stores
+     * @param profilePictureDataAccessInterface a data access object implementing {@link ProfilePictureDataAccessInterface}
+     *                                          that can interact with the database that stores
      *                                          all profile photos of user and pet profiles
      */
     public AddUCI(AddOB addAFavPetOutPutBoundary,
-                  UserDataAcessInterface userDataAcessInterface,
+                  UserDataAccessInterface userDataAccessInterface,
                   PetProfileDataAccessInterface petProfileDataAccessInterface,
                   ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         this.presenter = addAFavPetOutPutBoundary;
-        this.dao = userDataAcessInterface;
+        this.dao = userDataAccessInterface;
         this.daop = petProfileDataAccessInterface;
         this.daoPic = profilePictureDataAccessInterface;
     }

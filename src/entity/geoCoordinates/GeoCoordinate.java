@@ -19,7 +19,8 @@ public class GeoCoordinate {
     /**
      * Constructs a new GeoCoordinate with default latitude and longitude values (0.0, 0.0).
      */
-    public GeoCoordinate(){}
+    public GeoCoordinate() {
+    }
 
     /**
      * Constructs a new GeoCoordinate with the specified latitude and longitude.
@@ -27,7 +28,7 @@ public class GeoCoordinate {
      * @param lat The latitude of the GeoCoordinate.
      * @param lng The longitude of the GeoCoordinate.
      */
-    public GeoCoordinate(double lat, double lng){
+    public GeoCoordinate(double lat, double lng) {
         this.lat = lat;
         this.lng = lng;
     }

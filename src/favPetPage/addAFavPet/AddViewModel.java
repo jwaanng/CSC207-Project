@@ -17,7 +17,7 @@ public class AddViewModel extends ViewModel {
     private AddState state = new AddState();
 
     /**
-     * Construct a new AddViewModel with preassigned view name
+     * Construct a new AddViewModel object with preassigned view name
      */
     public AddViewModel() {
         super("fav pet add update ");

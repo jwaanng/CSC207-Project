@@ -3,7 +3,6 @@ package login;
 import java.awt.*;
 import java.util.HashMap;
 
-
 public class LoginOPData {
 
 /**

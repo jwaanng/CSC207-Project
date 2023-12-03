@@ -14,7 +14,7 @@ public class UpdateViewModel extends ViewModel {
     private UpdateState state = new UpdateState();
 
     /**
-     * Construct a new AddViewModel with preassigned view name
+     * Construct a new UpdateViewModel object with preassigned view name
      */
     public UpdateViewModel() {
         super("update");

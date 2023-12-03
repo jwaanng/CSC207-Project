@@ -1,17 +1,17 @@
 package entity.petProfile;
 
-import entity.user.AppUser;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 
+/**
+ * a class that cna get the next available id for a pet profile
+ */
 public class IDTracker {
     private final String collection = "petIDTracker";
 
@@ -57,7 +57,7 @@ public class IDTracker {
 
     }
 
-    int getNextAvailableID(){
+    int getNextAvailableID() {
         JSONObject dataLoadingJson = new JSONObject();
         JSONObject compFilt = new JSONObject();
         compFilt.put("value", "nextPetId");
@@ -66,7 +66,7 @@ public class IDTracker {
         dataLoadingJson.put("dataSource", dataSource);
         dataLoadingJson.put("filter", compFilt);
         JSONObject compUpdate = new JSONObject("{\"$inc\": {\n" +
-               "\"nextId\": 1 }}");
+                "\"nextId\": 1 }}");
         dataLoadingJson.put("update", compUpdate);
         RequestBody body = RequestBody.create(dataLoadingJson.toString().getBytes(StandardCharsets.UTF_8));
         Request request = new Request.Builder().

@@ -3,15 +3,11 @@ package favPetPage.innerviews;
 import favPetPage.displayUser.DisplayUserState;
 import favPetPage.displayUser.DisplayUserViewModel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+
 
 /**
  * What user see for their information
@@ -24,7 +20,7 @@ public class DisplayUserView extends JPanel implements PropertyChangeListener {
     private final JLabel appLabel;
 
     /**
-     * Construct a new DisplayUserView
+     * Construct a new DisplayUserView object
      *
      * @param displayUserViewModel the DisplayUserViewModel that stores all the information this view needs to display
      */
@@ -76,12 +72,12 @@ public class DisplayUserView extends JPanel implements PropertyChangeListener {
             username.setText(state.getUsername());
         }  //the only other reason evt is fired is if the profile photo has changed
         if (!(state.getPhoto() == null)) {
-                profile.setIcon(new ImageIcon(state.getPhoto().getScaledInstance(50, 50,
-                        Image.SCALE_DEFAULT)));
-            }
+            profile.setIcon(new ImageIcon(state.getPhoto().getScaledInstance(50, 50,
+                    Image.SCALE_DEFAULT)));
+        }
         revalidate();
         repaint();
-        }
+    }
 }
 
 

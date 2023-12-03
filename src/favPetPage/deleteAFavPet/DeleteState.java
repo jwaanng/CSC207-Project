@@ -11,7 +11,8 @@ public class DeleteState {
     private ArrayList<Integer> ids = new ArrayList<>();
 
     /**
-     * Construct a DeleteState from a copy
+     * Construct a DeleteState object from a copy
+     *
      * @param copy DeleteState copy
      */
     public DeleteState(DeleteState copy) {
@@ -19,7 +20,7 @@ public class DeleteState {
     }
 
     /**
-     * Construct an empty DeleteState
+     * Construct an empty DeleteState object
      */
     public DeleteState() {
     }

@@ -1,8 +1,8 @@
 package favPetPage.deleteAFavPet;
 
-import favPetPage.FavPetPageViewModel;
-
 /**
+ * A concrete implementation of {@link DeleteOB}
+ * <p>
  * An implementation of the deleteAFavPet usecase presenter
  * Tasks with sending information of the unliked pet profiles that need to be disposed in user's screen
  */
@@ -10,9 +10,11 @@ public class DeletePresenter implements DeleteOB {
     private final DeleteViewModel vm;
 
     /**
-     * Construct an AddPresenter
+     * Construct an AddPresenter object
      *
-     * @param deleteViewModel viewmodel for the deleteAFavPet usecase. This is called by the DeletePresenter
+     * @param deleteViewModel viewmodel for the deleteAFavPet usecase.
+     *                        <p>
+     *                        This is called by the DeletePresenter
      *                        to update information of pet profiles that needed to be removed from the screen
      */
     public DeletePresenter(DeleteViewModel deleteViewModel) {

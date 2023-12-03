@@ -4,6 +4,8 @@ import browsePage.BrowsePageViewModel;
 import viewModel.ViewModelManager;
 
 /**
+ * A concrete implementation of {@link BrowseOB}
+ * <p>
  * An implementation of the browsePet usecase presenter
  * Tasks with notifying the frontend to switch screen to the page for browsing pets
  */
@@ -13,11 +15,13 @@ public class BrowsePresenter implements BrowseOB {
     private final BrowsePageViewModel vm;
 
     /**
-     * Construct an BrowsePresenter
+     * Construct an BrowsePresenter object
      *
-     * @param browsePageViewmodel a viewmodel for the browsePet usecase. This is called by the BrowsePresenter to
+     * @param browsePageViewmodel a viewmodel for the browsePet usecase.
+     *                            <p>
+     *                            This is called by the BrowsePresenter to
      *                            realize switching view
-     * @param manager             a manager that manages which main page of the application to be displayed
+     * @param manager             {@link ViewModelManager} that manages which main page of the application to be displayed
      */
     public BrowsePresenter(BrowsePageViewModel browsePageViewmodel, ViewModelManager manager) {
         this.manager = manager;
@@ -25,7 +29,7 @@ public class BrowsePresenter implements BrowseOB {
     }
 
     /**
-     * Switch the main page to browse page
+     * Switch to browse page
      */
     @Override
     public void prepareSuccessView() {

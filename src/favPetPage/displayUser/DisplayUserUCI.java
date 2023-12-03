@@ -5,6 +5,8 @@ import dataAcessObject.ProfilePictureDataAccessInterface;
 import java.awt.Image;
 
 /**
+ * A concrete implementation of {@link DisplayUserIB}
+ * <p>
  * An implementation of a displayUser usecase interactor that displays a user's name and profile picture
  */
 public class DisplayUserUCI implements DisplayUserIB {

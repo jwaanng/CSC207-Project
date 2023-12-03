@@ -1,6 +1,8 @@
 package favPetPage.displayUser;
 
 /**
+ * A concrete implementation of the {@link DisplayUserOB}
+ * <p>
  * An implementation of the displayUser usecase presenter
  * Tasks with sending information related to a user
  */
@@ -8,9 +10,11 @@ public class DisplayUserPresenter implements DisplayUserOB {
     private final DisplayUserViewModel displayVM;
 
     /**
-     * Construct a DisplayUserPresenter
+     * Construct a DisplayUserPresenter object
      *
-     * @param displayUserViewModel a viewmodel for the diplayUser usecase. This is called by the DisplayUserPresenter
+     * @param displayUserViewModel a viewmodel for the diplayUser usecase.
+     *                             <p>
+     *                             This is called by the DisplayUserPresenter
      *                             to store information that a user screen should see;
      */
     public DisplayUserPresenter(DisplayUserViewModel displayUserViewModel) {

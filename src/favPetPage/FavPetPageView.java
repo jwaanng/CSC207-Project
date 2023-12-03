@@ -6,7 +6,6 @@ import favPetPage.deleteAFavPet.DeleteController;
 import favPetPage.deleteAFavPet.DeleteViewModel;
 import favPetPage.innerviews.*;
 import favPetPage.updateAFavPet.UpdateViewModel;
-import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import favPetPage.viewThisPetProfile.ViewThisController;
 import favPetPage.addAFavPet.AddViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
@@ -32,12 +31,12 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
     /**
      * Construct a new favorite pet page (FavPEtPageView)
      *
-     * @param favPetPageViewModel   the FavPetPageViewModel that stores all the information this view needs to display
-     * @param deletePetController   the DeletePetController needed for user to initialize
+     * @param favPetPageViewModel   the {@link FavPetPageViewModel} that stores all the information this view needs to display
+     * @param deletePetController   the {@link DeleteController }needed for user to initialize
      *                              the deleteAFavPet usecase(deleting a unliked favorite pet from their liked list)
-     * @param viewThisPetController the ViewThisPetController needed for user to initialize the viewThisPetProfile
+     * @param viewThisPetController the {@link ViewThisController} needed for user to initialize the viewThisPetProfile
      *                              usecase(to see the details of a liked pet profile in a separate window)
-     * @param browsePetController   the BrowsePetController needed for user to initialize the browsePet usecase(to
+     * @param browsePetController   the {@link BrowseController} needed for user to initialize the browsePet usecase(to
      *                              redirect user to the browse page)
      */
     public FavPetPageView(FavPetPageViewModel favPetPageViewModel,

@@ -3,7 +3,7 @@ package entity.petProfile;
 /**
  * The PetProfileBuilderFactory class is responsible for creating instances of pet profile builders.
  */
-public class PetProfileBuilderFactory{
+public class PetProfileBuilderFactory {
     /*Must be valid system registered*/
     IDTracker idGenerator = new IDTracker();
 
@@ -14,6 +14,6 @@ public class PetProfileBuilderFactory{
      * @return A DogProfileBuilder instance.
      */
     public DogProfileBuilder createDogProfile(String petOwnerName) {
-        return new DogProfileBuilder(petOwnerName,idGenerator.getNextAvailableID());
+        return new DogProfileBuilder(petOwnerName, idGenerator.getNextAvailableID());
     }
 }

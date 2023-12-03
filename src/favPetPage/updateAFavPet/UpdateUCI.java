@@ -1,11 +1,13 @@
 package favPetPage.updateAFavPet;
 
 import dataAcessObject.PetProfileDataAccessInterface;
-import dataAcessObject.PetProfileDataAccessObject;
 import dataAcessObject.ProfilePictureDataAccessInterface;
 import entity.petProfile.PetProfile;
 
+
 /**
+ * A concrete implementation of {@link UpdateIB}
+ * <p>
  * An implementation of a updateAFavPet usecase interactor that updates a pet profile in the user's liked list
  */
 
@@ -17,11 +19,13 @@ public class UpdateUCI implements UpdateIB {
     /**
      * Construct a new usecase interactor
      *
-     * @param updateOutputBoundary              a presenter for the updateAFavPet usecase that is called by the
+     * @param updateOutputBoundary              a presenter implementing {@link UpdateOB} that is called by the
      *                                          interactor to finish usecase
-     * @param petProfileDataAccessInterface     a data access object that can interact with the database that stores all
+     * @param petProfileDataAccessInterface     a data access object implementing {@link PetProfileDataAccessInterface}
+     *                                          that can interact with the database that stores all
      *                                          pet profiles
-     * @param profilePictureDataAccessInterface a data access object that can interact with the database that stores
+     * @param profilePictureDataAccessInterface a data access object implementing {@link ProfilePictureDataAccessInterface}
+     *                                          that can interact with the database that stores
      *                                          all profile photos of user and pet profiles
      */
     public UpdateUCI(UpdateOB updateOutputBoundary,

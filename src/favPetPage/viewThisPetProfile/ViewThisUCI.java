@@ -2,10 +2,12 @@ package favPetPage.viewThisPetProfile;
 
 import dataAcessObject.PetProfileDataAccessInterface;
 import dataAcessObject.ProfilePictureDataAccessInterface;
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import entity.petProfile.PetProfile;
 
 /**
+ * A Concrete implementation of the {@link  ViewThisIB}
+ * <p>
  * An implementation of a viewThisPetProfile usecase interactor that redirects the user to a window where a detailed
  * version of the pet profile is displayed
  */
@@ -13,24 +15,28 @@ import entity.petProfile.PetProfile;
 public class ViewThisUCI implements ViewThisIB {
     private final PetProfileDataAccessInterface daoP;
     private final ProfilePictureDataAccessInterface daoPic;
-    private final UserDataAcessInterface dao;
+    private final UserDataAccessInterface dao;
     private final ViewThisOB presenter;
 
     /**
      * Construct a new usecase interactor
      *
-     * @param viewThisPresenter                 the ViewThisPresenter that takes in the direction from this usecase
+     * @param viewThisPresenter                 a presenter implementing {@link ViewThisOB}
+     *                                          that takes in the direction from this usecase
      *                                          interactor to
      *                                          finish usecase
-     * @param userDataAccessInterface           a data access object that can interact with the database that stores all
+     * @param userDataAccessInterface           a data access object implementing {@link UserDataAccessInterface}
+     *                                          that can interact with the database that stores all
      *                                          users
-     * @param petProfileDataAccessInterface     a data access object that can interact with the database that stores all
+     * @param petProfileDataAccessInterface     a data access object implementing {@link PetProfileDataAccessInterface}
+     *                                          that can interact with the database that stores all
      *                                          pet profiles
-     * @param profilePictureDataAccessInterface a data access object that can interact with the database that stores all
+     * @param profilePictureDataAccessInterface a data access object implementing {@link ProfilePictureDataAccessInterface}
+     *                                          that can interact with the database that stores all
      *                                          pictures of pet profiles (also the user photos, but this functionality
      *                                          is not needed in this usecase).
      */
-    public ViewThisUCI(ViewThisOB viewThisPresenter, UserDataAcessInterface userDataAccessInterface,
+    public ViewThisUCI(ViewThisOB viewThisPresenter, UserDataAccessInterface userDataAccessInterface,
                        PetProfileDataAccessInterface petProfileDataAccessInterface,
                        ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         daoP = petProfileDataAccessInterface;

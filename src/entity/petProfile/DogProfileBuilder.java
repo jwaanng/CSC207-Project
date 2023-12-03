@@ -1,11 +1,9 @@
 package entity.petProfile;
 
-import entity.petProfile.DogProfile;
-
 /**
  * The DogProfileBuilder class is responsible for building DogProfile objects.
  */
-public class DogProfileBuilder extends PetProfileBuilder<DogProfileBuilder,DogProfile>{
+public class DogProfileBuilder extends PetProfileBuilder<DogProfileBuilder, DogProfile> {
     boolean neuter;
 
     /**
@@ -23,7 +21,7 @@ public class DogProfileBuilder extends PetProfileBuilder<DogProfileBuilder,DogPr
      *
      * @param petOwnerName The name of the pet owner.
      */
-    public DogProfileBuilder(String petOwnerName, int nextAvailableId){
+    DogProfileBuilder(String petOwnerName, int nextAvailableId) {
         super(petOwnerName, nextAvailableId);
         this.specie = DogProfile.SPECIE_NAME;
     }

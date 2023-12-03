@@ -32,22 +32,22 @@ public class testMain {
         UserDataAcessInterface dao = new CommonUserDataAccessObject();
         PetProfileDataAccessInterface daop = new PetProfileDataAccessObject();
         ProfilePictureDataAccessInterface daopic = new CommonProfileDataAccessObject();
-        AppUser jack = new AppUser("Jack", "123Jack", "1sd4GoodKing",   "Jack0924320");
-        AppUser monder = new AppUser("Monder", "123Monder", "123213GoodQueen", "Monder2344");
-        jack.certifyAsPetOwner();
-        monder.certifyAsPetOwner();
+//        AppUser jack = new AppUser("Jack", "123Jack", "1sd4GoodKing",   "Jack0924320");
+//        AppUser monder = new AppUser("Monder", "123Monder", "123213GoodQueen", "Monder2344");
+//        jack.certifyAsPetOwner();
+//        monder.certifyAsPetOwner();
 //        dao.add(jack);
 //        dao.add(monder);
         AppUser michael = dao.retrieve("Michael");
-       DogProfile jessica = new PetProfileBuilderFactory().createDogProfile("Jack").
-               vaccinated(true).neutered(true).withBreed("Labarado").withAge(4).isMale().withName("Jessica").build();
-     DogProfile mondrea = new PetProfileBuilderFactory().createDogProfile("Monder").vaccinated(true).isLargePet().
-          withBreed("Golden retriver").withAge(1).isFemale().withName("Mondrea").build();
+//       DogProfile jessica = new PetProfileBuilderFactory().createDogProfile("Jack").
+//               vaccinated(true).neutered(true).withBreed("Labarado").withAge(4).isMale().withName("Jessica").build();
+//     DogProfile mondrea = new PetProfileBuilderFactory().createDogProfile("Monder").vaccinated(true).isLargePet().
+//          withBreed("Golden retriver").withAge(1).isFemale().withName("Mondrea").build();
 //     daop.add(jessica);
 //     daop.add(mondrea);
-    jessica.setTemperDescr("I am always very happy");
-    jessica.setLikeDescr("I will always like playing with human");
-    daop.update(jessica);
+//    jessica.setTemperDescr("I am always very happy");
+//    jessica.setLikeDescr("I will always like playing with human");
+//    daop.update(jessica);
     PetProfile dog1 = daop.getProfile(0);
       PetProfile dog2 = daop.getProfile(1);
 
@@ -82,6 +82,7 @@ public class testMain {
         UpdateController UDController = new UpdateController(UDuci);
         UDController.execute(0);
         vm.viewmodelsfirePropertyChanges();
+
 
 
 

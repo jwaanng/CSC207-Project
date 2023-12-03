@@ -1,8 +1,6 @@
 package configProfile;
 import browsePage.BrowsePageViewModel;
-import signUp.SignupState;
 import usecase.ConfigProfile.ConfigProfileOutputBoundary;
-import usecase.ConfigProfile.ConfigProfileOutputData;
 import viewModel.ViewModelManager;
 
 public class ConfigProfilePresenter implements ConfigProfileOutputBoundary {

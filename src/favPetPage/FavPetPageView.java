@@ -104,8 +104,10 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
     /**
      * Construct a new favorite pet page (FavPEtPageView)
      * <p>
-     * switch between the view where user sees when they have no pet profile liked and the view when
-     * user has at least one pet profile liked
+     * Switch between the view where user sees when they have no pet profile liked and the view when
+     * user has at least one pet profile liked.
+     * Open a new window when user clicks on a liked pet profile that is not yet deleted,
+     * tell user to refresh their favorite pet page if the pet profile just got deleted
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -114,14 +116,13 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
             petDisplaySection.revalidate();
             petDisplaySection.repaint();
         } else if (evt.getSource() == vm.getAddViewModel()) {
-            System.out.println("switch view!");
             yesNOFavPetLayout.show(petDisplaySection, vm.getAddViewModel().getViewName());
             petDisplaySection.revalidate();
             petDisplaySection.repaint();
         }
-        if (evt.getSource() == vm.getViewThisViewModel()){
+        if (evt.getSource() == vm.getViewThisViewModel()) {
             ViewThisState state = vm.getViewThisViewModel().getState();
-            if(state.getError().isEmpty()) {
+            if (state.getError().isEmpty()) {
                 DetailFavPetProfile detailProfile = new DetailFavPetProfile();
                 detailProfile.setAge(state.getAge());
                 detailProfile.setPhoto(state.getPhoto());
@@ -135,7 +136,6 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
                 detailProfile.setTempDescr(state.getTempDescr());
                 detailProfile.setAdditionalAttributes(state.getSpecie(), state.getSpecieSpecificInformation());
                 detailProfile.setOwnerInstagram(state.getOwnerInstagram());
-
                 JDialog popup = new JDialog((JFrame) null);
                 JScrollPane scrollPane = new JScrollPane(detailProfile);
                 scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -144,8 +144,7 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
                 popup.setSize(500, 500);
                 popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
                 popup.setVisible(true);
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(this, state.getError());
             }
 

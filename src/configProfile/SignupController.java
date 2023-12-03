@@ -1,7 +1,7 @@
 package configProfile;
 
-import usecase.SignUp.SignupInputBound;
-import usecase.SignUp.SignUpInputData;
+import signupPage.signup.SignupInputBound;
+import signupPage.signup.SignupInputData;
 
 public class SignupController {
 
@@ -12,7 +12,7 @@ public class SignupController {
 
     public void execute(String username, String password, String repeatedPassword, String address, String instagram) {
         System.out.println("CONTROLLER executed");
-        SignUpInputData signupInputData = new SignUpInputData(
+        SignupInputData signupInputData = new SignupInputData(
                 username, password, repeatedPassword, address, instagram);
 
         userSignupUseCaseInteractor.execute(signupInputData);

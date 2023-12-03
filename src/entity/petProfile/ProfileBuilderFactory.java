@@ -1,7 +1,6 @@
 package entity.petProfile;
 
 
-import entity.other.IDTracker;
 
 public interface ProfileBuilderFactory {
 

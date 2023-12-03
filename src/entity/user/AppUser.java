@@ -67,11 +67,11 @@ public class AppUser {
     }
 
     public void setPreferredSize(String size) {
-        this.preferredSize = preferredSize;
+        this.preferredSize = size;
     }
 
     public void setPreferredSex(String sex) {
-        this.preferredSex = preferredSex;
+        this.preferredSex = sex;
     }
 
     public void setUsername(String username) {

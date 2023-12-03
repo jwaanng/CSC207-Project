@@ -4,12 +4,14 @@ import entity.geoCoordinates.GeoCoordinate;
 import entity.geoCoordinates.GeoCoordinatesCalculator;
 import entity.geoCoordinates.GeoLocationFinder;
 import com.google.maps.errors.ApiException;
+
 import entity.petProfiles.*;
 
 import java.io.IOException;
 
-
 public class testMain {
+
+    private static String MALE = "male";
     public static void main(String[] args) throws IOException, InterruptedException, ApiException {
 
         //GEOLOCATIONPACKAGE TEST

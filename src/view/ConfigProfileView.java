@@ -1,9 +1,6 @@
 package view;
 
 import configProfile.*;
-import dataAcessObject.CommonUserDataAccessObject;
-import usecase.ConfigProfile.ConfigProfileInteractor;
-import viewModel.ViewModelManager;
 
 import javax.swing.*;
 import javax.swing.ButtonGroup;

@@ -18,10 +18,9 @@ public class LoginView extends JPanel implements PropertyChangeListener {
     private LoginViewModel loginViewModel;
 
 
-
     private final LoginController loginController;
 
-    public LoginView(LoginViewModel loginViewModel, LoginController loginController){
+    public LoginView(LoginViewModel loginViewModel, LoginController loginController) {
         // constructor
         setMinimumSize(new Dimension(500, 450));
         setLayout(new GridBagLayout());
@@ -47,6 +46,7 @@ public class LoginView extends JPanel implements PropertyChangeListener {
 
         setVisible(true); // makes this view visible as a popup
     }
+
     private void loginUser() {
         // getting the inputs from text fields
         String username = usernameTextField.getText();
@@ -64,7 +64,7 @@ public class LoginView extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         LoginState currstate = (LoginState) evt.getNewValue();
-        if(currstate.getError()!= null){
+        if (currstate.getError() != null) {
             JOptionPane.showMessageDialog(this, currstate.getError());
         }
     }

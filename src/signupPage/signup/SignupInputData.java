@@ -28,7 +28,10 @@ public class SignupInputData {
         return address;
     }
 
-    String getInstagram() {return instagram;}
+    String getInstagram() {
+        return instagram;
+    }
+
     public String getRepeatedPassword() {
         return repeatedPassword;
     }

@@ -1,4 +1,4 @@
-package SwipePage;
+package swipePage;
 import entity.petProfile.PetProfile;
 
 import java.util.List;
@@ -15,5 +15,4 @@ public class ProfileSwipingInteractor {
     public PetProfile getNextProfile() {
         return profiles.poll();
     }
-
 }

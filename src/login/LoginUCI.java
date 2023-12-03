@@ -9,23 +9,45 @@ import entity.user.AppUser;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
-
+/**
+ * The {@code LoginUCI} class represents the use case interactor for the login feature, responsible for
+ * executing login-related operations and interacting with data access interfaces.
+ */
 public class LoginUCI implements LoginIB {
     private final LoginOB presenter;
+
+
+
     private final UserDataAcessInterface dao;
 
     private final PetProfileDataAccessInterface daoP;
 
     private final ProfilePictureDataAccessInterface daoPic;
-    public LoginUCI(LoginOB presenter, UserDataAcessInterface userDataAcessInterface,
+
+
+    /**
+     * Constructs an {@code LGUCI} instance with the specified presenter and data access interfaces.
+     *
+     * @param presenter                    The presenter associated with the login use case.
+     * @param userDataAccessInterface      The data access interface for user-related data.
+     * @param petProfileDataAccessInterface The data access interface for pet profile-related data.
+     * @param profilePictureDataAccessInterface The data access interface for profile picture-related data.
+     */
+
+    public LoginUCI(LoginOB presenter, UserDataAcessInterface userDataAccessInterface,
                     PetProfileDataAccessInterface petProfileDataAccessInterface,
                     ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         this.presenter = presenter;
-        this.dao = userDataAcessInterface;
+        this.dao = userDataAccessInterface;
         this.daoP = petProfileDataAccessInterface;
         this.daoPic = profilePictureDataAccessInterface;
     }
 
+    /**
+     * Executes the login use case with the provided login data.
+     *
+     * @param loginData The input data for the login use case.
+     */
     @Override
     public void execute(LoginIPData loginData) {
         String name = loginData.getUsername();
@@ -39,7 +61,6 @@ public class LoginUCI implements LoginIB {
                 presenter.prepareFailView(LoginOPData.createFailData("Password does not match"));
             } else {
                 try {
-                    //TODO. cjage
                     Image profile = daoPic.retrieveUserProfile(name);
                     if (profile == null) {
                         profile = ImageIO.read(getClass().getResource("/defaultprofile.png"));
@@ -60,8 +81,6 @@ public class LoginUCI implements LoginIB {
                     throw new RuntimeException(e);
                 }
             }
-
-
         }
     }
 }

@@ -1,9 +1,11 @@
 package signupPage;
 
+
 import configProfile.SignupController;
 import signupPage.SignupViewModel;
 import signupPage.cancel.CancelController;
 import signupPage.signup.SignupState;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +36,7 @@ public class SignupView extends JPanel implements PropertyChangeListener {
             SignupViewModel signupViewModel,
             SignupController signupController,
             CancelController cancelController
-    ){
+    ) {
         // constructor
 //        setTitle("Create an account now!");  // this is the text at the top of the window
 //        setContentPane(RegisterPanel);
@@ -49,8 +51,7 @@ public class SignupView extends JPanel implements PropertyChangeListener {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        add(registerPanel,gbc);
-
+        add(registerPanel, gbc);
 
 
         signupViewModel.addPropertyChangeListener(this);
@@ -102,7 +103,6 @@ public class SignupView extends JPanel implements PropertyChangeListener {
         currentState.setInstagram(instagram);
 
 
-        
 //        System.out.println(username);
 
         // if one of the fields are empty
@@ -128,7 +128,6 @@ public class SignupView extends JPanel implements PropertyChangeListener {
 
 
     public static void main(String[] args) {
-
 
 
     }

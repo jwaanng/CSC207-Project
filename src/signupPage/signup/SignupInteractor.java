@@ -17,7 +17,7 @@ public class SignupInteractor implements SignupInputBound {
 
     @Override
     public void execute(SignupInputData data) {
-        if (userDataAccessObject.exist(data.getUsername())){
+        if (userDataAccessObject.exist(data.getUsername())) {
             userPresenter.prepareSignUpFailView("Username already exists.");
         } else if (!data.getPassword().equals(data.getRepeatedPassword())) {
             userPresenter.prepareSignUpFailView("Passwords don't match.");

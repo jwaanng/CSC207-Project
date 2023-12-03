@@ -11,6 +11,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
+/**
+ * The {@code CommonRedirectView} class represents a common navigation panel with buttons
+ * for redirecting to different pages.
+ */
 public class CommonRedirectView extends JPanel implements PropertyChangeListener {
     protected final PageRedirectViewModel vm;
     protected final JButton browse;
@@ -18,6 +22,11 @@ public class CommonRedirectView extends JPanel implements PropertyChangeListener
     protected final JButton myPet;
     protected final  JButton myProfile;
 
+    /**
+     * Creates a new instance of {@code CommonRedirectView}.
+     *
+     * @param redirectViewModel The view model for page redirection.
+     */
     public CommonRedirectView(PageRedirectViewModel redirectViewModel){
         try {
             this.vm = redirectViewModel;

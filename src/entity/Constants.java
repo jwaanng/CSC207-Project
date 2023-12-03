@@ -13,7 +13,4 @@ public class Constants {
 
     public static final String success = "SUCCESS";
 
-    public static final String DOG = "dog";
-
-
 }

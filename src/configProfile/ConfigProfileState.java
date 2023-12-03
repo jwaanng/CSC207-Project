@@ -2,6 +2,7 @@ package configProfile;
 
 import java.util.HashMap;
 import java.util.Map;
+// TODO: write docs
 
 public class ConfigProfileState {
     private String username = "";
@@ -17,12 +18,13 @@ public class ConfigProfileState {
         address = copy.address;
         password = copy.password;
         bio = copy.bio;
-        sex = copy.sex;
         size = copy.size;
+        sex = copy.sex;
+
 
         sex.put("female", false);
         sex.put("male", false);
-        sex.put("both", false);
+//        sex.put("both", false);
         size.put("small", false);
         size.put("big", false);
         size.put("medium", false);
@@ -52,14 +54,32 @@ public class ConfigProfileState {
         this.error = error;
     }
     public ConfigProfileState() {}
-    public Map<String, Boolean> getSex() {
-        return sex;
+    public String getSex() {
+        StringBuilder selectedSex = new StringBuilder();
+        for (Map.Entry<String, Boolean> entry : sex.entrySet()) {
+            if (entry.getValue()) {
+                if (selectedSex.length() > 0) {
+                    selectedSex.append(", ");
+                }
+                selectedSex.append(entry.getKey());
+            }
+        }
+        return selectedSex.toString();
+    }
+    public String getSize() {
+        StringBuilder selectedSize = new StringBuilder();
+        for (Map.Entry<String, Boolean> entry : size.entrySet()) {
+            if (entry.getValue()) {
+                if (selectedSize.length() > 0) {
+                    selectedSize.append(", ");
+                }
+                selectedSize.append(entry.getKey());
+            }
+        }
+        return selectedSize.toString();
     }
     public void setSex(Map<String, Boolean> sex) {
         this.sex = sex;
-    }
-    public Map<String, Boolean> getSize() {
-        return size;
     }
     public void setSize(Map<String, Boolean> size) {
         this.size = size;
@@ -99,7 +119,7 @@ public class ConfigProfileState {
     }
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("ConfigProfileState");
+        StringBuilder sb = new StringBuilder("ConfigProfileState: ");
         sb.append("username='").append(username).append('\'');
         sb.append(", bio='").append(bio).append('\'');
         sb.append(", address='").append(address).append('\'');

@@ -6,7 +6,11 @@ import configProfile.ConfigProfilePresenter;
 import configProfile.ConfigProfileState;
 import configProfile.ConfigProfileViewModel;
 import dataAcessObject.CommonUserDataAccessObject;
-import usecase.ConfigProfile.ConfigProfileInteractor;
+import dataAcessObject.UserDataAcessInterface;
+import entity.user.AppUser;
+import login.LGIPData;
+import login.LGState;
+import usecase.configProfile.ConfigProfileInteractor;
 import viewModel.ViewModelManager;
 
 import javax.swing.*;
@@ -20,7 +24,7 @@ import java.util.Map;
 
 public class MyProfileView extends JPanel implements ActionListener, PropertyChangeListener {
     public static final String viewName = "my profile";
-        private final JTextField usernameInputfield = new JTextField(15);
+    private final JTextField usernameInputfield = new JTextField(15);
     private final JTextField bioInputfield= new JTextField(15);
     private final JTextField addressinputfield = new JTextField(15);
     private JRadioButton smallRadioButton;
@@ -51,7 +55,7 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
 
         femaleRadioButton = new JRadioButton("Female");
         maleRadioButton = new JRadioButton("Male");
-        bothRadioButton = new JRadioButton("Both");
+//        bothRadioButton = new JRadioButton("Both");
 
         JPanel sizeGroup = new JPanel();
         sizeGroup.add(smallRadioButton);
@@ -61,17 +65,43 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         JPanel sexGroup = new JPanel();
         sexGroup.add(femaleRadioButton);
         sexGroup.add(maleRadioButton);
-        sexGroup.add(bothRadioButton);
+//        sexGroup.add(bothRadioButton);
+
+        ButtonGroup genderButtonGroup = new ButtonGroup();
+        genderButtonGroup.add(femaleRadioButton);
+        genderButtonGroup.add(maleRadioButton);
+
+        ButtonGroup sizeButtonGroup = new ButtonGroup();
+        sizeButtonGroup.add(smallRadioButton);
+        sizeButtonGroup.add(mediumRadioButton);
+        sizeButtonGroup.add(bigRadioButton);
 
         ButtonTextPanel size = new ButtonTextPanel(new JLabel(ConfigProfileViewModel.SIZE_LABEL),
                 sizeGroup);
         ButtonTextPanel sex = new ButtonTextPanel(new JLabel(ConfigProfileViewModel.SEX_LABEL),
                 sexGroup);
 
+        String imgPath = "resources/BottomPageRedirectingIcons/myProfile.png";
+        JLabel imageLabel = new JLabel();
+        ImageIcon imageIcon = new ImageIcon(imgPath);
+        imageLabel.setIcon(imageIcon);
+
         JPanel buttons = new JPanel();
         JButton confirm = new JButton(ConfigProfileViewModel.CONFIRM_BUTTON);
 
         buttons.add(confirm);
+        LGState loggedinuser = new LGState();
+        String username1 = loggedinuser.getUsername();
+
+        CommonUserDataAccessObject dao = new CommonUserDataAccessObject();
+//        AppUser user = dao.retrieve(username1);
+//      -hanh: for testing only
+        AppUser user = dao.retrieve("Michael");
+
+        String name = user.getUsername();
+        usernameInputfield.setText(name);
+        usernameInputfield.setEditable(false);
+        usernameInputfield.setEnabled(false);
 
         confirm.addActionListener(new ActionListener() {
             @Override
@@ -81,7 +111,11 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         });
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        this.add(username);
+
+        JPanel imagePanel = new JPanel(new GridBagLayout());
+        imagePanel.add(imageLabel);
+        this.add(imagePanel, BorderLayout.CENTER);
+        this.add(username);
         this.add(bio);
         this.add(address);
         this.add(size);
@@ -104,7 +138,7 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
 
         sexMap.put("female", femaleRadioButton.isSelected());
         sexMap.put("male", maleRadioButton.isSelected());
-        sexMap.put("both", bothRadioButton.isSelected());
+//        sexMap.put("both", bothRadioButton.isSelected());
 
         return sexMap;
     }
@@ -118,23 +152,23 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         return sizeMap;
     }
 
-
     private void saveInfo() {
         String username = usernameInputfield.getText();
         String bio = bioInputfield.getText();
         String address = addressinputfield.getText();
+
         Map<String, Boolean> sexMap = getSelectedSex();
         Map<String, Boolean> sizeMap = getSelectedGender();
 
         ConfigProfileState currentState = configProfileViewModel.getState();
 
-        currentState.setUsername(username);
+//        currentState.setUsername(username);
         currentState.setBio(bio);
         currentState.setAddress(address);
         currentState.setSex(sexMap);
         currentState.setSize(sizeMap);
 
-        System.out.println("Configuration: " + currentState.toString());
+        System.out.println("Profile Configuration: " + currentState.toString());
 
         smallRadioButton.addActionListener(
                 new ActionListener() {
@@ -221,23 +255,23 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
                     }
                 }
         );
-        bothRadioButton.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if(bothRadioButton.isSelected()) {
-                            ConfigProfileState currentState = configProfileViewModel.getState();
-                            currentState.setBoth(true);
-                            configProfileViewModel.setState(currentState);
-                        }
-                        else {
-                            ConfigProfileState currentState = configProfileViewModel.getState();
-                            currentState.setBoth(false);
-                            configProfileViewModel.setState(currentState);
-                        }
-                    }
-                }
-        );
+//        bothRadioButton.addActionListener(
+//                new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        if(bothRadioButton.isSelected()) {
+//                            ConfigProfileState currentState = configProfileViewModel.getState();
+//                            currentState.setBoth(true);
+//                            configProfileViewModel.setState(currentState);
+//                        }
+//                        else {
+//                            ConfigProfileState currentState = configProfileViewModel.getState();
+//                            currentState.setBoth(false);
+//                            configProfileViewModel.setState(currentState);
+//                        }
+//                    }
+//                }
+//        );
 
         if (bio.isEmpty() || address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "ENTER ALL INFORMATION", "FAILED", JOptionPane.ERROR_MESSAGE);
@@ -250,8 +284,8 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
             return;
         }
 
-//        configProfileController.execute(username, bio, address, currentState.getSex().toString(),
-//                currentState.getSize().toString());
+        configProfileController.execute(username, bio, address, currentState.getSize(),
+                currentState.getSex());
 
     }
     public static void main(String[] args) {

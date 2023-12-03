@@ -7,7 +7,11 @@ import java.util.List;
 
 import static entity.Constants.*;
 
+/**
+ * The AppUser class represents a user in the application.
+ */
 public class AppUser {
+
     private String username;
     private String bio;
     private String password;
@@ -19,23 +23,35 @@ public class AppUser {
     private String instagramUsername;
     private List<Integer> myPet;
 
+    /**
+     * Default constructor for AppUser.
+     */
+    public AppUser() {}
 
-    public AppUser(){}
+    /**
+     * Parameterized constructor for creating an AppUser with essential information.
+     *
+     * @param username           The username of the user.
+     * @param password           The password of the user.
+     * @param address            The address of the user.
+     * @param instagramUsername  The Instagram username of the user.
+     */
     public AppUser(String username, String password, String address, String instagramUsername) {
-        /*Require password is valid */
         this.username = username;
         this.password = password;
         this.address = address;
         this.instagramUsername = instagramUsername;
-        this.favPet = new ArrayList<Integer>();
-        this.roles = new ArrayList<String>();
+        this.favPet = new ArrayList<>();
+        this.roles = new ArrayList<>();
         roles.add(PETFINDER);
     }
 
+    /**
+     * Certifies the user as a pet owner.
+     */
     public void certifyAsPetOwner() {
-       /*require the user is not a petOwner*/
         roles.add(PETOWNER);
-        myPet = new ArrayList<Integer>();
+        myPet = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -67,11 +83,11 @@ public class AppUser {
     }
 
     public void setPreferredSize(String size) {
-        this.preferredSize = preferredSize;
+        this.preferredSize = size;
     }
 
     public void setPreferredSex(String sex) {
-        this.preferredSex = preferredSex;
+        this.preferredSex = sex;
     }
 
     public void setUsername(String username) {
@@ -111,13 +127,29 @@ public class AppUser {
     public void addFavProfile(int petId){
         favPet.add(petId);
     }
+
+    /**
+     * Deleteds a pet profile from favourite pets
+     *
+     * @param petId id of the pet needed to be deleted
+     */
     public void deleteFavProfile(int petId){
         /*petId must be in favPet*/
         favPet.remove(petId);
     }
+    /**
+     * Gets roles
+     *
+     * @return a list of roles
+     */
     public List<String> getRoles(){
         return new ArrayList<String>(roles);
     }
+    /**
+     * Gets list of fav pets
+     *
+     * @return a list of fav pets
+     */
     public List<Integer> getFavPet(){
         return new ArrayList<>(this.favPet);
     } //new copy

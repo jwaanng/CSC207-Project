@@ -1,4 +1,4 @@
-package SwipePage;
+package swipePage;
 import dataAcessObject.CommonUserDataAccessObject;
 import dataAcessObject.PetProfileDataAccessObject;
 import dataAcessObject.UserDataAcessInterface;
@@ -166,7 +166,7 @@ public class NewSwipePage extends JFrame {
         profiles.add(GregDogAlex);
         profiles.add(MirandaDogNemo);
 
-        ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
+        SwipePage.ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
         PetProfilePresenter presenter = new PetProfilePresenter();
         NewSwipePage view = new NewSwipePage(null);
 

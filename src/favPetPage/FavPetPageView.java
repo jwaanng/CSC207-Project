@@ -10,7 +10,6 @@ import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import favPetPage.viewThisPetProfile.ViewThisController;
 import favPetPage.addAFavPet.AddViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
-import favPetPage.viewThisPetProfile.ViewThisState;
 import favPetPage.viewThisPetProfile.ViewThisViewModel;
 
 import javax.swing.*;

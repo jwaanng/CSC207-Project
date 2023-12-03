@@ -1,6 +1,6 @@
 package usecase.configProfile;
 
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 
 import java.util.regex.Matcher;

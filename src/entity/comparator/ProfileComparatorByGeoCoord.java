@@ -1,26 +1,18 @@
 package entity.comparator;
 
-import entity.petProfile.DogProfile;
+import entity.petProfile.PetProfile;
 
 import java.util.Comparator;
 
-class ProfileComparatorByGeoCoord implements Comparator<DogProfile> {
-    double latitude;
-    double longitude;
-
-    public ProfileComparatorByGeoCoord(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
-    }
+class ProfileComparatorByGeoCoord implements Comparator<PetProfile> {
 
     @Override
-    public int compare(DogProfile p1, DogProfile p2) {
+    public int compare(PetProfile p1, PetProfile p2) {
+
         return 0;
     }
 
-    public Comparator<DogProfile> thenComparing(Comparator<? super DogProfile> comparator) {
-        return null;
-    }
+
 
     // Define the distance method and other necessary methods here
 }

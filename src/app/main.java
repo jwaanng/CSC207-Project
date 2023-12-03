@@ -1,6 +1,6 @@
 package app;
 
-import dataAcessObject.*;
+import dataAccessObject.*;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
 import login.*;

@@ -1,7 +1,7 @@
 package favPetPage;
 
 import app.FavPetPageFactory;
-import dataAcessObject.*;
+import dataAccessObject.*;
 import entity.petProfile.PetProfile;
 import entity.user.AppUser;
 

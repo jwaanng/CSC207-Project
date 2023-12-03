@@ -1,6 +1,6 @@
 package favPetPage.displayUser;
 
-import dataAcessObject.ProfilePictureDataAccessInterface;
+import dataAccessObject.ProfilePictureDataAccessInterface;
 
 import java.awt.Image;
 

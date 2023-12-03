@@ -5,9 +5,10 @@ import configProfile.ConfigProfileController;
 import configProfile.ConfigProfilePresenter;
 import configProfile.ConfigProfileState;
 import configProfile.ConfigProfileViewModel;
-import dataAcessObject.CommonUserDataAccessObject;
+import dataAccessObject.CommonUserDataAccessObject;
 import entity.user.AppUser;
 
+import login.LoginState;
 import usecase.configProfile.ConfigProfileInteractor;
 import viewModel.ViewModelManager;
 
@@ -88,7 +89,7 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         JButton confirm = new JButton(ConfigProfileViewModel.CONFIRM_BUTTON);
 
         buttons.add(confirm);
-        LGState loggedinuser = new LGState();
+        LoginState loggedinuser = new LoginState();
         String username1 = loggedinuser.getUsername();
 
         CommonUserDataAccessObject dao = new CommonUserDataAccessObject();

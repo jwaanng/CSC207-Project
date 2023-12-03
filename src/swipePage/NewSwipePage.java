@@ -1,7 +1,7 @@
 package swipePage;
-import dataAcessObject.CommonUserDataAccessObject;
-import dataAcessObject.PetProfileDataAccessObject;
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.CommonUserDataAccessObject;
+import dataAccessObject.PetProfileDataAccessObject;
+import dataAccessObject.UserDataAccessInterface;
 import entity.petProfile.PetProfile;
 import entity.user.AppUserFactory;
 

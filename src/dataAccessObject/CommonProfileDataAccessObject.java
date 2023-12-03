@@ -1,4 +1,4 @@
-package dataAcessObject;
+package dataAccessObject;
 
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;

@@ -1,4 +1,4 @@
-package dataAcessObject;
+package dataAccessObject;
 
 import java.awt.*;
 import java.io.File;

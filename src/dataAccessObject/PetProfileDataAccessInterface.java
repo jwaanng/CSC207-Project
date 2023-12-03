@@ -1,6 +1,8 @@
-package dataAcessObject;
+package dataAccessObject;
 
 import entity.petProfile.PetProfile;
+
+import java.util.List;
 
 /**
  * Interface defining methods for accessing and manipulating pet profile data.
@@ -43,4 +45,6 @@ public interface PetProfileDataAccessInterface {
      * @return true if the pet profile exists, false otherwise.
      */
     boolean exists(int id);
+
+    List<PetProfile> getAllProfiles();
 }

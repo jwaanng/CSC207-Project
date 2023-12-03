@@ -6,8 +6,8 @@ import favPetPage.addAFavPet.AddState;
 import favPetPage.displayUser.DisplayUserState;
 import viewModel.ViewModelManager;
 
-public class LGPresenter implements LGOB{
-    private final LGViewModel lgVM;
+public class LoginPresenter implements LoginOB {
+    private final LoginViewModel lgVM;
     private final FavPetPageViewModel fpVM;
 
     private final ViewModelManager manager;
@@ -15,7 +15,9 @@ public class LGPresenter implements LGOB{
     private final ConfigProfileViewModel configProfileViewModel;
 
 
-    public LGPresenter(LGViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel, ViewModelManager manager, ConfigProfileViewModel configProfileViewModel) {
+    public LoginPresenter(LoginViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel,
+                          ViewModelManager manager,
+                          ConfigProfileViewModel configProfileViewModel) {
         this.lgVM = loginViewModel;
         this.manager = manager;
         this.fpVM = favPetPageViewModel;
@@ -24,7 +26,7 @@ public class LGPresenter implements LGOB{
 
 
     @Override
-    public void prepareSuccessView(LGOPData outputData) {
+    public void prepareSuccessView(LoginOPData outputData) {
         //login will automatically be redirected to the favPetPage
         DisplayUserState currState = fpVM.getDisplayUserModel().getState();
         currState.setUsername(outputData.username);
@@ -32,7 +34,7 @@ public class LGPresenter implements LGOB{
         fpVM.getDisplayUserModel().setState(currState);
         fpVM.getDisplayUserModel().firePropertyChanged();
         AddState state = new AddState(outputData);
-        if (!state.getKeyEntries().isEmpty()){
+        if (state.getKeyEntries().isEmpty()){
         fpVM.getNoPetDisplayViewModel().firePropertyChanged();
         }
         else{
@@ -51,8 +53,8 @@ public class LGPresenter implements LGOB{
     }
 
     @Override
-    public void prepareFailView(LGOPData outdata) {
-            LGState state = new LGState();
+    public void prepareFailView(LoginOPData outdata) {
+            LoginState state = new LoginState();
             state.setError(outdata.error);
             lgVM.setState(state);
             lgVM.firePropertyChanged();

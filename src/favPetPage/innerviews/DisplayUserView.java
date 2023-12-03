@@ -74,18 +74,18 @@ public class DisplayUserView extends JPanel implements PropertyChangeListener {
         DisplayUserState state = (DisplayUserState) evt.getNewValue();
         if (!username.getText().equals(state.getUsername())) {
             username.setText(state.getUsername());
-        } else { //the only other reason evt is fired is if the profile photo has changed
-            if (!(state.getPhoto() == null)) {
+        }  //the only other reason evt is fired is if the profile photo has changed
+        if (!(state.getPhoto() == null)) {
                 profile.setIcon(new ImageIcon(state.getPhoto().getScaledInstance(50, 50,
                         Image.SCALE_DEFAULT)));
             }
-        }
         revalidate();
         repaint();
-    }
-
-
+        }
 }
+
+
+
 
 
 

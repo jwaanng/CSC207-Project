@@ -1,16 +1,16 @@
 package login;
 
-public class LGState {
+public class LoginState {
     private String username = "";
     private String password = "";
 
     private String error = null;
 
-    public LGState(LGState copy){
+    public LoginState(LoginState copy){
         this.username = copy.username;
         this.password = copy.password;
     }
-    public LGState(){}
+    public LoginState(){}
 
 
     public String getUsername() {

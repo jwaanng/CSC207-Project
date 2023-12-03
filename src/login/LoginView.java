@@ -1,40 +1,40 @@
-package view;
+package login;
 
-import configProfile.ConfigProfileViewModel;
-import dataAcessObject.CommonUserDataAccessObject;
-import dataAcessObject.PetProfileDataAccessObject;
-import viewModel.ViewModelManager;
-import login.LGController;
-import login.LGPresenter;
-import login.LGUCI;
-import login.LGViewModel;
-import favPetPage.FavPetPageViewModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class LoginView extends JDialog{
-    private JLabel LogInLabel;
-    private JLabel UsernameLabel;
+public class LoginView extends JPanel implements PropertyChangeListener {
+    private JPanel loginPanel;
+    private JLabel loginLabel;
+    private JLabel usernameLabel;
     private JTextField usernameTextField;
     private JPasswordField pleaseEnterPasswordHerePasswordField;
-    private JLabel PasswordLabel;
+    private JLabel passwordLabel;
     private JButton enterButton;
-    private JPanel LoginPanel;
+    private LoginViewModel loginViewModel;
 
-    private final LGController loginController;
 
-    public LoginView(JFrame parent, LGController loginController){
+
+    private final LoginController loginController;
+
+    public LoginView(LoginViewModel loginViewModel, LoginController loginController){
         // constructor
-        super(parent);
-        setTitle("Log In!!!");  // this is the text at the top of the window
-        setContentPane(LoginPanel);
         setMinimumSize(new Dimension(500, 450));
-        setModal(true);
-        setLocationRelativeTo(parent);
-
+        setLayout(new GridBagLayout());
+        this.loginViewModel = loginViewModel;
         this.loginController = loginController;
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        add(loginPanel, gbc);
+        setOpaque(true);
+        loginViewModel.addPropertyChangeListener(this);
         enterButton.addActionListener(new ActionListener() {
             // action listener for when u click on 'sign up' button... -jw
             @Override
@@ -57,9 +57,16 @@ public class LoginView extends JDialog{
             JOptionPane.showMessageDialog(this, "ENTER ALL INFORMATION", "FAILED", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         loginController.execute(username, password);
 
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        LoginState currstate = (LoginState) evt.getNewValue();
+        if(currstate.getError()!= null){
+            JOptionPane.showMessageDialog(this, currstate.getError());
+        }
     }
 
 

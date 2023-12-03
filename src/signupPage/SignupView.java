@@ -1,14 +1,9 @@
-package view;
+package signupPage;
 
-import dataAcessObject.CommonUserDataAccessObject;
-import entity.user.AppUserFactory;
 import configProfile.SignupController;
-import login.LGViewModel;
-import signUp.SignupPresenter;
-import signUp.SignupState;
-import signUp.SignupViewModel;
-import viewModel.ViewModelManager;
-import usecase.SignUp.SignupInteractor;
+import signupPage.SignupViewModel;
+import signupPage.cancel.CancelController;
+import signupPage.signup.SignupState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +12,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class RegisterView extends JDialog implements PropertyChangeListener {
+public class SignupView extends JPanel implements PropertyChangeListener {
 
-    private JPanel RegisterPanel;
+    private JPanel registerPanel;
     private JLabel usernameLabel;
     private JTextField usernameTF;
     private JLabel passwordLabel;
@@ -31,21 +26,31 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
     private JTextField addressTf;
     private JLabel addressLabel;
     private JTextField instagramTf;
-
     private final SignupController signupController;
+    private final CancelController cancelController;
     private final SignupViewModel signupViewModel;
 
-    public RegisterView(JFrame parent, SignupController signupController, SignupViewModel signupViewModel){
+    public SignupView(
+            SignupViewModel signupViewModel,
+            SignupController signupController,
+            CancelController cancelController
+    ){
         // constructor
-        super(parent);
-        setTitle("Create an account now!");  // this is the text at the top of the window
-        setContentPane(RegisterPanel);
-        setMinimumSize(new Dimension(500, 450));
-        setModal(true);
-        setLocationRelativeTo(parent);
-
-        this.signupController = signupController;
+//        setTitle("Create an account now!");  // this is the text at the top of the window
+//        setContentPane(RegisterPanel);
         this.signupViewModel = signupViewModel;
+        this.signupController = signupController;
+        this.cancelController = cancelController;
+        setMinimumSize(new Dimension(500, 450));
+        setLayout(new GridBagLayout());
+//        setModal(true);
+//        setLocationRelativeTo(parent);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        add(registerPanel,gbc);
+
 
 
         signupViewModel.addPropertyChangeListener(this);
@@ -61,7 +66,7 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
             // when 'cancel' is clicked, the app closes (hence dispose())
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                cancelController.execute();
             }
         });
 
@@ -96,7 +101,6 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         currentState.setAddress(address);
         currentState.setInstagram(instagram);
 
-        System.out.println("REG USER: " + currentState.toString());
 
         
 //        System.out.println(username);
@@ -104,7 +108,6 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
         // if one of the fields are empty
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             JOptionPane.showMessageDialog(this, "ENTER ALL INFORMATION", "FAILED", JOptionPane.ERROR_MESSAGE);
-            return;
         }
 
 
@@ -115,7 +118,6 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getSource().equals(signupViewModel)) {
-            System.out.println("VIEW: property change received");
             SignupState state = (SignupState) evt.getNewValue();
             if (state.getError() != null) {
                 System.out.println(state.getError());
@@ -126,12 +128,9 @@ public class RegisterView extends JDialog implements PropertyChangeListener {
 
 
     public static void main(String[] args) {
-        SignupViewModel signupViewModel = new SignupViewModel();
-        SignupPresenter signupPresenter = new SignupPresenter(signupViewModel, new LGViewModel(), new ViewModelManager());
-        SignupInteractor signupInteractor = new SignupInteractor(new CommonUserDataAccessObject(), signupPresenter, new AppUserFactory());
-        SignupController signupController = new SignupController(signupInteractor);
 
-        RegisterView registerView = new RegisterView(null, signupController, signupViewModel);
+
+
     }
 
     // TODOdone: no popup for when cases fail

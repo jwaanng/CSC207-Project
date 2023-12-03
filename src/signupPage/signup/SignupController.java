@@ -1,7 +1,4 @@
-package signUp;
-
-import usecase.SignUp.SignUpInputData;
-import usecase.SignUp.SignupInputBound;
+package signupPage.signup;
 
 public class SignupController {
     final SignupInputBound signupInteractor;
@@ -10,7 +7,7 @@ public class SignupController {
     }
 
     public void execute(String username, String password1, String password2, String address, String instagram) {
-        SignUpInputData inputData = new SignUpInputData(username, password1,
+        SignupInputData inputData = new SignupInputData(username, password1,
                 password2, address, instagram);
         signupInteractor.execute(inputData);
     }

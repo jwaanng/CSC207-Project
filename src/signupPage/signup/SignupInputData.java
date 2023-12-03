@@ -1,6 +1,6 @@
-package usecase.SignUp;
+package signupPage.signup;
 
-public class SignUpInputData {
+public class SignupInputData {
     String username;
     String password;
     String repeatedPassword;
@@ -8,7 +8,7 @@ public class SignUpInputData {
 
     String instagram;
 
-    public SignUpInputData(String username, String password, String repeatedPassword, String address, String instagram) {
+    public SignupInputData(String username, String password, String repeatedPassword, String address, String instagram) {
         this.username = username;
         this.password = password;
         this.repeatedPassword = repeatedPassword;

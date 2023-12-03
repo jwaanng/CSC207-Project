@@ -1,4 +1,4 @@
-package signUp;
+package signupPage.signup;
 
 public class SignupState {
     private String username = "";

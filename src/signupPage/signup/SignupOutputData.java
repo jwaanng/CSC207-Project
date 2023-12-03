@@ -1,4 +1,4 @@
-package usecase.SignUp;
+package signupPage.signup;
 
 public class SignupOutputData {
     private final String username;

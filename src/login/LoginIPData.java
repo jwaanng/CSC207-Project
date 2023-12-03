@@ -1,10 +1,10 @@
 package login;
 
-public class LGIPData {
+public class LoginIPData {
     private String username;
     private String password;
 
-    public LGIPData(String username, String password) {
+    public LoginIPData(String username, String password) {
         this.username = username;
         this.password = password;
     }

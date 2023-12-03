@@ -1,7 +1,6 @@
 
 package signupPage.signup;
 
-
 /**
  * Controller class for user signup.
  * <p>
@@ -10,14 +9,14 @@ package signupPage.signup;
  * (SignupInputBound) to execute the necessary actions based on user input.
  */
 public class SignupController {
-    final SignupInputBound userSignupUseCaseInteractor;
+    final SignupIB userSignupUseCaseInteractor;
 
     /**
-     * Constructor for the SignupController class.
+     * Constructor a SignupController object.
      *
      * @param userSignupUseCaseInteractor The use case interactor associated with this controller.
      */
-    public SignupController(SignupInputBound userSignupUseCaseInteractor) {
+    public SignupController(SignupIB userSignupUseCaseInteractor) {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
     }
 
@@ -35,10 +34,10 @@ public class SignupController {
      * @param instagram        The Instagram handle provided by the user during signup.
      */
     public void execute(String username, String password, String repeatedPassword, String address, String instagram) {
-        SignupInputData signupInputData = new SignupInputData(
+        SignupIPData signupIPData = new SignupIPData(
                 username, password, repeatedPassword, address, instagram);
 
-        userSignupUseCaseInteractor.execute(signupInputData);
+        userSignupUseCaseInteractor.execute(signupIPData);
 
     }
 }

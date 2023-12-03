@@ -1,6 +1,6 @@
 package usecase.signUp;
 
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 import entity.user.AppUserFactory;
 
@@ -11,7 +11,7 @@ import entity.user.AppUserFactory;
  */
 public class SignupInteractor implements SignupInputBound {
 
-    private final UserDataAcessInterface userDataAccessObject;
+    private final UserDataAccessInterface userDataAccessObject;
     private final SignupOutputBound userPresenter;
     private final AppUserFactory userFactory;
 
@@ -23,7 +23,7 @@ public class SignupInteractor implements SignupInputBound {
      * @param userPresenter         The output boundary for presenting success or failure views.
      * @param userFactory           The factory for creating new AppUser instances.
      */
-    public SignupInteractor(UserDataAcessInterface userDataAccessObject, SignupOutputBound userPresenter, AppUserFactory userFactory) {
+    public SignupInteractor(UserDataAccessInterface userDataAccessObject, SignupOutputBound userPresenter, AppUserFactory userFactory) {
         this.userDataAccessObject = userDataAccessObject;
         this.userPresenter = userPresenter;
         this.userFactory = userFactory;

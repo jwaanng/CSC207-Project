@@ -2,9 +2,7 @@ package favPetPage;
 
 import app.FavPetPageFactory;
 import dataAcessObject.*;
-import entity.petProfile.DogProfile;
 import entity.petProfile.PetProfile;
-import entity.petProfile.PetProfileBuilderFactory;
 import entity.user.AppUser;
 
 import favPetPage.displayUser.DisplayUserController;
@@ -13,23 +11,16 @@ import favPetPage.displayUser.DisplayUserUCI;
 import favPetPage.updateAFavPet.UpdateController;
 import favPetPage.updateAFavPet.UpdatePresenter;
 import favPetPage.updateAFavPet.UpdateUCI;
-import favPetPage.viewThisPetProfile.ViewThisController;
-import favPetPage.viewThisPetProfile.ViewThisPresenter;
-import favPetPage.viewThisPetProfile.ViewThisUCI;
-import org.checkerframework.checker.units.qual.A;
 import viewModel.ViewModelManager;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 public class testMain {
     public static void main(String[] args) throws IOException {
 
 
-        UserDataAcessInterface dao = new CommonUserDataAccessObject();
+        UserDataAccessInterface dao = new CommonUserDataAccessObject();
         PetProfileDataAccessInterface daop = new PetProfileDataAccessObject();
         ProfilePictureDataAccessInterface daopic = new CommonProfileDataAccessObject();
 //        AppUser jack = new AppUser("Jack", "123Jack", "1sd4GoodKing",   "Jack0924320");

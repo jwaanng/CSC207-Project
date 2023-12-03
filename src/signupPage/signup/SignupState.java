@@ -2,7 +2,7 @@ package signupPage.signup;
 
 /**
  * Represents the state of the user signup view.
- *
+ * <p>
  * This class encapsulates the current state of the user signup view, including fields such as
  * username, password, repeated password, address, Instagram handle, and any associated error messages.
  * It provides methods for getting and setting these fields, as well as creating a copy of the state.

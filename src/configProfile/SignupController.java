@@ -1,20 +1,20 @@
 package configProfile;
 
-import signupPage.signup.SignupInputBound;
-import signupPage.signup.SignupInputData;
+import signupPage.signup.SignupIB;
+import signupPage.signup.SignupIPData;
 
 public class SignupController {
 
-    final SignupInputBound userSignupUseCaseInteractor;
-    public SignupController(SignupInputBound userSignupUseCaseInteractor) {
+    final SignupIB userSignupUseCaseInteractor;
+    public SignupController(SignupIB userSignupUseCaseInteractor) {
         this.userSignupUseCaseInteractor = userSignupUseCaseInteractor;
     }
 
     public void execute(String username, String password, String repeatedPassword, String address, String instagram) {
-        System.out.println("CONTROLLER executed");
-        SignupInputData signupInputData = new SignupInputData(
+
+        SignupIPData signupIPData = new SignupIPData(
                 username, password, repeatedPassword, address, instagram);
 
-        userSignupUseCaseInteractor.execute(signupInputData);
+        userSignupUseCaseInteractor.execute(signupIPData);
     }
 }

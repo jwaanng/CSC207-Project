@@ -1,6 +1,5 @@
 package login;
 
-
 /**
  * The {@code LGState} class represents the state of the login view, including the entered username,
  * password, and any associated error messages.

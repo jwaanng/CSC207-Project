@@ -12,7 +12,7 @@ public class FavPetRDRViewModel extends PageRedirectViewModel {
     public final String propertyName = "redirect";
 
     /**
-     * Construct a new FavPetRDRViewModel with preassigned view name
+     * Construct a new FavPetRDRViewModel object  with preassigned view name
      */
     public FavPetRDRViewModel() {
         super("fav pet redirect");

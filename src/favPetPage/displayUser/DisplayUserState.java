@@ -10,7 +10,7 @@ public class DisplayUserState {
     private Image photo = null;
 
     /**
-     * Construct a DisplayUserState give a copy
+     * Construct a DisplayUserState object give a copy
      *
      * @param copy DisplayUserState copy
      */
@@ -20,7 +20,7 @@ public class DisplayUserState {
     }
 
     /**
-     * Construct an empty DeleteState
+     * Construct an empty DeleteState object
      */
     public DisplayUserState() {
     }

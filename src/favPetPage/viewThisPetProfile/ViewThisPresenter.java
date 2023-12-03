@@ -1,12 +1,22 @@
 package favPetPage.viewThisPetProfile;
 
 /**
+ * A concrete implementation of {@link ViewThisOB}
+ *
  * An implementation of the ViewThisPetProfile usecase presenter
  * Tasks with redirecting user to a popup window where a detail description of pet profile is displayed
  */
 public class ViewThisPresenter implements ViewThisOB {
     private final ViewThisViewModel vm;
-
+    /**
+     * Construct an BrowsePresenter object
+     *
+     * @param viewThisViewModel a viewmodel for the viewThisPetProfile usecase.
+     *                            <p>
+     *                            This is called by the ViewThisPresenter to
+     *                            view the detailed pet profile
+     *
+     */
     public ViewThisPresenter(ViewThisViewModel viewThisViewModel) {
         vm = viewThisViewModel;
     }

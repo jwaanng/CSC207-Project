@@ -1,6 +1,8 @@
 package favPetPage.addAFavPet;
 
 /**
+ * A concrete implementation of {@link AddOB}
+ * <p>
  * An implementation of the addAFavPet usecase presenter
  * Tasks with sending information on a new pet profile that is liked by the user
  */
@@ -9,9 +11,11 @@ public class AddPresenter implements AddOB {
     private final AddViewModel addUpdateVM;
 
     /**
-     * Construct an AddPresenter
+     * Construct an AddPresenter object
      *
-     * @param addAFavPetViewModel a viewmodel for the addAFavPet usecase. This is called by the AddPresenter to store
+     * @param addAFavPetViewModel a viewmodel for the addAFavPet usecase.
+     *                            <p>
+     *                            This is called by the AddPresenter to store
      *                            information that a user screen should see;
      */
     public AddPresenter(AddViewModel addAFavPetViewModel) {

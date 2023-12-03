@@ -14,7 +14,7 @@ public class NoFavPetDisplayViewModel extends ViewModel {
     private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     /**
-     * Construct a new NoFavPetDisplayViewModel with preassigned view name
+     * Construct a new NoFavPetDisplayViewModel object with preassigned view name
      */
     public NoFavPetDisplayViewModel() {
         super("no fav pet display");

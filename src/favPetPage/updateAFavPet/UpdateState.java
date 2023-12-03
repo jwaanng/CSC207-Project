@@ -15,7 +15,7 @@ public class UpdateState {
     private HashMap<Integer, String> petId_Name = new HashMap<>();
 
     /**
-     * Construct an UpdateState from a copy
+     * Construct an UpdateState object from a copy
      *
      * @param copy UpdateState copy
      */
@@ -25,7 +25,7 @@ public class UpdateState {
     }
 
     /**
-     * Construct an empty UpdateState
+     * Construct an empty UpdateState object
      */
     public UpdateState() {
     }

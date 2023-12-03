@@ -1,25 +1,28 @@
 package favPetPage.deleteAFavPet;
 
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 
 /**
- * An implementation of a addAFavPet usecase interactor that deletes a unliked pet profile from a user's liked list
+ * A concrete implementation of {@link DeleteOB}
+ * <p>
+ * An implementation of a deleteAFavPet usecase interactor that deletes a unliked pet profile from a user's liked list
  */
 public class DeleteUCI implements DeleteIB {
-    private UserDataAcessInterface dao;
+    private UserDataAccessInterface dao;
     private DeleteOB presenter;
 
     /**
      * Construct a new usecase interactor
      *
-     * @param deleteFavoritePetOutPutBoundary a presenter for the deleteAFavPet usecase that is called by the
+     * @param deleteFavoritePetOutPutBoundary a presenter implementing {@link DeleteOB} that is called by the
      *                                        interactor to finish usecase
-     * @param userDataAcessInterface          a data access object that can interact with the database that stores all users
+     * @param userDataAccessInterface         a data access object implementing {@link UserDataAccessInterface}
+     *                                        that can interact with the database that stores all users
      */
 
-    public DeleteUCI(DeleteOB deleteFavoritePetOutPutBoundary, UserDataAcessInterface userDataAcessInterface) {
-        this.dao = userDataAcessInterface;
+    public DeleteUCI(DeleteOB deleteFavoritePetOutPutBoundary, UserDataAccessInterface userDataAccessInterface) {
+        this.dao = userDataAccessInterface;
         this.presenter = deleteFavoritePetOutPutBoundary;
     }
 

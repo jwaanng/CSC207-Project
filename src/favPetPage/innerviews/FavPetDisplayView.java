@@ -56,15 +56,15 @@ public class FavPetDisplayView extends JPanel implements PropertyChangeListener 
     /**
      * Construct a new FavPetDisplayView
      *
-     * @param addViewModel             the AddViewModel that stores all information related to adding a pet profile to the like list
-     * @param updateViewModel          the UpdateViewModel that stores all information related to updating a pet profile in
+     * @param addViewModel             the {@link AddViewModel} object that stores all information related to adding a pet profile to the like list
+     * @param updateViewModel          the {@link UpdateViewModel} object that stores all information related to updating a pet profile in
      *                                 the liked list
-     * @param deleteViewModel          the DeleteViewModel that stores all information related to deleting an unliked
+     * @param deleteViewModel          the {@link DeleteViewModel} object that stores all information related to deleting an unliked
      *                                 pet profile from the like list
-     * @param noFavPetDisplayViewModel the NoFavPetDisplayViewModel that stores all information related to when the user
-     *                                 does not have any pet profile in thier liked list
-     * @param deletePetController      the DeletePetController that initiates the delteAFavPet usecase
-     * @param viewThisPetController    the ViewThisPetController that initiates the viewThisPetProfile usecase
+     * @param noFavPetDisplayViewModel the {@link NoFavPetDisplayViewModel} object that stores all information related to when the user
+     *                                 does not have any pet profile in their liked list
+     * @param deletePetController      the {@link DeleteController} object that initiates the deleteAFavPet usecase
+     * @param viewThisPetController    the {@link ViewThisController} that initiates the viewThisPetProfile usecase
      */
     public FavPetDisplayView(AddViewModel addViewModel,
                              UpdateViewModel updateViewModel,

@@ -13,11 +13,11 @@ public class GeoCoordinatesCalculator {
      * @param g2 The second GeoCoordinate.
      * @return The distance between the two coordinates in kilometers.
      */
-    public double calculateDistance(GeoCoordinate g1, GeoCoordinate g2){
+    public double calculateDistance(GeoCoordinate g1, GeoCoordinate g2) {
         double dLat = Math.toRadians(g1.lat - g2.lat);
         double dLng = Math.toRadians(g1.lng - g2.lng);
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(Math.toRadians(g1.lat)) *
-                Math.cos(Math.toRadians(g2.lat)) * Math.sin(dLng/2) * Math.sin(dLng/2);
-        return EARTHR * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(Math.toRadians(g1.lat)) *
+                Math.cos(Math.toRadians(g2.lat)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        return EARTHR * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 }

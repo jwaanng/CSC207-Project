@@ -16,12 +16,13 @@ public class DogProfile extends PetProfile {
      *
      * @param builder The builder used to construct the DogProfile.
      */
-  public DogProfile(DogProfileBuilder builder){
-      super(builder);
-      this.neuter = builder.neuter;
-      this.vaccinated = builder.vaccinated;
-      this.breed = builder.breed;
-  }
+    DogProfile(DogProfileBuilder builder) {
+        super(builder);
+        this.neuter = builder.neuter;
+        this.vaccinated = builder.vaccinated;
+        this.breed = builder.breed;
+    }
+
     public boolean isNeuter() {
         return neuter;
     }

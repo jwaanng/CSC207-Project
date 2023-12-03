@@ -13,7 +13,7 @@ public class OnePetProfileDisplayViewModel extends ViewModel {
     public final String HEART_PATH = "/favPetPage/like.png";
 
     /**
-     * Construct a new OnePetProfileDisplayViewModel with preassigned view name
+     * Construct a new OnePetProfileDisplayViewModel object with preassigned view name
      */
     public OnePetProfileDisplayViewModel() {
         super("one pet profile");

@@ -9,7 +9,7 @@ public class FavPetRDRController {
     private final FavPetRDRIB uci;
 
     /**
-     * Construct an FavPetRDRController
+     * Construct an FavPetRDRController object
      *
      * @param favPetRDRInputBoundary an usecase interactor for the myFavPetPageRedirect useCase
      */

@@ -18,7 +18,7 @@ public class AddState {
     private HashMap<Integer, String> favPetID_Name = new HashMap<>();
 
     /**
-     * Construct an AddState
+     * Construct an AddState object
      *
      * @param data output data retrieved after a user login
      */
@@ -28,7 +28,7 @@ public class AddState {
     }
 
     /**
-     * Construct an empty AddState
+     * Construct an empty AddState object
      */
     public AddState() {
     }

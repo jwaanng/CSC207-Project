@@ -4,6 +4,9 @@ import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
 
+/**
+ * a class that can calulate the distance between two address
+ */
 public class GeoCoordinateCentralProcessor {
     private final GeoLocationFinder finder = new GeoLocationFinder();
     private final GeoCoordinatesCalculator dcalculator = new GeoCoordinatesCalculator();
@@ -11,18 +14,20 @@ public class GeoCoordinateCentralProcessor {
     private GeoCoordinate getAddressGeoCoordinate(String address) throws IOException, InterruptedException, ApiException {
         return finder.getAddressGeoCoordinate(address);
     }
-    private double  calculateDistance(GeoCoordinate g1, GeoCoordinate g2){
-        return dcalculator.calculateDistance(g1,g2);
+
+    private double calculateDistance(GeoCoordinate g1, GeoCoordinate g2) {
+        return dcalculator.calculateDistance(g1, g2);
     }
+
     /**
      * Calculates the distance between two addresses using their geographical coordinates.
      *
      * @param address1 The first address.
      * @param address2 The second address.
      * @return The distance between the two addresses.
-     * @throws IOException If an I/O error occurs.
+     * @throws IOException          If an I/O error occurs.
      * @throws InterruptedException If the operation is interrupted.
-     * @throws ApiException If an error occurs while retrieving the coordinates from the GeoLocationFinder.
+     * @throws ApiException         If an error occurs while retrieving the coordinates from the GeoLocationFinder.
      */
     public double calculateDistanceBetweenAddress(String address1, String address2) throws IOException, InterruptedException, ApiException {
         return dcalculator.calculateDistance(

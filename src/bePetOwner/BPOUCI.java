@@ -1,13 +1,13 @@
 package bePetOwner;
 
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 
 import static entity.Constants.PETOWNER;
 
 /**
  * Use Case Interactor class for the Be Pet Owner (BPO) feature.
- *
+ * <p>
  * This class implements the {@link BPOIB} interface and is responsible for handling the business logic
  * associated with the Be Pet Owner feature. It interacts with the data access layer (UserDataAcessInterface)
  * to retrieve and update user data, and communicates with the presenter (BPOOB) to prepare views based on
@@ -15,23 +15,23 @@ import static entity.Constants.PETOWNER;
  */
 public class BPOUCI implements BPOIB {
 
-    final UserDataAcessInterface dao;
+    final UserDataAccessInterface dao;
     final BPOOB presenter;
 
     /**
      * Constructor for the BPOUCI class.
      *
-     * @param dao The data access interface for interacting with user data.
+     * @param dao       The data access interface for interacting with user data.
      * @param presenter The presenter associated with this use case interactor.
      */
-    public BPOUCI(UserDataAcessInterface dao, BPOOB presenter){
+    public BPOUCI(UserDataAccessInterface dao, BPOOB presenter) {
         this.dao = dao;
         this.presenter = presenter;
     }
 
     /**
      * Executes the business logic for the Be Pet Owner feature.
-     *
+     * <p>
      * Retrieves the user with the provided username, checks if the user is already registered as a pet owner,
      * and either prepares a failure view if already registered or certifies the user as a pet owner and prepares
      * a success view.

@@ -2,23 +2,25 @@ package login;
 
 import dataAcessObject.PetProfileDataAccessInterface;
 import dataAcessObject.ProfilePictureDataAccessInterface;
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import entity.petProfile.PetProfile;
 import entity.user.AppUser;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
+
 /**
  * The {@code LoginUCI} class represents the use case interactor for the login feature, responsible for
  * executing login-related operations and interacting with data access interfaces.
+ * <p>
+ * An implementation of {@link  LoginIB}
  */
 public class LoginUCI implements LoginIB {
     private final LoginOB presenter;
 
 
-
-    private final UserDataAcessInterface dao;
+    private final UserDataAccessInterface dao;
 
     private final PetProfileDataAccessInterface daoP;
 
@@ -26,15 +28,19 @@ public class LoginUCI implements LoginIB {
 
 
     /**
-     * Constructs an {@code LGUCI} instance with the specified presenter and data access interfaces.
+     * Constructs an {@code LoginUCI} instance with the specified presenter and data access interfaces.
      *
-     * @param presenter                    The presenter associated with the login use case.
-     * @param userDataAccessInterface      The data access interface for user-related data.
-     * @param petProfileDataAccessInterface The data access interface for pet profile-related data.
-     * @param profilePictureDataAccessInterface The data access interface for profile picture-related data.
+     * @param presenter                         The presenter implementing {@link LoginOB} associated with the
+     *                                          login use case.
+     * @param userDataAccessInterface           The data access object implementing {@link UserDataAccessInterface}
+     *                                          for user-related data.
+     * @param petProfileDataAccessInterface     The data access object implementing  {@link PetProfileDataAccessInterface}
+     *                                          for pet profile-related data.
+     * @param profilePictureDataAccessInterface The data access object implementing  {@link ProfilePictureDataAccessInterface}
+     *                                          for profile picture-related data.
      */
 
-    public LoginUCI(LoginOB presenter, UserDataAcessInterface userDataAccessInterface,
+    public LoginUCI(LoginOB presenter, UserDataAccessInterface userDataAccessInterface,
                     PetProfileDataAccessInterface petProfileDataAccessInterface,
                     ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         this.presenter = presenter;
@@ -65,7 +71,7 @@ public class LoginUCI implements LoginIB {
                     if (profile == null) {
                         profile = ImageIO.read(getClass().getResource("/defaultprofile.png"));
                     }
-                    System.out.println("userprofile is" + (profile == null) );
+                    System.out.println("userprofile is" + (profile == null));
                     System.out.println(name);
                     LoginOPData successData = LoginOPData.createSuccessData(name, profile);
                     for (int petId : currUser.getFavPet()) {

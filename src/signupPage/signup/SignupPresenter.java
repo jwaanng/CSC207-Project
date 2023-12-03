@@ -4,14 +4,13 @@ import login.LoginViewModel;
 import signupPage.SignupViewModel;
 import viewModel.ViewModelManager;
 
-
 /**
  * Presenter class for user signup.
  * <p>
- * This class implements the SignupOutputBound interface and is responsible for preparing
+ * This class implements the {@link SignupOB}  and is responsible for preparing
  * the view based on the outcomes of the user signup feature, such as success or failure.
  */
-public class SignupPresenter implements SignupOutputBound {
+public class SignupPresenter implements SignupOB {
     private final SignupViewModel signupViewModel;
     private final LoginViewModel loginViewModel;
     private final ViewModelManager viewModelManager;
@@ -19,9 +18,10 @@ public class SignupPresenter implements SignupOutputBound {
     /**
      * Constructor for the SignupPresenter class.
      *
-     * @param signupViewModel  The view model associated with the user signup feature.
-     * @param loginViewModel   The view model associated with the login feature.
-     * @param viewModelManager The manager responsible for managing view models.
+     * @param signupViewModel  The {@link SignupViewModel} that stores all information associated with
+     *                         the user signup feature.
+     * @param loginViewModel   The {@link LoginViewModel}  that stores all information associated with login feature.
+     * @param viewModelManager The {@link ViewModelManager} responsible for managing view models.
      */
 
     public SignupPresenter(SignupViewModel signupViewModel, LoginViewModel loginViewModel, ViewModelManager viewModelManager) {
@@ -39,7 +39,7 @@ public class SignupPresenter implements SignupOutputBound {
      * @param user The output data containing information about the signed-up user.
      */
     @Override
-    public void prepareSignupSuccessView(SignupOutputData user) {
+    public void prepareSignupSuccessView(SignupOPData user) {
         viewModelManager.setActiveViewName(loginViewModel.getViewName());
         viewModelManager.firePropertyChange();
     }

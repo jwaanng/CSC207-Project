@@ -5,7 +5,7 @@ import entity.user.AppUser;
 /**
  * Interface for accessing and manipulating user data.
  */
-public interface UserDataAcessInterface {
+public interface UserDataAccessInterface {
 
     /**
      * Adds a new user to the data source.

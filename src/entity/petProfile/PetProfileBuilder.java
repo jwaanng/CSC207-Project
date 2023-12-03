@@ -1,6 +1,5 @@
 package entity.petProfile;
 
-import java.util.List;
 /**
  * The PetProfileBuilder class is an abstract builder class for constructing PetProfile objects.
  *
@@ -62,10 +61,10 @@ public abstract class PetProfileBuilder<T extends PetProfileBuilder<T, P>, P ext
     /**
      * Constructs a PetProfileBuilder with the specified pet owner's name.
      *
-     * @param petOwnerName The name of the pet owner.
+     * @param petOwnerName    The name of the pet owner.
      * @param nextAvailableId the next available id
      */
-    PetProfileBuilder(String petOwnerName, int nextAvailableId){
+    PetProfileBuilder(String petOwnerName, int nextAvailableId) {
         this.petOwnerName = petOwnerName;
         this.petid = nextAvailableId;
     }

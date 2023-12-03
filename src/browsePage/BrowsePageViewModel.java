@@ -6,7 +6,7 @@ import java.beans.PropertyChangeListener;
 
 /**
  * View Model class for the Browse Page feature.
- *
+ * <p>
  * This class extends the {@link ViewModel} class and is responsible for representing the state and behavior
  * associated with the Browse Page feature in the user interface. It provides methods for notifying changes
  * to registered observers (listeners) and managing property change events.

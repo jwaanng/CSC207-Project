@@ -1,6 +1,8 @@
 package favPetPage.updateAFavPet;
 
 /**
+ * A concrete implementation of {@link UpdateOB}
+ * <p>
  * An implementation of the updateAFavPet usecase presenter
  * Tasks with sending information on an existing pet profile that is liked by the user
  */
@@ -8,9 +10,11 @@ public class UpdatePresenter implements UpdateOB {
     private final UpdateViewModel updateVM;
 
     /**
-     * Construct UpdatePresenter
+     * Construct UpdatePresenter object
      *
-     * @param updateViewModel a viewmodel for the updateAFavPet usecase. This is called by the UpdatePresenter to store
+     * @param updateViewModel a viewmodel for the updateAFavPet usecase.
+     *                        <p>
+     *                        This is called by the UpdatePresenter to store
      *                        information that a user screen should see;
      */
     public UpdatePresenter(UpdateViewModel updateViewModel) {

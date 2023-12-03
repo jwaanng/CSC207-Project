@@ -14,10 +14,10 @@ public class FavPetRDRView extends CommonRedirectView {
     private FavPetRDRController controller;
 
     /**
-     * Construct a new FavPetRDR(FavPetRedirect)View
+     * Construct a new FavPetRDR object
      *
-     * @param favPetRedirectViewModel  the FavPetRedirectViewModel that stores all the information this view needs
-     *                                 to display
+     * @param favPetRedirectViewModel the {@link FavPetRDRViewModel} that stores all the information this view needs
+     *                                to display
      */
     public FavPetRDRView(FavPetRDRViewModel favPetRedirectViewModel) {
         super(favPetRedirectViewModel);

@@ -1,7 +1,7 @@
 package signupPage;
 
 
-import configProfile.SignupController;
+import signupPage.signup.SignupController;
 import signupPage.SignupViewModel;
 import signupPage.cancel.CancelController;
 import signupPage.signup.SignupState;
@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+/**
+ * What user sees for the signup page
+ */
 public class SignupView extends JPanel implements PropertyChangeListener {
 
     private JPanel registerPanel;
@@ -32,6 +35,15 @@ public class SignupView extends JPanel implements PropertyChangeListener {
     private final CancelController cancelController;
     private final SignupViewModel signupViewModel;
 
+    /**
+     * Construct a new SignupView
+     *
+     * @param signupViewModel  the {@link  SignupViewModel} that stores all information associated with the signup
+     *                         feature
+     * @param cancelController the {@link CancelController} that initiates the cancel usecase
+     *                         (redirects a user back to the login page)
+     * @param signupController the {@link SignupController} that initiate the signup usecase (register a user)
+     */
     public SignupView(
             SignupViewModel signupViewModel,
             SignupController signupController,

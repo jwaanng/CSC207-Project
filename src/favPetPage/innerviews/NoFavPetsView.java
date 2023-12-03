@@ -21,11 +21,11 @@ public class NoFavPetsView extends JPanel {
     private final Image background;
 
     /**
-     * Construct a new NoFavPetsView
+     * Construct a new NoFavPetsView object
      *
-     * @param noFavPetDisplayViewModel the NoFavPetDisplayViewModel that stores all the information this view needs
+     * @param noFavPetDisplayViewModel the {@link NoFavPetDisplayViewModel} that stores all the information this view needs
      *                                 to display
-     * @param browsePetController      the BrowsePetController that initiates the browsePet usecase
+     * @param browsePetController      the {@link BrowseController}that initiates the browsePet usecase
      */
     public NoFavPetsView(NoFavPetDisplayViewModel noFavPetDisplayViewModel, BrowseController browsePetController) {
 

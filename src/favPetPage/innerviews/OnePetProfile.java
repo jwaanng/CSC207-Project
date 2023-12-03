@@ -2,13 +2,11 @@ package favPetPage.innerviews;
 
 import favPetPage.innerviewmodels.OnePetProfileDisplayViewModel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URI;
+
 import java.util.Objects;
 
 /**
@@ -27,7 +25,7 @@ public class OnePetProfile extends JPanel {
     private final ActionListener delete;
 
     /**
-     * Construct a new OnePetProfile
+     * Construct a new OnePetProfile object
      *
      * @param petId                      the id of pet profile
      * @param name                       the name of the pet
@@ -40,9 +38,6 @@ public class OnePetProfile extends JPanel {
      */
     public OnePetProfile(int petId, String name, Image photo, ActionListener deleteCommonActionListener,
                          ActionListener viewProfileActionListener, int imagewidth) {
-        //TODO finalize error situation to not throw runtime error
-        //TODO customize heart image size, border,....etc
-
         delete = deleteCommonActionListener;
         view = viewProfileActionListener;
         this.petId = petId;

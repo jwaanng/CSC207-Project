@@ -1,8 +1,6 @@
 package usecase.configProfile;
 
-import configProfile.ConfigProfilePresenter;
-import dataAcessObject.CommonUserDataAccessObject;
-import dataAcessObject.UserDataAcessInterface;
+import dataAcessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 
 import java.util.regex.Matcher;
@@ -14,7 +12,7 @@ import java.util.regex.Pattern;
  * This class validates input data, performs necessary checks, and updates user profiles accordingly.
  */
 public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-    final UserDataAcessInterface configProfileDataAccessInterface;
+    final UserDataAccessInterface configProfileDataAccessInterface;
     final ConfigProfileOutputBoundary configProfilePresenter;
 
     /**
@@ -23,7 +21,7 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
      * @param configProfileDataAccessInterface The data access interface for interacting with user profiles.
      * @param configProfilePresenter          The output boundary for presenting success or failure views.
      */
-    public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface, ConfigProfileOutputBoundary configProfilePresenter) {
+    public ConfigProfileInteractor(UserDataAccessInterface configProfileDataAccessInterface, ConfigProfileOutputBoundary configProfilePresenter) {
         this.configProfileDataAccessInterface = configProfileDataAccessInterface;
 //        this.configProfileOutputBoundary = configProfilePresenter;
         this.configProfilePresenter = configProfilePresenter;

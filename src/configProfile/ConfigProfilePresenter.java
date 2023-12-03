@@ -1,5 +1,6 @@
 package configProfile;
 import browsePage.BrowsePageViewModel;
+
 import usecase.configProfile.ConfigProfileOutputBoundary;
 import viewModel.ViewModelManager;
 

@@ -13,28 +13,35 @@ import entity.petProfile.PetProfile;
 public class ViewThisUCI implements ViewThisIB {
     private final PetProfileDataAccessInterface daoP;
     private final ProfilePictureDataAccessInterface daoPic;
-    private  final UserDataAcessInterface dao;
+    private final UserDataAcessInterface dao;
     private final ViewThisOB presenter;
 
     /**
      * Construct a new usecase interactor
      *
-     * @param viewThisPresenter             the ViewThisPresenter that takes in the direction from this usecase interactor to
-     *                                      finish usecase
-     * @param petProfileDataAccessInterface a data access object that can interact with the database that stores all
-     *                                      pet profiles
+     * @param viewThisPresenter                 the ViewThisPresenter that takes in the direction from this usecase
+     *                                          interactor to
+     *                                          finish usecase
+     * @param userDataAccessInterface           a data access object that can interact with the database that stores all
+     *                                          users
+     * @param petProfileDataAccessInterface     a data access object that can interact with the database that stores all
+     *                                          pet profiles
+     * @param profilePictureDataAccessInterface a data access object that can interact with the database that stores all
+     *                                          pictures of pet profiles (also the user photos, but this functionality
+     *                                          is not needed in this usecase).
      */
-    public ViewThisUCI(ViewThisOB viewThisPresenter, UserDataAcessInterface userDataAcessInterface,
+    public ViewThisUCI(ViewThisOB viewThisPresenter, UserDataAcessInterface userDataAccessInterface,
                        PetProfileDataAccessInterface petProfileDataAccessInterface,
                        ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
         daoP = petProfileDataAccessInterface;
-        dao = userDataAcessInterface;
+        dao = userDataAccessInterface;
         daoPic = profilePictureDataAccessInterface;
         presenter = viewThisPresenter;
     }
 
     /**
-     * open the detailed version of this pet profile from the  user's liked list
+     * open the detailed version of this pet profile from the user's liked list,
+     * user will recieve notification if the pet profile just got deleted as the user clicked on pet profile to open it
      *
      * @param petId the id of this pet profile
      */
@@ -59,7 +66,7 @@ public class ViewThisUCI implements ViewThisIB {
             output.tempDescr = petProfile.getTemperDescr();
             output.likeDescr = petProfile.getLikeDescr();
 
-            output.specieSpecificInformation =petProfile.getDisplayAdditionalInformation();
+            output.specieSpecificInformation = petProfile.getDisplayAdditionalInformation();
             output.ownerInstagram = dao.retrieve(petProfile.getPetOwnerName()).getInstagramUsername();
             presenter.prepareSuccessView(output);
 

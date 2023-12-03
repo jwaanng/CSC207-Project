@@ -10,10 +10,10 @@ public class UpdateController {
     /**
      * Construct an UpdateController
      *
-     * @param updateInputBoundaryt an usecase interactor for the updateAFavPet useCase
+     * @param updateInputBoundary an usecase interactor for the updateAFavPet useCase
      */
-    public UpdateController(UpdateIB updateInputBoundaryt) {
-        this.uci = updateInputBoundaryt;
+    public UpdateController(UpdateIB updateInputBoundary) {
+        this.uci = updateInputBoundary;
     }
 
     /**

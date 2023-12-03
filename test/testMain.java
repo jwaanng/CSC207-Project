@@ -4,11 +4,10 @@ import entity.geoCoordinates.GeoCoordinate;
 import entity.geoCoordinates.GeoCoordinatesCalculator;
 import entity.geoCoordinates.GeoLocationFinder;
 import com.google.maps.errors.ApiException;
-import entity.petProfile.*;
+
+import entity.petProfiles.*;
 
 import java.io.IOException;
-
-//import static entity.Constants.MALE;
 
 public class testMain {
 

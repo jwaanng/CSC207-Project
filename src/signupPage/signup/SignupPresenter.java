@@ -1,29 +1,30 @@
-package signUp;
+package signupPage.signup;
 
-import login.LGViewModel;
+import login.LoginViewModel;
+import signupPage.SignupViewModel;
 import viewModel.ViewModelManager;
-import usecase.signUp.SignupOutputBound;
-import usecase.signUp.SignupOutputData;
+
 
 /**
  * Presenter class for user signup.
- *
+ * <p>
  * This class implements the SignupOutputBound interface and is responsible for preparing
  * the view based on the outcomes of the user signup feature, such as success or failure.
  */
 public class SignupPresenter implements SignupOutputBound {
     private final SignupViewModel signupViewModel;
-    private final LGViewModel loginViewModel;
+    private final LoginViewModel loginViewModel;
     private final ViewModelManager viewModelManager;
 
     /**
      * Constructor for the SignupPresenter class.
      *
-     * @param signupViewModel   The view model associated with the user signup feature.
-     * @param loginViewModel    The view model associated with the login feature.
-     * @param viewModelManager  The manager responsible for managing view models.
+     * @param signupViewModel  The view model associated with the user signup feature.
+     * @param loginViewModel   The view model associated with the login feature.
+     * @param viewModelManager The manager responsible for managing view models.
      */
-    public SignupPresenter(SignupViewModel signupViewModel, LGViewModel loginViewModel, ViewModelManager viewModelManager) {
+
+    public SignupPresenter(SignupViewModel signupViewModel, LoginViewModel loginViewModel, ViewModelManager viewModelManager) {
         this.signupViewModel = signupViewModel;
         this.loginViewModel = loginViewModel;
         this.viewModelManager = viewModelManager;
@@ -31,7 +32,7 @@ public class SignupPresenter implements SignupOutputBound {
 
     /**
      * Prepares the view for a successful execution of the user signup feature.
-     *
+     * <p>
      * This method sets the active view name to the login view, notifies the view model manager
      * of the property change, and prints debugging information to the console.
      *
@@ -45,7 +46,7 @@ public class SignupPresenter implements SignupOutputBound {
 
     /**
      * Prepares the view for a failed execution of the user signup feature.
-     *
+     * <p>
      * This method sets the error message in the SignupViewModel's state, notifies the view model
      * of the property change
      *
@@ -53,10 +54,8 @@ public class SignupPresenter implements SignupOutputBound {
      */
     @Override
     public void prepareSignUpFailView(String error) {
-        System.out.println("PRESENTER: fail view executed  " + error);
         SignupState signupState = signupViewModel.getState();
         signupState.setError(error);
-        System.out.println("PRESENTER state: " + signupState.toString());
         signupViewModel.setState(signupState);
         signupViewModel.firePropertyChanged();
     }

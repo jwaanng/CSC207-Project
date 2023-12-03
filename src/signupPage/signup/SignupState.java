@@ -1,4 +1,4 @@
-package signUp;
+package signupPage.signup;
 
 /**
  * Represents the state of the user signup view.

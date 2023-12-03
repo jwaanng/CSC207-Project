@@ -56,8 +56,6 @@ public class FavPetPageViewModel extends ViewModel {
         return delete;
     }
 
-    ;
-
     /**
      * get the FavPetRDRViewModel
      */
@@ -78,7 +76,9 @@ public class FavPetPageViewModel extends ViewModel {
     public NoFavPetDisplayViewModel getNoPetDisplayViewModel() {
         return noPetDisplay;
     }
-
+    /**
+     * get the ViewThisViewModel
+     */
     public ViewThisViewModel getViewThisViewModel(){ return viewPet;}
 
     /**

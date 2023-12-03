@@ -47,7 +47,6 @@ public class NoFavPetsView extends JPanel {
         browsePet.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(vm.BROWSE_PET);
                 browsePet.setForeground(Color.lightGray);
                 //controller.execute();
             }

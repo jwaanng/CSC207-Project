@@ -1,4 +1,5 @@
 package login;
+
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -9,19 +10,22 @@ import java.beans.PropertyChangeSupport;
  * providing labels for UI elements, managing the state, and notifying listeners
  * of state changes.
  */
-public class LGViewModel extends ViewModel{
+public class LoginViewModel extends ViewModel {
+
+
     public final String APPNAME_LABEL = "PetPal";
     public final String USERNAME_NAME_LABEL = "Username";
-    public  final String PASSWORD_NAME_LABEL = "Password";
+    public final String PASSWORD_NAME_LABEL = "Password";
     public final String LOGIN_LABEL = "Log In";
     public final String CANCEL_LABEL = "Cancel";
-    private LGState state = new LGState();
+    private LoginState state = new LoginState();
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
     /**
      * Constructs an {@code LGViewModel} instance with the specified name.
      */
-    public LGViewModel() {
+    public LoginViewModel() {
         super("log in");
     }
 
@@ -30,7 +34,7 @@ public class LGViewModel extends ViewModel{
      *
      * @param state The new state of the login view.
      */
-    public void setState(LGState state) {
+    public void setState(LoginState state) {
         this.state = state;
     }
 
@@ -39,7 +43,8 @@ public class LGViewModel extends ViewModel{
      *
      * @return The current state of the login view.
      */
-    public LGState getState() {
+
+    public LoginState getState() {
         return state;
     }
 

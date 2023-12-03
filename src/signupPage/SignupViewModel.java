@@ -1,5 +1,6 @@
-package signUp;
+package signupPage;
 
+import signupPage.signup.SignupState;
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -31,9 +32,7 @@ public class SignupViewModel extends ViewModel {
      */
     @Override
     public void firePropertyChanged() {
-        System.out.println("VIEWMODEL: firing property change");
         support.firePropertyChange("state", null, state);
-        System.out.println("VIEWMODEL: property change fired");
     }
 
     /**
@@ -52,7 +51,6 @@ public class SignupViewModel extends ViewModel {
      * @return The state object representing the current state of the user signup view.
      */
     public SignupState getState() {
-        System.out.println(state.toString());
         return state;
     }
 

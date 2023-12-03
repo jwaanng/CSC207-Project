@@ -1,6 +1,6 @@
 package favPetPage.addAFavPet;
 
-import login.LGOPData;
+import login.LoginOPData;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class AddState {
      *
      * @param data output data retrieved after a user login
      */
-    public AddState(LGOPData data) {
+    public AddState(LoginOPData data) {
         this.favPetID_Photo = data.getPetID_to_Photo();
         this.favPetID_Name = data.getPetID_to_Name();
     }

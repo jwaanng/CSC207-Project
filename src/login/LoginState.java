@@ -1,35 +1,46 @@
 package login;
 
+
 /**
  * The {@code LGState} class represents the state of the login view, including the entered username,
  * password, and any associated error messages.
  */
-public class LGState {
-
-    /** The entered username for the login view. */
-    private String username = "";
-
-    /** The entered password for the login view. */
-    private String password = "";
-
-    /** The error message associated with the login view. */
-    private String error = null;
+public class LoginState {
 
     /**
-     * Constructs an {@code LGState} instance by copying the data from another instance.
-     *
-     * @param copy The {@code LGState} instance to copy.
+     * The entered username for the login view.
      */
-    public LGState(LGState copy) {
+    private String username = "";
+
+    /**
+     * The entered password for the login view.
+     */
+    private String password = "";
+
+    /**
+     * The error message associated with the login view.
+     */
+    private String error = null;
+
+
+    /**
+     * Constructs an {@code LoginState} instance by copying the data from another instance.
+     *
+     * @param copy The {@code LoginState} instance to copy.
+     */
+    public LoginState(LoginState copy) {
         this.username = copy.username;
         this.password = copy.password;
         this.error = copy.error;
     }
 
     /**
-     * Constructs an empty {@code LGState} instance.
+     * Constructs an empty {@code LoginState} instance.
      */
-    public LGState() {}
+    public LoginState() {
+        ;
+    }
+
 
     /**
      * Gets the entered username for the login view.

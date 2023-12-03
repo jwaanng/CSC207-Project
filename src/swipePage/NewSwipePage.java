@@ -1,24 +1,16 @@
 package swipePage;
+
 import dataAccessObject.CommonUserDataAccessObject;
 import dataAccessObject.PetProfileDataAccessObject;
 import dataAccessObject.UserDataAccessInterface;
-
 import entity.petProfile.PetProfile;
 import entity.user.AppUserFactory;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.List;
 import java.util.ArrayList;
-import java.net.URL;
-import javax.imageio.ImageIO;
-
-
-
 
 public class NewSwipePage extends JFrame {
     private JLabel nameLabel, bioLabel, photosLabel;

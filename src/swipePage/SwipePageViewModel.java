@@ -1,8 +1,5 @@
 package swipePage;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import javax.imageio.ImageIO;
+
 import java.awt.*;
 public class SwipePageViewModel {
     private String displayName;
@@ -16,7 +13,13 @@ public class SwipePageViewModel {
     }
 
     // Getters
-    public String getDisplayName() { return displayName; }
-    public String getDisplayBio() { return displayBio; }
-    public Image getDisplayPhoto() { return displayPhoto; }
+    public String getDisplayName() {
+        return displayName;
+    }
+    public String getDisplayBio() {
+        return displayBio;
+    }
+    public Image getDisplayPhoto() {
+        return displayPhoto;
+    }
 }

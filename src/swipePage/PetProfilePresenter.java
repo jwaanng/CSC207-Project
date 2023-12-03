@@ -1,6 +1,10 @@
 package swipePage;
 
 import entity.petProfile.PetProfile;
+import javax.imageio.ImageIO;
+import dataAccessObject.CommonProfileDataAccessObject;
+
+import java.awt.*;
 
 /**
  * The {@code PetProfilePresenter} class is responsible for creating a {@code SwipePageViewModel}
@@ -16,12 +20,19 @@ public class PetProfilePresenter {
      */
     public SwipePageViewModel createViewModel(PetProfile profile) {
         if (profile == null) {
-            return new SwipePageViewModel("No more profiles", "", "");
+            return new SwipePageViewModel("No more profiles", "", null);
         }
+
+        int id = profile.getId();
+        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
+        Image image = commonProfileDataAccessObject.retrievePetProfile(id);
+
+        System.out.println(image);
+
         return new SwipePageViewModel(
                 profile.getName(),
                 "Bio: " + profile.toString(),
-                profile.getName() // TEMPORARILY SET FROM GET PHOTO LINK COZ THERE WAS AN ERROR - JW
+                image
         );
     }
 }

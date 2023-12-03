@@ -2,17 +2,22 @@ package swipePage;
 import dataAccessObject.CommonUserDataAccessObject;
 import dataAccessObject.PetProfileDataAccessObject;
 import dataAccessObject.UserDataAccessInterface;
+
 import entity.petProfile.PetProfile;
 import entity.user.AppUserFactory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.List;
 import java.util.ArrayList;
 import java.net.URL;
 import javax.imageio.ImageIO;
+
+
 
 
 public class NewSwipePage extends JFrame {
@@ -79,31 +84,16 @@ public class NewSwipePage extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-//    public void updateProfile(SwipePageViewModel viewModel) {
-//        nameLabel.setText(viewModel.getDisplayName());
-//        sizeLabel.setText(viewModel.getDisplayBio());
-//
-//        try {
-//            URL url = new URL(viewModel.getDisplayPhotoUrl());
-//            ImageIcon photo = new ImageIcon(ImageIO.read(url));
-//            photosLabel.setIcon(photo);
-//        } catch (Exception e) {
-//            photosLabel.setIcon(null);
-//            photosLabel.setText("Photo not available");
-//            e.printStackTrace();
-//        }
-//    }
-
     public void updateProfile(SwipePageViewModel viewModel) {
         nameLabel.setText(viewModel.getDisplayName());
         bioLabel.setText(viewModel.getDisplayBio());
 
         try {
-            URL url = new URL(viewModel.getDisplayPhotoUrl());
-            BufferedImage originalImage = ImageIO.read(url);
+            Image image = viewModel.getDisplayPhoto();
 
-            if (originalImage != null) {
-                ImageIcon photo = resizeImageToSquare(originalImage, 550); // 200x200 square
+            if (image != null) {
+                BufferedImage bufImage = toBufferedImage(image);
+                ImageIcon photo = resizeImageToSquare(bufImage, 550);
                 photosLabel.setIcon(photo);
             } else {
                 throw new IOException("Image could not be loaded.");
@@ -143,6 +133,22 @@ public class NewSwipePage extends JFrame {
         return new ImageIcon(squareImage);
     }
 
+    private static BufferedImage toBufferedImage(Image img) {
+        if (img instanceof BufferedImage) {
+            return (BufferedImage) img;
+        }
+
+        // Create a buffered image with transparency
+        BufferedImage bimage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
+
+        // Draw the image on to the buffered image
+        Graphics2D bGr = bimage.createGraphics();
+        bGr.drawImage(img, 0, 0, null);
+        bGr.dispose();
+
+        return bimage;
+    }
+
     public static void main(String[] args) {
         // Sample PetProfiles delete later.
         UserDataAccessInterface dao = new CommonUserDataAccessObject();
@@ -155,6 +161,18 @@ public class NewSwipePage extends JFrame {
         PetProfile GregDogAlex = daop.getProfile(6);
         PetProfile MirandaDogNemo = daop.getProfile(7);
 
+//        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
+//        File dalmation = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\dalmatian.png");
+//        File daschund = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\daschund.png");
+//        File husky = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\husky.png");
+//        File shiba = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\shiba.png");
+//        File wolf = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\wolf.png");
+//        commonProfileDataAccessObject.uploadPetProfile(JasonDogRosy.getId(), shiba);
+//        commonProfileDataAccessObject.uploadPetProfile(DavidDogRandy.getId(), husky);
+//        commonProfileDataAccessObject.uploadPetProfile(SallyDogDawson.getId(), wolf);
+//        commonProfileDataAccessObject.uploadPetProfile(GregDogAlex.getId(), dalmation);
+//        commonProfileDataAccessObject.uploadPetProfile(MirandaDogNemo.getId(), daschund);
+
         List<PetProfile> profiles = new ArrayList<>();
         profiles.add(JasonDogRosy);
         profiles.add(SallyDogDawson);
@@ -162,7 +180,7 @@ public class NewSwipePage extends JFrame {
         profiles.add(GregDogAlex);
         profiles.add(MirandaDogNemo);
 
-        swipePage.ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
+        ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(profiles);
         PetProfilePresenter presenter = new PetProfilePresenter();
         NewSwipePage view = new NewSwipePage(null);
 

@@ -161,18 +161,6 @@ public class NewSwipePage extends JFrame {
         PetProfile GregDogAlex = daop.getProfile(6);
         PetProfile MirandaDogNemo = daop.getProfile(7);
 
-//        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
-//        File dalmation = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\dalmatian.png");
-//        File daschund = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\daschund.png");
-//        File husky = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\husky.png");
-//        File shiba = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\shiba.png");
-//        File wolf = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\wolf.png");
-//        commonProfileDataAccessObject.uploadPetProfile(JasonDogRosy.getId(), shiba);
-//        commonProfileDataAccessObject.uploadPetProfile(DavidDogRandy.getId(), husky);
-//        commonProfileDataAccessObject.uploadPetProfile(SallyDogDawson.getId(), wolf);
-//        commonProfileDataAccessObject.uploadPetProfile(GregDogAlex.getId(), dalmation);
-//        commonProfileDataAccessObject.uploadPetProfile(MirandaDogNemo.getId(), daschund);
-
         List<PetProfile> profiles = new ArrayList<>();
         profiles.add(JasonDogRosy);
         profiles.add(SallyDogDawson);

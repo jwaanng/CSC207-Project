@@ -17,6 +17,7 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -227,7 +228,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
 
     /**
-     * Gets the petprofile
+     * Gets the pet profile
      *
      * @param id The unique identifier of the pet profile to be checked for existence.
      * @return the profile, or null if none
@@ -237,5 +238,17 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
         return profiles.getOrDefault(id, null);
     }
 
-
+    /**
+     * Gets all pet profiles in the database
+     *
+     * @return the list of pet profiles
+     */
+    @Override
+    public List<PetProfile> getAllProfiles(){
+        ArrayList<PetProfile> profileArrayList = new ArrayList<>();
+        for (int petId : profiles.keySet()){
+            profileArrayList.add(profiles.get(petId));
+        }
+        return profileArrayList;
+    }
 }

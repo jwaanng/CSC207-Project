@@ -7,13 +7,11 @@ import java.util.Comparator;
 class DogProfileComparatorByVaccined implements Comparator<DogProfile> {
     @Override
     public int compare(DogProfile p1, DogProfile p2) {
-        if (p1 != null && p2 != null) {
-            return Boolean.compare(p1.isVaccinated(), p2.isVaccinated());
-        }
-        return 0;
+            return Boolean.compare(p2.isVaccinated(), p1.isVaccinated() );
+        //order matters
     }
 
-    public Comparator<DogProfile> thenComparing(Comparator<? super DogProfile> comparator) {
-        return Comparator.comparing(DogProfile::getBreed).thenComparing(comparator);
-    }
+//    public Comparator<DogProfile> thenComparing(Comparator<? super DogProfile> comparator) {
+//        return Comparator.comparing(DogProfile::getBreed).thenComparing(comparator);
+//    }
 }

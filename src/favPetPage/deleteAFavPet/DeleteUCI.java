@@ -1,6 +1,6 @@
 package favPetPage.deleteAFavPet;
 
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 
 /**

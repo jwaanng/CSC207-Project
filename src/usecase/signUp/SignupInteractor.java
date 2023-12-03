@@ -1,6 +1,6 @@
 package usecase.signUp;
 
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.UserDataAccessInterface;
 import entity.user.AppUser;
 import entity.user.AppUserFactory;
 

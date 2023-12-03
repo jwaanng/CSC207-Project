@@ -1,4 +1,4 @@
-package dataAcessObject;
+package dataAccessObject;
 
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
  * Data Access Object (DAO) for handling profile pictures, both user and pet profiles.
  * This class interacts with Google Cloud Storage to upload and retrieve images.
  */
-public class CommonProfileDataAccessObject implements ProfilePictureDataAccessInterface {
+public class CommonProfileDataAccessObject implements dataAccessObject.ProfilePictureDataAccessInterface {
     private final String userProfilebucketName = "userprofilepictu";
     private final String petProfilebucketName = "petprofilepictures";
     private final GoogleCredentials credentials;

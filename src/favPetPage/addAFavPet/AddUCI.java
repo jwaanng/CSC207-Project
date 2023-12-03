@@ -1,6 +1,6 @@
 package favPetPage.addAFavPet;
 
-import dataAcessObject.*;
+import dataAccessObject.*;
 import entity.petProfile.PetProfile;
 import entity.user.AppUser;
 

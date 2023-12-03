@@ -1,7 +1,7 @@
 package app;
 
 
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.UserDataAccessInterface;
 import entity.user.AppUserFactory;
 import login.LoginViewModel;
 import signupPage.cancel.CancelController;

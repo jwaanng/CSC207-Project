@@ -1,9 +1,9 @@
 package app;
 
 import browsePage.BrowsePageViewModel;
-import dataAcessObject.PetProfileDataAccessInterface;
-import dataAcessObject.ProfilePictureDataAccessInterface;
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.PetProfileDataAccessInterface;
+import dataAccessObject.ProfilePictureDataAccessInterface;
+import dataAccessObject.UserDataAccessInterface;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.browsePet.BrowseController;

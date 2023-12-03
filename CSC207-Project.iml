@@ -10,5 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib2" level="project" />
+    <orderEntry type="library" name="animal-sniffer-annotations-1.23" level="project" />
+    <orderEntry type="library" name="animal-sniffer-annotations-1.231" level="project" />
   </component>
 </module>

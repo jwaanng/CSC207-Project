@@ -1,9 +1,9 @@
 package app;
 
 import configProfile.ConfigProfileViewModel;
-import dataAcessObject.PetProfileDataAccessInterface;
-import dataAcessObject.ProfilePictureDataAccessInterface;
-import dataAcessObject.UserDataAccessInterface;
+import dataAccessObject.PetProfileDataAccessInterface;
+import dataAccessObject.ProfilePictureDataAccessInterface;
+import dataAccessObject.UserDataAccessInterface;
 import favPetPage.FavPetPageViewModel;
 import login.*;
 import viewModel.ViewModelManager;

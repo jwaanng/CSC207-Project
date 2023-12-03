@@ -1,4 +1,4 @@
-package dataAcessObject;
+package dataAccessObject;
 
 import entity.petProfile.PetProfile;
 

@@ -1,4 +1,4 @@
-package dataAcessObject;
+package dataAccessObject;
 
 import entity.user.AppUser;
 import com.google.gson.Gson;
@@ -17,7 +17,7 @@ import java.util.HashMap;
  * This class interacts with a MongoDB API to perform operations such as adding, updating,
  * deleting, retrieving, and checking the existence of user data.
  */
-public class CommonUserDataAccessObject implements UserDataAccessInterface {
+public class CommonUserDataAccessObject implements dataAccessObject.UserDataAccessInterface {
     private final String add = "add";
     private final String update = "update";
 

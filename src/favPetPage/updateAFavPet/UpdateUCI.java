@@ -1,7 +1,7 @@
 package favPetPage.updateAFavPet;
 
-import dataAcessObject.PetProfileDataAccessInterface;
-import dataAcessObject.ProfilePictureDataAccessInterface;
+import dataAccessObject.PetProfileDataAccessInterface;
+import dataAccessObject.ProfilePictureDataAccessInterface;
 import entity.petProfile.PetProfile;
 
 

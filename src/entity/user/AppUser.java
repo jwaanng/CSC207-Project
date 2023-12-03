@@ -83,11 +83,11 @@ public class AppUser {
     }
 
     public void setPreferredSize(String size) {
-        this.preferredSize = preferredSize;
+        this.preferredSize = size;
     }
 
     public void setPreferredSex(String sex) {
-        this.preferredSex = preferredSex;
+        this.preferredSex = sex;
     }
 
     public void setUsername(String username) {
@@ -117,8 +117,15 @@ public class AppUser {
         this.instagramUsername = instagramUsername;
     }
 
-    public void addFavProfile(int petID){
-        favPet.add(petID);
+    public void createMyPetProfile(int petId){
+        myPet.add(petId);
+    }
+    public void deleteMyPetProfile(int petId){
+        myPet.remove(petId);
+    }
+
+    public void addFavProfile(int petId){
+        favPet.add(petId);
     }
 
     /**
@@ -144,8 +151,10 @@ public class AppUser {
      * @return a list of fav pets
      */
     public List<Integer> getFavPet(){
-        ArrayList<Integer> favPet = new ArrayList<>();
-        favPet.addAll(this.favPet);
-        return favPet;
+        return new ArrayList<>(this.favPet);
     } //new copy
+
+    public List<Integer> getMyPet(){
+        return  new ArrayList<>(this.myPet);
+    }
 }

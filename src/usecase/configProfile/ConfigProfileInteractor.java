@@ -1,6 +1,7 @@
 package usecase.configProfile;
 
 import configProfile.ConfigProfilePresenter;
+import dataAcessObject.CommonUserDataAccessObject;
 import dataAcessObject.UserDataAcessInterface;
 import entity.user.AppUser;
 
@@ -13,10 +14,8 @@ import java.util.regex.Pattern;
  * This class validates input data, performs necessary checks, and updates user profiles accordingly.
  */
 public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-
-    private UserDataAcessInterface configProfileDataAccessInterface;
-    private ConfigProfileOutputBoundary configProfileOutputBoundary; // this sets the output view (fail/success)
-    private ConfigProfilePresenter configProfilePresenter;
+    final UserDataAcessInterface configProfileDataAccessInterface;
+    final ConfigProfileOutputBoundary configProfilePresenter;
 
     /**
      * Constructs a {@code ConfigProfileInteractor} with the specified data access interface and output boundary.
@@ -26,7 +25,8 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
      */
     public ConfigProfileInteractor(UserDataAcessInterface configProfileDataAccessInterface, ConfigProfileOutputBoundary configProfilePresenter) {
         this.configProfileDataAccessInterface = configProfileDataAccessInterface;
-        this.configProfileOutputBoundary = configProfilePresenter;
+//        this.configProfileOutputBoundary = configProfilePresenter;
+        this.configProfilePresenter = configProfilePresenter;
     }
 
     /**
@@ -63,7 +63,6 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
             configProfilePresenter.prepareFailView("Keep bio under 150 characters.");
         } else {
             // TODO2 Done -ming: saving the info if all parameters are met.
-
             AppUser user = configProfileDataAccessInterface.retrieve(data.getUsername()); //TODO: get username
             // setting attributes to user
             user.setBio(data.getBio());
@@ -71,10 +70,10 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
             user.setPreferredSize(data.getSize());
             user.setPreferredSex(data.getSex());
 
-            System.out.println("INTERACTOR: " + user.getPreferredSex() + user.getPreferredSize());
+            System.out.println("INTERACTOR: " + user.getPreferredSex() + " " + user.getPreferredSize());
 
             configProfileDataAccessInterface.update(user);
-            System.out.println("INTERACTOR after: " + user.getPreferredSex() + user.getPreferredSize());
+            System.out.println("INTERACTOR after: " + user.getPreferredSex() + " " + user.getPreferredSize());
         }
     }
 }

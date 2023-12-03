@@ -119,29 +119,34 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
             petDisplaySection.repaint();
         }
         if (evt.getSource() == vm.getViewThisViewModel()){
-//            ViewThisState state = vm.getViewThisViewModel().getState();
-            DetailFavPetProfile detailProfile = new DetailFavPetProfile();
-            detailProfile.setAge(state.getAge());
-            detailProfile.setPhoto(state.getPhoto());
-            detailProfile.setPetName(state.getName());
-            detailProfile.setSpecie(state.getSpecie());
-            detailProfile.setOwnerName(state.getOwnerName());
-            detailProfile.setSex(state.getSex());
-            detailProfile.setSize(state.getSize());
-            detailProfile.setGeneralDescr(state.getGeneralDescr());
-            detailProfile.setLikeDescr(state.getLikeDescr());
-            detailProfile.setTempDescr(state.getTempDescr());
-            detailProfile.setAdditionalAttributes(state.getSpecie(), state.getSpecieSpecificInformation());
-            detailProfile.setOwnerInstagram(state.getOwnerInstagram());
+            ViewThisState state = vm.getViewThisViewModel().getState();
+            if(state.getError().isEmpty()) {
+                DetailFavPetProfile detailProfile = new DetailFavPetProfile();
+                detailProfile.setAge(state.getAge());
+                detailProfile.setPhoto(state.getPhoto());
+                detailProfile.setPetName(state.getName());
+                detailProfile.setSpecie(state.getSpecie());
+                detailProfile.setOwnerName(state.getOwnerName());
+                detailProfile.setSex(state.getSex());
+                detailProfile.setSize(state.getSize());
+                detailProfile.setGeneralDescr(state.getGeneralDescr());
+                detailProfile.setLikeDescr(state.getLikeDescr());
+                detailProfile.setTempDescr(state.getTempDescr());
+                detailProfile.setAdditionalAttributes(state.getSpecie(), state.getSpecieSpecificInformation());
+                detailProfile.setOwnerInstagram(state.getOwnerInstagram());
 
-            JDialog popup = new JDialog((JFrame) null);
-            JScrollPane scrollPane = new JScrollPane(detailProfile);
-            scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-            scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-            popup.setContentPane(scrollPane);
-            popup.setSize(500,500);
-            popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-            popup.setVisible(true);
+                JDialog popup = new JDialog((JFrame) null);
+                JScrollPane scrollPane = new JScrollPane(detailProfile);
+                scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+                popup.setContentPane(scrollPane);
+                popup.setSize(500, 500);
+                popup.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                popup.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, state.getError());
+            }
 
 
         }

@@ -1,4 +1,4 @@
-package myProfilePage;
+package view;
 
 import myProfilePage.changeProfile.ChangeProfileController;
 import myProfilePage.changeProfile.ChangeProfileState;
@@ -129,20 +129,13 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
                 JOptionPane.showMessageDialog(this, state.getError());
             }
         }
-        if (evt.getSource().equals(changeProfileViewModel)){
-            ChangeProfileState state = (ChangeProfileState) evt.getNewValue();
-            System.out.println("View: profile property change recieved");
-            if( state.getError().isEmpty()){
-                JOptionPane.showMessageDialog(this, state.getError());
-            }
-            else
-        }
+
     }
 
     public static void main(String[] args) {
 //        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
 //        ConfigProfilePresenter configProfilePresenter = new ConfigProfilePresenter(configProfileViewModel, new ViewModelManager());
-//        ConfigProfileInteractor configProfileInteractor = new ConfigProfileInteractor(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
+//        ConfigProfileUCI configProfileInteractor = new ConfigProfileUCI(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
 //        ConfigProfileController configProfileController = new ConfigProfileController(configProfileInteractor);
 //
 //        ConfigProfileView configProfileView = new ConfigProfileView(null, configProfileController, configProfileViewModel);

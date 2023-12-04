@@ -22,7 +22,7 @@ public class FavPetRDRPresenter implements FavPetRDROB {
      * @param manager             {@link ViewModelManager} for all the main page, tasks with switching the main pages that the user sees
      *                            ;
      */
-    public FavPetRDRPresenter(FavPetPageViewModel favPetPageViewModel, ViewModelManager manager) {
+    public FavPetRDRPresenter(ViewModelManager manager,FavPetPageViewModel favPetPageViewModel) {
         this.myFPPvm = favPetPageViewModel;
         this.manager = manager;
     }

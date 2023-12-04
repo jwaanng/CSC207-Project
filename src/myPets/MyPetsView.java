@@ -1,8 +1,11 @@
 package myPets;
 
 
+import browsePage.BrowsePageRedirectView;
+import browsePage.browsePageRedirect.BrowsePageRDRController;
 import dataAccessObject.PetProfileDataAccessInterface;
 import dataAccessObject.PetProfileDataAccessObject;
+import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import myPets.createNewDog.CreateController;
 import myPets.createNewDog.CreateViewModel;
 import myPets.createRedirect.CreateRedirectController;
@@ -11,11 +14,12 @@ import myPets.deleteMyPet.DeleteMyPetController;
 import myPets.deleteMyPet.DeleteMyPetViewModel;
 import myPets.innerViews.CreatePetView;
 import myPets.innerViews.MyPetsDisplayView;
-import myPets.innerViews.MyRedirectView;
+import myPets.innerViews.MyPetRDRView;
 import myPets.myPetDisplayRedirect.MyPetRedirectController;
 import myPets.myPetDisplayRedirect.MyPetRedirectViewModel;
-import myPets.myPetsRedirect.MyRedirectController;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myPets.updateMyPet.UpdateMyPetsViewModel;
+import myProfilePage.myProfileRedirect.MyProfileRDRController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,23 +41,27 @@ public class MyPetsView extends JPanel implements ActionListener, PropertyChange
     private final CreateRedirectViewModel createRedirectViewModel;
     private final CreateViewModel createVM;
     private final CreateController createController;
-    private final MyRedirectController myRedirectController;
     private final MyPetRedirectViewModel myPetRedirectViewModel;
     private final MyPetRedirectController myPetRedirectController;
     private JDialog dialog;
 
-    public MyPetsView(InnerViewModelManager innerViewModelManager, MyPetsViewModel myPetsViewModel,
+    public MyPetsView(InnerViewModelManager innerViewModelManager,
+                      MyPetsViewModel myPetsViewModel,
                       DeleteMyPetController deletePetController,
-                      MyRedirectController myRedirectController, PetProfileDataAccessInterface petProfileDataAccessObject,
-                      CreateRedirectViewModel createRedirectViewModel, CreateController createController, CreateRedirectController createRedirectController,
-                      MyPetRedirectViewModel myPetRedirectViewModel, MyPetRedirectController myPetRedirectController
+                      CreateRedirectViewModel createRedirectViewModel,
+                      CreateController createController,
+                      CreateRedirectController createRedirectController,
+                      MyPetRedirectViewModel myPetRedirectViewModel,
+                      MyPetRedirectController myPetRedirectController,
+                      BrowsePageRDRController browsePageRDRController,
+                      FavPetRDRController favPetRDRController,
+                      MyProfileRDRController myProfileRDRController
                           ) {
 
 
         this.myPetRedirectController = myPetRedirectController;
         this.myPetRedirectViewModel = myPetRedirectViewModel;
         myPetRedirectViewModel.addPropertyChangeListener(this);
-        this.myRedirectController = myRedirectController;
         this.innerViewModelManager = innerViewModelManager;
         vm = myPetsViewModel;
         createVM = vm.getCreateViewModel();
@@ -84,16 +92,18 @@ public class MyPetsView extends JPanel implements ActionListener, PropertyChange
         JScrollPane scrollPane = new JScrollPane(petDisplayView);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
-        //CreatePetView createPetView = new CreatePetView(vm.getCreateViewModel());
-        MyRedirectView redirectView = new MyRedirectView(vm.getRedirectViewModel(), myRedirectController);
-//        NoPetsDisplayView noPetDisplayView = new NoPetsDisplayView(innerViewModelManager, noMyPetsDisplayViewModel, daop, myRedirectController, createRedirectController);
+
+        MyPetRDRView redirectView = new MyPetRDRView(vm.getRDRViewModel(),
+                browsePageRDRController,favPetRDRController,
+                myProfileRDRController);
+//        NoPetsDisplayView noPetDisplayView = new NoPetsDisplayView(innerViewModelManager, noMyPetsDisplayViewModel, daop, MyPetRDRController, createRedirectController);
         //DisplayUserView displayUserView = new DisplayUserView(vm.getDisplayUserModel());
 
 
         //Display
         petDisplaySection.add(scrollPane, vm.getMyPetsDisplayViewModel().getViewName());
         //MyPetsDisplayView
-        petDisplaySection.add(redirectView, vm.getRedirectViewModel().getViewName());
+        add(redirectView, BorderLayout.SOUTH);
         //NoPetsDisplayView
 //        petDisplaySection.add(noPetDisplayView, vm.getNoPetsDisplayViewModel().getViewName());
 

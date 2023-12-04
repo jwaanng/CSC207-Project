@@ -1,4 +1,4 @@
-package swipePage;
+package browsePage.swipePage;
 import entity.petProfile.PetProfile;
 import favPetPage.addAFavPet.AddController;
 
@@ -9,7 +9,7 @@ public class SwipePageController {
 
     private final ProfileSwipingInteractor interactor;
     private final PetProfilePresenter presenter;
-    private final NewSwipePage view;
+    private final SwipePageView view;
 
     private PetProfile currentProfile;
 
@@ -24,7 +24,7 @@ public class SwipePageController {
      * @param presenter  The presenter responsible for creating view models.
      * @param view       The view to be updated with profile information.
      */
-    public SwipePageController(ProfileSwipingInteractor interactor, PetProfilePresenter presenter, NewSwipePage view, String user, AddController addController) {
+    public SwipePageController(ProfileSwipingInteractor interactor, PetProfilePresenter presenter, SwipePageView view, String user, AddController addController) {
         this.interactor = interactor;
         this.presenter = presenter;
         this.view = view;

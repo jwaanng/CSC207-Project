@@ -1,4 +1,4 @@
-package swipePage;
+package browsePage.swipePage;
 
 import entity.petProfile.PetProfile;
 import entity.user.AppUser;

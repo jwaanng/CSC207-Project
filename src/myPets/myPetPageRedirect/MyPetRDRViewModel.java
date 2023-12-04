@@ -1,14 +1,14 @@
-package myPets.myPetsRedirect;
+package myPets.myPetPageRedirect;
 
 import redirect.PageRedirectViewModel;
 
 import java.beans.PropertyChangeListener;
 
 
-public class MyRedirectViewModel extends PageRedirectViewModel {
+public class MyPetRDRViewModel extends PageRedirectViewModel {
     public final String propertyName = "redirect";
 
-    public MyRedirectViewModel() {
+    public MyPetRDRViewModel() {
         super("my pet redirect");
     }
 

@@ -1,4 +1,4 @@
-package swipePage;
+package browsePage.swipePage;
 
 import dataAccessObject.CommonProfileDataAccessObject;
 import entity.petProfile.PetProfile;

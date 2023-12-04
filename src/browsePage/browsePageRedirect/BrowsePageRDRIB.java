@@ -1,4 +1,4 @@
-package browsePage.swipePageRedirect;
+package browsePage.browsePageRedirect;
 
 public interface BrowsePageRDRIB {
     void execute();

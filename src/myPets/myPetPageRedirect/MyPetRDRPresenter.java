@@ -1,15 +1,15 @@
-package myPets.myPetsRedirect;
+package myPets.myPetPageRedirect;
 
-import myPets.InnerViewModelManager;
 import myPets.MyPetsViewModel;
+import viewModel.ViewModelManager;
 
-public class MyRedirectPresenter implements MyRedirectOB {
-    private final InnerViewModelManager manager;
+public class MyPetRDRPresenter implements MyPetRDROB {
+    private final ViewModelManager manager;
     //TODO change to myPets main page view model
     private final MyPetsViewModel mrvm;
 
 
-    public MyRedirectPresenter(MyPetsViewModel mrvm, InnerViewModelManager manager) {
+    public MyPetRDRPresenter(MyPetsViewModel mrvm, ViewModelManager manager) {
         this.mrvm = mrvm;
         this.manager = manager;
     }

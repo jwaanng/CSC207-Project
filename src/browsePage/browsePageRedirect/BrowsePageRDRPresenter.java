@@ -1,4 +1,4 @@
-package browsePage.swipePageRedirect;
+package browsePage.browsePageRedirect;
 
 import viewModel.ViewModelManager;
 

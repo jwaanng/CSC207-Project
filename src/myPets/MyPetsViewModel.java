@@ -2,8 +2,10 @@ package myPets;
 
 import myPets.MyPetsDisplay.AddPetViewModel;
 import myPets.createNewDog.CreateViewModel;
+import myPets.createRedirect.CreateRedirectViewModel;
 import myPets.deleteMyPet.DeleteMyPetViewModel;
-import myPets.myPetsRedirect.MyRedirectViewModel;
+import myPets.myPetDisplayRedirect.MyPetRedirectViewModel;
+import myPets.myPetPageRedirect.MyPetRDRViewModel;
 import myPets.noMyPets.MyPetsDisplayViewModel;
 import myPets.noMyPets.NoMyPetsDisplayViewModel;
 import myPets.noMyPets.OnePetProfileDisplayViewModel;
@@ -20,12 +22,13 @@ public class MyPetsViewModel extends ViewModel {
 
     private final DeleteMyPetViewModel delete = new DeleteMyPetViewModel();
     // to the inner scroll pane display of pet profiles
-    private final MyRedirectViewModel redirect = new MyRedirectViewModel();
+    private final MyPetRDRViewModel redirect = new MyPetRDRViewModel();
     //private final DisplayUserModel userinfo = new DisplayUserModel();
     private final AddPetViewModel addPet = new AddPetViewModel();
     private final MyPetsDisplayViewModel myPetsDisplay = new MyPetsDisplayViewModel();
     private final OnePetProfileDisplayViewModel onePetProfileDisplayViewModel = new OnePetProfileDisplayViewModel();
-
+    private final MyPetRedirectViewModel myPetRedirectViewModel = new MyPetRedirectViewModel();
+    private final CreateRedirectViewModel createRedirectViewModel = new CreateRedirectViewModel();
     private final NoMyPetsDisplayViewModel noPetDisplay = new NoMyPetsDisplayViewModel();
     public MyPetsViewModel() {
         super("my pet");
@@ -38,16 +41,17 @@ public class MyPetsViewModel extends ViewModel {
     }
     public UpdateMyPetsViewModel getUpdateMyPetsViewModel() {return update;}
     public DeleteMyPetViewModel getDeleteMyPetViewModel() {return delete;};
-    public MyRedirectViewModel getRedirectViewModel(){
+    public MyPetRDRViewModel getRDRViewModel(){
         return redirect;
     }
 //    public DisplayUserModel getDisplayUserModel(){
 //        return userinfo;
 //    }
+    public CreateRedirectViewModel getCreateRedirectViewModel() {return createRedirectViewModel;}
     public NoMyPetsDisplayViewModel getNoPetsDisplayViewModel(){
         return noPetDisplay;
     }
-
+    public MyPetRedirectViewModel getMyPetRedirectViewModel() {return myPetRedirectViewModel;}
     public MyPetsDisplayViewModel getMyPetsDisplayViewModel() {
         return myPetsDisplay;
     }

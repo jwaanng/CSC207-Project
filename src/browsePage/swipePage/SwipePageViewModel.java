@@ -1,4 +1,4 @@
-package swipePage;
+package browsePage.swipePage;
 
 import java.awt.*;
 public class SwipePageViewModel {

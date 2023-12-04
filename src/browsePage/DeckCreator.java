@@ -1,9 +1,9 @@
-package entity;
+package browsePage;
 
 import dataAccessObject.PetProfileDataAccessObject;
 import entity.petProfile.PetProfile;
 import entity.user.AppUser;
-import swipePage.newcomparator.PetProfileComparator;
+import browsePage.swipePage.newcomparator.PetProfileComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;

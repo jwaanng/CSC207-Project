@@ -1,10 +1,10 @@
-package swipePage;
+package browsePage.swipePage;
 
 import dataAccessObject.CommonProfileDataAccessObject;
 import dataAccessObject.CommonUserDataAccessObject;
 import dataAccessObject.PetProfileDataAccessObject;
 import dataAccessObject.UserDataAccessInterface;
-import entity.DeckCreator;
+import browsePage.DeckCreator;
 import entity.petProfile.PetProfile;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.addAFavPet.AddController;
@@ -17,12 +17,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
-public class NewSwipePage extends JFrame {
+public class SwipePageView extends JPanel {
     private JLabel nameLabel, bioLabel, photosLabel;
     private JButton likeButton, dislikeButton;
     private SwipePageController controller;
 
-    public NewSwipePage(SwipePageController controller) {
+    public SwipePageView(SwipePageController controller) {
         this.controller = controller;
         initUI();
     }
@@ -77,8 +77,6 @@ public class NewSwipePage extends JFrame {
         likeButton.addActionListener(e -> controller.onLike());
         dislikeButton.addActionListener(e -> controller.onDislike());
 
-        setSize(700, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void updateProfile(SwipePageViewModel viewModel) {
@@ -158,7 +156,7 @@ public class NewSwipePage extends JFrame {
         PetProfileDataAccessObject petProfileDataAccessObject = new PetProfileDataAccessObject();
         CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
 
-        NewSwipePage view = new NewSwipePage(null);
+        SwipePageView view = new SwipePageView(null);
 
         FavPetPageViewModel favPetPageViewModel = new FavPetPageViewModel();
         AddPresenter addPresenter = new AddPresenter(favPetPageViewModel.getAddViewModel());

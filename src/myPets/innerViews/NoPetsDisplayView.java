@@ -3,7 +3,7 @@ package myPets.innerViews;
 import dataAccessObject.PetProfileDataAccessInterface;
 import myPets.InnerViewModelManager;
 import myPets.createRedirect.CreateRedirectController;
-import myPets.myPetsRedirect.MyRedirectController;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myPets.noMyPets.NoMyPetsDisplayViewModel;
 
 import javax.swing.*;
@@ -21,7 +21,7 @@ public class NoPetsDisplayView extends JPanel {
     public final String viewName = NoMyPetsDisplayViewModel.TITLE_LABEL;
     //private final Image background;
 
-    public NoPetsDisplayView(InnerViewModelManager innerViewModelManager, NoMyPetsDisplayViewModel noMyPetsDisplayViewModel, PetProfileDataAccessInterface petProfileDataAccessObject, MyRedirectController myRedirectController, CreateRedirectController createRedirectController){
+    public NoPetsDisplayView(InnerViewModelManager innerViewModelManager, NoMyPetsDisplayViewModel noMyPetsDisplayViewModel, PetProfileDataAccessInterface petProfileDataAccessObject, MyPetRDRController myPetRDRController, CreateRedirectController createRedirectController){
 
         vm = noMyPetsDisplayViewModel;
         setLayout(new BorderLayout());
@@ -40,7 +40,7 @@ public class NoPetsDisplayView extends JPanel {
         createPet.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //CreatePetView createPetView = CreateUseCaseFactory.create(innerViewModelManager, new MyPetsViewModel(), new CreateViewModel(), petProfileDataAccessObject, myRedirectController);
+                //CreatePetView createPetView = CreateUseCaseFactory.create(innerViewModelManager, new MyPetsViewModel(), new CreateViewModel(), petProfileDataAccessObject, MyPetRDRController);
 
                 createRedirectController.execute();
                 System.out.println(vm.CREATE_PET);

@@ -101,7 +101,6 @@ public class CreateState {
     public void addPetNameAndPhoto(int petId, String petName, File photo){
         myPetID_Name.put(petId, petName);
         myPetID_Photo.put(petId, photo);
-        System.out.println("added name and photo!");
     }
 
     public List<Integer> getKeyEntries(){

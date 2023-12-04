@@ -26,7 +26,6 @@ public class InitiateProfileSwiper {
     public void execute() {
         BrowsePageState curr = browsePageVM.getState();
         creator.setName(curr.getUsername());
-        System.out.println(curr.getUsername());
         curr.setRecommendation(creator.createDeck());
         browsePageVM.setState(curr);
         browsePageVM.firePropertyChanged();

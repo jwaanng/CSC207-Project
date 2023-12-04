@@ -57,13 +57,18 @@ public class DynamicSwipePageController {
     public void onLike() {
         // Additional logic for liking a profile (if needed).
         addController.execute(username, currentProfile.getId());
-        loadNextProfile();
+        if (currentProfile != null) {
+            loadNextProfile();
+        }
     }
 
     /**
      * Handles the dislike action for the current profile.
      */
     public void onDislike() {
-        loadNextProfile();
+        if (currentProfile != null) {
+            loadNextProfile();
+        }
+
     }
 }

@@ -26,10 +26,8 @@ public class CreatePresenter implements CreateOB {
 
     @Override
     public void prepareSucessView(CreateOPData outputData) {
-        System.out.println("addpetviewmodel");
         CreateState currState = createViewModel.getState();
         currState.addPetNameAndPhoto(outputData.getPetId(), outputData.getPetName(), outputData.getImageFile());
         createViewModel.setState(createViewModel.getState());
-        System.out.println(currState.getKeyEntries());
     }
 }

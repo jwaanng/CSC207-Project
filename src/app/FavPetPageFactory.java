@@ -68,8 +68,6 @@ public class FavPetPageFactory {
                 profilePictureDataAccessInterface);
         ViewThisController viewThisController = new ViewThisController(vtUci);
 
-        //TODO copy this code when needed redirect int my fav pet page cycle
-
         //BrowsePet cycle
         BrowsePresenter browsePresenter = new BrowsePresenter(browsePageViewModel, manager);
         BrowseUCI browseUCI = new BrowseUCI(browsePresenter);
@@ -79,6 +77,7 @@ public class FavPetPageFactory {
                 favPetPageViewModel,
                 deleteController,
                 viewThisController,
-                browseController,browsePageRDRController, myPetRDRController, myProfileRDRController);
+                browseController,
+                browsePageRDRController, myPetRDRController, myProfileRDRController);
     }
 }

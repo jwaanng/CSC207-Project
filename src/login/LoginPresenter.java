@@ -124,15 +124,16 @@ public class LoginPresenter implements LoginOB {
         CreateState createState = petVM.getCreateViewModel().getState();
         if (!id_Name.keySet().isEmpty()) {
             for (int petId : id_Name.keySet()) {
+                System.out.println("added pet of id" + petId);
                 createState.addPetNameAndPhoto(petId,
                         id_Name.get(petId), id_ImageFile.get(petId));
 
             }
             petVM.getCreateViewModel().setState(createState);
-            petVM.getRDRViewModel().setName(outputData.username);
-            petVM.getRDRViewModel().firePropertyChanged();
             redirectVM.firePropertyChanged();
         }
+        petVM.getRDRViewModel().setName(outputData.username);
+        petVM.getRDRViewModel().firePropertyChanged();
 
     }
 

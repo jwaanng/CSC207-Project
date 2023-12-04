@@ -1,11 +1,13 @@
 package app;
 
+import browsePage.browsePageRedirect.BrowsePageRDRController;
 import dataAccessObject.*;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.displayUser.DisplayUserController;
 import favPetPage.displayUser.DisplayUserPresenter;
 import favPetPage.displayUser.DisplayUserUCI;
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.MyProfileView;
 import myProfilePage.MyProfileViewModel;
 import myProfilePage.changeProfile.ChangeProfileController;
@@ -23,7 +25,10 @@ public class MyProfilePageFactory {
             MyProfileViewModel myProfileViewModel, FavPetPageViewModel favPetPageViewModel,
             UserDataAccessInterface userDataAccessInterface,
             ProfilePictureDataAccessInterface profilePictureDataAccessInterface,
-            FavPetRDRController favPetRDRController){
+            BrowsePageRDRController browsePageRDRController,
+            FavPetRDRController favPetRDRController,
+            MyPetRDRController myPetRDRController
+            ){
         DisplayUserPresenter displayUserPresenter = new DisplayUserPresenter(favPetPageViewModel.getDisplayUserModel());
         DisplayUserUCI displayUserUCI = new DisplayUserUCI(displayUserPresenter, profilePictureDataAccessInterface);
         DisplayUserController displayUserController = new DisplayUserController(displayUserUCI);
@@ -44,6 +49,6 @@ public class MyProfilePageFactory {
     ChangeProfileController changeProfileController = new ChangeProfileController(changeProfileUCI);
         return new MyProfileView(
            myProfileViewModel, configProfileController,
-            changeProfileController,favPetRDRController);
+            changeProfileController,browsePageRDRController, favPetRDRController, myPetRDRController);
     }
 }

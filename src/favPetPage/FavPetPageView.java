@@ -1,6 +1,7 @@
 package favPetPage;
 
 
+import browsePage.browsePageRedirect.BrowsePageRDRController;
 import favPetPage.browsePet.BrowseController;
 import favPetPage.deleteAFavPet.DeleteController;
 import favPetPage.deleteAFavPet.DeleteViewModel;
@@ -11,6 +12,7 @@ import favPetPage.addAFavPet.AddViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
 import favPetPage.viewThisPetProfile.ViewThisState;
 import favPetPage.viewThisPetProfile.ViewThisViewModel;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.myProfileRedirect.MyProfileRDRController;
 
 import javax.swing.*;
@@ -45,6 +47,8 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
                           DeleteController deletePetController,
                           ViewThisController viewThisPetController,
                           BrowseController browsePetController,
+                          BrowsePageRDRController browsePageRDRController,
+                          MyPetRDRController myPetRDRController,
                           MyProfileRDRController myProfileRDRController) {
         vm = favPetPageViewModel;
         AddViewModel addVM = vm.getAddViewModel();
@@ -64,7 +68,12 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
                 noFavPetVM,
                 deletePetController,
                 viewThisPetController);
-        FavPetRDRView redirectView = new FavPetRDRView(vm.getFavPetRDRViewModel(),myProfileRDRController);
+        FavPetRDRView redirectView = new FavPetRDRView(
+                vm.getFavPetRDRViewModel(),
+                browsePageRDRController,
+                myPetRDRController,
+                myProfileRDRController
+        );
         NoFavPetsView noPetDisplayView = new NoFavPetsView(noFavPetVM, browsePetController);
         DisplayUserView displayUserView = new DisplayUserView(vm.getDisplayUserModel());
 

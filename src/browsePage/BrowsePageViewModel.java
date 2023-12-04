@@ -1,5 +1,6 @@
 package browsePage;
 
+import browsePage.browsePageRedirect.BrowsePageRedirectViewModel;
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
@@ -12,13 +13,19 @@ import java.beans.PropertyChangeListener;
  * to registered observers (listeners) and managing property change events.
  */
 public class BrowsePageViewModel extends ViewModel {
+    private final BrowsePageRedirectViewModel browsePageRedirectViewModel = new BrowsePageRedirectViewModel();
 
     /**
      * Constructor for the BrowsePageViewModel class.
      * Initializes the view model with the specified name.
      */
+
     public BrowsePageViewModel() {
         super("browse page");
+    }
+
+    public BrowsePageRedirectViewModel getBrowsePageRedirectViewModel() {
+        return browsePageRedirectViewModel;
     }
 
     /**

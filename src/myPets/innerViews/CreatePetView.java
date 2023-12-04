@@ -6,7 +6,7 @@ import myPets.createNewDog.CreateController;
 import myPets.createNewDog.CreateState;
 import myPets.createNewDog.CreateViewModel;
 import myPets.myPetDisplayRedirect.MyPetRedirectController;
-import myPets.myPetsRedirect.MyRedirectController;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myPets.InnerViewModelManager;
 
 import javax.imageio.ImageIO;
@@ -51,7 +51,7 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
 
     CreateViewModel createViewModel;
     CreateController createController;
-    MyRedirectController redirectController;
+    MyPetRDRController redirectController;
     InnerViewModelManager innerViewModelManager;
     MyPetRedirectController myPetRedirectController;
 

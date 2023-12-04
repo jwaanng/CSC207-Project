@@ -1,11 +1,14 @@
 package myProfilePage;
 
+import browsePage.browsePageRedirect.BrowsePageRDRController;
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.changeProfile.*;
 import myProfilePage.configProfile.*;
 
 import myProfilePage.innerviews.ChangeImageView;
 import myProfilePage.innerviews.MyProfileRDRView;
+import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import view.ButtonTextPanel;
 import view.LabelTextPanel;
 
@@ -46,7 +49,10 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
             MyProfileViewModel myProfileViewModel,
             ConfigProfileController configProfileController,
             ChangeProfileController changeProfileController,
-            FavPetRDRController favPetRDRController) {
+            BrowsePageRDRController browsePageRDRController,
+            FavPetRDRController favPetRDRController,
+            MyPetRDRController myPetRDRController
+    ) {
         this.configController = configProfileController;
         this.configVM = myProfileViewModel.getConfigProfileViewModel();
         this.changeController = changeProfileController;
@@ -135,8 +141,12 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
          preferredSex = configVM.NONE;
 
         //creaet bottom redirect view
-        MyProfileRDRView redirect = new MyProfileRDRView(myProfileViewModel.getMyProfileRDRViewModel(),
-                favPetRDRController);
+        MyProfileRDRView redirect = new MyProfileRDRView(
+                myProfileViewModel.getMyProfileRDRViewModel(),
+                browsePageRDRController,
+                favPetRDRController,
+                myPetRDRController
+                );
         add(redirect, BorderLayout.SOUTH);
 
         //add everything to the big panel

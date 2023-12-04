@@ -1,6 +1,7 @@
 package app;
 
 import browsePage.BrowsePageViewModel;
+import browsePage.browsePageRedirect.BrowsePageRDRController;
 import dataAccessObject.PetProfileDataAccessInterface;
 import dataAccessObject.ProfilePictureDataAccessInterface;
 import dataAccessObject.UserDataAccessInterface;
@@ -20,6 +21,7 @@ import favPetPage.viewThisPetProfile.ViewThisController;
 import favPetPage.viewThisPetProfile.ViewThisIB;
 import favPetPage.viewThisPetProfile.ViewThisPresenter;
 import favPetPage.viewThisPetProfile.ViewThisUCI;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import viewModel.ViewModelManager;
 
@@ -50,6 +52,8 @@ public class FavPetPageFactory {
             UserDataAccessInterface userDataAccessInterface,
             PetProfileDataAccessInterface petProfileDataAccessInterface,
             ProfilePictureDataAccessInterface profilePictureDataAccessInterface,
+            BrowsePageRDRController browsePageRDRController,
+            MyPetRDRController myPetRDRController,
             MyProfileRDRController myProfileRDRController) {
 
         //delete fav pet cycle
@@ -74,6 +78,6 @@ public class FavPetPageFactory {
                 favPetPageViewModel,
                 deleteController,
                 viewThisController,
-                browseController,myProfileRDRController);
+                browseController,browsePageRDRController, myPetRDRController, myProfileRDRController);
     }
 }

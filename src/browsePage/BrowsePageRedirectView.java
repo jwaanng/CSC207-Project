@@ -1,9 +1,10 @@
 package browsePage;
 
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import redirect.CommonRedirectView;
-import browsePage.swipePageRedirect.BrowsePageRedirectViewModel;
+import browsePage.browsePageRedirect.BrowsePageRedirectViewModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ public class BrowsePageRedirectView extends CommonRedirectView {
      */
     public BrowsePageRedirectView(BrowsePageRedirectViewModel browsePageRedirectViewModel,
                                   FavPetRDRController favPetRDRController,
+                                  MyPetRDRController myPetRDRController,
                                   MyProfileRDRController myProfileRDRController
                                   ) {
         super(browsePageRedirectViewModel);
@@ -25,6 +27,12 @@ public class BrowsePageRedirectView extends CommonRedirectView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 favPetRDRController.execute();
+            }
+        });
+        myPet.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myPetRDRController.execute();
             }
         });
         myProfile.addActionListener(new ActionListener() {

@@ -1,6 +1,6 @@
 package myPets.innerViews;
 
-import favPetPage.innerviewmodels.OnePetProfileDisplayViewModel;
+import myPets.innerViewModels.OnePetProfileDisplayViewModel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -70,10 +70,10 @@ public class OnePetProfile extends JPanel{
         Dimension buttonDim = new Dimension((int) Math.floor(width * 0.25), height - width);
         deleteButton.setSize(buttonDim);
         //flooring, always leaves extraspace than having overlapped space.
-        ImageIcon heart = new ImageIcon(Objects.requireNonNull(getClass().getResource(vm.HEART_PATH)));
-        Image img = heart.getImage().getScaledInstance(deleteButton.getWidth(), deleteButton.getHeight(), Image.SCALE_DEFAULT);
-        ImageIcon resizedheart = new ImageIcon(img);
-        deleteButton.setIcon(resizedheart);
+        ImageIcon xImage = new ImageIcon(Objects.requireNonNull(getClass().getResource(vm.X_PATH)));
+        Image img = xImage.getImage().getScaledInstance(deleteButton.getWidth(), deleteButton.getHeight(), Image.SCALE_DEFAULT);
+        ImageIcon resizedX = new ImageIcon(img);
+        deleteButton.setIcon(resizedX);
         deleteButton.addActionListener(deleteCommonActionlistener);
         deleteButton.setActionCommand(String.valueOf(petId));// This is how the outside view will identify which profile
         //Customize grid

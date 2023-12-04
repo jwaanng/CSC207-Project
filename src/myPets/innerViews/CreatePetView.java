@@ -1,14 +1,18 @@
 package myPets.innerViews;
 
-import myPets.InnerViewModelManager;
+import myPets.MyPetsView;
+import myPets.MyPetsViewModel;
 import myPets.createNewDog.CreateController;
 import myPets.createNewDog.CreateState;
 import myPets.createNewDog.CreateViewModel;
 import myPets.myPetDisplayRedirect.MyPetRedirectController;
 import myPets.myPetsRedirect.MyRedirectController;
+import myPets.InnerViewModelManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -16,6 +20,8 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 
 public class CreatePetView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -24,6 +30,9 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
     private JTextField petName = new JTextField(20);
     private JTextField breed = new JTextField(20);
     private JTextField age = new JTextField(20);
+    private JTextField temper = new JTextField(200);
+    private JTextField description = new JTextField(200);
+    private JTextField likes = new JTextField(100);
     private JRadioButton vacRadioButton;
     private JRadioButton notVacRadioButton;
     private JRadioButton neutRadioButton;
@@ -34,10 +43,10 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
     private JRadioButton smallRadioButton;
     private JRadioButton mediumRadioButton;
     private JRadioButton largeRadioButton;
-    private ButtonGroup sizeGroup;
-    private ButtonGroup vacGroup;
-    private ButtonGroup neutGroup;
-    private ButtonGroup sexGroup;
+    private JPanel sizeGroup;
+    private JPanel vacGroup;
+    private JPanel neutGroup;
+    private JPanel sexGroup;
     private JButton selectImage;
 
     CreateViewModel createViewModel;
@@ -55,31 +64,40 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
         this.myPetRedirectController = myPetRedirectController;
 
         // Radio button group for vaccinations
-        vacGroup = new ButtonGroup();
+        vacGroup = new JPanel();
         vacRadioButton = new JRadioButton("Vaccinated");
         notVacRadioButton = new JRadioButton("Not Vaccinated");
         vacGroup.add(vacRadioButton);
         vacGroup.add(notVacRadioButton);
 
         // Radio button group for neutered
-        neutGroup = new ButtonGroup();
+        neutGroup = new JPanel();
         neutRadioButton = new JRadioButton("Neutered");
         notNeutRadioButton = new JRadioButton("Not Neutered");
         neutGroup.add(neutRadioButton);
         neutGroup.add(notNeutRadioButton);
 
         // Radio button group for sex
-        sexGroup = new ButtonGroup();
+        sexGroup = new JPanel();
         maleRadioButton = new JRadioButton("Male");
         femaleRadioButton = new JRadioButton("Female");
         sexGroup.add(maleRadioButton);
         sexGroup.add(femaleRadioButton);
 
         //Radio Button Group for Size
-        sizeGroup = new ButtonGroup();
+        sizeGroup = new JPanel();
         smallRadioButton = new JRadioButton("Small");
         mediumRadioButton = new JRadioButton("Medium");
         largeRadioButton = new JRadioButton("Large");
+        sizeGroup.add(smallRadioButton);
+        sizeGroup.add(mediumRadioButton);
+        sizeGroup.add(largeRadioButton);
+
+
+        JPanel selectImageInfo = new JPanel();
+        selectImage = new JButton("select");
+        selectImageInfo.add(selectImage);
+
 
         LabelTextPanel nameInfo = new LabelTextPanel(
                 new JLabel(CreateViewModel.PET_NAME_LABEL), petName);
@@ -87,28 +105,30 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
                 new JLabel(CreateViewModel.BREED_LABEL), breed);
         LabelTextPanel ageInfo = new LabelTextPanel(
                 new JLabel(CreateViewModel.AGE_LABEL), age);
+        LabelTextPanel temperInfo = new LabelTextPanel(
+                new JLabel("Pet Temper"), temper);
+        LabelTextPanel descriptionInfo = new LabelTextPanel(
+                new JLabel("Pet Description"), description);
+        LabelTextPanel likesInfo = new LabelTextPanel(
+                new JLabel("Pets likes and dislikes"), likes);
 
-        ButtonTextPanel vacInfo = new ButtonTextPanel(new JLabel("Vaccinated"), vacGroup);
-        ButtonTextPanel neutInfo = new ButtonTextPanel(new JLabel("Neutered"), neutGroup);
-        ButtonTextPanel sexInfo = new ButtonTextPanel(new JLabel("Sex"), sexGroup);
-        ButtonTextPanel sizeInfo = new ButtonTextPanel(new JLabel("Size"), sizeGroup);
+        ButtonTextPanel vacInfo = new ButtonTextPanel(new JLabel("Vaccinated:"), vacGroup);
+        ButtonTextPanel neutInfo = new ButtonTextPanel(new JLabel("Neutered:"), neutGroup);
+        ButtonTextPanel sexInfo = new ButtonTextPanel(new JLabel("Sex:"), sexGroup);
+        ButtonTextPanel sizeInfo = new ButtonTextPanel(new JLabel("Size:"), sizeGroup);
 
-        JLabel selectImageLabel = new JLabel("Choose your image");
-        selectImage = new JButton("select");
-
+        ButtonTextPanel imageInfo = new ButtonTextPanel(new JLabel("Choose your image"), selectImageInfo);
         applyButton = new JButton("apply");
 
         JPanel buttons = new JPanel();
-        buttons.add(vacRadioButton);
-        buttons.add(notVacRadioButton);
-        buttons.add(neutRadioButton);
-        buttons.add(notNeutRadioButton);
-        buttons.add(maleRadioButton);
-        buttons.add(femaleRadioButton);
+//        buttons.add(vacRadioButton);
+//        buttons.add(notVacRadioButton);
+//        buttons.add(neutRadioButton);
+//        buttons.add(notNeutRadioButton);
+//        buttons.add(maleRadioButton);
+//        buttons.add(femaleRadioButton);
         buttons.add(applyButton);
-        buttons.add(selectImage);
-
-
+//        buttons.add(selectImage);
 
         applyButton.addActionListener(new ActionListener() {
             @Override
@@ -123,7 +143,10 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
                             currentState.getAge(),
                             currentState.getSex(),
                             currentState.getSize(),
-                            currentState.getImage()
+                            currentState.getImage(),
+                            currentState.getTemper(),
+                            currentState.getDescription(),
+                            currentState.getLikes()
                     );
 
                     myPetRedirectController.execute();
@@ -182,6 +205,7 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
                     public void keyReleased(KeyEvent e) {
                     }
                 });
+
         breed.addKeyListener(
                 new KeyListener() {
                     @Override
@@ -225,18 +249,75 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
                     public void keyReleased(KeyEvent e) {
                     }
                 });
+        temper.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        CreateState currentState = createViewModel.getState();
+                        String text = temper.getText() + e.getKeyChar();
+                        currentState.setTemper(text);
+                        createViewModel.setState(currentState);
+                    }
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+        description.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        CreateState currentState = createViewModel.getState();
+                        String text = description.getText() + e.getKeyChar();
+                        currentState.setDescription(text);
+                        createViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+        likes.addKeyListener(
+                new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        CreateState currentState = createViewModel.getState();
+                        String text = likes.getText() + e.getKeyChar();
+                        currentState.setLikes(text);
+                        createViewModel.setState(currentState);
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+                    }
+                });
+
+        this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         //this.add(title);
         this.add(nameInfo);
         this.add(breedInfo);
+        this.add(temperInfo);
+        this.add(descriptionInfo);
+        this.add(likesInfo);
         this.add(ageInfo);
         this.add(vacInfo);
         this.add(neutInfo);
         this.add(sexInfo);
         this.add(sizeInfo);
-        this.add(selectImageLabel);
+        this.add(imageInfo);
         this.add(buttons);
 
 

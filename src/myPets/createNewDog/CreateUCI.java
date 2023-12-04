@@ -2,8 +2,10 @@ package myPets.createNewDog;
 
 import dataAccessObject.PetProfileDataAccessInterface;
 import dataAccessObject.ProfilePictureDataAccessInterface;
-import entity.petProfile.DogProfile;
-import entity.petProfile.PetProfileBuilderFactory;
+import entity.petProfile.*;
+
+import javax.swing.*;
+import java.awt.*;
 
 public class CreateUCI implements CreateIB {
     private final CreateOB presenter;
@@ -21,18 +23,12 @@ public class CreateUCI implements CreateIB {
 
     @Override
     public void execute(String username, CreateIPData inputData) {
-//        if (daop.exists(petId)) {
-//            presenter.prepareFailView("pet already exists!");
-//        }
-//        else {
-            DogProfile pet = petFactory.createDogProfile(username).vaccinated(inputData.isVaccinated()).neutered(inputData.isNeutered()).withBreed(inputData.getPetBreed()).withAge(inputData.getAge()).isMale().withName(inputData.getName()).build();
-            daop.add(pet);
-            daopfp.uploadPetProfile(pet.getId(), inputData.getImageFile());
-            CreateOPData createOP = new CreateOPData(inputData.getImageFile(), pet.getId(), pet.getName(), pet.getBreed(), pet.isVaccinated(), pet.isNeuter(), pet.getAge(), pet.getSex(), inputData.getSize(), false);
+        DogProfile pet = petFactory.createDogProfile(username).vaccinated(inputData.isVaccinated()).neutered(inputData.isNeutered()).withBreed(inputData.getPetBreed()).withAge(inputData.getAge()).isMale().withName(inputData.getName()).build();
+        daop.add(pet);
+        daopfp.uploadPetProfile(pet.getId(), inputData.getImageFile());
+        CreateOPData createOP = new CreateOPData(inputData.getImageFile(), pet.getId(), pet.getName(), pet.getBreed(), pet.isVaccinated(), pet.isNeuter(), pet.getAge(), pet.getSex(), inputData.getSize(), inputData.getTemper(), inputData.getDescription(), inputData.getLikes(),  false);
 
-            presenter.prepareSucessView(createOP);
-//        }
-
+        presenter.prepareSucessView(createOP);
 
     }
 }

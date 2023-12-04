@@ -4,9 +4,6 @@ package myPets;
 
 import dataAccessObject.*;
 import entity.petProfile.PetProfileBuilderFactory;
-import myPets.MyPetsDisplay.AddPetViewModel;
-import myPets.MyPetsDisplay.AddPresenter;
-import myPets.MyPetsDisplay.AddUCI;
 import myPets.createNewDog.CreateController;
 import myPets.createNewDog.CreatePresenter;
 import myPets.createNewDog.CreateUCI;
@@ -74,11 +71,6 @@ public class testMain {
         MyRedirectPresenter myRedirectPresenter= new MyRedirectPresenter(myPetsViewModel, innerViewManagerModel);
         MyRedirectUCI myRedirectUCI = new MyRedirectUCI(myRedirectPresenter);
         MyRedirectController myRedirectController = new MyRedirectController(myRedirectUCI);
-
-        //Add Cycle
-        AddPetViewModel addViewModel = new AddPetViewModel();
-        AddPresenter addPresenter = new AddPresenter(addViewModel);
-        AddUCI addUCI = new AddUCI(addPresenter, dao, daop, daoPic);
 
         //MyPetsRedirect Cycle
         MyPetRedirectPresenter myPetRedirectPresenter= new MyPetRedirectPresenter(myPetRedirectViewModel);

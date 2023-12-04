@@ -3,11 +3,8 @@ package myPets.innerViews;
 import javax.swing.*;
 
 public class ButtonTextPanel extends JPanel {
-    ButtonTextPanel(JLabel label, ButtonGroup panel) {
+    ButtonTextPanel(JLabel label, JPanel panel) {
         this.add(label);
         this.add(panel);
-    }
-
-    private void add(ButtonGroup panel) {
     }
 }

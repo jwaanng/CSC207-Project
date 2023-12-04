@@ -26,7 +26,7 @@ public class DeckCreator {
         this.allPetProfiles = petList;
     }
 
-    public DeckCreator() { //for testing ignore this.
+    public DeckCreator() { //for testing ignore this in the final implementation -Sean
         ArrayList<PetProfile> petList = GenerateDeck();
         PetProfileDataAccessObject ppc = new PetProfileDataAccessObject();
         this.comparator = new PetProfileComparator(

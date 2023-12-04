@@ -1,5 +1,7 @@
 package myPets.createNewDog;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +17,9 @@ public class CreateState {
     private String sex = "a";
     private File photo = null;
     private String size = "";
+    private String temper = "";
+    private String description = "";
+    private String likes = "";
 
     private HashMap<Integer, File> myPetID_Photo = new HashMap<>();
     private HashMap<Integer, String> myPetID_Name = new HashMap<>();
@@ -43,6 +48,10 @@ public class CreateState {
         sex = data.getSex();
         photo = data.getImageFile();
         size = data.getSize();
+        temper = data.getTemper();
+        description = data.getDescription();
+        likes = data.getLikes();
+
     }
 
     public String getName() {
@@ -110,4 +119,14 @@ public class CreateState {
         this.imageFile = imageFile;
     }
     public File getImageFile(){return imageFile;}
+
+    public void setTemper(String text) {this.temper = text;}
+    public String getTemper(){return temper;}
+
+    public void setDescription(String text) {this.description = text;}
+    public String getDescription(){return description;}
+
+    public void setLikes(String text) {this.likes = text;}
+    public String getLikes(){return likes;}
+
 }

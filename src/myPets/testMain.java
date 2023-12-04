@@ -4,9 +4,6 @@ package myPets;
 
 import dataAccessObject.*;
 import entity.petProfile.PetProfileBuilderFactory;
-import myPets.MyPetsDisplay.AddPetViewModel;
-import myPets.MyPetsDisplay.AddPresenter;
-import myPets.MyPetsDisplay.AddUCI;
 import myPets.createNewDog.CreateController;
 import myPets.createNewDog.CreatePresenter;
 import myPets.createNewDog.CreateUCI;
@@ -57,5 +54,6 @@ public class testMain {
 //        app.setVisible(true);
 //        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //        app.setSize(500,500);
+
     }
 }

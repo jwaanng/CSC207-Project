@@ -18,6 +18,8 @@ import myPets.innerViews.MyPetRDRView;
 import myPets.myPetDisplayRedirect.MyPetRedirectController;
 import myPets.myPetDisplayRedirect.MyPetRedirectViewModel;
 import myPets.myPetPageRedirect.MyPetRDRController;
+import myPets.myPetPageRedirect.MyPetRDRPresenter;
+import myPets.myPetPageRedirect.MyPetRDRViewModel;
 import myPets.updateMyPet.UpdateMyPetsViewModel;
 import myProfilePage.myProfileRedirect.MyProfileRDRController;
 
@@ -70,6 +72,7 @@ public class MyPetsView extends JPanel implements ActionListener, PropertyChange
  //       NoMyPetsDisplayViewModel noMyPetsDisplayViewModel = vm.getNoPetsDisplayViewModel();
         this.createRedirectViewModel = createRedirectViewModel;
         createRedirectViewModel.addPropertyChangeListener(this);
+        vm.getRDRViewModel().addPropertyChangeListener(this);
         this.createController = createController;
 
 
@@ -165,6 +168,11 @@ public class MyPetsView extends JPanel implements ActionListener, PropertyChange
             System.out.println("created");
             petDisplaySection.revalidate();
             petDisplaySection.repaint();
+        }
+        if(evt.getSource() == vm.getRDRViewModel()){
+            System.out.println("got to here");
+            createController.setUsername(vm.getRDRViewModel().getName());
+
         }
 
     }

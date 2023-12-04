@@ -49,6 +49,7 @@ public class FavPetPageFactory {
      */
     static public FavPetPageView createFavPetPage(
             ViewModelManager manager, FavPetPageViewModel favPetPageViewModel,
+            BrowsePageViewModel browsePageViewModel,
             UserDataAccessInterface userDataAccessInterface,
             PetProfileDataAccessInterface petProfileDataAccessInterface,
             ProfilePictureDataAccessInterface profilePictureDataAccessInterface,
@@ -70,7 +71,7 @@ public class FavPetPageFactory {
         //TODO copy this code when needed redirect int my fav pet page cycle
 
         //BrowsePet cycle
-        BrowsePresenter browsePresenter = new BrowsePresenter(new BrowsePageViewModel(), manager);
+        BrowsePresenter browsePresenter = new BrowsePresenter(browsePageViewModel, manager);
         BrowseUCI browseUCI = new BrowseUCI(browsePresenter);
         BrowseController browseController = new BrowseController(browseUCI);
 

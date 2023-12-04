@@ -1,6 +1,6 @@
-package browsePage.swipePage;
+package browsePage.swipe;
 
-import dataAccessObject.CommonProfileDataAccessObject;
+import dataAccessObject.ProfilePictureDataAccessInterface;
 import entity.petProfile.PetProfile;
 
 import java.awt.*;
@@ -10,7 +10,10 @@ import java.awt.*;
  * based on a {@code PetProfile}.
  */
 public class PetProfilePresenter {
-
+    private final ProfilePictureDataAccessInterface daoPic;
+    public PetProfilePresenter(ProfilePictureDataAccessInterface profilePictureDataAccessInterface){
+        daoPic = profilePictureDataAccessInterface;
+    }
     /**
      * Creates a {@code SwipePageViewModel} based on the provided {@code PetProfile}.
      *
@@ -23,11 +26,7 @@ public class PetProfilePresenter {
         }
 
         int id = profile.getId();
-        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
-        Image image = commonProfileDataAccessObject.retrievePetProfile(id);
-
-        System.out.println(image);
-
+        Image image = daoPic.retrievePetProfile(id);
         return new SwipePageViewModel(
                 profile.getName(),
                 profile.getAbout(),

@@ -4,6 +4,7 @@ import browsePage.browsePageRedirect.BrowsePageRedirectViewModel;
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * View Model class for the Browse Page feature.
@@ -14,6 +15,17 @@ import java.beans.PropertyChangeListener;
  */
 public class BrowsePageViewModel extends ViewModel {
     private final BrowsePageRedirectViewModel browsePageRedirectViewModel = new BrowsePageRedirectViewModel();
+
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private BrowsePageState state = new BrowsePageState();
+
+    public void setState(BrowsePageState browsePageState) {
+        this.state = browsePageState;
+        System.out.println(this.state.getUsername());
+    }
+    public BrowsePageState getState(){
+        return state;
+    }
 
     /**
      * Constructor for the BrowsePageViewModel class.
@@ -33,7 +45,7 @@ public class BrowsePageViewModel extends ViewModel {
      */
     @Override
     public void firePropertyChanged() {
-        // Implementation details...
+       support.firePropertyChange("state", null, this);
     }
 
     /**
@@ -43,6 +55,6 @@ public class BrowsePageViewModel extends ViewModel {
      */
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        // Implementation details...
+        support.addPropertyChangeListener(listener);
     }
 }

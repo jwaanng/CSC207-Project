@@ -3,6 +3,7 @@ package favPetPage.innerviews;
 import favPetPage.deleteAFavPet.DeleteController;
 import favPetPage.addAFavPet.AddState;
 import favPetPage.deleteAFavPet.DeleteState;
+import favPetPage.displayUser.DisplayUserViewModel;
 import favPetPage.innerviewmodels.NoFavPetDisplayViewModel;
 import favPetPage.viewThisPetProfile.ViewThisController;
 import favPetPage.addAFavPet.AddViewModel;
@@ -27,8 +28,9 @@ public class FavPetDisplayView extends JPanel implements PropertyChangeListener 
     private final HashMap<Integer, OnePetProfile> id_to_PetProfile = new HashMap<>();
     private final ViewThisController viewController;
     private final DeleteController deleteController;
-
+    private final DisplayUserViewModel displayVM;
     private final AddViewModel addVM;
+
     private final DeleteViewModel deleteVM;
     private final UpdateViewModel updateVM;
     private final NoFavPetDisplayViewModel noPetVM;
@@ -36,18 +38,14 @@ public class FavPetDisplayView extends JPanel implements PropertyChangeListener 
     private final ActionListener unLikeListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO debugging
-            System.out.println("unlike petProfile with id" + e.getActionCommand());
             id_to_PetProfile.get(Integer.parseInt(e.getActionCommand())).unlike();
-            //deleteController.execute(vm.getState().getUsername(), Integer.parseInt(e.getActionCommand()));
+            deleteController.execute(displayVM.getState().getUsername(), Integer.parseInt(e.getActionCommand()));
         }
     };
     ;
     private final ActionListener viewProfileListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-
-            System.out.println("view petProfile with id" + e.getActionCommand());
             viewController.execute(Integer.parseInt(e.getActionCommand()));
 
         }
@@ -66,7 +64,7 @@ public class FavPetDisplayView extends JPanel implements PropertyChangeListener 
      * @param deletePetController      the {@link DeleteController} object that initiates the deleteAFavPet usecase
      * @param viewThisPetController    the {@link ViewThisController} that initiates the viewThisPetProfile usecase
      */
-    public FavPetDisplayView(AddViewModel addViewModel,
+    public FavPetDisplayView(DisplayUserViewModel displayUserViewModel, AddViewModel addViewModel,
                              UpdateViewModel updateViewModel,
                              DeleteViewModel deleteViewModel,
                              NoFavPetDisplayViewModel noFavPetDisplayViewModel,
@@ -75,6 +73,7 @@ public class FavPetDisplayView extends JPanel implements PropertyChangeListener 
         setLayout(new GridBagLayout());
         deleteController = deletePetController;
         viewController = viewThisPetController;
+        displayVM = displayUserViewModel;
         addVM = addViewModel;
         addVM.addPropertyChangeListener(this);
         updateVM = updateViewModel;

@@ -5,6 +5,7 @@ import browsePage.browsePageRedirect.BrowsePageRDRController;
 import favPetPage.browsePet.BrowseController;
 import favPetPage.deleteAFavPet.DeleteController;
 import favPetPage.deleteAFavPet.DeleteViewModel;
+import favPetPage.displayUser.DisplayUserViewModel;
 import favPetPage.innerviews.*;
 import favPetPage.updateAFavPet.UpdateViewModel;
 import favPetPage.viewThisPetProfile.ViewThisController;
@@ -56,12 +57,14 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
         DeleteViewModel deleteVM = vm.getDeleteFavPetViewModel();
         NoFavPetDisplayViewModel noFavPetVM = vm.getNoPetDisplayViewModel();
         ViewThisViewModel viewThisVM = vm.getViewThisViewModel();
+        DisplayUserViewModel displayVM = vm.getDisplayUserModel();
         addVM.addPropertyChangeListener(this);
         noFavPetVM.addPropertyChangeListener(this);
         viewThisVM.addPropertyChangeListener(this);
 
         //all the subview components
         FavPetDisplayView petDisplayView = new FavPetDisplayView(
+                displayVM,
                 addVM,
                 updateVM,
                 deleteVM,
@@ -75,7 +78,7 @@ public class FavPetPageView extends JPanel implements ActionListener, PropertyCh
                 myProfileRDRController
         );
         NoFavPetsView noPetDisplayView = new NoFavPetsView(noFavPetVM, browsePetController);
-        DisplayUserView displayUserView = new DisplayUserView(vm.getDisplayUserModel());
+        DisplayUserView displayUserView = new DisplayUserView(displayVM);
 
 
         setLayout(new BorderLayout());

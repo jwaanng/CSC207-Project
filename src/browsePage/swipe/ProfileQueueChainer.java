@@ -1,16 +1,15 @@
-package browsePage.swipePage;
+package browsePage.swipe;
 
 import entity.petProfile.PetProfile;
-import entity.user.AppUser;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class ProfileSwipingInteractor {
+public class ProfileQueueChainer {
     private Queue<PetProfile> profiles;
 
-    public ProfileSwipingInteractor(List<PetProfile> profiles) {
+    public ProfileQueueChainer(List<PetProfile> profiles) {
         this.profiles = new LinkedList<>(profiles);
     }
 
@@ -18,7 +17,5 @@ public class ProfileSwipingInteractor {
         return profiles.poll();
     }
 
-    public void addPetToUserFav(PetProfile pet, AppUser user) {
 
-    }
 }

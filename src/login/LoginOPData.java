@@ -1,6 +1,10 @@
 package login;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -18,8 +22,11 @@ public class LoginOPData {
     Image profile;
 
     boolean usecaseFailed;
-    private final HashMap<Integer, String> petID_to_Name = new HashMap<>();
-    private final HashMap<Integer, Image> petID_to_Photo = new HashMap<>();
+    private final HashMap<Integer, String> petID_to_Name_FavPet = new HashMap<>();
+    private final HashMap<Integer, Image> petID_to_Photo_FavPet = new HashMap<>();
+
+    private final HashMap<Integer, String> petID_to_Name_MyPet = new HashMap<>();
+    private final HashMap<Integer, File> petID_to_ImageFile_MyPet = new HashMap<>();
 
     String error;
 
@@ -53,9 +60,9 @@ public class LoginOPData {
      * @param petName The name of the pet.
      * @param photo   The profile image of the pet.
      */
-    public void addPetNameAndPHOTO(int petId, String petName, Image photo) {
-        petID_to_Name.put(petId, petName);
-        petID_to_Photo.put(petId, photo);
+    public void addFavPetNameAndPHOTO(int petId, String petName, Image photo) {
+        petID_to_Name_FavPet.put(petId, petName);
+        petID_to_Photo_FavPet.put(petId, photo);
     }
 
     /**
@@ -63,8 +70,8 @@ public class LoginOPData {
      *
      * @return A copy of the mapping.
      */
-    public HashMap<Integer, Image> getPetID_to_Photo() {
-        return new HashMap<>(petID_to_Photo);
+    public HashMap<Integer, Image> getPetID_to_Photo_FavPet() {
+        return new HashMap<>(petID_to_Photo_FavPet);
     }
 
     /**
@@ -72,7 +79,31 @@ public class LoginOPData {
      *
      * @return A copy of the mapping.
      */
-    public HashMap<Integer, String> getPetID_to_Name() {
-        return new HashMap<>(petID_to_Name);
+    public HashMap<Integer, String> getPetID_to_Name_FavPet() {
+        return new HashMap<>(petID_to_Name_FavPet);
+    }
+
+    public void addMyPetNameAndPHOTO(int petId, String petName, Image photo) throws IOException {
+        petID_to_Name_MyPet.put(petId, petName);
+        BufferedImage image;
+        if (photo instanceof BufferedImage) {
+            image = (BufferedImage) photo;
+        }
+        else {
+            image = new BufferedImage(photo.getWidth(null), photo.getHeight(null),
+                    BufferedImage.TYPE_INT_ARGB);
+            Graphics2D bGr = image.createGraphics();
+            bGr.drawImage(photo, 0, 0, null);
+            bGr.dispose();
+            File imageFile = File.createTempFile("converted_image", ".png");
+            ImageIO.write(image, "png", imageFile);
+            petID_to_ImageFile_MyPet.put(petId, imageFile);
+        }
+    }
+    public HashMap<Integer, File> getPetID_to_Photo_MyPet() {
+        return new HashMap<>(petID_to_ImageFile_MyPet);
+    }
+    public HashMap<Integer, String> getPetID_to_Name_MyPet() {
+        return new HashMap<>(petID_to_Name_MyPet);
     }
 }

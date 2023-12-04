@@ -1,5 +1,5 @@
 package browsePage.browsePageRedirect;
-
+import browsePage.BrowsePageViewModel;
 import viewModel.ViewModelManager;
 
 public class BrowsePageRDRPresenter implements BrowsePageRDROB {
@@ -9,6 +9,7 @@ public class BrowsePageRDRPresenter implements BrowsePageRDROB {
     public BrowsePageRDRPresenter(ViewModelManager manager, BrowsePageViewModel browsePageViewModel) {
         this.manager = manager;
         this.browsePageVM = browsePageViewModel;
+
     }
 
     @Override

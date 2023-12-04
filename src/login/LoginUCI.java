@@ -81,9 +81,17 @@ public class LoginUCI implements LoginIB {
                     data.bio = currUser.getBio();
                     for (int petId : currUser.getFavPet()) {
                         PetProfile petProfile = daoP.getProfile(petId);
-                        data.addPetNameAndPHOTO(
+                        data.addFavPetNameAndPHOTO(
                                 petProfile.getId(),
                                 petProfile.getName(), daoPic.retrievePetProfile(petId));
+                    }
+                    for (int petId: currUser.getMyPet()){
+                        PetProfile petProfile = daoP.getProfile(petId);
+                        data.addMyPetNameAndPHOTO(
+                                petProfile.getId(),
+                                petProfile.getName(),
+                                daoPic.retrievePetProfile(petId)
+                        );
                     }
 
                     presenter.prepareSuccessView(data);

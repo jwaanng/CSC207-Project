@@ -1,6 +1,10 @@
 package app;
 
+import browsePage.BrowsePageView;
+import browsePage.BrowsePageViewModel;
+import browsePage.swipe.InitiateProfileSwiper;
 import dataAccessObject.*;
+import entity.user.AppUser;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
@@ -32,6 +36,8 @@ public class main {
 
         //intialize all data access objects
         UserDataAccessInterface userDataAccessInterface = new CommonUserDataAccessObject();
+
+
         PetProfileDataAccessInterface petProfileDataAccessInterface = new PetProfileDataAccessObject();
         ProfilePictureDataAccessInterface profilePictureDataAccessInterface = new CommonProfileDataAccessObject();
         //intialize all needed viewmodels
@@ -55,7 +61,9 @@ public class main {
         MyProfileRDRController myProfileRDRController = new MyProfileRDRController(myProfileRDRUCI);
 
         BrowsePageRDRPresenter browsePageRDRPresenter = new BrowsePageRDRPresenter(manager, browsePageViewModel);
-        BrowsePageRDRUCI browsePageRDRUCI = new BrowsePageRDRUCI(browsePageRDRPresenter);
+        BrowsePageRDRUCI browsePageRDRUCI = new BrowsePageRDRUCI(
+                browsePageRDRPresenter,
+                new InitiateProfileSwiper(userDataAccessInterface,petProfileDataAccessInterface,browsePageViewModel));
         BrowsePageRDRController browsePageRDRController = new BrowsePageRDRController(browsePageRDRUCI);
 
         FavPetRDRPresenter FavPetRDRPresenter = new FavPetRDRPresenter(manager,favPetPageViewModel);
@@ -83,6 +91,8 @@ public class main {
                 loginViewModel,
                 favPetPageViewModel,
                 myProfileViewModel,
+                browsePageViewModel,
+                myPetsViewModel,
                 userDataAccessInterface,
                 petProfileDataAccessInterface,
                 profilePictureDataAccessInterface
@@ -92,6 +102,7 @@ public class main {
         //fav pet page
         FavPetPageView favPetPage = FavPetPageFactory.createFavPetPage(manager,
                 favPetPageViewModel,
+                browsePageViewModel,
                 userDataAccessInterface,
                 petProfileDataAccessInterface,
                 profilePictureDataAccessInterface,
@@ -119,9 +130,17 @@ public class main {
                 myPetRDRController
                 );
         views.add(myProfilePage, myProfileViewModel.getViewName());
-
+        //browse page
+        BrowsePageView brosePage = BrowsePetPageFactory.createBrowsePage(
+                browsePageViewModel,
+                favPetPageViewModel,
+                userDataAccessInterface,
+                petProfileDataAccessInterface,
+                profilePictureDataAccessInterface,
+                favPetRDRController,myPetRDRController,
+                myProfileRDRController);
+        views.add(brosePage, browsePageViewModel.getViewName());
         //creating app
-
         JFrame app = new JFrame();
         app.add(views);
         app.pack();

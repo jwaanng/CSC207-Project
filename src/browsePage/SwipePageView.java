@@ -1,29 +1,34 @@
-package browsePage.swipePage;
+package browsePage;
 
-import dataAccessObject.CommonProfileDataAccessObject;
-import dataAccessObject.CommonUserDataAccessObject;
-import dataAccessObject.PetProfileDataAccessObject;
-import dataAccessObject.UserDataAccessInterface;
-import browsePage.DeckCreator;
-import entity.petProfile.PetProfile;
-import favPetPage.FavPetPageViewModel;
+import browsePage.swipe.DynamicSwipePageController;
+import browsePage.swipe.PetProfilePresenter;
+import browsePage.swipe.ProfileQueueChainer;
+import browsePage.swipe.SwipePageViewModel;
 import favPetPage.addAFavPet.AddController;
-import favPetPage.addAFavPet.AddPresenter;
-import favPetPage.addAFavPet.AddUCI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.util.List;
 
-public class SwipePageView extends JPanel {
+public class SwipePageView extends JPanel implements PropertyChangeListener {
     private JLabel nameLabel, bioLabel, photosLabel;
     private JButton likeButton, dislikeButton;
-    private SwipePageController controller;
+    private DynamicSwipePageController swipeController;
+    private final PetProfilePresenter presenter;
+    private final AddController addController;
+    private final BrowsePageViewModel browsePageVM;
 
-    public SwipePageView(SwipePageController controller) {
-        this.controller = controller;
+    public SwipePageView(PetProfilePresenter petProfilePresenter,
+            AddController addController,
+            BrowsePageViewModel browsePageViewModel) {
+        this.swipeController = swipeController;
+        this.addController = addController;
+        this.browsePageVM= browsePageViewModel;
+        this.presenter =petProfilePresenter;
+        browsePageVM.addPropertyChangeListener(this);
         initUI();
     }
 
@@ -74,8 +79,8 @@ public class SwipePageView extends JPanel {
         add(profilePanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        likeButton.addActionListener(e -> controller.onLike());
-        dislikeButton.addActionListener(e -> controller.onDislike());
+        likeButton.addActionListener(e -> swipeController.onLike());
+        dislikeButton.addActionListener(e -> swipeController.onDislike());
 
     }
 
@@ -145,31 +150,38 @@ public class SwipePageView extends JPanel {
     }
 
     public static void main(String[] args) {
-        UserDataAccessInterface dao = new CommonUserDataAccessObject();
-        DeckCreator deck = new DeckCreator(dao.retrieve("Sean Beans"));
 
-        List<PetProfile> sortedPetProfiles = deck.sortAllPetProfiles();
-        System.out.println(sortedPetProfiles);
 
-        ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(sortedPetProfiles);
-        PetProfilePresenter presenter = new PetProfilePresenter();
-        PetProfileDataAccessObject petProfileDataAccessObject = new PetProfileDataAccessObject();
-        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
-
-        SwipePageView view = new SwipePageView(null);
-
-        FavPetPageViewModel favPetPageViewModel = new FavPetPageViewModel();
-        AddPresenter addPresenter = new AddPresenter(favPetPageViewModel.getAddViewModel());
-        AddUCI addUCI = new AddUCI(addPresenter, dao, petProfileDataAccessObject, commonProfileDataAccessObject);
-        AddController addController = new AddController(addUCI);
-
-        SwipePageController controller = new SwipePageController(interactor, presenter, view, dao.retrieve("Sean Beans").getUsername(), addController);
-        view.setController(controller);
-        SwingUtilities.invokeLater(() -> view.setVisible(true));
-        controller.loadNextProfile();
+//        PetProfileDataAccessObject petProfileDataAccessObject = new PetProfileDataAccessObject();
+//        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
+//
+//        SwipePageView view = new SwipePageView(null);
+//
+//        FavPetPageViewModel favPetPageViewModel = new FavPetPageViewModel();
+//        AddPresenter addPresenter = new AddPresenter(favPetPageViewModel.getAddViewModel());
+//
+//
+//        view.setSwipeController(controller);
+//
+//        controller.
     }
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+            if (evt.getSource() == browsePageVM){
+                BrowsePageState state = browsePageVM.getState();
+                ProfileQueueChainer interactor = new ProfileQueueChainer(state.getRecommendation());
+                swipeController = new DynamicSwipePageController(interactor, presenter,
+                        this,
+                        state.getUsername(),
+                        addController);
+                SwingUtilities.invokeLater(() -> this.setVisible(true));
+                if (swipeController.loadNextProfile()){
+                    JOptionPane.showMessageDialog(this, "No more pet profiles!" +
+                            " Please go check out the other features first, maybe somebody will add more pets later");
+                }
 
-    public void setController(SwipePageController controller) {
-        this.controller = controller;
+
+
+        }
     }
 }

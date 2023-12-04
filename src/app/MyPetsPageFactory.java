@@ -6,9 +6,6 @@ import entity.petProfile.PetProfileBuilderFactory;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import myPets.InnerViewModelManager;
-import myPets.MyPetsDisplay.AddPetViewModel;
-import myPets.MyPetsDisplay.AddPresenter;
-import myPets.MyPetsDisplay.AddUCI;
 import myPets.MyPetsView;
 import myPets.MyPetsViewModel;
 import myPets.createNewDog.CreateController;
@@ -26,6 +23,7 @@ import myPets.myPetDisplayRedirect.MyPetRedirectController;
 import myPets.myPetDisplayRedirect.MyPetRedirectPresenter;
 import myPets.myPetDisplayRedirect.MyPetRedirectUCI;
 import myPets.myPetDisplayRedirect.MyPetRedirectViewModel;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import viewModel.ViewModelManager;
 
@@ -52,15 +50,6 @@ public class MyPetsPageFactory {
         );
         DeleteMyPetController deleteController = new DeleteMyPetController(deleteUCI);
 
-        //Add Cycle
-        AddPetViewModel addViewModel = new AddPetViewModel();
-        AddPresenter addPresenter = new AddPresenter(addViewModel);
-        AddUCI addUCI = new AddUCI(
-                addPresenter,
-                userDataAccessInterface,
-                petProfileDataAccessInterface,
-                profilePictureDataAccessInterface
-        );
 
         //MyPetsRedirect Cycle
         MyPetRedirectPresenter myPetRedirectPresenter = new MyPetRedirectPresenter(

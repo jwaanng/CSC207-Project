@@ -23,8 +23,8 @@ public class AddState {
      * @param data output data retrieved after a user login
      */
     public AddState(LoginOPData data) {
-        this.favPetID_Photo = data.getPetID_to_Photo();
-        this.favPetID_Name = data.getPetID_to_Name();
+        this.favPetID_Photo = data.getPetID_to_Photo_FavPet();
+        this.favPetID_Name = data.getPetID_to_Name_FavPet();
     }
 
     /**

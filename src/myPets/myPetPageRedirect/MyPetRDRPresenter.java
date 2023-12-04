@@ -17,10 +17,8 @@ public class MyPetRDRPresenter implements MyPetRDROB {
 
     @Override
     public void prepareSuccessView() {
-        //cpvm.viewmodelsfirePropertyChanges();
         manager.setActiveViewName(mrvm.getViewName());
         manager.firePropertyChange();
-        System.out.println("Redirect to MyPets");
         mrvm.firePropertyChanged();
         manager.firePropertyChange();
     }

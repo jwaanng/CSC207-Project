@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class NewSwipePage extends JFrame {
     private JLabel nameLabel, bioLabel, photosLabel;
     private JButton likeButton, dislikeButton;
+    private String str;
     private SwipePageController controller;
 
     public NewSwipePage(SwipePageController controller) {

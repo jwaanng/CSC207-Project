@@ -71,7 +71,7 @@ public class PetProfileDataAccessObject implements PetProfileDataAccessInterface
 
     }
 
-    private ArrayList<PetProfile> retrieveAllProfiles() {
+    public ArrayList<PetProfile> retrieveAllProfiles() {
         String profiles = new JSONObject(retrieveAll()).getJSONArray("documents").toString();
         Type listProfiles = new TypeToken<ArrayList<PetProfile>>() {
         }.getType();

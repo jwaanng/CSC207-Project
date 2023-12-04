@@ -1,21 +1,29 @@
-package view;
+package myProfilePage;
 
 import browsePage.BrowsePageViewModel;
-import configProfile.ConfigProfileController;
-import configProfile.ConfigProfilePresenter;
-import configProfile.ConfigProfileState;
-import configProfile.ConfigProfileViewModel;
+import dataAccessObject.CommonProfileDataAccessObject;
+import dataAccessObject.ProfilePictureDataAccessInterface;
+import myProfilePage.changeProfile.*;
+import myProfilePage.configProfile.ConfigProfileController;
+import myProfilePage.configProfile.ConfigProfilePresenter;
+import myProfilePage.configProfile.ConfigProfileState;
+import myProfilePage.configProfile.ConfigProfileViewModel;
 import dataAccessObject.CommonUserDataAccessObject;
 import entity.user.AppUser;
 
 import login.LoginState;
 import usecase.configProfile.ConfigProfileInteractor;
+import view.ButtonTextPanel;
+import view.LabelTextPanel;
+import view.ViewManager;
 import viewModel.ViewModelManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
@@ -23,6 +31,7 @@ import java.util.Map;
 
 public class MyProfileView extends JPanel implements ActionListener, PropertyChangeListener {
     public static final String viewName = "my profile";
+
     private final JTextField usernameInputfield = new JTextField(15);
     private final JTextField bioInputfield= new JTextField(15);
     private final JTextField addressinputfield = new JTextField(15);
@@ -32,15 +41,25 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
     private JRadioButton femaleRadioButton;
     private JRadioButton maleRadioButton;
     private JRadioButton bothRadioButton;
-
+    private JDialog dialog;
+    private JLabel imageLabel;
     private final ConfigProfileController configProfileController;
     private final ConfigProfileViewModel configProfileViewModel;
+    private final ChangeProfileController changeController;
+    private final ChangeProfileViewModel changeProfileViewModel;
 
-    public MyProfileView(ConfigProfileViewModel profileViewModel, ConfigProfileController configProfileController) {
+
+    public MyProfileView(
+            ConfigProfileViewModel profileViewModel,
+            ChangeProfileViewModel changeProfileViewModel,
+            ConfigProfileController configProfileController,
+            ChangeProfileController changeProfileController) {
         this.configProfileController = configProfileController;
         this.configProfileViewModel = profileViewModel;
+        this.changeController =changeProfileController;
+        this.changeProfileViewModel = changeProfileViewModel;
         configProfileViewModel.addPropertyChangeListener(this);
-
+        this.changeProfileViewModel.addPropertyChangeListener(this);
         LabelTextPanel username = new LabelTextPanel(
                 new JLabel(ConfigProfileViewModel.USERNAME_LABEL), usernameInputfield );
         LabelTextPanel bio = new LabelTextPanel(
@@ -51,9 +70,9 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         smallRadioButton = new JRadioButton("Small");
         mediumRadioButton = new JRadioButton("Medium");
         bigRadioButton = new JRadioButton("Big");
-
         femaleRadioButton = new JRadioButton("Female");
         maleRadioButton = new JRadioButton("Male");
+
 //        bothRadioButton = new JRadioButton("Both");
 
         JPanel sizeGroup = new JPanel();
@@ -81,7 +100,7 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
                 sexGroup);
 
         String imgPath = "resources/BottomPageRedirectingIcons/myProfile.png";
-        JLabel imageLabel = new JLabel();
+        imageLabel = new JLabel();
         ImageIcon imageIcon = new ImageIcon(imgPath);
         imageLabel.setIcon(imageIcon);
 
@@ -102,6 +121,36 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         usernameInputfield.setEditable(false);
         usernameInputfield.setEnabled(false);
 
+        imageLabel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Mouse clicked");
+                dialog = new JDialog();
+                dialog.setContentPane(new ChangeImageView(usernameInputfield.getText(), changeController));
+                dialog.setVisible(true);
+            }
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -120,7 +169,6 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         this.add(size);
         this.add(sex);
         this.add(buttons);
-
     }
 
 
@@ -129,9 +177,7 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
 
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-    }
+
     private Map<String, Boolean> getSelectedSex() {
         Map<String, Boolean> sexMap = new HashMap<>();
 
@@ -272,6 +318,9 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
 //                }
 //        );
 
+
+
+
         if (bio.isEmpty() || address.isEmpty()) {
             JOptionPane.showMessageDialog(this, "ENTER ALL INFORMATION", "FAILED", JOptionPane.ERROR_MESSAGE);
             return;
@@ -287,25 +336,46 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
                 currentState.getSex());
 
     }
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getSource().equals(changeProfileViewModel)) {
+            ChangeProfileState state = (ChangeProfileState) evt.getNewValue();
+            System.out.println("View: profile property change recieved");
+            if (state.getError().isEmpty()) {
+                imageLabel.setIcon(new ImageIcon(state.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)
+                ));
+                System.out.println("image set");
+                imageLabel.revalidate();
+                imageLabel.repaint();
+                dialog.dispose();
+
+
+            } else {
+                JOptionPane.showMessageDialog(this, state.getError());
+            }
+        }
+    }
     public static void main(String[] args) {
         JFrame application = new JFrame("MyProfile");
         CardLayout cardLayout = new CardLayout();
         JPanel views = new JPanel(cardLayout);
         application.add(views);
 
+        ProfilePictureDataAccessInterface profilePictureDataAccessInterface = new CommonProfileDataAccessObject();
         ViewModelManager viewManagerModel = new ViewModelManager();
         new ViewManager(cardLayout, views, viewManagerModel);
-
         ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
         ConfigProfilePresenter configProfilePresenter = new ConfigProfilePresenter(configProfileViewModel, new BrowsePageViewModel(), new ViewModelManager());
         ConfigProfileInteractor configProfileInteractor = new ConfigProfileInteractor(new CommonUserDataAccessObject(), configProfilePresenter);
-
         ConfigProfileController configProfileController = new ConfigProfileController(configProfileInteractor);
-
+        ChangeProfileViewModel changeProfileViewModel = new ChangeProfileViewModel();
+        ChangeProfilePresenter changeProfilePresenter = new ChangeProfilePresenter(changeProfileViewModel);
+        ChangeProfileUCI changeProfileUCI = new ChangeProfileUCI(profilePictureDataAccessInterface, changeProfilePresenter);
+        ChangeProfileController changeProfileController = new ChangeProfileController(changeProfileUCI);
         viewManagerModel.setActiveViewName(MyProfileView.viewName);
         viewManagerModel.firePropertyChange();
-
-        MyProfileView configProfileView = new MyProfileView(configProfileViewModel, configProfileController);
+        MyProfileView configProfileView = new MyProfileView(configProfileViewModel, changeProfileViewModel, configProfileController,
+                changeProfileController);
         views.add(configProfileView, MyProfileView.viewName);
 
         application.pack();

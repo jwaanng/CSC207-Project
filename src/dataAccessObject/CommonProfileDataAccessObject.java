@@ -55,7 +55,7 @@ public class CommonProfileDataAccessObject implements dataAccessObject.ProfilePi
      */
     public void uploadUserProfile(String username, File file) {
         try {
-            if (file.getPath().endsWith("/png")) {
+            if (file.toString().endsWith(".png")) {
                 BlobId blobId = BlobId.of(userProfilebucketName, username);
                 BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/png").build();
                 storage.create(blobInfo, Files.readAllBytes(Paths.get(file.getPath())));
@@ -77,7 +77,7 @@ public class CommonProfileDataAccessObject implements dataAccessObject.ProfilePi
      */
     public void uploadPetProfile(int id, File file) {
         try {
-            if (file.getPath().endsWith("png")) {
+            if (file.toString().endsWith(".png")) {
                 BlobId blobId = BlobId.of(petProfilebucketName, String.valueOf(id));
                 BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/png").build();
                 storage.create(blobInfo, Files.readAllBytes(Paths.get(file.getPath())));

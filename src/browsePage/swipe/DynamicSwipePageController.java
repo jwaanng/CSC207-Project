@@ -1,34 +1,36 @@
-package browsePage.swipePage;
+package browsePage.swipe;
+import browsePage.SwipePageView;
 import entity.petProfile.PetProfile;
 import favPetPage.addAFavPet.AddController;
 
 /**
- * The {@code SwipePageController} class handles interactions for swiping through pet profiles.
+ * The {@code DynamicSwipePageController} class handles interactions for swiping through pet profiles.
  */
-public class SwipePageController {
+public class DynamicSwipePageController {
 
-    private final ProfileSwipingInteractor interactor;
+    private final ProfileQueueChainer interactor;
     private final PetProfilePresenter presenter;
     private final SwipePageView view;
-
     private PetProfile currentProfile;
-
     private String username;
-
     private AddController addController;
 
     /**
-     * Constructs a {@code SwipePageController} with the provided interactor, presenter, and view.
+     * Constructs a {@code DynamicSwipePageController} with the provided interactor, presenter, and view.
      *
      * @param interactor The interactor responsible for swiping profiles.
      * @param presenter  The presenter responsible for creating view models.
      * @param view       The view to be updated with profile information.
      */
-    public SwipePageController(ProfileSwipingInteractor interactor, PetProfilePresenter presenter, SwipePageView view, String user, AddController addController) {
+    public DynamicSwipePageController(ProfileQueueChainer interactor,
+                                      PetProfilePresenter presenter,
+                                      SwipePageView view,
+                                      String username,
+                                      AddController addController) {
         this.interactor = interactor;
         this.presenter = presenter;
         this.view = view;
-        this.username = user;
+        this.username = username;
         this.currentProfile = null;
         this.addController = addController;
     }
@@ -36,16 +38,17 @@ public class SwipePageController {
     /**
      * Loads the next pet profile and updates the view.
      */
-    public void loadNextProfile() {
+    public boolean loadNextProfile() {
         PetProfile profile = interactor.getNextProfile();
         currentProfile = profile;
         if (profile != null) {
             SwipePageViewModel viewModel = presenter.createViewModel(profile);
             view.updateProfile(viewModel);
         } else {
+            return true;
             // Handle case where there are no more profiles (e.g., disable buttons, show message).
-            System.out.println("No more profiles to swipe.");
         }
+        return false;
     }
 
     /**

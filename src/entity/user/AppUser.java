@@ -44,6 +44,7 @@ public class AppUser {
         this.instagramUsername = instagramUsername;
         this.favPet = new ArrayList<>();
         this.roles = new ArrayList<>();
+        certifyAsPetOwner();
         roles.add(PETFINDER);
     }
 
@@ -138,7 +139,7 @@ public class AppUser {
      */
     public void deleteFavProfile(int petId) {
         /*petId must be in favPet*/
-        favPet.remove(petId);
+        favPet.remove((Object) petId);
     }
 
     /**

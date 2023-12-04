@@ -23,6 +23,7 @@ import myPets.myPetDisplayRedirect.MyPetRedirectController;
 import myPets.myPetDisplayRedirect.MyPetRedirectPresenter;
 import myPets.myPetDisplayRedirect.MyPetRedirectUCI;
 import myPets.myPetDisplayRedirect.MyPetRedirectViewModel;
+import myPets.myPetPageRedirect.MyPetRDRController;
 import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import viewModel.ViewModelManager;
 
@@ -49,6 +50,7 @@ public class MyPetsPageFactory {
         );
         DeleteMyPetController deleteController = new DeleteMyPetController(deleteUCI);
 
+     
         //MyPetsRedirect Cycle
         MyPetRedirectPresenter myPetRedirectPresenter = new MyPetRedirectPresenter(
                 myPetsViewModel.getMyPetRedirectViewModel());

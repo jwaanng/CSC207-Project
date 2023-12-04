@@ -54,7 +54,7 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
     InnerViewModelManager innerViewModelManager;
     MyPetRedirectController myPetRedirectController;
 
-    public CreatePetView(InnerViewModelManager innerViewModelManager, CreateViewModel createViewModel, CreateController createController, MyPetRedirectController myPetRedirectController) {
+    public CreatePetView( InnerViewModelManager innerViewModelManager, CreateViewModel createViewModel, CreateController createController, MyPetRedirectController myPetRedirectController) {
         this.createViewModel = createViewModel;
         this.createController = createController;
         this.redirectController = redirectController;
@@ -141,7 +141,7 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
                 if (e.getSource().equals(applyButton)) {
                     CreateState currentState = createViewModel.getState();
 
-                    createController.execute(currentState.getName(),
+                    createController.execute( currentState.getName(),
                             currentState.getBreed(),
                             currentState.isVaccinated(),
                             currentState.isNeutered(),

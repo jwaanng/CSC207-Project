@@ -2,7 +2,7 @@ package myProfilePage;
 
 import myProfilePage.changeProfile.ChangeProfileViewModel;
 import myProfilePage.configProfile.ConfigProfileViewModel;
-import org.checkerframework.checker.units.qual.C;
+
 import viewModel.ViewModel;
 
 import java.beans.PropertyChangeListener;

@@ -1,5 +1,7 @@
 package app;
 
+import browsePage.BrowsePageViewModel;
+import myPets.MyPetsViewModel;
 import myProfilePage.MyProfileViewModel;
 import myProfilePage.configProfile.ConfigProfileViewModel;
 import dataAccessObject.PetProfileDataAccessInterface;
@@ -35,12 +37,14 @@ public class LoginPageFactory {
             LoginViewModel loginViewModel,
             FavPetPageViewModel favPetPageViewModel,
             MyProfileViewModel myProfileViewModel,
+            BrowsePageViewModel browsePageViewModel,
+            MyPetsViewModel myPetsViewModel,
             UserDataAccessInterface userDataAccessInterface,
             PetProfileDataAccessInterface petProfileDataAccessInterface,
             ProfilePictureDataAccessInterface profilePictureDataAccessInterface
     ) {
         LoginPresenter loginPresenter = new LoginPresenter( manager,loginViewModel,
-                favPetPageViewModel, myProfileViewModel);
+                favPetPageViewModel, myProfileViewModel, browsePageViewModel, myPetsViewModel);
         LoginUCI loginUCI = new LoginUCI(loginPresenter, userDataAccessInterface,
                 petProfileDataAccessInterface,
                 profilePictureDataAccessInterface);

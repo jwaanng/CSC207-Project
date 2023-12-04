@@ -1,30 +1,28 @@
-package browsePage.swipePage.newcomparator;
+package browsePage.swipe.newcomparator;
 
 import entity.petProfile.PetProfile;
 
 import java.util.Comparator;
 
 public class PetProfileComparator implements Comparator<PetProfile> {
-    private String idealSize;
+    private final String idealSize;
 //    private boolean idealVaccinated;
-    private int idealAge;
-    private String idealSex;
+//    private final int idealAge;
+    private final String idealSex;
 
-    public PetProfileComparator(int idealAge, String idealSex) {
-//        this.idealSize = idealSize;
-        this.idealAge = idealAge;
+    public PetProfileComparator(String idealSize, String idealSex) {
+        this.idealSize = idealSize;
+//        this.idealAge = idealAge;
         this.idealSex = idealSex;
     }
-
     @Override
     public int compare(PetProfile p1, PetProfile p2) {
         Comparator<PetProfile> compositeComparator =
-//                new PetSizeComparator(idealSize)
+                new PetSizeComparator(idealSize)
 //                .thenComparing(new PetAgeComparator(idealAge))
-//                .thenComparing(new PetSexComparator(idealSex));
-
-                new PetAgeComparator(idealAge)
                 .thenComparing(new PetSexComparator(idealSex));
+
+        //geocoordinates comparator
 
         return compositeComparator.compare(p1, p2);
     }

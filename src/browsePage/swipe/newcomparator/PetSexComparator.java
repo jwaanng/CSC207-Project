@@ -1,4 +1,4 @@
-package browsePage.swipePage.newcomparator;
+package browsePage.swipe.newcomparator;
 
 import entity.petProfile.PetProfile;
 

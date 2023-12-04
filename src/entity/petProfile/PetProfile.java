@@ -7,7 +7,11 @@ import java.util.HashMap;
  */
 public abstract class PetProfile {
     public static final String MALE = "Male";
-    private String str;
+    public String getAbout() {
+//        String about = "About: My name is " + name + ". I am a " + age + " year old, " + sex.toLowerCase() + ", " + size.toLowerCase() + " sized " + specie.toLowerCase() + ".";
+        String about = "About: My name is " + name + ". I am a " + age + " year old " + sex.toLowerCase() + " " + specie.toLowerCase() + ".";
+        return about;
+    }
 
     /**
      * Identifier for female pets.

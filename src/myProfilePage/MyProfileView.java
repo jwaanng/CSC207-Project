@@ -110,7 +110,7 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
         sizeButtonGroup.add(smallRadioButton);
         sizeButtonGroup.add(mediumRadioButton);
         sizeButtonGroup.add(bigRadioButton);
-        sizeButtonGroup.add(noSexRadioButton);
+        sizeButtonGroup.add(noSizeRadioButton);
 
         ButtonGroup genderButtonGroup = new ButtonGroup();
         genderButtonGroup.add(femaleRadioButton);

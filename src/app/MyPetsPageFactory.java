@@ -50,7 +50,7 @@ public class MyPetsPageFactory {
         );
         DeleteMyPetController deleteController = new DeleteMyPetController(deleteUCI);
 
-
+     
         //MyPetsRedirect Cycle
         MyPetRedirectPresenter myPetRedirectPresenter = new MyPetRedirectPresenter(
                 myPetsViewModel.getMyPetRedirectViewModel());

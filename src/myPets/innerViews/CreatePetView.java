@@ -1,7 +1,5 @@
 package myPets.innerViews;
 
-import myPets.MyPetsView;
-import myPets.MyPetsViewModel;
 import myPets.createNewDog.CreateController;
 import myPets.createNewDog.CreateState;
 import myPets.createNewDog.CreateViewModel;
@@ -9,10 +7,8 @@ import myPets.myPetDisplayRedirect.MyPetRedirectController;
 import myPets.myPetPageRedirect.MyPetRDRController;
 import myPets.InnerViewModelManager;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,8 +16,6 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 
 public class CreatePetView extends JPanel implements ActionListener, PropertyChangeListener {
@@ -30,9 +24,9 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
     private JTextField petName = new JTextField(20);
     private JTextField breed = new JTextField(20);
     private JTextField age = new JTextField(20);
-    private JTextField temper = new JTextField(200);
-    private JTextField description = new JTextField(200);
-    private JTextField likes = new JTextField(100);
+    private JTextField temper = new JTextField(20);
+    private JTextField description = new JTextField(20);
+    private JTextField likes = new JTextField(20);
     private JRadioButton vacRadioButton;
     private JRadioButton notVacRadioButton;
     private JRadioButton neutRadioButton;
@@ -43,11 +37,16 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
     private JRadioButton smallRadioButton;
     private JRadioButton mediumRadioButton;
     private JRadioButton largeRadioButton;
-    private JPanel sizeGroup;
-    private JPanel vacGroup;
-    private JPanel neutGroup;
-    private JPanel sexGroup;
-    private JButton selectImage;
+    private JPanel sizeGroupPanel;
+    private JPanel vacGroupPanel;
+    private JPanel neutGroupPanel;
+    private JPanel sexGroupPanel;
+    private JButton selectImagePanel;
+    private ButtonGroup sizeGroup;
+    private ButtonGroup vacGroup;
+    private ButtonGroup neutGroup;
+    private ButtonGroup sexGroup;
+    private ButtonGroup selectImage;
 
     CreateViewModel createViewModel;
     CreateController createController;
@@ -64,39 +63,52 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
         this.myPetRedirectController = myPetRedirectController;
 
         // Radio button group for vaccinations
-        vacGroup = new JPanel();
+        vacGroupPanel = new JPanel();
+        vacGroup = new ButtonGroup();
         vacRadioButton = new JRadioButton("Vaccinated");
         notVacRadioButton = new JRadioButton("Not Vaccinated");
+        vacGroupPanel.add(vacRadioButton);
+        vacGroupPanel.add(notVacRadioButton);
         vacGroup.add(vacRadioButton);
         vacGroup.add(notVacRadioButton);
 
         // Radio button group for neutered
-        neutGroup = new JPanel();
+        neutGroup = new ButtonGroup();
+        neutGroupPanel = new JPanel();
         neutRadioButton = new JRadioButton("Neutered");
         notNeutRadioButton = new JRadioButton("Not Neutered");
+        neutGroupPanel.add(neutRadioButton);
+        neutGroupPanel.add(notNeutRadioButton);
         neutGroup.add(neutRadioButton);
         neutGroup.add(notNeutRadioButton);
 
         // Radio button group for sex
-        sexGroup = new JPanel();
+        sexGroup = new ButtonGroup();
+        sexGroupPanel = new JPanel();
         maleRadioButton = new JRadioButton("Male");
         femaleRadioButton = new JRadioButton("Female");
+        sexGroupPanel.add(maleRadioButton);
+        sexGroupPanel.add(femaleRadioButton);
         sexGroup.add(maleRadioButton);
         sexGroup.add(femaleRadioButton);
 
         //Radio Button Group for Size
-        sizeGroup = new JPanel();
+        sizeGroupPanel = new JPanel();
+        sizeGroup = new ButtonGroup();
         smallRadioButton = new JRadioButton("Small");
         mediumRadioButton = new JRadioButton("Medium");
         largeRadioButton = new JRadioButton("Large");
+        sizeGroupPanel.add(smallRadioButton);
+        sizeGroupPanel.add(mediumRadioButton);
+        sizeGroupPanel.add(largeRadioButton);
         sizeGroup.add(smallRadioButton);
         sizeGroup.add(mediumRadioButton);
         sizeGroup.add(largeRadioButton);
 
 
         JPanel selectImageInfo = new JPanel();
-        selectImage = new JButton("select");
-        selectImageInfo.add(selectImage);
+        selectImagePanel = new JButton("select");
+        selectImageInfo.add(selectImagePanel);
 
 
         LabelTextPanel nameInfo = new LabelTextPanel(
@@ -112,21 +124,14 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
         LabelTextPanel likesInfo = new LabelTextPanel(
                 new JLabel("Pets likes and dislikes"), likes);
 
-        ButtonTextPanel vacInfo = new ButtonTextPanel(new JLabel("Vaccinated:"), vacGroup);
-        ButtonTextPanel neutInfo = new ButtonTextPanel(new JLabel("Neutered:"), neutGroup);
-        ButtonTextPanel sexInfo = new ButtonTextPanel(new JLabel("Sex:"), sexGroup);
-        ButtonTextPanel sizeInfo = new ButtonTextPanel(new JLabel("Size:"), sizeGroup);
+        ButtonTextPanel vacInfo = new ButtonTextPanel(new JLabel("Vaccinated:"), vacGroupPanel);
+        ButtonTextPanel neutInfo = new ButtonTextPanel(new JLabel("Neutered:"), neutGroupPanel);
+        ButtonTextPanel sexInfo = new ButtonTextPanel(new JLabel("Sex:"), sexGroupPanel);
+        ButtonTextPanel sizeInfo = new ButtonTextPanel(new JLabel("Size:"), sizeGroupPanel);
 
         ButtonTextPanel imageInfo = new ButtonTextPanel(new JLabel("Choose your image"), selectImageInfo);
         applyButton = new JButton("apply");
-
         JPanel buttons = new JPanel();
-//        buttons.add(vacRadioButton);
-//        buttons.add(notVacRadioButton);
-//        buttons.add(neutRadioButton);
-//        buttons.add(notNeutRadioButton);
-//        buttons.add(maleRadioButton);
-//        buttons.add(femaleRadioButton);
         buttons.add(applyButton);
 //        buttons.add(selectImage);
 
@@ -149,6 +154,8 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
                             currentState.getLikes()
                     );
 
+
+
                     myPetRedirectController.execute();
                     createViewModel.setState(new CreateState());
 
@@ -156,10 +163,10 @@ public class CreatePetView extends JPanel implements ActionListener, PropertyCha
             }
         });
 
-        selectImage.addActionListener(new ActionListener() {
+        selectImagePanel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(selectImage)) {
+                if (e.getSource().equals(selectImagePanel)) {
                     JFileChooser chooser = new JFileChooser();
                     //Types of images allowed
                     FileNameExtensionFilter filter = new FileNameExtensionFilter(

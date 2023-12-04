@@ -69,7 +69,7 @@ public class FavPetPageFactory {
         ViewThisController viewThisController = new ViewThisController(vtUci);
 
         //BrowsePet cycle
-        BrowsePresenter browsePresenter = new BrowsePresenter(browsePageViewModel, manager);
+        BrowsePresenter browsePresenter = new BrowsePresenter(browsePageRDRController);
         BrowseUCI browseUCI = new BrowseUCI(browsePresenter);
         BrowseController browseController = new BrowseController(browseUCI);
 

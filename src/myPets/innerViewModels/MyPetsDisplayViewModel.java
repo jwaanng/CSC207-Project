@@ -1,4 +1,4 @@
-package myPets.noMyPets;
+package myPets.innerViewModels;
 
 import viewModel.ViewModel;
 

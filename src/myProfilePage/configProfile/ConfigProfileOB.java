@@ -1,14 +1,14 @@
-package usecase.configProfile;
+package myProfilePage.configProfile;
 
 /**
- * The {@code ConfigProfileOutputBoundary} interface defines the output boundary for presenting
+ * The {@code ConfigProfileOB} interface defines the output boundary for presenting
  * the results of configuration profile operations. Classes implementing this interface are
  * responsible for preparing and presenting views in case of operation failures.
  *
  * Implementing classes should handle the presentation of error messages or failure views
  * to the user interface.
  */
-public interface ConfigProfileOutputBoundary {
+public interface ConfigProfileOB {
 
     /**
      * Prepares and presents a failure view with the specified error message.
@@ -19,4 +19,6 @@ public interface ConfigProfileOutputBoundary {
      * @param error The error message to be presented in the failure view.
      */
     void prepareFailView(String error);
+    void prepareSuccessView(ConfigProfileOPData outputData);
+
 }

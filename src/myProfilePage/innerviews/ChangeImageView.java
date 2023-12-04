@@ -1,4 +1,4 @@
-package myProfilePage;
+package myProfilePage.innerviews;
 
 import myProfilePage.changeProfile.ChangeProfileController;
 

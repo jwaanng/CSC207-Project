@@ -1,7 +1,7 @@
-package usecase.configProfile;
+package myProfilePage.configProfile;
 
 /**
- * The {@code ConfigProfileInputBoundary} interface defines the input boundary for interacting
+ * The {@code ConfigProfileIB} interface defines the input boundary for interacting
  * with the use case related to configuration profile operations. Classes implementing this
  * interface are responsible for executing the use case based on the provided input data.
  *
@@ -11,7 +11,7 @@ package usecase.configProfile;
  * @author [Your Name]
  * @version 1.0
  */
-public interface ConfigProfileInputBoundary {
+public interface ConfigProfileIB {
 
     /**
      * Executes the use case based on the provided input data.
@@ -19,8 +19,8 @@ public interface ConfigProfileInputBoundary {
      * The implementation of this method should handle the logic for configuration profile
      * operations, considering the data provided in the {@code ConfigProfileInputData}.
      *
-     * @param configProfileInputData The input data containing information about the
+     * @param configProfileIPData The input data containing information about the
      *                                configuration profile operation.
      */
-    void execute(ConfigProfileInputData configProfileInputData);
+    void execute(ConfigProfileIPData configProfileIPData);
 }

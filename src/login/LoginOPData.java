@@ -3,41 +3,24 @@ package login;
 import java.awt.*;
 import java.util.HashMap;
 
-public class LoginOPData {
-
 /**
  * The {@code LoginOPData} class represents the output data for the login use case, providing information
  * for success or failure scenarios, along with additional details for pet-related information.
  */
+public class LoginOPData {
 
-    /**
-     * The username associated with the login attempt.
-     */
+
     String username;
-
-    /**
-     * The profile image associated with the user's account.
-     */
+    String preferredSex;
+    String preferredSize;
+    String address;
+    String bio;
     Image profile;
 
-    /**
-     * Indicates whether the use case execution has failed.
-     */
     boolean usecaseFailed;
-
-    /**
-     * The mapping of pet IDs to their corresponding names.
-     */
     private final HashMap<Integer, String> petID_to_Name = new HashMap<>();
-
-    /**
-     * The mapping of pet IDs to their corresponding profile images.
-     */
     private final HashMap<Integer, Image> petID_to_Photo = new HashMap<>();
 
-    /**
-     * The error message associated with a failed use case execution.
-     */
     String error;
 
     /**
@@ -46,11 +29,14 @@ public class LoginOPData {
      * @param copy The {@code LGOPData} instance to copy.
      */
     public LoginOPData(LoginOPData copy) {
-
-        this.username = copy.username;
-        this.profile = copy.profile;
-        this.error = copy.error;
-        this.usecaseFailed = copy.usecaseFailed;
+        username = copy.username;
+        address = copy.address;
+        bio = copy.bio;
+        preferredSex = copy.preferredSex;
+        preferredSize = copy.preferredSize;
+        profile = copy.profile;
+        error = copy.error;
+        usecaseFailed = copy.usecaseFailed;
     }
 
     /**
@@ -59,33 +45,6 @@ public class LoginOPData {
     public LoginOPData() {
     }
 
-    /**
-     * Creates an {@code LoginOPData} instance for a successful login attempt.
-     *
-     * @param username The username associated with the successful login.
-     * @param profile  The profile image associated with the user's account.
-     * @return The created {@code LoginOPData} instance.
-     */
-    public static LoginOPData createSuccessData(String username, Image profile) {
-        LoginOPData data = new LoginOPData();
-        data.username = username;
-        data.profile = profile;
-        return data;
-    }
-
-
-    /**
-     * Creates an {@code LoginPData} instance for a failed login attempt.
-     *
-     * @param error The error message associated with the failed login attempt.
-     * @return The created {@code LoginPData} instance.
-     */
-    public static LoginOPData createFailData(String error) {
-        LoginOPData data = new LoginOPData();
-        data.error = error;
-        data.usecaseFailed = true;
-        return data;
-    }
 
     /**
      * Adds pet name and photo information to the {@code LGOPData} instance.

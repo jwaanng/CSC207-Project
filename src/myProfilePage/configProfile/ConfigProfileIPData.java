@@ -1,17 +1,17 @@
-package usecase.configProfile;
+package myProfilePage.configProfile;
 
 // Get the input data from ConfigProfileView: name (user's name), address, bio (optional), size, sex
 /**
- * The {@code ConfigProfileInputData} class encapsulates the input data required for configuring
+ * The {@code ConfigProfileIPDATA} class encapsulates the input data required for configuring
  * a user profile. Instances of this class are used to pass relevant information to the
- * {@code ConfigProfileInputBoundary} for processing configuration profile operations.
+ * {@code ConfigProfileIB} for processing configuration profile operations.
  *
  * This class is typically instantiated with the necessary information, such as username, address,
  * bio, size, and sex, to represent the desired configuration changes.
  *
  * @author iwanna sleep
  */
-public class ConfigProfileInputData {
+public class ConfigProfileIPData {
 
     private final String username;
     private final String address;
@@ -20,7 +20,7 @@ public class ConfigProfileInputData {
     private final String sex;
 
     /**
-     * Constructs a {@code ConfigProfileInputData} instance with the specified parameters.
+     * Constructs a {@code ConfigProfileIPDATA} instance with the specified parameters.
      *
      * @param username The new username for the configuration profile.
      * @param address  The new address for the configuration profile.
@@ -28,7 +28,7 @@ public class ConfigProfileInputData {
      * @param size     The new size information for the configuration profile.
      * @param sex      The new sex information for the configuration profile.
      */
-    public ConfigProfileInputData(String username, String address, String bio, String size, String sex) {
+    public ConfigProfileIPData(String username, String address, String bio, String size, String sex) {
         this.username = username;
         this.address = address;
         this.bio = bio;

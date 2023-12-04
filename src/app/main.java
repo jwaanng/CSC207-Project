@@ -3,7 +3,19 @@ package app;
 import dataAccessObject.*;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
+import favPetPage.displayUser.DisplayUserController;
+import favPetPage.displayUser.DisplayUserPresenter;
+import favPetPage.displayUser.DisplayUserUCI;
+import favPetPage.innerviewmodels.FavPetRDRViewModel;
+import favPetPage.myFavPetPageRedirect.FavPetRDRController;
+import favPetPage.myFavPetPageRedirect.FavPetRDRPresenter;
+import favPetPage.myFavPetPageRedirect.FavPetRDRUCI;
 import login.*;
+import myProfilePage.MyProfileView;
+import myProfilePage.MyProfileViewModel;
+import myProfilePage.myProfileRedirect.MyProfileRDRController;
+import myProfilePage.myProfileRedirect.MyProfileRDRPresenter;
+import myProfilePage.myProfileRedirect.MyProfileRDRUCI;
 import signupPage.SignupView;
 import signupPage.SignupViewModel;
 import view.ViewManager;
@@ -24,12 +36,22 @@ public class main {
         SignupViewModel signupViewModel = new SignupViewModel();
         LoginViewModel loginViewModel = new LoginViewModel();
         FavPetPageViewModel favPetPageViewModel = new FavPetPageViewModel();
+        MyProfileViewModel myProfileViewModel = new MyProfileViewModel();
         ViewModelManager manager = new ViewModelManager();
 
         //app pages system control
         CardLayout appLayout = new CardLayout();
         JPanel views = new JPanel(appLayout);
         ViewManager viewManager = new ViewManager(appLayout, views, manager);
+
+        //intialize myFavPetPage redirecting controllers,
+
+        MyProfileRDRPresenter myProfileRDRPresenter = new MyProfileRDRPresenter(manager, myProfileViewModel);
+        MyProfileRDRUCI myProfileRDRUCI = new MyProfileRDRUCI(myProfileRDRPresenter);
+        MyProfileRDRController myProfileRDRController = new MyProfileRDRController(myProfileRDRUCI);
+        FavPetRDRPresenter FavPetRDRPresenter = new FavPetRDRPresenter(manager,favPetPageViewModel);
+        FavPetRDRUCI FavPetRDRUCI = new FavPetRDRUCI(FavPetRDRPresenter);
+        FavPetRDRController favPetRDRController = new FavPetRDRController(FavPetRDRUCI);
 
         //sign up page
         SignupView signup = SignupPageFactory.createSignUpPage(
@@ -46,6 +68,7 @@ public class main {
                 manager,
                 loginViewModel,
                 favPetPageViewModel,
+                myProfileViewModel,
                 userDataAccessInterface,
                 petProfileDataAccessInterface,
                 profilePictureDataAccessInterface
@@ -57,11 +80,17 @@ public class main {
                 favPetPageViewModel,
                 userDataAccessInterface,
                 petProfileDataAccessInterface,
-                profilePictureDataAccessInterface
+                profilePictureDataAccessInterface,
+                myProfileRDRController
         );
         views.add(favPetPage, favPetPageViewModel.getViewName());
 
+        //my profile page
+        MyProfileView myProfilePage = MyProfilePageFactory.createMyProfilePage(myProfileViewModel,favPetPageViewModel,
+                userDataAccessInterface,
+                profilePictureDataAccessInterface,favPetRDRController);
         //creating app
+        views.add(myProfilePage, myProfileViewModel.getViewName());
         JFrame app = new JFrame();
         app.add(views);
         app.pack();

@@ -7,6 +7,7 @@ import swipePage.newcomparator.PetProfileComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class DeckCreator {
     private AppUser appUser;
@@ -24,6 +25,7 @@ public class DeckCreator {
         );
         this.ppdao = ppc;
         this.allPetProfiles = petList;
+        this.appUser = appUser;
     }
 
     public DeckCreator() { //for testing ignore this in the final implementation -Sean
@@ -40,6 +42,12 @@ public class DeckCreator {
 
     public ArrayList<PetProfile> sortAllPetProfiles() {
         Collections.sort(allPetProfiles, comparator);
+        List<Integer> petIDs = appUser.getFavPet();
+        for (int i = 0; i < allPetProfiles.size(); i++) {
+            if (petIDs.contains(allPetProfiles.get(i).getId())) {
+                allPetProfiles.remove(i);
+            }
+        }
         return allPetProfiles;
     }
 

@@ -17,6 +17,7 @@ public class PetProfileComparator implements Comparator<PetProfile> {
     }
     @Override
     public int compare(PetProfile p1, PetProfile p2) {
+
         Comparator<PetProfile> compositeComparator =
                 new PetSizeComparator(idealSize)
 //                .thenComparing(new PetAgeComparator(idealAge))

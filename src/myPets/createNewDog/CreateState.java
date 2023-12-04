@@ -101,6 +101,7 @@ public class CreateState {
     public void addPetNameAndPhoto(int petId, String petName, File photo){
         myPetID_Name.put(petId, petName);
         myPetID_Photo.put(petId, photo);
+
     }
 
     public List<Integer> getKeyEntries(){
@@ -117,7 +118,7 @@ public class CreateState {
     public void setImageFile(File imageFile) {
         this.imageFile = imageFile;
     }
-    public File getImageFile(){return imageFile;}
+    public File getImageFile(int petId){return myPetID_Photo.get(petId);}
 
     public void setTemper(String text) {this.temper = text;}
     public String getTemper(){return temper;}

@@ -10,6 +10,5 @@ public class MyPetRedirectPresenter implements MyPetRedirectOB {
     @Override
     public void prepareSuccessView() {
         mpvm.firePropertyChanged();
-        System.out.println("my pet redirect presenter");
     }
 }

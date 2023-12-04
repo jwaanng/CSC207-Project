@@ -162,9 +162,10 @@ public class MyPetsView extends JPanel implements ActionListener, PropertyChange
             dialog.setVisible(true);
         }
         else if(evt.getSource() == myPetRedirectViewModel){
-            System.out.println("myPetRedirectViewModel");
             yesNOPetLayout.show(petDisplaySection, vm.getMyPetsDisplayViewModel().getViewName());
+           if (! (dialog == null)){
             dialog.dispose();
+           }
             System.out.println("created");
             petDisplaySection.revalidate();
             petDisplaySection.repaint();

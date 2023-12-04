@@ -50,6 +50,7 @@ public class AddUCI implements AddIB {
         AppUser user = dao.retrieve(username);
         if (daop.exists(petId)) {
             user.addFavProfile(petId);
+            dao.update(user);
             PetProfile profile = daop.getProfile(petId);
             AddOPData outputData = new AddOPData();
             outputData.petID = profile.getId();

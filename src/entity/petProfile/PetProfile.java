@@ -7,6 +7,7 @@ import java.util.HashMap;
  */
 public abstract class PetProfile {
     public static final String MALE = "Male";
+    private String str;
 
     /**
      * Identifier for female pets.

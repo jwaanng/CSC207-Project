@@ -28,14 +28,9 @@ public class CreateUCI implements CreateIB {
 
     @Override
     public void execute(String username, CreateIPData inputData) {
+
         try {
-            DogProfile pet = petFactory.createDogProfile(username).vaccinated(inputData.isVaccinated()).neutered(inputData.isNeutered()).withBreed(inputData.getPetBreed()).withAge(inputData.getAge()).isMale().withName(inputData.getName()).build();
-            daop.add(pet);
-            AppUser user = dao.retrieve(username);
-            user.createMyPetProfile(pet.getId());
-            dao.update(user);
-            daopfp.uploadPetProfile(pet.getId(), inputData.getImageFile());
-            CreateOPData createOP = new CreateOPData(inputData.getImageFile(), pet.getId(), pet.getName(), pet.getBreed(), pet.isVaccinated(), pet.isNeuter(), pet.getAge(), pet.getSex(), inputData.getSize(), inputData.getTemper(), inputData.getDescription(), inputData.getLikes(),  false);
+
 
             DogProfileBuilder petBuilder = petFactory.createDogProfile(username).vaccinated(inputData.isVaccinated()).neutered(inputData.isNeutered()).withBreed(inputData.getPetBreed()).withAge(inputData.getAge()).isMale().withName(inputData.getName()).withTemperDescr(inputData.getTemper()).withGeneralDescr(inputData.getDescription()).withLikedDescr(inputData.getLikes());
             if(inputData.getSize().equals("Small")){
@@ -53,11 +48,14 @@ public class CreateUCI implements CreateIB {
             }
 
             DogProfile pet = petBuilder.build();
-
             daop.add(pet);
+            AppUser user = dao.retrieve(username);
+            user.createMyPetProfile(pet.getId());
+            dao.update(user);
+            daopfp.uploadPetProfile(pet.getId(), inputData.getImageFile());
+
             daopfp.uploadPetProfile(pet.getId(), inputData.getImageFile());
             CreateOPData createOP = new CreateOPData(inputData.getImageFile(), pet.getId(), pet.getName(), pet.getBreed(), pet.isVaccinated(), pet.isNeuter(), pet.getAge(), pet.getSex(), inputData.getSize(), inputData.getTemper(), inputData.getDescription(), inputData.getLikes(), false);
-
             presenter.prepareSucessView(createOP);
         } catch(NullPointerException e){
             String error = "Fill In All Fields!";

@@ -131,6 +131,18 @@ public class MyProfileView extends JPanel implements ActionListener, PropertyCha
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getSource().equals(configProfileViewModel)) {
+            System.out.println("VIEW: property change received");
+            ConfigProfileState state = (ConfigProfileState) evt.getNewValue();
+            if (state.getError() != null) {
+                System.out.println(state.getError());
+                JOptionPane.showMessageDialog(this, state.getError());
+            } else {
+                usernameInputfield.setText(state.getName());
+                bioInputfield.setText(state.getBio());
+                addressinputfield.setText(state.getAddress());
+            }
+        }
     }
     private Map<String, Boolean> getSelectedSex() {
         Map<String, Boolean> sexMap = new HashMap<>();

@@ -89,16 +89,17 @@ public class LoginOPData {
         if (photo instanceof BufferedImage) {
             image = (BufferedImage) photo;
         }
-        else {
+        else{
             image = new BufferedImage(photo.getWidth(null), photo.getHeight(null),
                     BufferedImage.TYPE_INT_ARGB);
             Graphics2D bGr = image.createGraphics();
             bGr.drawImage(photo, 0, 0, null);
             bGr.dispose();
-            File imageFile = File.createTempFile("converted_image", ".png");
-            ImageIO.write(image, "png", imageFile);
-            petID_to_ImageFile_MyPet.put(petId, imageFile);
         }
+        File imageFile = File.createTempFile("converted_image", ".png");
+        ImageIO.write(image, "png", imageFile);
+        petID_to_ImageFile_MyPet.put(petId, imageFile);
+
     }
     public HashMap<Integer, File> getPetID_to_Photo_MyPet() {
         return new HashMap<>(petID_to_ImageFile_MyPet);

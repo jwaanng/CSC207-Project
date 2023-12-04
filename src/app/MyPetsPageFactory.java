@@ -64,7 +64,7 @@ public class MyPetsPageFactory {
                 myPetsViewModel.getCreateViewModel());
         CreateUCI createUCI = new CreateUCI(
                 createPresenter,
-                petProfileBuilderFactory,
+                petProfileBuilderFactory, userDataAccessInterface,
                 petProfileDataAccessInterface,
                 profilePictureDataAccessInterface
         );

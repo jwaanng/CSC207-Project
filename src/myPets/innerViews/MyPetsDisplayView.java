@@ -38,7 +38,6 @@ public class MyPetsDisplayView extends JPanel implements PropertyChangeListener 
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO debugging
-            System.out.println("delete petProfile with id" + e.getActionCommand());
             int idNum = Integer.parseInt(e.getActionCommand());
             id_to_PetProfile.get(idNum).deletePet();
             deleteController.execute("Bobby", idNum);
@@ -48,7 +47,6 @@ public class MyPetsDisplayView extends JPanel implements PropertyChangeListener 
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO debugging
-            System.out.println("view petProfile with id" + e.getActionCommand());
             //viewController.execute(Integer.getInteger(e.getActionCommand()));
 
         }
@@ -92,7 +90,6 @@ public class MyPetsDisplayView extends JPanel implements PropertyChangeListener 
             public void actionPerformed(ActionEvent e){
                 if (e.getSource().equals(createAnother)){
                     createRedirectController.execute();
-                    System.out.println("create another pet");
                 }
             }
         });
@@ -126,17 +123,18 @@ public class MyPetsDisplayView extends JPanel implements PropertyChangeListener 
     public void propertyChange(PropertyChangeEvent evt) {
         if (evt.getSource() == myPetRedirectVM) {
             CreateState currState = createVM.getState();
+
             List<Integer> petIds = currState.getKeyEntries();
             for (int id : petIds) {
+                System.out.println(currState);
                 id_to_PetProfile.put(id, new OnePetProfile(
                                 id,
                                 currState.getName(id),
-                                currState.getImageFile(),
+                                currState.getImageFile(id),
                                 deleteListener, viewProfileListener,
                                 createVM.SIZE_OF_ONE_PET_PROFILE_IN_PIXEL
                         )
                 );
-                System.out.println("petProfileID list");
                 //maintain the list of pet profiles
             }
 
@@ -156,11 +154,9 @@ public class MyPetsDisplayView extends JPanel implements PropertyChangeListener 
             DeleteMyPetState state = deleteVM.getState();
             for (int petId : state.getIds()) {
                 id_to_PetProfile.remove(petId);
-                System.out.println(petId);
             }
             repaintGraphicsAddOrDelete();
-            System.out.println("success deleted");
-            System.out.println(id_to_PetProfile.size());
+
         }
     }
 }

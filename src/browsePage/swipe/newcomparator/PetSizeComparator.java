@@ -1,6 +1,7 @@
 package browsePage.swipe.newcomparator;
 
 import entity.petProfile.PetProfile;
+import entity.user.AppUser;
 
 import java.util.Comparator;
 
@@ -21,6 +22,7 @@ class PetSizeComparator implements Comparator<PetProfile> {
             case PetProfile.SMALLPET: return 1;
             case PetProfile.MEDIUMPET: return 2;
             case PetProfile.LARGEPET: return 3;
+            case AppUser.NONE : return 0;
             default: return 0; // default case
         }
     }

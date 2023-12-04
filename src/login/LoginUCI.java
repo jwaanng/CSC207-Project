@@ -91,7 +91,9 @@ public class LoginUCI implements LoginIB {
                                 petProfile.getId(),
                                 petProfile.getName(),
                                 daoPic.retrievePetProfile(petId)
+
                         );
+
                     }
 
                     presenter.prepareSuccessView(data);

@@ -148,8 +148,11 @@ public class NewSwipePage extends JFrame {
 
     public static void main(String[] args) {
         UserDataAccessInterface dao = new CommonUserDataAccessObject();
-        DeckCreator deck = new DeckCreator(dao.retrieve("Jack"));
+        DeckCreator deck = new DeckCreator(dao.retrieve("Sean Beans"));
+
         List<PetProfile> sortedPetProfiles = deck.sortAllPetProfiles();
+        System.out.println(sortedPetProfiles);
+
         ProfileSwipingInteractor interactor = new ProfileSwipingInteractor(sortedPetProfiles);
         PetProfilePresenter presenter = new PetProfilePresenter();
         PetProfileDataAccessObject petProfileDataAccessObject = new PetProfileDataAccessObject();
@@ -162,7 +165,7 @@ public class NewSwipePage extends JFrame {
         AddUCI addUCI = new AddUCI(addPresenter, dao, petProfileDataAccessObject, commonProfileDataAccessObject);
         AddController addController = new AddController(addUCI);
 
-        SwipePageController controller = new SwipePageController(interactor, presenter, view, dao.retrieve("Jack").getUsername(), addController);
+        SwipePageController controller = new SwipePageController(interactor, presenter, view, dao.retrieve("Sean Beans").getUsername(), addController);
         view.setController(controller);
         SwingUtilities.invokeLater(() -> view.setVisible(true));
         controller.loadNextProfile();

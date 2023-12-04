@@ -3,10 +3,6 @@ package app;
 import dataAccessObject.*;
 import favPetPage.FavPetPageView;
 import favPetPage.FavPetPageViewModel;
-import favPetPage.displayUser.DisplayUserController;
-import favPetPage.displayUser.DisplayUserPresenter;
-import favPetPage.displayUser.DisplayUserUCI;
-import favPetPage.innerviewmodels.FavPetRDRViewModel;
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import favPetPage.myFavPetPageRedirect.FavPetRDRPresenter;
 import favPetPage.myFavPetPageRedirect.FavPetRDRUCI;
@@ -18,6 +14,7 @@ import myProfilePage.myProfileRedirect.MyProfileRDRPresenter;
 import myProfilePage.myProfileRedirect.MyProfileRDRUCI;
 import signupPage.SignupView;
 import signupPage.SignupViewModel;
+import browsePage.swipePageRedirect.*;
 import view.ViewManager;
 import viewModel.ViewModelManager;
 
@@ -37,6 +34,7 @@ public class main {
         LoginViewModel loginViewModel = new LoginViewModel();
         FavPetPageViewModel favPetPageViewModel = new FavPetPageViewModel();
         MyProfileViewModel myProfileViewModel = new MyProfileViewModel();
+        BrowsePageViewModel browsePageViewModel = new BrowsePageViewModel();
         ViewModelManager manager = new ViewModelManager();
 
         //app pages system control
@@ -44,7 +42,7 @@ public class main {
         JPanel views = new JPanel(appLayout);
         ViewManager viewManager = new ViewManager(appLayout, views, manager);
 
-        //intialize myFavPetPage redirecting controllers,
+        //intialize page redirecting controllers,
 
         MyProfileRDRPresenter myProfileRDRPresenter = new MyProfileRDRPresenter(manager, myProfileViewModel);
         MyProfileRDRUCI myProfileRDRUCI = new MyProfileRDRUCI(myProfileRDRPresenter);
@@ -52,6 +50,10 @@ public class main {
         FavPetRDRPresenter FavPetRDRPresenter = new FavPetRDRPresenter(manager,favPetPageViewModel);
         FavPetRDRUCI FavPetRDRUCI = new FavPetRDRUCI(FavPetRDRPresenter);
         FavPetRDRController favPetRDRController = new FavPetRDRController(FavPetRDRUCI);
+
+        BrowsePageRDRPresenter browsePageRDRPresenter = new BrowsePageRDRPresenter(manager, browsePageViewModel);
+        BrowsePageRDRUCI browsePageRDRUCI = new BrowsePageRDRUCI(browsePageRDRPresenter);
+        BrowsePageRDRController browsePageRDRController = new BrowsePageRDRController(browsePageRDRUCI);
 
         //sign up page
         SignupView signup = SignupPageFactory.createSignUpPage(

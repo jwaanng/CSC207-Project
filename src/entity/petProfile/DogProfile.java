@@ -85,10 +85,4 @@ public class DogProfile extends PetProfile {
         uniqueInfo.put("Vaccinated", String.valueOf(vaccinated));
         return uniqueInfo;
     }
-
-    //TODO Debugging
-    @Override
-    public String toString(){
-        return getName() + " " +  getSex() + " " + getAge();
-    }
 }

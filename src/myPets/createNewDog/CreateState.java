@@ -10,7 +10,6 @@ import java.util.List;
 public class CreateState {
     private String name = "";
     private String breed = "";
-    private String createError = null;
     private boolean vaccinated = true;
     private boolean neutered = true;
     private int age = 0;
@@ -20,6 +19,15 @@ public class CreateState {
     private String temper = "";
     private String description = "";
     private String likes = "";
+    private String nameError = null;
+    private String breedError = null;
+    private String temperError = null;
+    private String descriptionError = null;
+    private String likesError = null;
+    private String ageError = null;
+    private String createError = null;
+
+
 
     private HashMap<Integer, File> myPetID_Photo = new HashMap<>();
     private HashMap<Integer, String> myPetID_Name = new HashMap<>();
@@ -128,5 +136,10 @@ public class CreateState {
 
     public void setLikes(String text) {this.likes = text;}
     public String getLikes(){return likes;}
+
+    public String getCreateError() {
+        return createError;
+    }
+
 
 }

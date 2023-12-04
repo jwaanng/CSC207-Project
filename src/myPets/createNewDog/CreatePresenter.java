@@ -19,9 +19,9 @@ public class CreatePresenter implements CreateOB {
 
     @Override
     public void prepareFailView(String message) {
-//        CreateState createState = createViewModel.getState();
-//        createState.setCreateError(message);
-//        myPetsViewModel.firePropertyChanged();
+        CreateState createState = createViewModel.getState();
+        createState.setCreateError(message);
+        myPetsViewModel.firePropertyChanged();
     }
 
     @Override

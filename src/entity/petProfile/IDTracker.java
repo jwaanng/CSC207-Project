@@ -33,7 +33,7 @@ public class IDTracker {
         dataLoadingJson.put("filter", compFilt);
         JSONObject compProj = new JSONObject();
         compProj.put("value", 0);
-        compProj.put("_id", 0);
+        compProj.put("_i    d", 0);
 
         dataLoadingJson.put("projection", compProj);
         RequestBody body = RequestBody.create(dataLoadingJson.toString().getBytes(StandardCharsets.UTF_8));

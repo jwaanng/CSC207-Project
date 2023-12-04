@@ -1,4 +1,4 @@
-package browsePage.swipePage.newcomparator;
+package browsePage.swipe.newcomparator;
 
 import entity.petProfile.PetProfile;
 
@@ -18,9 +18,9 @@ class PetSizeComparator implements Comparator<PetProfile> {
 
     private int sizeToInt(String size) {
         switch (size) {
-            case "Small": return 1;
-            case "Medium": return 2;
-            case "Large": return 3;
+            case PetProfile.SMALLPET: return 1;
+            case PetProfile.MEDIUMPET: return 2;
+            case PetProfile.LARGEPET: return 3;
             default: return 0; // default case
         }
     }

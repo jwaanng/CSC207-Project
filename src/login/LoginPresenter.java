@@ -1,7 +1,12 @@
 package login;
 
+import browsePage.BrowsePageState;
+import browsePage.BrowsePageViewModel;
 import favPetPage.displayUser.DisplayUserViewModel;
 import favPetPage.innerviews.DisplayUserView;
+import myPets.MyPetsViewModel;
+import myPets.createNewDog.CreateState;
+import myPets.myPetDisplayRedirect.MyPetRedirectViewModel;
 import myProfilePage.MyProfileView;
 import myProfilePage.MyProfileViewModel;
 import myProfilePage.changeProfile.ChangeProfileState;
@@ -12,6 +17,10 @@ import favPetPage.FavPetPageViewModel;
 import favPetPage.addAFavPet.AddState;
 import favPetPage.displayUser.DisplayUserState;
 import viewModel.ViewModelManager;
+
+import java.awt.*;
+import java.io.File;
+import java.util.HashMap;
 
 /**
  * The {@code LoginPresenter} class handles the presentation logic for the login feature, coordinating with
@@ -24,8 +33,9 @@ public class LoginPresenter implements LoginOB {
     private final LoginViewModel lgVM;
     private final FavPetPageViewModel fpVM;
     private final MyProfileViewModel myVM;
-
+    private final BrowsePageViewModel browseVM;
     private final ViewModelManager manager;
+    private final MyPetsViewModel petVM;
 
 
     /**
@@ -39,13 +49,19 @@ public class LoginPresenter implements LoginOB {
      * @param myProfileViewModel  The {@link  MyProfileViewModel} that stores all related information for
      *                            my profile pet page feature
      */
-    public LoginPresenter(ViewModelManager manager, LoginViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel, MyProfileViewModel
-            myProfileViewModel
+    public LoginPresenter(ViewModelManager manager,
+                          LoginViewModel loginViewModel,
+                          FavPetPageViewModel favPetPageViewModel,
+                          MyProfileViewModel myProfileViewModel,
+                          BrowsePageViewModel browsePageViewModel,
+                          MyPetsViewModel myPetsViewModel
                           ) {
         this.manager = manager;
         this.lgVM = loginViewModel;
         this.fpVM = favPetPageViewModel;
         this.myVM = myProfileViewModel;
+        this.browseVM = browsePageViewModel;
+        this.petVM = myPetsViewModel;
 
     }
 
@@ -60,6 +76,10 @@ public class LoginPresenter implements LoginOB {
     public void prepareSuccessView(LoginOPData outputData) {
         //login will automatically be redirected to the favPetPage
 
+        //Setting up the BrowsePage
+        BrowsePageState browsePageState = browseVM.getState();
+        browsePageState.setUsername(outputData.username);
+        browseVM.setState(browsePageState);
 
         //Setting up the myProfile Page
         ChangeProfileViewModel changPVM = myVM.getChangeProfileViewModel();
@@ -94,9 +114,26 @@ public class LoginPresenter implements LoginOB {
             fpVM.viewmodelsfirePropertyChanges();
 
         }
-
         manager.setActiveViewName(fpVM.getViewName()); // Redirect to the favorite pet page through manager
         manager.firePropertyChange();
+
+        //Setting up the myPetsPage
+        MyPetRedirectViewModel redirectVM = petVM.getMyPetRedirectViewModel();
+        HashMap<Integer, String> id_Name = outputData.getPetID_to_Name_MyPet();
+        HashMap<Integer, File> id_ImageFile = outputData.getPetID_to_Photo_MyPet();
+        CreateState createState = petVM.getCreateViewModel().getState();
+        if (!id_Name.keySet().isEmpty()) {
+            for (int petId : id_Name.keySet()) {
+                createState.addPetNameAndPhoto(petId,
+                        id_Name.get(petId), id_ImageFile.get(petId));
+
+            }
+            petVM.getCreateViewModel().setState(createState);
+            petVM.getRDRViewModel().setName(outputData.username);
+            petVM.getRDRViewModel().firePropertyChanged();
+            redirectVM.firePropertyChanged();
+        }
+
     }
 
     /**

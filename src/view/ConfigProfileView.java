@@ -1,6 +1,9 @@
 package view;
 
-import configProfile.*;
+import myProfilePage.changeProfile.ChangeProfileController;
+import myProfilePage.changeProfile.ChangeProfileState;
+import myProfilePage.changeProfile.ChangeProfileViewModel;
+import myProfilePage.configProfile.*;
 
 import javax.swing.*;
 import javax.swing.ButtonGroup;
@@ -29,9 +32,14 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
     private ButtonGroup sexGroup;
 
     private final ConfigProfileController configProfileController;
+    private final ChangeProfileController changeProfileController;
     private final ConfigProfileViewModel configProfileViewModel;
+    private final ChangeProfileViewModel changeProfileViewModel;
 
-    public ConfigProfileView(JFrame parent, ConfigProfileController configProfileController, ConfigProfileViewModel configProfileViewModel){
+    public ConfigProfileView(JFrame parent, ConfigProfileController configProfileController,
+                             ChangeProfileController changeProfileController,
+                             ConfigProfileViewModel configProfileViewModel,
+                             ChangeProfileViewModel changeProfileViewModel){
         // constructor
         super(parent);
 
@@ -55,10 +63,12 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
         setLocationRelativeTo(parent);
 
         this.configProfileController = configProfileController;
+        this.changeProfileController =changeProfileController;
         this.configProfileViewModel = configProfileViewModel;
+        this.changeProfileViewModel = changeProfileViewModel;
 
         configProfileViewModel.addPropertyChangeListener(this);
-
+        changeProfileViewModel.addPropertyChangeListener(this);
 
         confirmButton.addActionListener(new ActionListener() {
             // Action listener for clicking 'confirm'
@@ -119,12 +129,13 @@ public class ConfigProfileView extends JDialog implements PropertyChangeListener
                 JOptionPane.showMessageDialog(this, state.getError());
             }
         }
+
     }
 
     public static void main(String[] args) {
 //        ConfigProfileViewModel configProfileViewModel = new ConfigProfileViewModel();
 //        ConfigProfilePresenter configProfilePresenter = new ConfigProfilePresenter(configProfileViewModel, new ViewModelManager());
-//        ConfigProfileInteractor configProfileInteractor = new ConfigProfileInteractor(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
+//        ConfigProfileUCI configProfileInteractor = new ConfigProfileUCI(new CommonUserDataAccessObject(), configProfilePresenter, configProfilePresenter);
 //        ConfigProfileController configProfileController = new ConfigProfileController(configProfileInteractor);
 //
 //        ConfigProfileView configProfileView = new ConfigProfileView(null, configProfileController, configProfileViewModel);

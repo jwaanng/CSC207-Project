@@ -47,40 +47,40 @@ public class testMain {
 //        dao.update(michael);
 //        daopic.uploadPetProfile(dog1.getId(), new File("resources/testingPetProfiles/gr1.png"));
 //        daopic.uploadPetProfile(dog2.getId(), new File("resources/testingPetProfiles/gr2.png"));
-        ViewModelManager manager = new ViewModelManager();
-        FavPetPageViewModel vm = new FavPetPageViewModel();
-        FavPetPageView view = FavPetPageFactory.createFavPetPage(manager, vm, dao, daop, daopic);
-
-        DisplayUserPresenter DUpresenter = new DisplayUserPresenter(vm.getDisplayUserModel());
-        DisplayUserUCI DUuci = new DisplayUserUCI(DUpresenter,daopic);
-        DisplayUserController DUcontroller = new DisplayUserController(DUuci);
-        DUcontroller.execute(michael.getUsername());
-        vm.getDisplayUserModel().firePropertyChanged();
-        vm.getAddViewModel().getState().addPetNameAndPhoto(
-                dog1.getId(),
-                dog1.getName(),
-                daopic.retrievePetProfile(dog1.getId()));
-        vm.getAddViewModel().getState().addPetNameAndPhoto(
-                dog2.getId(),
-                dog2.getName(),
-                daopic.retrievePetProfile(dog2.getId()));
-
-        vm.viewmodelsfirePropertyChanges();
-        dog1.setName("Avelene");
-        daop.update(dog1);
-        UpdatePresenter UDpresenter = new UpdatePresenter(vm.getUpdateViewModel());
-        UpdateUCI UDuci = new UpdateUCI(UDpresenter,daop, daopic);
-        UpdateController UDController = new UpdateController(UDuci);
-        UDController.execute(0);
-        vm.viewmodelsfirePropertyChanges();
-
-
-
-
-        JFrame app = new JFrame();
-        app.add(view);
-        app.setVisible(true);
-        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        app.setSize(500,500);
+//        ViewModelManager manager = new ViewModelManager();
+//        FavPetPageViewModel vm = new FavPetPageViewModel();
+//        FavPetPageView view = FavPetPageFactory.createFavPetPage(manager, vm, dao, daop, daopic, );
+//
+//        DisplayUserPresenter DUpresenter = new DisplayUserPresenter(vm.getDisplayUserModel());
+//        DisplayUserUCI DUuci = new DisplayUserUCI(DUpresenter,daopic);
+//        DisplayUserController DUcontroller = new DisplayUserController(DUuci);
+//        DUcontroller.execute(michael.getUsername());
+//        vm.getDisplayUserModel().firePropertyChanged();
+//        vm.getAddViewModel().getState().addPetNameAndPhoto(
+//                dog1.getId(),
+//                dog1.getName(),
+//                daopic.retrievePetProfile(dog1.getId()));
+//        vm.getAddViewModel().getState().addPetNameAndPhoto(
+//                dog2.getId(),
+//                dog2.getName(),
+//                daopic.retrievePetProfile(dog2.getId()));
+//
+//        vm.viewmodelsfirePropertyChanges();
+//        dog1.setName("Avelene");
+//        daop.update(dog1);
+//        UpdatePresenter UDpresenter = new UpdatePresenter(vm.getUpdateViewModel());
+//        UpdateUCI UDuci = new UpdateUCI(UDpresenter,daop, daopic);
+//        UpdateController UDController = new UpdateController(UDuci);
+//        UDController.execute(0);
+//        vm.viewmodelsfirePropertyChanges();
+//
+//
+//
+//
+//        JFrame app = new JFrame();
+//        app.add(view);
+//        app.setVisible(true);
+//        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        app.setSize(500,500);
     }
 }

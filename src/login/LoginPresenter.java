@@ -1,7 +1,13 @@
 package login;
 
-import configProfile.ConfigProfileState;
-import configProfile.ConfigProfileViewModel;
+import favPetPage.displayUser.DisplayUserViewModel;
+import favPetPage.innerviews.DisplayUserView;
+import myProfilePage.MyProfileView;
+import myProfilePage.MyProfileViewModel;
+import myProfilePage.changeProfile.ChangeProfileState;
+import myProfilePage.changeProfile.ChangeProfileViewModel;
+import myProfilePage.configProfile.ConfigProfileState;
+import myProfilePage.configProfile.ConfigProfileViewModel;
 import favPetPage.FavPetPageViewModel;
 import favPetPage.addAFavPet.AddState;
 import favPetPage.displayUser.DisplayUserState;
@@ -17,29 +23,30 @@ import viewModel.ViewModelManager;
 public class LoginPresenter implements LoginOB {
     private final LoginViewModel lgVM;
     private final FavPetPageViewModel fpVM;
+    private final MyProfileViewModel myVM;
 
     private final ViewModelManager manager;
-
-    private final ConfigProfileViewModel configProfileViewModel;
 
 
     /**
      * Constructs an {@code LGPresenter} instance with the specified view models and manager.
      *
-     * @param loginViewModel         The {@link LoginViewModel} that stores all related
-     *                               information for the login feature.
-     * @param favPetPageViewModel    The  {@link FavPetPageViewModel} that stores all related
-     *                               information for the favorite pet page feature
-     * @param manager                The {@link ViewModelManager} for handling different view models in the application.
-     * @param configProfileViewModel The viewmodel for the configuration profile feature.
+     * @param manager             The {@link ViewModelManager} for handling different view models in the application.
+     * @param loginViewModel      The {@link LoginViewModel} that stores all related
+     *                            information for the login feature.
+     * @param favPetPageViewModel The  {@link FavPetPageViewModel} that stores all related
+     *                            information for the favorite pet page feature
+     * @param myProfileViewModel  The {@link  MyProfileViewModel} that stores all related information for
+     *                            my profile pet page feature
      */
-    public LoginPresenter(LoginViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel,
-                          ViewModelManager manager,
-                          ConfigProfileViewModel configProfileViewModel) {
-        this.lgVM = loginViewModel;
+    public LoginPresenter(ViewModelManager manager, LoginViewModel loginViewModel, FavPetPageViewModel favPetPageViewModel, MyProfileViewModel
+            myProfileViewModel
+                          ) {
         this.manager = manager;
+        this.lgVM = loginViewModel;
         this.fpVM = favPetPageViewModel;
-        this.configProfileViewModel = configProfileViewModel;
+        this.myVM = myProfileViewModel;
+
     }
 
     /**
@@ -53,11 +60,31 @@ public class LoginPresenter implements LoginOB {
     public void prepareSuccessView(LoginOPData outputData) {
         //login will automatically be redirected to the favPetPage
 
-        DisplayUserState currState = fpVM.getDisplayUserModel().getState();
-        currState.setUsername(outputData.username);
-        currState.setPhoto(outputData.profile);
-        fpVM.getDisplayUserModel().setState(currState);
-        fpVM.getDisplayUserModel().firePropertyChanged();
+
+        //Setting up the myProfile Page
+        ChangeProfileViewModel changPVM = myVM.getChangeProfileViewModel();
+        ChangeProfileState changeProfileState =  changPVM.getState();
+        changeProfileState.setImage(outputData.profile);
+        changPVM.setState(changeProfileState);
+        changPVM.firePropertyChanged();
+
+        ConfigProfileViewModel configPVM = myVM.getConfigProfileViewModel();
+        ConfigProfileState configProfileState = configPVM.getState();
+        configProfileState.setAddress(outputData.address);
+        configProfileState.setPreferredSex(outputData.preferredSex);
+        configProfileState.setBio(outputData.bio);
+        configProfileState.setUsername(outputData.username);
+        configProfileState.setPreferredSize(outputData.preferredSize);
+        configPVM.setState(configProfileState);
+        configPVM.firePropertyChanged();
+
+        //Setting up the favPetPage
+        DisplayUserViewModel dpVM = fpVM.getDisplayUserModel();
+        DisplayUserState displayUserState = dpVM.getState();
+        displayUserState.setUsername(outputData.username);
+        displayUserState.setPhoto(outputData.profile);
+        dpVM.setState(displayUserState);
+        dpVM.firePropertyChanged();
 
         AddState state = new AddState(outputData);
         if (state.getKeyEntries().isEmpty()) {
@@ -68,13 +95,8 @@ public class LoginPresenter implements LoginOB {
 
         }
 
-
         manager.setActiveViewName(fpVM.getViewName()); // Redirect to the favorite pet page through manager
         manager.firePropertyChange();
-
-        // Update the configuration profile state with the username
-        ConfigProfileState configProfileState = configProfileViewModel.getState();
-        configProfileState.setUsername(outputData.username);
     }
 
     /**

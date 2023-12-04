@@ -2,6 +2,7 @@ package favPetPage.innerviews;
 
 import favPetPage.myFavPetPageRedirect.FavPetRDRController;
 import favPetPage.innerviewmodels.FavPetRDRViewModel;
+import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import redirect.CommonRedirectView;
 
 import java.awt.event.ActionEvent;
@@ -19,12 +20,18 @@ public class FavPetRDRView extends CommonRedirectView {
      * @param favPetRedirectViewModel the {@link FavPetRDRViewModel} that stores all the information this view needs
      *                                to display
      */
-    public FavPetRDRView(FavPetRDRViewModel favPetRedirectViewModel) {
+    public FavPetRDRView(FavPetRDRViewModel favPetRedirectViewModel, MyProfileRDRController myProfileController) {
         super(favPetRedirectViewModel);
         myFav.setEnabled(false);
         myFav.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            }
+        });
+        myProfile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myProfileController.execute();
             }
         });
     }

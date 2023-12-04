@@ -1,4 +1,4 @@
-package configProfile;
+package myProfilePage.configProfile;
 
 import signupPage.signup.SignupIB;
 import signupPage.signup.SignupIPData;

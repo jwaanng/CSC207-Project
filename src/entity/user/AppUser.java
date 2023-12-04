@@ -11,23 +11,23 @@ import static entity.Constants.*;
  * The AppUser class represents a user in the application.
  */
 public class AppUser {
-
-    private String username;
+    public static final String NONE = "None";
+    private final String username;
     private String bio;
     private String password;
     private String address;
-    private String preferredSex;
-    private String preferredSize;
-    private List<Integer> favPet;
-    private List<String> roles;
+    private String preferredSex = NONE;
+    private String preferredSize = NONE;
+    private final List<Integer> favPet;
+    private final List<String> roles;
     private String instagramUsername;
     private List<Integer> myPet;
 
-    /**
-     * Default constructor for AppUser.
-     */
-    public AppUser() {
-    }
+//    /**
+//     * Default constructor for AppUser.
+//     */
+//    public AppUser() {
+//    }
 
     /**
      * Parameterized constructor for creating an AppUser with essential information.
@@ -93,10 +93,6 @@ public class AppUser {
 
     public void setPreferredSex(String sex) {
         this.preferredSex = sex;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public void setAddress(String address) {

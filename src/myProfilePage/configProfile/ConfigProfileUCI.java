@@ -1,4 +1,4 @@
-package usecase.configProfile;
+package myProfilePage.configProfile;
 
 import dataAccessObject.UserDataAccessInterface;
 import entity.user.AppUser;
@@ -7,22 +7,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The {@code ConfigProfileInteractor} class represents the use case interactor responsible for handling
+ * The {@code ConfigProfileUCI} class represents the use case interactor responsible for handling
  * the logic related to configuring user profiles. Implements the {@code ConfigProfileInputBoundary} interface.
  * This class validates input data, performs necessary checks, and updates user profiles accordingly.
  */
-public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
-    final UserDataAccessInterface configProfileDataAccessInterface;
-    final ConfigProfileOutputBoundary configProfilePresenter;
+public class ConfigProfileUCI implements ConfigProfileIB {
+    final UserDataAccessInterface userDataAccessInterface;
+    final ConfigProfileOB configProfilePresenter;
 
     /**
-     * Constructs a {@code ConfigProfileInteractor} with the specified data access interface and output boundary.
+     * Constructs a {@code ConfigProfileUCI} with the specified data access interface and output boundary.
      *
-     * @param configProfileDataAccessInterface The data access interface for interacting with user profiles.
+     * @param userDataAccessInterface The data access interface for interacting with user profiles.
      * @param configProfilePresenter          The output boundary for presenting success or failure views.
      */
-    public ConfigProfileInteractor(UserDataAccessInterface configProfileDataAccessInterface, ConfigProfileOutputBoundary configProfilePresenter) {
-        this.configProfileDataAccessInterface = configProfileDataAccessInterface;
+    public ConfigProfileUCI(UserDataAccessInterface userDataAccessInterface, ConfigProfileOB configProfilePresenter) {
+        this.userDataAccessInterface = userDataAccessInterface;
 //        this.configProfileOutputBoundary = configProfilePresenter;
         this.configProfilePresenter = configProfilePresenter;
     }
@@ -35,7 +35,6 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
      */
     public boolean containsSpecialChars(String s) {
         if (s == null || s.trim().isEmpty()) {
-            System.out.println("Stringempth");
             return true;
         }
         Pattern p = Pattern.compile("[^A-Za-z0-9, ]");
@@ -50,28 +49,28 @@ public class ConfigProfileInteractor implements ConfigProfileInputBoundary {
      * @param data The input data containing information for configuring the user profile.
      */
     @Override
-    public void execute(ConfigProfileInputData data) {
+    public void execute(ConfigProfileIPData data) {
 
         if (containsSpecialChars(data.getAddress())) {
             // if the address contains special characters
-            System.out.println("INTERACTOR: FIRST IF");
             configProfilePresenter.prepareFailView("Make sure address doesn't contain special characters");
         } else if (data.getBio().length() > 150) {
             // if the bio is too long
             configProfilePresenter.prepareFailView("Keep bio under 150 characters.");
         } else {
             // TODO2 Done -ming: saving the info if all parameters are met.
-            AppUser user = configProfileDataAccessInterface.retrieve(data.getUsername()); //TODO: get username
+            AppUser user = userDataAccessInterface.retrieve(data.getUsername());
             // setting attributes to user
             user.setBio(data.getBio());
             user.setAddress(data.getAddress());
             user.setPreferredSize(data.getSize());
             user.setPreferredSex(data.getSex());
-
-            System.out.println("INTERACTOR: " + user.getPreferredSex() + " " + user.getPreferredSize());
-
-            configProfileDataAccessInterface.update(user);
-            System.out.println("INTERACTOR after: " + user.getPreferredSex() + " " + user.getPreferredSize());
+            userDataAccessInterface.update(user);
+            ConfigProfileOPData opData = new ConfigProfileOPData(data.getUsername(),
+                    data.getAddress(),
+                    data.getBio(),
+                    data.getSize(), data.getSex(), false);
+            configProfilePresenter.prepareSuccessView(opData);
         }
     }
 }

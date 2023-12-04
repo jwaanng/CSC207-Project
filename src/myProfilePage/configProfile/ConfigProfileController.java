@@ -1,7 +1,4 @@
-package configProfile;
-
-import usecase.configProfile.ConfigProfileInputData;
-import usecase.configProfile.ConfigProfileInputBoundary;
+package myProfilePage.configProfile;
 
 /**
  * Controller class for configuring user profiles.
@@ -16,15 +13,15 @@ public class ConfigProfileController {
      * The use case interactor responsible for handling the business logic associated with
      * configuring user profiles.
      */
-    final ConfigProfileInputBoundary configProfileUseCaseInteractor;
+    final ConfigProfileIB configProfileUseCaseInteractor;
 
     /**
      * Constructor for the ConfigProfileController class.
      *
-     * @param configProfileUseCaseInteractor The use case interactor associated with this controller.
+     * @param configProfileIB The use case interactor associated with this controller.
      */
-    public ConfigProfileController(ConfigProfileInputBoundary configProfileUseCaseInteractor) {
-        this.configProfileUseCaseInteractor = configProfileUseCaseInteractor;
+    public ConfigProfileController(ConfigProfileIB configProfileIB) {
+        this.configProfileUseCaseInteractor = configProfileIB;
     }
 
     /**
@@ -41,8 +38,7 @@ public class ConfigProfileController {
      * @param sex      The new gender pref information to be set in the user's profile.
      */
     public void execute(String username, String address, String bio, String size, String sex) {
-        System.out.println("CONTROLLER executed");
-        ConfigProfileInputData configProfileInputData = new ConfigProfileInputData(username, address, bio, size, sex);
-        configProfileUseCaseInteractor.execute(configProfileInputData);
+        ConfigProfileIPData configProfileIPData = new ConfigProfileIPData(username, address, bio, size, sex);
+        configProfileUseCaseInteractor.execute(configProfileIPData);
     }
 }

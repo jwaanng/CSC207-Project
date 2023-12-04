@@ -1,8 +1,4 @@
-package configProfile;
-import browsePage.BrowsePageViewModel;
-
-import usecase.configProfile.ConfigProfileOutputBoundary;
-import viewModel.ViewModelManager;
+package myProfilePage.configProfile;
 
 /**
  * Presenter class for configuring user profiles.
@@ -10,34 +6,21 @@ import viewModel.ViewModelManager;
  * This class implements the ConfigProfileOutputBoundary interface and is responsible for preparing
  * the view based on the outcomes of the user profile configuration feature, such as success or failure.
  */
-public class ConfigProfilePresenter implements ConfigProfileOutputBoundary {
+public class ConfigProfilePresenter implements ConfigProfileOB {
 
     /**
      * The view model associated with the user profile configuration feature.
      */
     private final ConfigProfileViewModel configProfileViewModel;
 
-    /**
-     * The view model associated with the Browse Page feature.
-     */
-    private final BrowsePageViewModel browsePageViewModel;
-
-    /**
-     * The manager responsible for managing view models.
-     */
-    private final ViewModelManager viewModelManager;
 
     /**
      * Constructor for the ConfigProfilePresenter class.
      *
      * @param configProfileViewModel The view model associated with the user profile configuration feature.
-     * @param browsePageViewModel    The view model associated with the Browse Page feature.
-     * @param viewModelManager       The manager responsible for managing view models.
      */
-    public ConfigProfilePresenter(ConfigProfileViewModel configProfileViewModel, BrowsePageViewModel browsePageViewModel, ViewModelManager viewModelManager) {
+    public ConfigProfilePresenter(ConfigProfileViewModel configProfileViewModel) {
         this.configProfileViewModel = configProfileViewModel;
-        this.viewModelManager = viewModelManager;
-        this.browsePageViewModel = browsePageViewModel;
     }
 
     /**
@@ -50,10 +33,21 @@ public class ConfigProfilePresenter implements ConfigProfileOutputBoundary {
      */
     @Override
     public void prepareFailView(String error) {
-        System.out.println("PRESENTER: fail view executed  " + error);
+
         ConfigProfileState configProfileState = configProfileViewModel.getState();
         configProfileState.setError(error);
-        System.out.println("PRESENTER state: " + configProfileState.toString());
+        configProfileViewModel.setState(configProfileState);
+        configProfileViewModel.firePropertyChanged();
+    }
+
+    @Override
+    public void prepareSuccessView(ConfigProfileOPData outputData) {
+        ConfigProfileState configProfileState = configProfileViewModel.getState();
+        configProfileState.setUsername(outputData.name);
+        configProfileState.setBio(outputData.bio);
+        configProfileState.setAddress(outputData.address);
+        configProfileState.setPreferredSex(outputData.preferredSex);
+        configProfileState.setPreferredSize(outputData.preferredSize);
         configProfileViewModel.setState(configProfileState);
         configProfileViewModel.firePropertyChanged();
     }

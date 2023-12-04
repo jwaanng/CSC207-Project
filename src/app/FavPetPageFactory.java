@@ -20,6 +20,7 @@ import favPetPage.viewThisPetProfile.ViewThisController;
 import favPetPage.viewThisPetProfile.ViewThisIB;
 import favPetPage.viewThisPetProfile.ViewThisPresenter;
 import favPetPage.viewThisPetProfile.ViewThisUCI;
+import myProfilePage.myProfileRedirect.MyProfileRDRController;
 import viewModel.ViewModelManager;
 
 /**
@@ -48,7 +49,8 @@ public class FavPetPageFactory {
             ViewModelManager manager, FavPetPageViewModel favPetPageViewModel,
             UserDataAccessInterface userDataAccessInterface,
             PetProfileDataAccessInterface petProfileDataAccessInterface,
-            ProfilePictureDataAccessInterface profilePictureDataAccessInterface) {
+            ProfilePictureDataAccessInterface profilePictureDataAccessInterface,
+            MyProfileRDRController myProfileRDRController) {
 
         //delete fav pet cycle
         DeletePresenter deletePresenter = new DeletePresenter(favPetPageViewModel.getDeleteFavPetViewModel());
@@ -62,9 +64,6 @@ public class FavPetPageFactory {
         ViewThisController viewThisController = new ViewThisController(vtUci);
 
         //TODO copy this code when needed redirect int my fav pet page cycle
-        FavPetRDRPresenter FavPetRDRPresenter = new FavPetRDRPresenter(favPetPageViewModel, manager);
-        FavPetRDRUCI FavPetRDRUCI = new FavPetRDRUCI(FavPetRDRPresenter);
-        FavPetRDRController favPetRDRController = new FavPetRDRController(FavPetRDRUCI);
 
         //BrowsePet cycle
         BrowsePresenter browsePresenter = new BrowsePresenter(new BrowsePageViewModel(), manager);
@@ -75,6 +74,6 @@ public class FavPetPageFactory {
                 favPetPageViewModel,
                 deleteController,
                 viewThisController,
-                browseController);
+                browseController,myProfileRDRController);
     }
 }

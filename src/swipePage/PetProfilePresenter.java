@@ -1,9 +1,7 @@
 package swipePage;
 
 import entity.petProfile.PetProfile;
-import javax.imageio.ImageIO;
 import dataAccessObject.CommonProfileDataAccessObject;
-
 import java.awt.*;
 
 /**

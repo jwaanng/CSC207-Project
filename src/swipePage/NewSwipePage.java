@@ -1,24 +1,16 @@
 package swipePage;
+
 import dataAccessObject.CommonUserDataAccessObject;
 import dataAccessObject.PetProfileDataAccessObject;
 import dataAccessObject.UserDataAccessInterface;
-
 import entity.petProfile.PetProfile;
 import entity.user.AppUserFactory;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.List;
 import java.util.ArrayList;
-import java.net.URL;
-import javax.imageio.ImageIO;
-
-
-
 
 public class NewSwipePage extends JFrame {
     private JLabel nameLabel, bioLabel, photosLabel;
@@ -160,18 +152,6 @@ public class NewSwipePage extends JFrame {
         PetProfile SallyDogDawson = daop.getProfile(5);
         PetProfile GregDogAlex = daop.getProfile(6);
         PetProfile MirandaDogNemo = daop.getProfile(7);
-
-//        CommonProfileDataAccessObject commonProfileDataAccessObject = new CommonProfileDataAccessObject();
-//        File dalmation = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\dalmatian.png");
-//        File daschund = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\daschund.png");
-//        File husky = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\husky.png");
-//        File shiba = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\shiba.png");
-//        File wolf = new File("C:\\Users\\Sean Kong\\Desktop\\School\\CSC207\\PETPAL\\resources\\SomeTestProfilePictures\\wolf.png");
-//        commonProfileDataAccessObject.uploadPetProfile(JasonDogRosy.getId(), shiba);
-//        commonProfileDataAccessObject.uploadPetProfile(DavidDogRandy.getId(), husky);
-//        commonProfileDataAccessObject.uploadPetProfile(SallyDogDawson.getId(), wolf);
-//        commonProfileDataAccessObject.uploadPetProfile(GregDogAlex.getId(), dalmation);
-//        commonProfileDataAccessObject.uploadPetProfile(MirandaDogNemo.getId(), daschund);
 
         List<PetProfile> profiles = new ArrayList<>();
         profiles.add(JasonDogRosy);

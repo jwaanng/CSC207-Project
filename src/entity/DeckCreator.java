@@ -16,6 +16,7 @@ public class DeckCreator {
     private ArrayList<PetProfile> allPetProfiles;
 
     public DeckCreator(AppUser appUser) {
+        this.appUser = appUser;
         ArrayList<PetProfile> petList = GenerateDeck();
         PetProfileDataAccessObject ppc = new PetProfileDataAccessObject();
         this.comparator = new PetProfileComparator(
@@ -25,7 +26,6 @@ public class DeckCreator {
         );
         this.ppdao = ppc;
         this.allPetProfiles = petList;
-        this.appUser = appUser;
     }
 
     public DeckCreator() { //for testing ignore this in the final implementation -Sean
@@ -43,11 +43,13 @@ public class DeckCreator {
     public ArrayList<PetProfile> sortAllPetProfiles() {
         Collections.sort(allPetProfiles, comparator);
         List<Integer> petIDs = appUser.getFavPet();
+        ArrayList<PetProfile> toRemove = new ArrayList<>();
         for (int i = 0; i < allPetProfiles.size(); i++) {
             if (petIDs.contains(allPetProfiles.get(i).getId())) {
-                allPetProfiles.remove(i);
+                toRemove.add(allPetProfiles.get(i));
             }
         }
+        allPetProfiles.removeAll(toRemove);
         return allPetProfiles;
     }
 
@@ -55,15 +57,14 @@ public class DeckCreator {
         PetProfileDataAccessObject ppc = new PetProfileDataAccessObject();
         return ppc.retrieveAllProfiles();
     }
-
-    public static void main(String[] args) {
-        PetProfileDataAccessObject access = new PetProfileDataAccessObject();
-        ArrayList<PetProfile> allprofiles = access.retrieveAllProfiles();
-        System.out.println(allprofiles);
-
-        DeckCreator deck = new DeckCreator();
-        ArrayList<PetProfile> list = deck.sortAllPetProfiles();
-        System.out.println(list);
-
-    }
+//    public static void main(String[] args) {
+//        PetProfileDataAccessObject access = new PetProfileDataAccessObject();
+//        ArrayList<PetProfile> allprofiles = access.retrieveAllProfiles();
+//        System.out.println(allprofiles);
+//
+//        DeckCreator deck = new DeckCreator();
+//        ArrayList<PetProfile> list = deck.sortAllPetProfiles();
+//        System.out.println(list);
+//
+//    }
 }
